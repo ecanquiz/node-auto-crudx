@@ -1,2 +1,2 @@
-# node-auto-crud
+# node-autocrud
 Node AutoCrud

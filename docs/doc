@@ -1,0 +1,4 @@
+tsc --watch
+nodemon dist/app.js
+https://node-postgres.com/
+https://stackabuse.com/using-postgresql-with-nodejs-and-node-postgres/

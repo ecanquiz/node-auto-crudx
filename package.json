@@ -1,0 +1,26 @@
+{
+  "name": "node-autocrud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/ejs": "^3.1.2",
+    "@types/pg": "^8.6.6",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "tslint": "^6.1.3",
+    "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
+    "pg": "^8.10.0",
+    "pg-hstore": "^2.3.4"
+  }
+}

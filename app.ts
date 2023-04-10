@@ -1,21 +1,8 @@
 import fs from 'fs'
-import client from './db/connection'
-import ejs from 'ejs';
+import ejs from 'ejs'
+import loadData from './modules/loadData'
 
-client.connect()
-
-const query = `SELECT * FROM users ORDER BY 1 LIMIT 1;`;
-
-client.query(query, (err, res) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
-    for (let row of res.rows) {
-        console.log(row);
-    }
-    client.end();
-});
+loadData('products', 'presentations')
 
 let people = ['geddy', 'neil', 'alex'];
 let content = ejs.render('this-is-a-string [ <%= people.join(", "); %> ] this-is-another-string', {people});

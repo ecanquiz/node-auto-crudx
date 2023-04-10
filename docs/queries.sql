@@ -1,6 +1,6 @@
 /*
 // 1- get_dbnames_list.sql
-
+--------------------------
 const query = `
   SELECT row_number() OVER (ORDER BY datname), datname FROM pg_database WHERE datname NOT IN ('template0', 'template1') order by 1;
 `;
@@ -8,7 +8,7 @@ const query = `
 
 /*
 // 2- get_schemas_and_tables_of_bd_select.sql
-
+---------------------------------------------
 const query = `
 SELECT table_schema, table_schema, table_name, table_name 
 FROM information_schema.tables 
@@ -19,7 +19,7 @@ AND table_type = 'BASE TABLE' ORDER BY 1,3
 
 /*
 // 3- get_schemas_of_bd_select.sql
-
+----------------------------------
 const query = `SELECT distinct table_schema, table_schema
 FROM information_schema.tables 
 WHERE table_schema NOT IN ('pg_catalog', 'information_schema') 

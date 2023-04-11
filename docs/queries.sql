@@ -50,7 +50,7 @@ AND C.table_schema='{fld:schema}'
 AND A.constraint_schema='{fld:schema}'
 AND B.constraint_schema='{fld:schema}'
 AND C.constraint_schema='{fld:schema}'
-AND B.column_name NOT IN (SELECT B.column_name
+AND B.column_name IN (SELECT B.column_name
                           FROM information_schema.table_constraints A
                           JOIN information_schema.key_column_usage AS B
                           ON A.constraint_name = B.constraint_name

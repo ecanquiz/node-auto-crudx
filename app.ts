@@ -1,5 +1,7 @@
 import fs from 'fs'
 import ejs from 'ejs'
+import { uCamelCase, camelCase } from './utils/nomenclature';
+
 import {
   getProduct,
   getNamesList,
@@ -14,6 +16,8 @@ import {
   getTableUniqueConstraint,
   getTablesOfBD
 } from './modules/GetData'
+
+
 
 const process = async () => {
     const product = (await getProduct()).rows
@@ -79,7 +83,6 @@ const process = async () => {
 
 process()
 
-
 let people = ['geddy', 'neil', 'alex'];
 let content = ejs.render('this-is-a-string [ <%= people.join(", "); %> ] this-is-another-string', {people});
 
@@ -91,4 +94,10 @@ fs.writeFile(`./docs/content.example`, content, err => {
   }
   // file written successfully
 });
+
+const str = 'we_have_learned_something_new_today';
+
+console.log(uCamelCase(str))
+console.log(camelCase(str))
+
 

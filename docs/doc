@@ -2,3 +2,13 @@ tsc --watch
 nodemon dist/app.js
 https://node-postgres.com/
 https://stackabuse.com/using-postgresql-with-nodejs-and-node-postgres/
+
+
+function toTitleCase(str) {
+  return str.replace(
+    /\w\S*/g,
+    function(txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    }
+  );
+}

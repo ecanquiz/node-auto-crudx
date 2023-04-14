@@ -27,8 +27,8 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
 
 main({
   schema: 'public',
-  tableMaster: 'products',
-  tableDetail: 'presentations'
+  tableMaster: 'meetings',
+  tableDetail: 'attendes'
 }, [
   'updated_at',
   'created_at',

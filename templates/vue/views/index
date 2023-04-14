@@ -20,10 +20,10 @@ const {
 
 <template>
   <div>
-    <AppPageHeader> <%= domain.uCamelCase; %> </AppPageHeader>
+    <AppPageHeader> <%= tableMasterUCamelCase; %> </AppPageHeader>
 
     <div class="flex space-x-2">
-      <AppLink class="btn btn-primary" to="/<%= domain.tablaName; %>/create">
+      <AppLink class="btn btn-primary" to="/<%= tableMasterUCamelCase; %>/create">
         <span>Crear</span>
       </AppLink>
     </div>
@@ -46,6 +46,12 @@ const {
         <table class="table-data">
           <thead>
             <tr class="">
+              <ul><% tableStructureClean.forEach(function(field){ %>
+                  <th class="">
+                    <AppLink to="#" @click.prevent="setSort('<%= field.column_name; %>')"><%= field.column_name; %></AppLink>
+                  </th>
+                <% }); %>
+              </ul>
               <th class="">
                 Avatar
               </th>
@@ -77,7 +83,7 @@ const {
               <td class="">
                 <AppLink
                   class="text-indigo-600 hover:text-indigo-800 underline"
-                  :to="{ name: 'userEdit', params: { id: row.id }}"                  
+                  :to="{ name: '<%= tableMasterSingular; %>Edit', params: { id: row.id }}"               
                 >
                   {{ row.name }}
                 </AppLink>
@@ -92,7 +98,7 @@ const {
                 <div class="flex items-center space-x-1">                
                   <AppBtn
                     class="btn btn-primary btn-xs"                    
-                    @click="router.push({ path: '/<%= domain.tablaName; %>/edit/'+row.id })"
+                    @click="router.push({ path: '/<%= tableMaster; %>/edit/'+row.id })"
                   >
                     Editar
                   </AppBtn>
@@ -106,7 +112,7 @@ const {
               </td>
             </tr>
             <tr v-if="data.rows.length === 0">
-              <td class="" colspan="4"><%= domain.uCamelCase; %> not found.</td>
+              <td class="" colspan="4"><%= tableMasterUCamelCase; %> not found.</td>
             </tr>
           </tbody>
         </table>

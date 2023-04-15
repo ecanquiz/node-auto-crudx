@@ -6,23 +6,25 @@ import { singular } from './utils/grammaticalNumber'
 import type { GetDataOfBDParams, fieldStructure } from './types'
 
 const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[]) => {
-  /*
-    // demo()
-    const dataOfBD = await getDataOfBD(payload)
-    console.log(dataOfBD)
-  */
+  // demo()
+
   const {
-    tableStructure 
-  } = await getDataOfBD(getDataOfBDParams) // console.log(dataOfBD)*/
+    tableStructure
+  } = await getDataOfBD(getDataOfBDParams)
+
+  const tableMaster: string = getDataOfBDParams.tableMaster
+  const tableMasterSingular: string = singular(getDataOfBDParams.tableMaster)
+  const tableMasterUCamelCase: string = uCamelCase(getDataOfBDParams.tableMaster)
+  const tableStructureClean: any[][] = tableStructure.filter(
+    field => !(excludeFields.includes((field as unknown as fieldStructure).column_name))
+  )
   
   writeFrontend({
-    tableMaster: getDataOfBDParams.tableMaster,
-    tableMasterSingular: singular(getDataOfBDParams.tableMaster),
-    tableMasterUCamelCase: uCamelCase(getDataOfBDParams.tableMaster),
-    tableStructureClean: tableStructure.filter(
-      field => !(excludeFields.includes((field as unknown as fieldStructure).column_name))
-    )
-  })  
+    tableMaster,
+    tableMasterSingular,
+    tableMasterUCamelCase,
+    tableStructureClean
+  })
 }
 
 main({

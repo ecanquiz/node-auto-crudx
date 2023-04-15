@@ -46,54 +46,31 @@ const {
         <table class="table-data">
           <thead>
             <tr class="">
-              <ul><% tableStructureClean.forEach(function(field){ %>
-                  <th class="">
-                    <AppLink to="#" @click.prevent="setSort('<%= field.column_name; %>')"><%= field.column_name; %></AppLink>
-                  </th>
-                <% }); %>
-              </ul>
-              <th class="">
-                Avatar
-              </th>
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('name')">Nombre</AppLink>
-              </th>
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('email')">Correo</AppLink>
-              </th>
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('role')">Role</AppLink>
-              </th>
+              <% tableStructureClean.forEach(function(field){ %>
+                <th class="">
+                  <AppLink to="#" @click.prevent="setSort('<%= field.column_name; %>')"><%= field.column_name; %></AppLink>
+                </th>
+              <% }); %>                            
               <th class="">Acción</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="row in data.rows" :key="row.id" class="">
-              <td>
-              <div class="inline-flex items-center space-x-2">
-            <img
-              v-if="row.avatar"
-              :src="row.avatar"
-              class="w-10 h-10 rounded-full"
-              alt=""
-            />
-            <AvatarIcon class="w-10 h-10 text-gray-400 rounded-full" v-else />            
-          </div>
-              </td>
+
               <td class="">
                 <AppLink
                   class="text-indigo-600 hover:text-indigo-800 underline"
                   :to="{ name: '<%= tableMasterSingular; %>Edit', params: { id: row.id }}"               
                 >
-                  {{ row.name }}
+                  {{ <%= tableStructureClean[0].column_name %> }}
                 </AppLink>
               </td>
+            <% tableStructureClean.forEach(
+            (field) => { if (field.column_name !== 'id' ) { %>
               <td class="">
-                {{ row.email }}
+                {{ <%= field.column_name; %> }}
               </td>
-              <td class="">
-                {{ row.role_id }}
-              </td>
+            <%}});%>              
               <td class="">
                 <div class="flex items-center space-x-1">                
                   <AppBtn

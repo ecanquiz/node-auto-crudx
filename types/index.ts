@@ -25,3 +25,9 @@ export type fieldStructure = {
   is_nullable: 'SI' | 'NO'
   column_default: string
 }
+
+export type TableDetailOfMaster = {
+  table_name: string
+  id_foreign_key: string
+  id_master: string
+}

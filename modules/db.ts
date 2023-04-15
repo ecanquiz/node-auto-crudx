@@ -67,14 +67,14 @@ class DB {
             JOIN information_schema.constraint_column_usage AS C
             ON C.constraint_name = A.constraint_name
             WHERE  constraint_type = 'FOREIGN KEY'
-            AND A.table_name='presentations'
-            AND B.table_name='presentations'
-            AND A.table_schema='public'
-            AND B.table_schema='public'
-            AND C.table_schema='public'
-            AND A.constraint_schema='public'
-            AND B.constraint_schema='public'
-            AND C.constraint_schema='public'
+            AND A.table_name = $3
+            AND B.table_name = $3
+            AND A.table_schema = $1
+            AND B.table_schema = $1
+            AND C.table_schema = $1
+            AND A.constraint_schema = $1
+            AND B.constraint_schema = $1
+            AND C.constraint_schema = $1
             AND B.column_name IN (SELECT B.column_name
                                       FROM information_schema.table_constraints A
                                       JOIN information_schema.key_column_usage AS B

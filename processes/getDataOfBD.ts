@@ -1,6 +1,6 @@
 //import * as consoleLog from '../utils/consoleLog'
 import db from '../modules/db';
-import type { GetDataOfBDParams, GetDataOfBDReturn } from '../types'
+import type { GetDataOfBDParams, GetDataOfBDReturn, TableDetailOfMaster } from '../types'
 
 export default async ({schema, tableMaster, tableDetail}: GetDataOfBDParams):  GetDataOfBDReturn=> {
     const namesList = (
@@ -15,17 +15,21 @@ export default async ({schema, tableMaster, tableDetail}: GetDataOfBDParams):  G
       await db.getSchemasOfBD()
     ).rows
   
-    const tableDetailForeignKeysAssoc = (
-      await db.getTableDetailForeignKeysAssoc({schema, tableMaster, tableDetail})
-    ).rows
-  
     const tableDetailOfMaster = (
       await db.getTableDetailOfMaster({schema, tableMaster})
     ).rows
-  
-    const tableForeignKeysAssocMasterDetail = (
-      await db.getTableForeignKeysAssocMasterDetail({schema, tableMaster, tableDetail})
-    ).rows
+ 
+    const tableDetailForeignKeysAssoc = await  Promise.all(tableDetailOfMaster.map(
+      async r => ( await db.getTableDetailForeignKeysAssoc(
+        {schema, tableMaster, tableDetail: (r as unknown as TableDetailOfMaster).table_name}
+      )).rows
+    ))
+
+    const tableForeignKeysAssocMasterDetail = await  Promise.all(tableDetailOfMaster.map(
+      async r => ( await db.getTableForeignKeysAssocMasterDetail(
+        {schema, tableMaster, tableDetail: (r as unknown as TableDetailOfMaster).table_name}
+      )).rows
+    ))
   
     const tableMasterForeignKeysAssoc = (
       await db.getTableMasterForeignKeysAssoc({schema, tableMaster})
@@ -42,11 +46,11 @@ export default async ({schema, tableMaster, tableDetail}: GetDataOfBDParams):  G
     const tableUniqueConstraint = (
       await db.getTableUniqueConstraint({schema, tableMaster})
     ).rows
-  
+
     const tablesOfBD = (
       await db.getTablesOfBD({schema}, true)
     ).rows
-  
+
     return {
         namesList,
         schemasAndTablesOfBD,

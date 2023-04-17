@@ -9,7 +9,8 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
   // demo()
 
   const {
-    tableStructure
+    tableStructure,
+    tableDetailOfMaster
   } = await getDataOfBD(getDataOfBDParams)
 
   const tableMaster: string = getDataOfBDParams.tableMaster
@@ -23,7 +24,8 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
     tableMaster,
     tableMasterSingular,
     tableMasterUCamelCase,
-    tableStructureClean
+    tableStructureClean,
+    tableDetailOfMaster
   })
 }
 

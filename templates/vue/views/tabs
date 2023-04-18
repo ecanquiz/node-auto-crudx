@@ -3,9 +3,14 @@ import { defineAsyncComponent, shallowRef, ref, provide } from 'vue'
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import { useRouter } from 'vue-router'
 
-const TabProduct = defineAsyncComponent(() => import('../../components/Product/TabProduct.vue'))
+<% tableDetailOfMaster.forEach(function(table){ %>
+const <%= table; %> = defineAsyncComponent(() => import('../../components/tab-<%= table; %>.vue'))
+<% }); %>
+
+/*const TabProduct = defineAsyncComponent(() => import('../../components/Product/TabProduct.vue'))
 const TabPresentation = defineAsyncComponent(() => import('../../components/Product/TabPresentation.vue'))
 const TabImage = defineAsyncComponent(() => import('../../components/Product/TabImage.vue'))
+*/
 const props = defineProps<{ id?: string }>()
 const tabs = [
   { component: TabProduct, title: "Producto" },

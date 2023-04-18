@@ -1,7 +1,6 @@
 export type GetDataOfBDParams = {
     schema: string
     tableMaster: string
-    tableDetail: string
 }
 
 export type GetDataOfBDReturn = Promise<{

@@ -1,42 +1,36 @@
-import createOrEditMaster from '../modules/renderings/vue/createOrEditMaster'
-import datagrid from '../modules/renderings/vue/datagrid'
-import tabs from '../modules/renderings/vue/tabs'
+import {
+  createOrEditMaster,
+  datagrid,
+  tabs
+} from '../modules/renderings/vue'
+import type { ParamsAll } from '../types/utilsRendering';
 
-
-type DataGridParamas = {
-  tableMaster: string;
-  tableMasterSingular: string
-  tableMasterUCamelCase: string;
-  tableStructureClean: any[][];
-  tableDetailOfMaster: any[][];
-}
-  
 export default ({
   tableMaster,
   tableMasterSingular,
   tableMasterUCamelCase,
   tableStructureClean,
   tableDetailOfMaster
-}: DataGridParamas): void => {
+}: ParamsAll): void => {
   createOrEditMaster({
     tableMaster,
     tableMasterSingular,
     tableMasterUCamelCase,
     tableStructureClean        
   })
-
   datagrid({
     tableMaster,
     tableMasterSingular,
     tableMasterUCamelCase,
     tableStructureClean        
   })
-
-  tabs({
-    tableMaster,
-    tableMasterSingular,
-    tableMasterUCamelCase,
-    tableStructureClean,
-    tableDetailOfMaster     
-  })
+  if (tableDetailOfMaster) {
+    tabs({
+      tableMaster,
+      tableMasterSingular,
+      tableMasterUCamelCase,
+      tableStructureClean,
+      tableDetailOfMaster: (tableDetailOfMaster) as any[][]
+    })
+  }
 }

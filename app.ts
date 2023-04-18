@@ -6,8 +6,6 @@ import { singular } from './utils/grammaticalNumber'
 import type { GetDataOfBDParams, fieldStructure } from './types'
 
 const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[]) => {
-  // demo()
-
   const {
     tableStructure,
     tableDetailOfMaster
@@ -16,7 +14,7 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
   const tableMaster: string = getDataOfBDParams.tableMaster
   const tableMasterSingular: string = singular(getDataOfBDParams.tableMaster)
   const tableMasterUCamelCase: string = uCamelCase(getDataOfBDParams.tableMaster)
-  const tableStructureClean: any[][] = tableStructure.filter(
+  const tableStructureClean: string[][] = tableStructure.filter(
     field => !(excludeFields.includes((field as unknown as fieldStructure).column_name))
   )
   
@@ -32,7 +30,6 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
 main({
   schema: 'public',
   tableMaster: 'meetings',
-  tableDetail: 'attendes'
 }, [
   'updated_at',
   'created_at',

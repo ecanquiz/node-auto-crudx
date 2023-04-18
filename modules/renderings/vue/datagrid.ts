@@ -1,37 +1,20 @@
-import fs from 'fs'
-import ejs from 'ejs'
+import rendering from '../../../utils/rendering';
+import type { ParamsMain } from '../../../types/utilsRendering';
 
-type DataGridParamas = {
-  tableMaster: string;
-  tableMasterSingular: string
-  tableMasterUCamelCase: string;
-  tableStructureClean: any[][];
-}
-
-export default (
-    { tableMaster, tableMasterSingular, tableMasterUCamelCase, tableStructureClean }: DataGridParamas
-  ): void => {
-
-  let template = fs.readFileSync('./templates/vue/views/index')
-
-  let content = ejs.render(template.toString(), {
+export default ({
+  tableMaster,
+  tableMasterSingular,
+  tableMasterUCamelCase,
+  tableStructureClean
+}: ParamsMain): void => {
+  rendering({
+    template: './templates/vue/views/index',
+    outputPath: 'views',
+    outputFile: 'Index.vue'
+  }, {
     tableMaster,
     tableMasterSingular,
     tableMasterUCamelCase,
-    tableStructureClean,
-    arr: ['aaa', 'bbb', 'ccc']    
-  });
-
-  if (!fs.existsSync('./output')) {
-    fs.mkdirSync('./output');
-    if (!fs.existsSync('./output/views')) {
-      fs.mkdirSync('./output/views');
-    }
-  }
-
-  fs.writeFile(`./output/views/Index.vue`, content, err => {
-    (err)
-      ?  console.error(err)
-        : console.log("file written successfully")
-  });
+    tableStructureClean
+  })
 }

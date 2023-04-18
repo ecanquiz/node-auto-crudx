@@ -2,7 +2,7 @@
 import db from '../modules/db';
 import type { GetDataOfBDParams, GetDataOfBDReturn, TableDetailOfMaster } from '../types'
 
-export default async ({schema, tableMaster, tableDetail}: GetDataOfBDParams):  GetDataOfBDReturn=> {
+export default async ({schema, tableMaster}: GetDataOfBDParams):  GetDataOfBDReturn=> {
     const namesList = (
       await db.getNamesList()
     ).rows

@@ -10,7 +10,7 @@ export default ({
   tableDetailOfMaster
 }: ParamsMain & ParamsDetail): void => {
   rendering({
-    template: './templates/vue/views/tabs',
+    template: './src/templates/vue/views/tabs',
     outputPath: 'views',
     outputFile: 'Tabs.vue'
   }, {

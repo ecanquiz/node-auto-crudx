@@ -8,7 +8,7 @@ export default ({
   tableStructureClean
 }: ParamsMain): void => {
   rendering({
-    template: './templates/vue/views/createOrEditMaster',
+    template: './src/templates/vue/views/createOrEditMaster',
     outputPath: 'views',
     outputFile: 'CreateOrEdit.vue'
   }, {

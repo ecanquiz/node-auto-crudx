@@ -8,7 +8,7 @@ export default ({
   tableStructureClean
 }: ParamsMain): void => {
   rendering({
-    template: './templates/vue/views/index',
+    template: './src/templates/vue/views/index',
     outputPath: 'views',
     outputFile: 'Index.vue'
   }, {

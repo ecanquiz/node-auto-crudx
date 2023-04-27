@@ -2,8 +2,8 @@ import {
   createOrEditMaster,
   datagrid,
   tabs
-} from '../modules/renderings/vue'
-import type { ParamsAll } from '../types/utilsRendering';
+} from '@modules/renderings/vue'
+import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,

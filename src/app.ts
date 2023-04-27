@@ -1,9 +1,10 @@
 // import demo from './modules/renderings/demo'
+import 'module-alias/register';
 import getDataOfBD from './processes/getDataOfBD'
 import writeFrontend from './processes/writeFrontend'
 import { uCamelCase } from './utils/nomenclature';
 import { singular } from './utils/grammaticalNumber'
-import type { GetDataOfBDParams, fieldStructure } from './types'
+import type { GetDataOfBDParams, fieldStructure } from '@customTypes/index'
 
 const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[]) => {
   const {

@@ -20,7 +20,14 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
+    "module-alias": "^2.2.2",
     "pg": "^8.10.0",
     "pg-hstore": "^2.3.4"
+  },
+  "_moduleAliases": {
+    "@config": "dist/config",
+    "@customTypes": "dist/customTypes",
+    "@modules": "dist/modules",
+    "@utils": "dist/utils"
   }
 }

@@ -1,6 +1,6 @@
-import rendering from '../../../utils/rendering';
-import type { TableDetailOfMaster } from '../../../types'
-import type { ParamsMain, ParamsDetail } from '../../../types/utilsRendering';
+import rendering from '@utils/rendering';
+import type { TableDetailOfMaster } from '@customTypes/index'
+import type { ParamsMain, ParamsDetail } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,

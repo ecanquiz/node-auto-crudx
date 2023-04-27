@@ -1,6 +1,6 @@
 import fs from 'fs'
 import ejs from 'ejs'
-import type { ParamsAll, Rendering } from '../types/utilsRendering'
+import type { ParamsAll, Rendering } from '@customTypes/utilsRendering'
 
 export default (
     rendering: Rendering,

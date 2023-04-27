@@ -1,5 +1,5 @@
-import rendering from '../../../utils/rendering';
-import type { ParamsMain } from '../../../types/utilsRendering';
+import rendering from '@utils/rendering';
+import type { ParamsMain } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,

@@ -1,5 +1,6 @@
 import fs from 'fs'
 import ejs from 'ejs'
+import output from '@config/output'
 import type { ParamsAll, Rendering } from '@customTypes/utilsRendering'
 
 export default (
@@ -7,7 +8,6 @@ export default (
     params: ParamsAll
   ): void => {
 
-  const output = './output'
   let path = `${output}/${rendering.outputPath}`
   let file = `${path}/${rendering.outputFile}`
   let template = fs.readFileSync(rendering.template)

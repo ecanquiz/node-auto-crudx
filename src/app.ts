@@ -1,6 +1,8 @@
 // import demo from './modules/renderings/demo'
 import 'module-alias/register';
+import crud from '@config/crud'
 import getDataOfBD from './processes/getDataOfBD'
+//import writeBackend from './processes/writeBackend'
 import writeFrontend from './processes/writeFrontend'
 import { uCamelCase } from './utils/nomenclature';
 import { singular } from './utils/grammaticalNumber'
@@ -19,6 +21,13 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
     field => !(excludeFields.includes((field as unknown as fieldStructure).column_name))
   )
   
+ /* writeBackend({
+    tableMaster,
+    tableMasterSingular,
+    tableMasterUCamelCase,
+    tableDetailOfMaster
+  })*/
+
   writeFrontend({
     tableMaster,
     tableMasterSingular,
@@ -29,13 +38,6 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
 }
 
 main({
-  schema: 'public',
-  tableMaster: 'meetings',
-}, [
-  'updated_at',
-  'created_at',
-  'editing',
-  'user_edit_id',
-  'user_update_id',
-  'user_insert_id'
-])
+  schema: crud.schema || 'public', 
+  tableMaster: crud.tableMaster || 'users',
+}, crud.excludeFields ?? [])

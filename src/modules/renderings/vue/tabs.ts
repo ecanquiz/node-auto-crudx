@@ -7,19 +7,23 @@ export default ({
   tableMasterSingular,
   tableMasterUCamelCase,
   tableStructureClean,
-  tableDetailOfMaster
+  tableDetailOfMaster,
+  output
 }: ParamsMain & ParamsDetail): void => {
-  rendering({
-    template: './src/templates/vue/views/tabs',
-    outputPath: 'views',
-    outputFile: 'Tabs.vue'
-  }, {
-    tableMaster,
-    tableMasterSingular,
-    tableMasterUCamelCase,
-    tableStructureClean,
-    tableDetailOfMaster: tableDetailOfMaster.map(
-      r => (r as unknown as TableDetailOfMaster).table_name 
-    )
-  })
+  rendering(
+    {
+      template: './src/templates/vue/views/tabs',
+      outputPath: 'views',
+      outputFile: 'Tabs.vue'
+    }, {
+      tableMaster,
+      tableMasterSingular,
+      tableMasterUCamelCase,
+      tableStructureClean,
+      tableDetailOfMaster: tableDetailOfMaster.map(
+        r => (r as unknown as TableDetailOfMaster).table_name 
+      )
+    },
+    output
+  )
 }

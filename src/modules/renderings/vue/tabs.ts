@@ -1,5 +1,5 @@
 import rendering from '@utils/rendering';
-import type { TableDetailOfMaster } from '@customTypes/index'
+import type { TableDetailOfMaster } from '@customTypes/db'
 import type { ParamsMain, ParamsDetail } from '@customTypes/utilsRendering';
 
 export default ({

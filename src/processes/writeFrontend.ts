@@ -3,7 +3,7 @@ import {
   datagrid,
   tabs
 } from '@modules/renderings/vue'
-import { pathFrontent as output } from '@config/output'
+import { pathFrontend as output } from '@config/output'
 import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({

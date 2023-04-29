@@ -1,6 +1,6 @@
 //import * as consoleLog from '../utils/consoleLog'
 import db from '@modules/db';
-import type { GetDataOfBDParams, GetDataOfBDReturn, TableDetailOfMaster } from '@customTypes/index'
+import type { GetDataOfBDParams, GetDataOfBDReturn, TableDetailOfMaster } from '@customTypes/db'
 
 export default async ({schema, tableMaster}: GetDataOfBDParams):  GetDataOfBDReturn=> {
     const namesList = (

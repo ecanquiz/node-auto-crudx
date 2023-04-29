@@ -1,33 +1,22 @@
 import {
-  createOrEditMaster,
-  datagrid,
-  tabs
-} from '@modules/renderings/vue'
+  controller
+} from '@modules/renderings/laravel'
+import { pathBackend as output } from '@config/output'
 import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,
   tableMasterSingular,
   tableMasterUCamelCase,
-  tableStructureClean:any,
-  tableDetailOfMaster,  
+  tableStructureClean,
+  tableDetailOfMaster
 }: ParamsAll): void => {
-  /*createOrEditMaster({
+  controller({
     tableMaster,
     tableMasterSingular,
     tableMasterUCamelCase,
+    tableStructureClean,
+    output      
   })
-  datagrid({
-    tableMaster,
-    tableMasterSingular,
-    tableMasterUCamelCase,
-  })
-  if (tableDetailOfMaster) {
-    tabs({
-      tableMaster,
-      tableMasterSingular,
-      tableMasterUCamelCase,
-      tableDetailOfMaster: (tableDetailOfMaster) as any[][]
-    })
-  }*/
 }
+

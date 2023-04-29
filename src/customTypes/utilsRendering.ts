@@ -9,6 +9,7 @@ export type ParamsMain = {
   tableMasterSingular: string
   tableMasterUCamelCase: string;
   tableStructureClean: any[][];
+  output: string;
 }
 
 export type ParamsDetail = {

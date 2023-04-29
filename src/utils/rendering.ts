@@ -1,11 +1,11 @@
 import fs from 'fs'
 import ejs from 'ejs'
-import output from '@config/output'
 import type { ParamsAll, Rendering } from '@customTypes/utilsRendering'
 
 export default (
     rendering: Rendering,
-    params: ParamsAll
+    params: ParamsAll,
+    output: string
   ): void => {
 
   let path = `${output}/${rendering.outputPath}`

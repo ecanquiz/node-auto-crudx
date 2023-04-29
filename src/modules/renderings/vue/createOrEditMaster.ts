@@ -5,16 +5,20 @@ export default ({
   tableMaster,
   tableMasterSingular,
   tableMasterUCamelCase,
-  tableStructureClean
+  tableStructureClean,
+  output
 }: ParamsMain): void => {
-  rendering({
-    template: './src/templates/vue/views/createOrEditMaster',
-    outputPath: 'views',
-    outputFile: 'CreateOrEdit.vue'
-  }, {
-    tableMaster,
-    tableMasterSingular,
-    tableMasterUCamelCase,
-    tableStructureClean
-  })
+  rendering(
+    {
+      template: './src/templates/vue/views/createOrEditMaster',
+      outputPath: 'views',
+      outputFile: 'CreateOrEdit.vue'
+    }, {
+      tableMaster,
+      tableMasterSingular,
+      tableMasterUCamelCase,
+      tableStructureClean
+    },
+    output
+  )
 }

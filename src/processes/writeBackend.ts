@@ -3,38 +3,31 @@ import {
   datagrid,
   tabs
 } from '@modules/renderings/vue'
-import { pathFrontent as output } from '@config/output'
 import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,
   tableMasterSingular,
   tableMasterUCamelCase,
-  tableStructureClean,
-  tableDetailOfMaster
+  tableStructureClean:any,
+  tableDetailOfMaster,  
 }: ParamsAll): void => {
-  createOrEditMaster({
+  /*createOrEditMaster({
     tableMaster,
     tableMasterSingular,
     tableMasterUCamelCase,
-    tableStructureClean,
-    output      
   })
   datagrid({
     tableMaster,
     tableMasterSingular,
     tableMasterUCamelCase,
-    tableStructureClean,
-    output       
   })
   if (tableDetailOfMaster) {
     tabs({
       tableMaster,
       tableMasterSingular,
       tableMasterUCamelCase,
-      tableStructureClean,
-      tableDetailOfMaster: (tableDetailOfMaster) as any[][],
-      output
+      tableDetailOfMaster: (tableDetailOfMaster) as any[][]
     })
-  }
+  }*/
 }

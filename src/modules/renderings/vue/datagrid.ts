@@ -11,7 +11,7 @@ export default ({
   rendering(
     {
       template: './src/templates/vue/views/index',
-      outputPath: 'views',
+      outputPath: 'src/views',
       outputFile: 'Index.vue'
     }, {
       tableMaster,

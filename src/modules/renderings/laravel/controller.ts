@@ -11,7 +11,7 @@ export default ({
   rendering(
     {
       template: './src/templates/laravel/controller',
-      outputPath: 'Controllers',
+      outputPath: 'app/Http/Controllers',
       outputFile: `${tableMasterUCamelCase}Controller.php`
     }, {
       tableMaster,

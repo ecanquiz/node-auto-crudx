@@ -13,7 +13,7 @@ export default ({
   rendering(
     {
       template: './src/templates/vue/views/tabs',
-      outputPath: 'views',
+      outputPath: 'src/views',
       outputFile: 'Tabs.vue'
     }, {
       tableMaster,

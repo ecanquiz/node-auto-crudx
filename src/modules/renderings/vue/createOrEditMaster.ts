@@ -11,7 +11,7 @@ export default ({
   rendering(
     {
       template: './src/templates/vue/views/createOrEditMaster',
-      outputPath: 'views',
+      outputPath: 'src/views',
       outputFile: 'CreateOrEdit.vue'
     }, {
       tableMaster,

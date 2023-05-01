@@ -1,5 +1,5 @@
 import rendering from '@utils/rendering';
-import type { ParamsMain } from '@customTypes/utilsRendering';
+import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,
@@ -7,7 +7,7 @@ export default ({
   tableMasterUCamelCase,
   tableStructureClean,
   output
-}: ParamsMain): void => {
+}: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
   rendering(
     {
       template: './src/templates/vue/views/index',

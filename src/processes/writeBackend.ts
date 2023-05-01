@@ -10,7 +10,7 @@ export default ({
   tableMasterUCamelCase,
   tableStructureClean,
   tableDetailOfMaster
-}: ParamsAll): void => {
+}: Omit<ParamsAll, 'output'>): void => {
   controller({
     tableMaster,
     tableMasterSingular,

@@ -1,6 +1,6 @@
 import rendering from '@utils/rendering';
 import type { TableDetailOfMaster } from '@customTypes/db'
-import type { ParamsMain, ParamsDetail } from '@customTypes/utilsRendering';
+import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,
@@ -9,7 +9,7 @@ export default ({
   tableStructureClean,
   tableDetailOfMaster,
   output
-}: ParamsMain & ParamsDetail): void => {
+}: ParamsAll): void => {
   rendering(
     {
       template: './src/templates/vue/views/tabs',

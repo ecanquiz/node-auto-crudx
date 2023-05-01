@@ -5,7 +5,7 @@ import type { ParamsAll, Rendering } from '@customTypes/utilsRendering'
 
 export default (
     rendering: Rendering,
-    params: ParamsAll,
+    params: Partial<ParamsAll>,
     output: string
   ): void => {
 

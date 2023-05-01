@@ -8,18 +8,15 @@ export type ParamsMain = {
   tableMaster: string;
   tableMasterSingular: string
   tableMasterUCamelCase: string;
-  tableStructureClean: any[][];
-  output: string;
+  tableStructureClean: string[][];
 }
 
 export type ParamsDetail = {
-  tableDetailOfMaster: any[][];
+  tableDetailOfMaster: any[][] | string[];
 }
 
-export type ParamsAll = {
-  tableMaster: string;
-  tableMasterSingular: string
-  tableMasterUCamelCase: string;
-  tableStructureClean: any[][];
-  tableDetailOfMaster?: any[][] | string[];
+export type Output = {
+  output: string
 }
+
+export type ParamsAll = ParamsMain & ParamsDetail & Output;

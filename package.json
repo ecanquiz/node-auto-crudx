@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/ejs": "^3.1.2",
+    "@types/module-alias": "^2.0.1",
     "@types/pg": "^8.6.6",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",

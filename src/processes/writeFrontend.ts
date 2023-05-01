@@ -12,7 +12,7 @@ export default ({
   tableMasterUCamelCase,
   tableStructureClean,
   tableDetailOfMaster
-}: ParamsAll): void => {
+}: Omit<ParamsAll, 'output'>): void => {
   createOrEditMaster({
     tableMaster,
     tableMasterSingular,
@@ -33,7 +33,7 @@ export default ({
       tableMasterSingular,
       tableMasterUCamelCase,
       tableStructureClean,
-      tableDetailOfMaster: (tableDetailOfMaster) as any[][],
+      tableDetailOfMaster: (tableDetailOfMaster) as string[],
       output
     })
   }

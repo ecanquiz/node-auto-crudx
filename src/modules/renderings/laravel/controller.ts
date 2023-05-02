@@ -3,21 +3,23 @@ import type { ParamsAll } from '@customTypes/utilsRendering'
 
 export default ({
   tableMaster,
-  tableMasterSingular,
   tableMasterUCamelCase,
-  tableStructureClean,
+  tableMasterSingular,
+  tableMasterSingularUCamelCase,
+  tableStructure,
   output
 }: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
   rendering(
     {
       template: './src/templates/laravel/controller',
       outputPath: 'app/Http/Controllers',
-      outputFile: `${tableMasterUCamelCase}Controller.php`
+      outputFile: `${tableMasterSingularUCamelCase}Controller.php`
     }, {
       tableMaster,
-      tableMasterSingular,
       tableMasterUCamelCase,
-      tableStructureClean
+      tableMasterSingular,
+      tableMasterSingularUCamelCase,
+      tableStructure
     },
     output
   )

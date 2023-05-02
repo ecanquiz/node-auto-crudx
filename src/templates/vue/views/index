@@ -45,7 +45,7 @@ const {
         <table class="table-data">
           <thead>
             <tr class="">
-              <% tableStructureClean.forEach(function(field){ %>
+              <% tableStructure.forEach(function(field){ %>
                 <th class="">
                   <AppLink to="#" @click.prevent="setSort('<%= field.column_name; %>')"><%= field.column_name; %></AppLink>
                 </th>
@@ -61,10 +61,10 @@ const {
                   class="text-indigo-600 hover:text-indigo-800 underline"
                   :to="{ name: '<%= tableMasterSingular; %>Edit', params: { id: row.id }}"               
                 >
-                  {{ <%= tableStructureClean[0].column_name %> }}
+                  {{ <%= tableStructure[0].column_name %> }}
                 </AppLink>
               </td>
-            <% tableStructureClean.forEach(
+            <% tableStructure.forEach(
             (field) => { if (field.column_name !== 'id' ) { %>
               <td class="">
                 {{ <%= field.column_name; %> }}

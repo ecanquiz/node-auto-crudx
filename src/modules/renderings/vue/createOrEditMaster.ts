@@ -3,9 +3,10 @@ import type { ParamsAll } from '@customTypes/utilsRendering'
 
 export default ({
   tableMaster,
-  tableMasterSingular,
   tableMasterUCamelCase,
-  tableStructureClean,
+  tableMasterSingular,
+  tableMasterSingularUCamelCase,
+  tableStructure,
   output
 }: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
   rendering(
@@ -15,9 +16,10 @@ export default ({
       outputFile: 'CreateOrEdit.vue'
     }, {
       tableMaster,
-      tableMasterSingular,
       tableMasterUCamelCase,
-      tableStructureClean
+      tableMasterSingular,
+      tableMasterSingularUCamelCase,
+      tableStructure
     },
     output
   )

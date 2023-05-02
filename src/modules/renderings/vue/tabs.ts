@@ -4,9 +4,10 @@ import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,
-  tableMasterSingular,
   tableMasterUCamelCase,
-  tableStructureClean,
+  tableMasterSingular,
+  tableMasterSingularUCamelCase,
+  tableStructure,
   tableDetailOfMaster,
   output
 }: ParamsAll): void => {
@@ -17,9 +18,10 @@ export default ({
       outputFile: 'Tabs.vue'
     }, {
       tableMaster,
-      tableMasterSingular,
       tableMasterUCamelCase,
-      tableStructureClean,
+      tableMasterSingular,
+      tableMasterSingularUCamelCase,
+      tableStructure,
       tableDetailOfMaster: tableDetailOfMaster.map(
         r => (r as unknown as TableDetailOfMaster).table_name 
       )
@@ -27,3 +29,4 @@ export default ({
     output
   )
 }
+

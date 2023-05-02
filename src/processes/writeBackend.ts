@@ -6,17 +6,19 @@ import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,
-  tableMasterSingular,
   tableMasterUCamelCase,
-  tableStructureClean,
+  tableMasterSingular,
+  tableMasterSingularUCamelCase,
+  tableStructure,
   tableDetailOfMaster
 }: Omit<ParamsAll, 'output'>): void => {
   controller({
     tableMaster,
-    tableMasterSingular,
     tableMasterUCamelCase,
-    tableStructureClean,
-    output      
+    tableMasterSingular,
+    tableMasterSingularUCamelCase,
+    tableStructure,
+    output
   })
 }
 

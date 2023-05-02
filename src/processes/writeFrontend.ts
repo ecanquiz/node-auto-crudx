@@ -8,31 +8,35 @@ import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,
-  tableMasterSingular,
   tableMasterUCamelCase,
-  tableStructureClean,
+  tableMasterSingular,
+  tableMasterSingularUCamelCase,
+  tableStructure,
   tableDetailOfMaster
 }: Omit<ParamsAll, 'output'>): void => {
   createOrEditMaster({
     tableMaster,
-    tableMasterSingular,
     tableMasterUCamelCase,
-    tableStructureClean,
+    tableMasterSingular,
+    tableMasterSingularUCamelCase,
+    tableStructure,
     output      
   })
   datagrid({
     tableMaster,
-    tableMasterSingular,
     tableMasterUCamelCase,
-    tableStructureClean,
+    tableMasterSingular,
+    tableMasterSingularUCamelCase,
+    tableStructure,
     output       
   })
   if (tableDetailOfMaster) {
     tabs({
       tableMaster,
-      tableMasterSingular,
       tableMasterUCamelCase,
-      tableStructureClean,
+      tableMasterSingular,
+      tableMasterSingularUCamelCase,
+      tableStructure,
       tableDetailOfMaster: (tableDetailOfMaster) as string[],
       output
     })

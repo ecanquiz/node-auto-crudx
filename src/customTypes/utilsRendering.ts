@@ -7,8 +7,9 @@ export type Rendering = {
 export type ParamsMain = {
   tableMaster: string;
   tableMasterSingular: string
-  tableMasterUCamelCase: string;
-  tableStructureClean: string[][];
+  tableMasterUCamelCase: string
+  tableMasterSingularUCamelCase: string
+  tableStructure: string[][]
 }
 
 export type ParamsDetail = {

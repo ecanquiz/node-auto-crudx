@@ -15,6 +15,18 @@ class DB {
             await client.end()
         return resp
     }
+  
+    async getTableMasterExist(
+      values: { schema: string, tableMaster: string },
+      isEnd = false,
+    ): Promise<QueryArrayResult<any[]>>{
+      return await this.exeQry({
+        values: Object.values(values),
+        text: `SELECT DISTINCT table_name FROM information_schema.columns 
+          WHERE table_name=$2 
+          AND table_schema=$1;`            
+        }, isEnd)
+    }
 
     async getNamesList( isEnd = false )
     : Promise<QueryArrayResult<any[]>> { 

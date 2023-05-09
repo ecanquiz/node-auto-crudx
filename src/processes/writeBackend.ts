@@ -1,5 +1,6 @@
 import {
-  controller
+  controller,
+  model
 } from '@modules/renderings/laravel'
 import { pathBackend as output } from '@config/output'
 import type { ParamsAll } from '@customTypes/utilsRendering';
@@ -13,6 +14,14 @@ export default ({
   tableDetailOfMaster
 }: Omit<ParamsAll, 'output'>): void => {
   controller({
+    tableMaster,
+    tableMasterUCamelCase,
+    tableMasterSingular,
+    tableMasterSingularUCamelCase,
+    tableStructure,
+    output
+  })
+  model({
     tableMaster,
     tableMasterUCamelCase,
     tableMasterSingular,

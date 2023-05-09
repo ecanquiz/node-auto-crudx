@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
+
+class <%= tableMasterSingularUCamelCase; %> extends Model
+{
+    use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+    <%
+    tableStructure.forEach(function(field) {
+        if  (!['created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
+    %>
+        <%= field.column_name; %>,
+    <%
+        }});
+    %> 
+    ];
+
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+
+    protected $casts = [ /* 'field_name' => 'field_type' */ ];
+
+    /*
+        public function myChild()
+        {
+            return $this->hasMany(MyChild::class);
+        }
+    
+        public function myParent()
+        {
+            return $this->belongsTo(\App\Models\MyParent::class);
+        }
+    */
+}

@@ -1,6 +1,7 @@
 import {
   controller,
-  model
+  model,
+  serviceIndex
 } from '@modules/renderings/laravel'
 import { pathBackend as output } from '@config/output'
 import type { ParamsAll } from '@customTypes/utilsRendering';
@@ -22,6 +23,14 @@ export default ({
     output
   })
   model({
+    tableMaster,
+    tableMasterUCamelCase,
+    tableMasterSingular,
+    tableMasterSingularUCamelCase,
+    tableStructure,
+    output
+  })
+  serviceIndex({
     tableMaster,
     tableMasterUCamelCase,
     tableMasterSingular,

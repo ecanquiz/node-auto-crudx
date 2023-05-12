@@ -10,13 +10,11 @@ class <%= tableMasterSingularUCamelCase; %> extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-    <%
+    protected $fillable = [<%
     tableStructure.forEach(function(field) {
         if  (!['created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
     %>
-        <%= field.column_name; %>,
-    <%
+        <%= field.column_name; %>,<%
         }});
     %> 
     ];

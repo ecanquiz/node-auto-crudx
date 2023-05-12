@@ -1,37 +1,32 @@
 <?php
 namespace App\Http\Services\<%= tableMasterSingularUCamelCase; %>;
 
-//use App\Http\Validator\<%= tableMasterSingularUCamelCase; %>\Store<%= tableMasterSingularUCamelCase; %>Validator;
-//use App\Http\Requests\<%= tableMasterSingularUCamelCase; %>\Store<%= tableMasterSingularUCamelCase; %>Request;
-use Illuminate\Http\{
-    Request,
-    JsonResponse
-};
+use Illuminate\Http\JsonResponse;
+use App\Http\Requests\<%= tableMasterSingularUCamelCase; %>\Store<%= tableMasterSingularUCamelCase; %>Request;
 use App\Models\<%= tableMasterSingularUCamelCase; %>;
 
 class Store<%= tableMasterSingularUCamelCase; %>Service
 {
-
-  //static public function execute(Store<%= tableMasterSingularUCamelCase; %>Request $request): \Illuminate\Http\JsonResponse
-  static public function execute(Request $request): JsonResponse
-  { 
-
-      $msg  = 'Invalid data.';
-
-      //if ( !Store<%= tableMasterSingularUCamelCase; %>Validator::rule( $request )->fails() ) {
-
-        <%= tableMasterSingularUCamelCase; %>::create([              
-              "name" => $request->name,
-              "menu_ids" => $request->menu_ids,
-              "description" => $request->description         
-          ]);         
-
-          $msg  = '<%= tableMasterSingularUCamelCase; %> stored.';
-
-      //}
-
-      return response()->json(["message"=> $msg], 201);
-
+    static public function execute(Store<%= tableMasterSingularUCamelCase; %>Request $request): JsonResponse
+    {
+        $<%= tableMasterSingular; %> = new <%= tableMasterSingularUCamelCase; %>;      
+        <%
+        tableStructure.forEach(function(field) {
+            if  (!['id', 'created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
+        %>$<%= tableMasterSingular; %>-><%= field.column_name; %> = $request-><%= field.column_name; %>;
+        <%
+            }});
+        %>$<%= tableMasterSingular; %>->refresh();    
+        $<%= tableMasterSingular; %>->save();
+        return response()->json([
+            "message" => "New record created successfully", 
+            "id" => $<%= tableMasterSingular; %>->id
+        ], 201);
   }
 
 }
+
+
+
+
+

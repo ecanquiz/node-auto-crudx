@@ -1,0 +1,29 @@
+<?php
+namespace App\Http\Services\<%= tableMasterSingularUCamelCase; %>;
+
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\JsonResponse;
+use App\Http\Requests\<%= tableMasterSingularUCamelCase; %>\Update<%= tableMasterSingularUCamelCase; %>Request;
+use App\Models\<%= tableMasterSingularUCamelCase; %>;
+
+class Update<%= tableMasterSingularUCamelCase; %>Service
+{
+    static public function execute(Update<%= tableMasterSingularUCamelCase; %>Request $request, <%= tableMasterSingularUCamelCase; %> $<%= tableMasterSingular; %>): JsonResponse
+    {          
+        $<%= tableMasterSingular; %> = <%= tableMasterSingularUCamelCase; %>::find($request->id);
+
+        <%
+        tableStructure.forEach(function(field) {
+            if  (!['id', 'created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
+        %>$<%= tableMasterSingular; %>-><%= field.column_name; %> = $request-><%= field.column_name; %>;
+        <%
+            }});
+        %>
+        $<%= tableMasterSingular; %>->save();
+
+        return response()->json([
+            "message"=> "Record updated successfully"
+        ], 200);      
+    }
+}
+

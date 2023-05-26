@@ -9,15 +9,19 @@ class Store<%= tableMasterSingularUCamelCase; %>Service
 {
     static public function execute(Store<%= tableMasterSingularUCamelCase; %>Request $request): JsonResponse
     {
-        $<%= tableMasterSingular; %> = new <%= tableMasterSingularUCamelCase; %>;      
+        $<%= tableMasterSingular; %> = new <%= tableMasterSingularUCamelCase; %>;
+
         <%
         tableStructure.forEach(function(field) {
             if  (!['id', 'created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
         %>$<%= tableMasterSingular; %>-><%= field.column_name; %> = $request-><%= field.column_name; %>;
         <%
             }});
-        %>$<%= tableMasterSingular; %>->refresh();    
+        %>
         $<%= tableMasterSingular; %>->save();
+
+        $<%= tableMasterSingular; %>->refresh();
+
         return response()->json([
             "message" => "New record created successfully", 
             "id" => $<%= tableMasterSingular; %>->id

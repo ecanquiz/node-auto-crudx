@@ -13,8 +13,6 @@ class Index<%= tableMasterSingularUCamelCase; %>Service
 
   /**
    * Display a listing of the resource.
-   *
-   * @return \Inertia\Response
    */
   static public function execute(Request $request): JsonResponse
   {

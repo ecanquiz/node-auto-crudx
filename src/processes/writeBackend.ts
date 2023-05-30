@@ -4,7 +4,9 @@ import {
   serviceIndex,
   serviceStore,
   serviceUpdate,
-  resource
+  resource,
+  requestStore,
+  requestUpdate
 } from '@modules/renderings/laravel'
 import { pathBackend as output } from '@config/output'
 import type { ParamsAll } from '@customTypes/utilsRendering';
@@ -58,6 +60,22 @@ export default ({
     output
   }),
   resource({
+    tableMaster,
+    tableMasterUCamelCase,
+    tableMasterSingular,
+    tableMasterSingularUCamelCase,
+    tableStructure,
+    output
+  }),
+  requestStore({
+    tableMaster,
+    tableMasterUCamelCase,
+    tableMasterSingular,
+    tableMasterSingularUCamelCase,
+    tableStructure,
+    output
+  }),
+  requestUpdate({
     tableMaster,
     tableMasterUCamelCase,
     tableMasterSingular,

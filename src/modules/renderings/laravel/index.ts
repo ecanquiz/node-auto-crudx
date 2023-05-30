@@ -4,6 +4,8 @@ import serviceIndex from './serviceIndex'
 import serviceStore from './serviceStore'
 import serviceUpdate from './serviceUpdate'
 import resource from './resource'
+import requestStore from './requestStore'
+import requestUpdate from './requestUpdate'
 
 export {
     controller,
@@ -11,5 +13,7 @@ export {
     serviceIndex,
     serviceStore,
     serviceUpdate,
-    resource
+    resource,
+    requestStore,
+    requestUpdate
 }

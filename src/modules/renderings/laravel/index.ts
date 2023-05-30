@@ -6,6 +6,8 @@ import serviceUpdate from './serviceUpdate'
 import resource from './resource'
 import requestStore from './requestStore'
 import requestUpdate from './requestUpdate'
+import route from './route'
+
 
 export {
     controller,
@@ -15,5 +17,6 @@ export {
     serviceUpdate,
     resource,
     requestStore,
-    requestUpdate
+    requestUpdate,
+    route
 }

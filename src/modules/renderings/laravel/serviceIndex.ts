@@ -12,7 +12,7 @@ export default ({
   rendering(
     {
       template: './src/templates/laravel/serviceIndex',
-      outputPath: 'app/Http/Services',
+      outputPath: `app/Http/Services/${tableMasterSingularUCamelCase}`,
       outputFile: `Index${tableMasterSingularUCamelCase}Services.php`
     }, {
       tableMaster,

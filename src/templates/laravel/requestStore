@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Http\Requests\<%= tableMasterSingularUCamelCase; %>;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class Store<%= tableMasterSingularUCamelCase; %>Request extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     */
+    public function rules(): array
+    {
+        return [
+            <%
+            tableStructure.forEach(function(field) {
+                if  (!['id', 'created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
+            %>"<%= field.column_name; %>" => ["required"],
+            <%}});%>
+        ];
+    }
+}

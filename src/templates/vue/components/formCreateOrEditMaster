@@ -1,0 +1,87 @@
+<script setup lang="ts">
+import { reactive } from "vue"
+import type <%= tableMasterSingularUCamelCase; %> from "../types/<%= tableMasterSingularUCamelCase; %>"
+// import type Errors from "../types/Errors"
+
+const props = defineProps<{
+  id?: string
+  <%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>  
+  sending: boolean
+  errors: any
+}>()
+
+const emit = defineEmits<{
+  (e: 'submit', <%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>, <%= tableMasterSingular; %>Id?: string): void
+}>()
+
+const form: <%= tableMasterSingularUCamelCase; %> = reactive(props.<%= tableMasterSingular; %>)
+
+const submit = async () => {
+  emit('submit', {
+    <%
+    tableStructure.forEach(function(field) {
+        if  (!['id', 'created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
+    %><%= field.column_name; %>: form.<%= field.column_name; %>,
+    <%}});%>
+  }, props.id)
+}
+
+//bigint
+//character varying
+//data_type
+//boolean
+//text
+//timestamp without time zone
+
+</script>
+
+<template>
+  <form @submit.prevent="submit" class="p-4">
+    <div class="grid lg:grid-cols-2 gap-4">    
+      <div class="block">      
+        <AppInput           
+          v-model="form.name"
+          label="Name"
+          type="text"
+          :error="errors && errors.name ? errors.name[0] : ''"
+        />
+      </div>
+      
+      <div class="block">      
+        <AppInput           
+          v-model="form.email"
+          label="Correo"
+          type="text"
+          :error="errors && errors.email ? errors.email[0] : ''"
+        />
+      </div>
+
+      <div class="block">      
+        <AppInput           
+          v-model="form.password"
+          label="Password"
+          type="password"
+          :error="errors && errors.password ? errors.password[0] : ''"
+        />
+      </div>
+
+      <div class="block">      
+        <AppSelect
+          :options="roles"
+          v-model="form.role_id"
+          label="Rol"
+          :error="errors && errors.role_id ? errors.role_id[0] : ''"
+        />
+      </div>
+
+    </div>
+
+    <div class="mt-4 px-2 border-gray-100 flex justify-end space-x-2">
+      <AppBtn
+        type="submit"
+        :text="sending ? 'Guardando...' : 'Guardar'"
+        :isDisabled='sending'
+      />
+    </div>
+  </form>  
+</template>

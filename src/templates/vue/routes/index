@@ -1,0 +1,21 @@
+import auth from "@/middleware/auth"
+import admin from "@/middleware/admin"
+
+export default [{
+    path: "/<%= tableMaster; %>",
+    name: "<%= tableMaster; %>",
+    meta: { middleware: [auth, admin] },
+    component: () => import("@/modules/<%= tableMasterSingularUCamelCase; %>/views/Index.vue").then(m => m.default)
+}, {
+    path: "/<%= tableMaster; %>/create",
+    name: "<%= tableMasterSingular; %>Create",
+    meta: { middleware: [auth, admin] },
+    component: () => import("@/modules/<%= tableMasterSingularUCamelCase; %>/views/CreateOrEdit.vue").then(m => m.default),
+    props: true
+}, {
+    path: "/<%= tableMaster; %>/edit/:id(\\d+)",
+    name: "<%= tableMasterSingular; %>Edit",
+    meta: { middleware: [auth, admin] },
+    component: () => import("@/modules/<%= tableMasterSingularUCamelCase; %>/views/CreateOrEdit.vue").then(m => m.default),
+    props: true
+}]

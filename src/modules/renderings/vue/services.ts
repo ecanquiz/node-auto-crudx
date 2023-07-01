@@ -1,5 +1,5 @@
 import rendering from '@utils/rendering';
-import type { ParamsAll } from '@customTypes/utilsRendering'
+import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,
@@ -11,15 +11,14 @@ export default ({
 }: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
   rendering(
     {
-      template: './src/templates/vue/views/createOrEditMaster',
-      outputPath: `src/modules/${tableMasterSingularUCamelCase}/views`,
-      outputFile: 'CreateOrEdit.vue'
+      template: './src/templates/vue/services/index',
+      outputPath: `src/modules/${tableMasterSingularUCamelCase}/services`,
+      outputFile: 'index.ts'
     }, {
       tableMaster,
       tableMasterUCamelCase,
       tableMasterSingular,
       tableMasterSingularUCamelCase,
-      tableStructure
     },
     output
   )

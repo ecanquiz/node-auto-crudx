@@ -31,38 +31,38 @@ provide('measureUnit', {
 </script>
 
 <template>
-  <div>
-    <AppPageHeader>Productos / {{ !props.id ? "Crear" : "Editar" }}</AppPageHeader>
-    <div  class="flex space-x-2">
-      <button
-        class="btn btn-primary mb-4"
-        @click="router.push({ path: '/products' })"
-      >
-        Ver todos
-      </button>
-    </div>
+<div>
+  <AppPageHeader>Productos / {{ !props.id ? "Crear" : "Editar" }}</AppPageHeader>
+  <div  class="flex space-x-2">
+    <button
+      class="btn btn-primary mb-4"
+      @click="router.push({ path: '/products' })"
+    >
+      Ver todos
+    </button>
+  </div>
 
-    <div class="myPanel">
-      <div class="demo">
-        <button
-          v-for="(tab, index) in tabs"       
-          :key="index"
-          class="text-xl"
-          :class="['tab-button', { active: currentTab === tab }]"
-          @click="currentTab = tab"
-        >
-          {{ tab.title }}
-        </button>
-        <KeepAlive>
-	      <Component
-	        :is="currentTab.component"
-	        class="demo-tab"
-            :id="props.id"
-	      />
-        </KeepAlive>
-      </div>
+  <div class="myPanel">
+    <div class="demo">
+      <button
+        v-for="(tab, index) in tabs"       
+        :key="index"
+        class="text-xl"
+        :class="['tab-button', { active: currentTab === tab }]"
+        @click="currentTab = tab"
+      >
+        {{ tab.title }}
+      </button>
+      <KeepAlive>
+        <Component
+          :is="currentTab.component"
+          class="demo-tab"
+          :id="props.id"
+        />
+      </KeepAlive>
     </div>
   </div>
+</div>
 </template>
 
 <style scoped>

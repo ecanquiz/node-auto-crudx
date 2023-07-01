@@ -1,0 +1,35 @@
+import Http from "@/utils/Http";
+import type { <%= tableMasterSingularUCamelCase; %> } from "../types/<%= tableMasterSingularUCamelCase; %>";
+
+export const get<%= tableMasterUCamelCase; %> = (query: string) => {  
+  return Http.get(`/api/<%= tableMaster; %>/?${query}`);
+}
+ 
+export const get<%= tableMasterSingularUCamelCase; %> = (<%= tableMasterSingular; %>Id: string) => { 
+  return Http.get(`/api/<%= tableMaster; %>/${<%= tableMasterSingular; %>Id}`);
+}
+
+export const insert<%= tableMasterSingularUCamelCase; %> = (payload: <%= tableMasterSingularUCamelCase; %>) => {   
+  return Http.post("/api/<%= tableMaster; %>", payload);
+}
+  
+export const update<%= tableMasterSingularUCamelCase; %> = (<%= tableMasterSingular; %>Id: string, payload: <%= tableMasterSingularUCamelCase; %>) => {   
+  return Http.put(`/api/<%= tableMaster; %>/${<%= tableMasterSingular; %>Id}`, payload);
+}
+  
+export const delete<%= tableMasterSingularUCamelCase; %> = (<%= tableMasterSingular; %>Id: string) => { 
+  return Http.delete(`/api/<%= tableMaster; %>/${<%= tableMasterSingular; %>Id}`);
+}
+
+/*export const helperTablesGet = () => {
+  return Http.get(`/api/<%= tableMaster; %>/helperTables`);
+}*/
+
+export default {
+  get<%= tableMasterUCamelCase; %>,
+  get<%= tableMasterSingularUCamelCase; %>,
+  insert<%= tableMasterSingularUCamelCase; %>,
+  update<%= tableMasterSingularUCamelCase; %>,
+  delete<%= tableMasterSingularUCamelCase; %>
+  //, helperTablesGet
+}

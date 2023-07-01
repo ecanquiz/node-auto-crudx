@@ -14,87 +14,85 @@ const {
   setSearch,
   setSort  
 } = useIndex()
-
 </script>
 
 <template>
-  <div>
-    <AppPageHeader> <%= tableMasterUCamelCase; %> </AppPageHeader>
+<div>
+  <AppPageHeader> <%= tableMasterUCamelCase; %> </AppPageHeader>
 
-    <div class="flex space-x-2">
-      <AppLink class="btn btn-primary" to="/<%= tableMaster; %>/create">
-        <span>Crear</span>
-      </AppLink>
-    </div>
-    
-    <div class="overflow-hidden panel mt-6">      
-      <div class="mb-6 flex justify-between items-center">
-        <div class="flex items-center">
-          <div class="flex w-full bg-white shadow rounded">
-            <input
-              class=""
-              type="text"
-              v-model="data.search"
-              @input="setSearch"
-              placeholder="Filtrar…"
-            />
-          </div>
-        </div>
-      </div>      
-      <div class="table-data__wrapper">
-        <table class="table-data">
-          <thead>
-            <tr class="">
-              <% tableStructure.forEach(function(field){ %>
-                <th class="">
-                  <AppLink to="#" @click.prevent="setSort('<%= field.column_name; %>')"><%= field.column_name; %></AppLink>
-                </th>
-              <% }); %>                            
-              <th class="">Acción</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="row in data.rows" :key="row.id" class="">
-
-              <td class="">
-                <AppLink
-                  class="text-indigo-600 hover:text-indigo-800 underline"
-                  :to="{ name: '<%= tableMasterSingular; %>Edit', params: { id: row.id }}"               
-                >
-                  {{ <%= tableStructure[0].column_name %> }}
-                </AppLink>
-              </td>
-            <% tableStructure.forEach(
-            (field) => { if (field.column_name !== 'id' ) { %>
-              <td class="">
-                {{ <%= field.column_name; %> }}
-              </td>
-            <%}});%>              
-              <td class="">
-                <div class="flex items-center space-x-1">                
-                  <AppBtn
-                    class="btn btn-primary btn-xs"                    
-                    @click="router.push({ path: '/<%= tableMaster; %>/edit/'+row.id })"
-                  >
-                    Editar
-                  </AppBtn>
-                  <AppBtn
-                    @click="deleteRow(row.id)"                    
-                    class="btn btn-secondary btn-xs"                    
-                  >
-                    Eliminar
-                  </AppBtn>
-                </div>
-              </td>
-            </tr>
-            <tr v-if="data.rows.length === 0">
-              <td class="" colspan="4"><%= tableMasterUCamelCase; %> not found.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <span v-if="Object.keys(errors).length > 0" class="text-red-500">{{ errors }}</span>
-      <AppPaginationB v-if="data.links" :links="data.links" />      
-    </div>
+  <div class="flex space-x-2">
+    <AppLink class="btn btn-primary" to="/<%= tableMaster; %>/create">
+      <span>Crear</span>
+    </AppLink>
   </div>
+    
+  <div class="overflow-hidden panel mt-6">      
+    <div class="mb-6 flex justify-between items-center">
+      <div class="flex items-center">
+        <div class="flex w-full bg-white shadow rounded">
+          <input
+            class=""
+            type="text"
+            v-model="data.search"
+            @input="setSearch"
+            placeholder="Filtrar…"
+          />
+        </div>
+      </div>
+    </div>      
+    <div class="table-data__wrapper">
+      <table class="table-data">
+        <thead>
+          <tr class="">
+            <% tableStructure.forEach(function(field){ %>
+              <th class="">
+                <AppLink to="#" @click.prevent="setSort('<%= field.column_name; %>')"><%= field.column_name; %></AppLink>
+              </th>
+            <% }); %>                            
+            <th class="">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="row in data.rows" :key="row.id" class="">
+             <td class="">
+              <AppLink
+                class="text-indigo-600 hover:text-indigo-800 underline"
+                :to="{ name: '<%= tableMasterSingular; %>Edit', params: { id: row.id }}"               
+              >
+                {{ <%= tableStructure[0].column_name %> }}
+              </AppLink>
+            </td>
+          <% tableStructure.forEach(
+          (field) => { if (field.column_name !== 'id' ) { %>
+            <td class="">
+              {{ <%= field.column_name; %> }}
+            </td>
+          <%}});%>              
+            <td class="">
+              <div class="flex items-center space-x-1">                
+                <AppBtn
+                  class="btn btn-primary btn-xs"                    
+                  @click="router.push({ path: '/<%= tableMaster; %>/edit/'+row.id })"
+                >
+                  Editar
+                </AppBtn>
+                <AppBtn
+                  @click="deleteRow(row.id)"                    
+                  class="btn btn-secondary btn-xs"                    
+                >
+                  Eliminar
+                </AppBtn>
+              </div>
+            </td>
+          </tr>
+          <tr v-if="data.rows.length === 0">
+            <td class="" colspan="4"><%= tableMasterUCamelCase; %> not found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <span v-if="Object.keys(errors).length > 0" class="text-red-500">{{ errors }}</span>
+    <AppPaginationB v-if="data.links" :links="data.links" />      
+  </div>
+</div>
 </template>

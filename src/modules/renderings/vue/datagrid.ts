@@ -12,7 +12,7 @@ export default ({
   rendering(
     {
       template: './src/templates/vue/views/index',
-      outputPath: 'src/views',
+      outputPath: `src/modules/${tableMasterSingularUCamelCase}/views`,
       outputFile: 'Index.vue'
     }, {
       tableMaster,

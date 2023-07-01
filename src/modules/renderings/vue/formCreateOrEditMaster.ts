@@ -13,7 +13,7 @@ export default ({
   rendering(
     {
       template: './src/templates/vue/components/formCreateOrEditMaster',
-      outputPath: 'src/components',
+      outputPath: `src/modules/${tableMasterSingularUCamelCase}/components`,
       outputFile: 'FormCreateOrEdit.vue'
     }, {
       tableMaster,

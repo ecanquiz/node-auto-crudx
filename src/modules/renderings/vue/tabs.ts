@@ -14,7 +14,7 @@ export default ({
   rendering(
     {
       template: './src/templates/vue/views/tabs',
-      outputPath: 'src/views',
+      outputPath: `src/modules/${tableMasterSingularUCamelCase}/views`,
       outputFile: 'Tabs.vue'
     }, {
       tableMaster,

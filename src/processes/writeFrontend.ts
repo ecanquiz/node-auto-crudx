@@ -2,7 +2,9 @@ import {
   createOrEditMaster,
   datagrid,
   formCreateOrEditMaster,
-  tabs
+  tabs,
+  routes,
+  services
 } from '@modules/renderings/vue'
 import { pathFrontend as output } from '@config/output'
 import type { ParamsAll } from '@customTypes/utilsRendering';
@@ -49,5 +51,21 @@ export default ({
       tableDetailOfMaster: (tableDetailOfMaster) as string[],
       output
     })
-  }
+  } 
+  routes({
+    tableMaster,
+    tableMasterUCamelCase,
+    tableMasterSingular,
+    tableMasterSingularUCamelCase,
+    tableStructure,
+    output       
+  })
+  services({
+    tableMaster,
+    tableMasterUCamelCase,
+    tableMasterSingular,
+    tableMasterSingularUCamelCase,
+    tableStructure,
+    output       
+  })
 }

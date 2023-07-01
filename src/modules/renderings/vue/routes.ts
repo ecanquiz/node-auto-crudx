@@ -1,25 +1,23 @@
 import rendering from '@utils/rendering';
-import type { ParamsAll } from '@customTypes/utilsRendering'
+import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,
-  tableMasterUCamelCase,
+  //tableMasterUCamelCase,
   tableMasterSingular,
   tableMasterSingularUCamelCase,
-  tableStructure,
+  //tableStructure,
   output
 }: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
   rendering(
     {
-      template: './src/templates/vue/views/createOrEditMaster',
-      outputPath: `src/modules/${tableMasterSingularUCamelCase}/views`,
-      outputFile: 'CreateOrEdit.vue'
+      template: './src/templates/vue/routes/index',
+      outputPath: `src/modules/${tableMasterSingularUCamelCase}/routes`,
+      outputFile: 'index.ts'
     }, {
       tableMaster,
-      tableMasterUCamelCase,
       tableMasterSingular,
       tableMasterSingularUCamelCase,
-      tableStructure
     },
     output
   )

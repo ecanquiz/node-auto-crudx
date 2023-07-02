@@ -4,7 +4,8 @@ import {
   formCreateOrEditMaster,
   tabs,
   routes,
-  services
+  services,
+  types
 } from '@modules/renderings/vue'
 import { pathFrontend as output } from '@config/output'
 import type { ParamsAll } from '@customTypes/utilsRendering';
@@ -61,6 +62,14 @@ export default ({
     output       
   })
   services({
+    tableMaster,
+    tableMasterUCamelCase,
+    tableMasterSingular,
+    tableMasterSingularUCamelCase,
+    tableStructure,
+    output       
+  })
+  types({
     tableMaster,
     tableMasterUCamelCase,
     tableMasterSingular,

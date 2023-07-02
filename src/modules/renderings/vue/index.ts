@@ -4,6 +4,7 @@ import datagrid from './datagrid'
 import tabs from './tabs'
 import routes from './routes'
 import services from './services'
+import types from './types'
 
 export {
     createOrEditMaster,
@@ -11,5 +12,6 @@ export {
     formCreateOrEditMaster,
     tabs,
     routes,
-    services
+    services,
+    types
 }

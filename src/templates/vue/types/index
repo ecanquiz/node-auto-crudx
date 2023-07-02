@@ -1,0 +1,44 @@
+export type <%= tableMasterSingularUCamelCase; %> = {
+<% tableStructure.forEach(function(field){ %>  <%= field.column_name; %>?:<% if (field.data_type==="bigint") { %> number;
+<% } else if (field.data_type==="character varying" || field.data_type==="text") { %> string; 
+<% } else if (field.data_type==="boolean") {  %> boolean; 
+<% } else if (field.data_type==="timestamp without time zone") {  %> date; 
+<% } else { %> any; 
+<% } %><% }); %>}
+
+export interface <%= tableMasterSingularUCamelCase; %>TG {
+  rows: Rows;
+}
+
+export interface Rows {
+  current_page: number;
+  data: <%= tableMasterSingularUCamelCase; %>Row[];
+  first_page_url: string;
+  from: number;
+  last_page: number;
+  last_page_url: string;
+  links: Link[];
+  next_page_url: string;
+  path: string;
+  per_page: number;
+  prev_page_url: null;
+  to: number;
+  total: number;
+}
+
+export interface <%= tableMasterSingularUCamelCase; %>Row {
+<% tableStructure.filter(
+    f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
+).forEach(function(field){ %>  <%= field.column_name; %>?:<% if (field.data_type==="bigint") { %> number;
+<% } else if (field.data_type==="character varying" || field.data_type==="text") { %> string; 
+<% } else if (field.data_type==="boolean") {  %> boolean; 
+<% } else if (field.data_type==="timestamp without time zone") {  %> date; 
+<% } else { %> any; 
+<% } %><% }); %>}
+
+export interface Link {
+  url: null | string;
+  label: string;
+  active: boolean;
+}
+

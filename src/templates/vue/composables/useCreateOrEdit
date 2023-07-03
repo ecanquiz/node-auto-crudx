@@ -1,0 +1,101 @@
+import { onMounted, reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import useHttp from "@/composables/useHttp";
+import <%= tableMasterSingularUCamelCase; %>Service from "@/modules/User/services";
+import type { <%= tableMasterSingularUCamelCase; %> } from "../types/<%= tableMasterSingularUCamelCase; %>"
+
+export default (<%= tableMasterSingular; %>Id?: string) => {
+  const router = useRouter();
+  
+  const <%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %> = reactive({<%
+    tableStructure.filter(
+      f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
+    ).forEach(function(field){ %>
+    <%= field.column_name; %>: "", %><% }); %>
+  })
+
+  // const roles = ref<Role[]>([])
+  
+  const {  
+    errors,
+    pending,
+
+    getError
+  } = useHttp()
+  
+  onMounted(async () => {
+    if (<%= tableMasterSingular; %>Id) {
+      pending.value = true
+      <%= tableMasterSingularUCamelCase; %>Service.get<%= tableMasterSingularUCamelCase; %>(<%= tableMasterSingular; %>Id)
+        .then((response) => { <% tableStructure.filter(
+            f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
+          ).forEach(function(field){ %>
+          <%= tableMasterSingular; %>.<%= field.column_name; %>: response.data.data.<%= field.column_name; %> %><% }); %>
+        })
+        .catch((err) => {        
+          errors.value = getError(err)
+        })
+        .finally(() => {
+          pending.value = false;
+        })
+    }
+    pending.value = true
+    /*<%= tableMasterSingularUCamelCase; %>Service.helperTablesGet()
+      .then((response) => {
+        //roles.value = response.data.roles
+      })
+      .catch((err) => {
+        errors.value = getError(err)
+      })
+      .finally(() => {
+        pending.value = false
+      })*/
+  })
+
+  const insert<%= tableMasterSingularUCamelCase; %> = async (<%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>) => {  
+    pending.value = true
+    return <%= tableMasterSingularUCamelCase; %>Service.insert<%= tableMasterSingularUCamelCase; %>(<%= tableMasterSingular; %>)
+      .then((response) => {         
+        alert( response.data.message )
+        router.push( { path: '/<%= tableMaster; %>' } )
+      })
+      .catch((err) => {                
+        console.log( err.response.data )
+        errors.value = getError(err)
+      })
+      .finally(() => {
+        pending.value = false
+      })
+  }
+
+  const update<%= tableMasterSingularUCamelCase; %> = async (<%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>, <%= tableMasterSingular; %>Id: string) => {
+    pending.value= true
+    return <%= tableMasterSingularUCamelCase; %>Service.update<%= tableMasterSingularUCamelCase; %>(<%= tableMasterSingular; %>Id, <%= tableMasterSingular; %>)
+      .then((response) => {
+        alert( response.data.message )
+        router.push( { path: '/<%= tableMaster; %>' } )
+      })
+      .catch((err) => {                
+        console.log( err.response.data )
+        errors.value = getError(err)
+      })
+      .finally(() => {
+        pending.value = false
+      })
+  }
+  
+  const submit = (<%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>, <%= tableMasterSingular; %>Id?: string) => {  
+    !<%= tableMasterSingular; %>Id ? insert<%= tableMasterSingularUCamelCase; %>(<%= tableMasterSingular; %>)  : update<%= tableMasterSingularUCamelCase; %>(<%= tableMasterSingular; %>, <%= tableMasterSingular; %>Id)
+  }
+
+  return {
+    <%= tableMasterSingular; %>,
+    errors,
+    //roles,
+    pending,
+    router,
+
+    submit    
+  }
+
+}

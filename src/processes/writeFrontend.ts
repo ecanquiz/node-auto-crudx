@@ -5,7 +5,9 @@ import {
   tabs,
   routes,
   services,
-  types
+  types,
+  useDatagrid,
+  useCreateOrEditMaster
 } from '@modules/renderings/vue'
 import { pathFrontend as output } from '@config/output'
 import type { ParamsAll } from '@customTypes/utilsRendering';
@@ -70,6 +72,22 @@ export default ({
     output       
   })
   types({
+    tableMaster,
+    tableMasterUCamelCase,
+    tableMasterSingular,
+    tableMasterSingularUCamelCase,
+    tableStructure,
+    output       
+  })
+  useCreateOrEditMaster({
+    tableMaster,
+    tableMasterUCamelCase,
+    tableMasterSingular,
+    tableMasterSingularUCamelCase,
+    tableStructure,
+    output      
+  })
+  useDatagrid({
     tableMaster,
     tableMasterUCamelCase,
     tableMasterSingular,

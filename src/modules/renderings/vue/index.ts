@@ -5,6 +5,8 @@ import tabs from './tabs'
 import routes from './routes'
 import services from './services'
 import types from './types'
+import useDatagrid from './useDatagrid'
+import useCreateOrEditMaster from './useCreateOrEditMaster'
 
 export {
     createOrEditMaster,
@@ -13,5 +15,7 @@ export {
     tabs,
     routes,
     services,
-    types
+    types,
+    useDatagrid,
+    useCreateOrEditMaster    
 }

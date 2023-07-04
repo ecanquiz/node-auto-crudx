@@ -12,8 +12,8 @@ export default ({
   rendering(
     {
       template: './src/templates/laravel/serviceStore',
-      outputPath: `app/Http/Services/${tableMasterSingularUCamelCase}`,
-      outputFile: `Store${tableMasterSingularUCamelCase}Services.php`
+      outputPath: `Modules/${tableMasterSingularUCamelCase}/Http/Services/${tableMasterSingularUCamelCase}`,
+      outputFile: `Store${tableMasterSingularUCamelCase}Service.php`
     }, {
       tableMaster,
       tableMasterUCamelCase,

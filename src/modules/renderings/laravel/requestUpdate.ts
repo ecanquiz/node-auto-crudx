@@ -12,7 +12,7 @@ export default ({
   rendering(
     {
       template: './src/templates/laravel/requestUpdate',
-      outputPath: `app/Http/Requests/${tableMasterSingularUCamelCase}`,
+      outputPath: `Modules/${tableMasterSingularUCamelCase}/Http/Requests/${tableMasterSingularUCamelCase}`,
       outputFile: `Update${tableMasterSingularUCamelCase}Request.php`
     }, {
       tableMaster,

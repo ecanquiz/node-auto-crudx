@@ -1,16 +1,15 @@
 <?php
-namespace App\Http\Services\<%= tableMasterSingularUCamelCase; %>;
+namespace Modules\<%= tableMasterSingularUCamelCase; %>\Http\Services\<%= tableMasterSingularUCamelCase; %>;
 
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\JsonResponse;
-use App\Http\Requests\<%= tableMasterSingularUCamelCase; %>\Update<%= tableMasterSingularUCamelCase; %>Request;
-use App\Models\<%= tableMasterSingularUCamelCase; %>;
+use Modules\<%= tableMasterSingularUCamelCase; %>\Http\Requests\<%= tableMasterSingularUCamelCase; %>\Update<%= tableMasterSingularUCamelCase; %>Request;
+use Modules\<%= tableMasterSingularUCamelCase; %>\Entities\<%= tableMasterSingularUCamelCase; %>;
 
 class Update<%= tableMasterSingularUCamelCase; %>Service
 {
     static public function execute(Update<%= tableMasterSingularUCamelCase; %>Request $request, <%= tableMasterSingularUCamelCase; %> $<%= tableMasterSingular; %>): JsonResponse
     {          
-        $<%= tableMasterSingular; %> = <%= tableMasterSingularUCamelCase; %>::find($request->id);
+        // $<%= tableMasterSingular; %> = <%= tableMasterSingularUCamelCase; %>::find($request->id);
 
         <%
         tableStructure.forEach(function(field) {

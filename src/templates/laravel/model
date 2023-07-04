@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Modules\<%= tableMasterSingularUCamelCase; %>\Entities;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,11 +10,13 @@ class <%= tableMasterSingularUCamelCase; %> extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $connection = 'pgsql_<%= tableMasterSingular; %>';
+
     protected $fillable = [<%
     tableStructure.forEach(function(field) {
         if  (!['created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
     %>
-        <%= field.column_name; %>,<%
+        '<%= field.column_name; %>',<%
         }});
     %> 
     ];
@@ -34,4 +36,9 @@ class <%= tableMasterSingularUCamelCase; %> extends Model
             return $this->belongsTo(\App\Models\MyParent::class);
         }
     */
+
+    protected static function newFactory()
+    {
+        return \Modules\<%= tableMasterSingularUCamelCase; %>\Database\Factories\<%= tableMasterSingularUCamelCase; %>Factory::new();
+    }
 }

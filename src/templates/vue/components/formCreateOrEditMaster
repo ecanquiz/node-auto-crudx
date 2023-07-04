@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from "vue"
-import type <%= tableMasterSingularUCamelCase; %> from "../types/<%= tableMasterSingularUCamelCase; %>"
+import type { <%= tableMasterSingularUCamelCase; %> } from "../types"
 // import type Errors from "../types/Errors"
 
 const props = defineProps<{

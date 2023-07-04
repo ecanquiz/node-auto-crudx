@@ -12,7 +12,7 @@ export default ({
   rendering(
     {
       template: './src/templates/laravel/requestStore',
-      outputPath: `app/Http/Requests/${tableMasterSingularUCamelCase}`,
+      outputPath: `Modules/${tableMasterSingularUCamelCase}/Http/Requests/${tableMasterSingularUCamelCase}`,
       outputFile: `Store${tableMasterSingularUCamelCase}Request.php`
     }, {
       tableMaster,

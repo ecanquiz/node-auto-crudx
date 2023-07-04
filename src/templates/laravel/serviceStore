@@ -1,9 +1,9 @@
 <?php
-namespace App\Http\Services\<%= tableMasterSingularUCamelCase; %>;
+namespace Modules\<%= tableMasterSingularUCamelCase; %>\Http\Services\<%= tableMasterSingularUCamelCase; %>;
 
 use Illuminate\Http\JsonResponse;
-use App\Http\Requests\<%= tableMasterSingularUCamelCase; %>\Store<%= tableMasterSingularUCamelCase; %>Request;
-use App\Models\<%= tableMasterSingularUCamelCase; %>;
+use Modules\<%= tableMasterSingularUCamelCase; %>\Http\Requests\<%= tableMasterSingularUCamelCase; %>\Store<%= tableMasterSingularUCamelCase; %>Request;
+use Modules\<%= tableMasterSingularUCamelCase; %>\Entities\<%= tableMasterSingularUCamelCase; %>;
 
 class Store<%= tableMasterSingularUCamelCase; %>Service
 {

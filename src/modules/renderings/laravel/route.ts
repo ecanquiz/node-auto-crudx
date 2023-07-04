@@ -12,8 +12,8 @@ export default ({
   rendering(
     {
       template: './src/templates/laravel/route',
-      outputPath: `routes`,
-      outputFile: `${tableMasterSingular}Api.php`
+      outputPath: `Modules/${tableMasterSingularUCamelCase}/Routes`,
+      outputFile: `api.php`
     }, {
       tableMaster,
       tableMasterUCamelCase,

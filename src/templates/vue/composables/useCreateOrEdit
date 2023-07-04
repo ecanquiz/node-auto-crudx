@@ -1,8 +1,8 @@
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp";
-import <%= tableMasterSingularUCamelCase; %>Service from "@/modules/User/services";
-import type { <%= tableMasterSingularUCamelCase; %> } from "../types/<%= tableMasterSingularUCamelCase; %>"
+import <%= tableMasterSingularUCamelCase; %>Service from "@/modules/<%= tableMasterSingularUCamelCase; %>/services";
+import type { <%= tableMasterSingularUCamelCase; %> } from "../types"
 
 export default (<%= tableMasterSingular; %>Id?: string) => {
   const router = useRouter();
@@ -30,7 +30,7 @@ export default (<%= tableMasterSingular; %>Id?: string) => {
         .then((response) => { <% tableStructure.filter(
             f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
           ).forEach(function(field){ %>
-          <%= tableMasterSingular; %>.<%= field.column_name; %>: response.data.data.<%= field.column_name; %> %><% }); %>
+          <%= tableMasterSingular; %>.<%= field.column_name; %> = response.data.data.<%= field.column_name; %> %><% }); %>
         })
         .catch((err) => {        
           errors.value = getError(err)

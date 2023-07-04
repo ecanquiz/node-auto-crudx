@@ -2,12 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\<%= tableMasterSingularUCamelCase; %>Controller;
+use Modules\<%= tableMasterSingularUCamelCase; %>\Http\Controllers\<%= tableMasterSingularUCamelCase; %>Controller;
 
-Route::prefix('<%= tableMaster; %>')->group(function () {
-    Route::get('/', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'index']);
-    Route::get('/{<%= tableMasterSingular; %>}', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'show']);
-    Route::post('/', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'store']);        
-    Route::put('/{<%= tableMasterSingular; %>}', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'update']);
-    Route::delete('/{id}', [<%= tableMasterSingularUCamelCase; %>Controller::class,'destroy']);        
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::prefix('<%= tableMaster; %>')->group(function () {
+        Route::get('/', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'index']);
+        Route::get('/{<%= tableMasterSingular; %>}', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'show']);
+        Route::post('/', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'store']);
+        Route::put('/{<%= tableMasterSingular; %>}', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'update']);
+        Route::delete('/{id}', [<%= tableMasterSingularUCamelCase; %>Controller::class,'destroy']);
+    });
 });

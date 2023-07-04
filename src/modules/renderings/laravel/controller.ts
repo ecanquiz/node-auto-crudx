@@ -12,7 +12,7 @@ export default ({
   rendering(
     {
       template: './src/templates/laravel/controller',
-      outputPath: 'app/Http/Controllers',
+      outputPath: `Modules/${tableMasterSingularUCamelCase}/Http/Controllers`,
       outputFile: `${tableMasterSingularUCamelCase}Controller.php`
     }, {
       tableMaster,

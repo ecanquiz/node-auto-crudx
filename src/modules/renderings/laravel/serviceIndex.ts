@@ -12,8 +12,8 @@ export default ({
   rendering(
     {
       template: './src/templates/laravel/serviceIndex',
-      outputPath: `app/Http/Services/${tableMasterSingularUCamelCase}`,
-      outputFile: `Index${tableMasterSingularUCamelCase}Services.php`
+      outputPath: `Modules/${tableMasterSingularUCamelCase}/Http/Services/${tableMasterSingularUCamelCase}`,
+      outputFile: `Index${tableMasterSingularUCamelCase}Service.php`
     }, {
       tableMaster,
       tableMasterUCamelCase,

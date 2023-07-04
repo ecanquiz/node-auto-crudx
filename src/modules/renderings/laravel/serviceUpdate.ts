@@ -12,8 +12,8 @@ export default ({
   rendering(
     {
       template: './src/templates/laravel/serviceUpdate',
-      outputPath: `app/Http/Services/${tableMasterSingularUCamelCase}`,
-      outputFile: `Update${tableMasterSingularUCamelCase}Services.php`
+      outputPath: `Modules/${tableMasterSingularUCamelCase}/Http/Services/${tableMasterSingularUCamelCase}`,
+      outputFile: `Update${tableMasterSingularUCamelCase}Service.php`
     }, {
       tableMaster,
       tableMasterUCamelCase,

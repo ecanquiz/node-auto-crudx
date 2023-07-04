@@ -6,11 +6,10 @@ import useCreateOrEdit from "../composables/useCreateOrEdit";
 const props = defineProps<{ id?: string }>()
 
 const {
-  <%= tableMasterSingular; %>
+  <%= tableMasterSingular; %>,
   errors,
   roles,
-  sending,
-  loading,
+  pending,
   router,
 
   submit    
@@ -22,9 +21,9 @@ const {
   <AppPageHeader><%= tableMasterUCamelCase; %> / {{ !props.id ? "Crear" : "Editar" }}</AppPageHeader>
   <transition name="fade" mode="out-in">
     <AppPageHeader
-      message="loading..."
-      v-if="loading && !<%= tableMasterSingular; %>"
-      key="loading"
+      message="pending..."
+      v-if="pending && !<%= tableMasterSingular; %>"
+      key="pending"
     />
     <div v-else class="panel mt-6 p-4">           
       <div  class="flex space-x-2">
@@ -41,7 +40,7 @@ const {
           @submit='submit'
           :id="props.id"
           :<%= tableMasterSingular; %>='<%= tableMasterSingular; %>'
-          :sending='sending'
+          :pending='pending'
           :errors='errors'
           :roles="roles"            
         />

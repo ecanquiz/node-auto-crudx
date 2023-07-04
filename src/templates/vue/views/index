@@ -59,13 +59,13 @@ const {
                 class="text-indigo-600 hover:text-indigo-800 underline"
                 :to="{ name: '<%= tableMasterSingular; %>Edit', params: { id: row.id }}"               
               >
-                {{ <%= tableStructure[0].column_name %> }}
+                {{ row.<%= tableStructure[0].column_name %> }}
               </AppLink>
             </td>
           <% tableStructure.forEach(
           (field) => { if (field.column_name !== 'id' ) { %>
             <td class="">
-              {{ <%= field.column_name; %> }}
+              {{ row.<%= field.column_name; %> }}
             </td>
           <%}});%>              
             <td class="">

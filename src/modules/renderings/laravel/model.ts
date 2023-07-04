@@ -12,7 +12,7 @@ export default ({
   rendering(
     {
       template: './src/templates/laravel/model',
-      outputPath: 'app/Models',
+      outputPath: `Modules/${tableMasterSingularUCamelCase}/Entities`,
       outputFile: `${tableMasterSingularUCamelCase}.php`
     }, {
       tableMaster,

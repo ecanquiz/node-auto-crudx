@@ -10,10 +10,29 @@ import type { GetDataOfBDParams, fieldStructure } from '@customTypes/db'
 
 const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[]) => {
   const {
+    // namesList,
+    // schemasAndTablesOfBD,
+    // schemasOfBD,
+    // tableDetailForeignKeysAssoc,
+    tableDetailOfMaster,
+    // tableForeignKeysAssocMasterDetail,
+    tableMasterForeignKeysAssoc,
+    // tablePrimaryKey,
     tableStructure,
-    tableDetailOfMaster
+    // tableUniqueConstraint,
+    // tablesOfBD
   } = await getDataOfBD(getDataOfBDParams)
-
+  // console.log("namesList:", namesList)
+  // console.log("schemasAndTablesOfBD:", schemasAndTablesOfBD)
+  // console.log("schemasOfBD:", schemasOfBD)
+  // console.log("tableDetailForeignKeysAssoc:", tableDetailForeignKeysAssoc)
+  // console.log("tableDetailOfMaster:", tableDetailOfMaster)
+  // console.log("tableForeignKeysAssocMasterDetail:", tableForeignKeysAssocMasterDetail)
+  // console.log("tableMasterForeignKeysAssoc:", tableMasterForeignKeysAssoc)
+  // console.log("tablePrimaryKey:", tablePrimaryKey)
+  // console.log("tableStructure:", tableStructure)
+  // console.log("tableUniqueConstraint:", tableUniqueConstraint)
+  // console.log("tablesOfBD:", tablesOfBD)
   const tableMaster: string = getDataOfBDParams.tableMaster
   const tableMasterUCamelCase: string = uCamelCase(getDataOfBDParams.tableMaster)
   const tableMasterSingular: string = singular(getDataOfBDParams.tableMaster)
@@ -21,31 +40,22 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
   const tableStructureClean: string[][] = tableStructure.filter(    
     field => !(excludeFields.includes((field as unknown as fieldStructure).column_name))
   )
-  
-console.log("tableMaster:", tableMaster)
-console.log("tableMasterSingular:", tableMasterSingular)
-console.log("tableMasterUCamelCase:", tableMasterUCamelCase)
-//console.log("tableStructureClean:", tableStructureClean)
-//console.log("tableDetailOfMaster:", tableDetailOfMaster)
-
-
-  writeBackend({
+  // console.log("tableMaster:", tableMaster)
+  // console.log("tableMasterUCamelCase:", tableMasterUCamelCase)
+  // console.log("tableMasterSingular:", tableMasterSingular)
+  // console.log("tableMasterSingularUCamelCase:", tableMasterSingularUCamelCase)
+  // console.log("tableStructureClean:", tableStructureClean)
+  const params = {
     tableMaster,
     tableMasterUCamelCase,
     tableMasterSingular,
     tableMasterSingularUCamelCase,
     tableStructure,
     tableDetailOfMaster
-  })
-
-  writeFrontend({
-    tableMaster,
-    tableMasterUCamelCase,
-    tableMasterSingular,
-    tableMasterSingularUCamelCase,
-    tableStructure: tableStructureClean,
-    tableDetailOfMaster
-  })
+  }
+  writeBackend(params)
+  params.tableStructure = tableStructureClean
+  writeFrontend(params)
 }
 
 main({

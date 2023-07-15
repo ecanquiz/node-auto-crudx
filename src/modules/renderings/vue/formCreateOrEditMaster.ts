@@ -9,7 +9,6 @@ export default ({
   tableStructure,
   output
 }: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
-  console.log(tableStructure)
   rendering(
     {
       template: './src/templates/vue/components/formCreateOrEditMaster',

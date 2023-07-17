@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Modules\<%= tableMasterSingularUCamelCase; %>\Http\Controllers\<%= tableMasterSingularUCamelCase; %>Controller;
+use Modules\<%= pathModule; %>\Http\Controllers\<%= tableMasterSingularUCamelCase; %>Controller;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('<%= tableMaster; %>')->group(function () {

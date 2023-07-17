@@ -1,5 +1,4 @@
 import rendering from '@utils/rendering';
-import type { TableDetailOfMaster } from '@customTypes/db'
 import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
@@ -8,25 +7,20 @@ export default ({
   tableMasterSingular,
   tableMasterSingularUCamelCase,
   tableStructure,
-  tableDetailOfMaster,
   output
-}: ParamsAll): void => {
+}: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
   rendering(
     {
-      template: './src/templates/vue/views/tabs',
-      outputPath: `src/modules/${tableMasterSingularUCamelCase}/views`,
-      outputFile: 'Tabs.vue'
+      template: './src/templates/vue/types/index',
+      outputPath: `types`,
+      outputFile: `${tableMasterSingularUCamelCase}.ts`
     }, {
       tableMaster,
       tableMasterUCamelCase,
       tableMasterSingular,
       tableMasterSingularUCamelCase,
       tableStructure,
-      tableDetailOfMaster: tableDetailOfMaster.map(
-        r => (r as unknown as TableDetailOfMaster).table_name 
-      )
     },
     output
   )
 }
-

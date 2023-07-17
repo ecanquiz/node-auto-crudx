@@ -1,5 +1,5 @@
 import rendering from '@utils/rendering';
-import type { ParamsAll } from '@customTypes/utilsRendering'
+import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,
@@ -11,9 +11,9 @@ export default ({
 }: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
   rendering(
     {
-      template: './src/templates/laravel/resource',
-      outputPath: `Modules/${tableMasterSingularUCamelCase}/Http/Resources`,
-      outputFile: `${tableMasterSingularUCamelCase}Resource.php`
+      template: './src/templates/vue/composables/useCreateOrEdit',
+      outputPath: `composables/${tableMasterSingularUCamelCase}`,
+      outputFile: 'useCreateOrEdit.ts'
     }, {
       tableMaster,
       tableMasterUCamelCase,

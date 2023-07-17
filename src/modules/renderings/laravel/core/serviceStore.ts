@@ -11,9 +11,9 @@ export default ({
 }: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
   rendering(
     {
-      template: './src/templates/laravel/requestUpdate',
-      outputPath: `Modules/${tableMasterSingularUCamelCase}/Http/Requests/${tableMasterSingularUCamelCase}`,
-      outputFile: `Update${tableMasterSingularUCamelCase}Request.php`
+      template: './src/templates/laravel/serviceStore',
+      outputPath: `Http/Services/${tableMasterSingularUCamelCase}`,
+      outputFile: `Store${tableMasterSingularUCamelCase}Service.php`
     }, {
       tableMaster,
       tableMasterUCamelCase,

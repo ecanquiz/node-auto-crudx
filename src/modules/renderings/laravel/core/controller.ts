@@ -1,23 +1,25 @@
 import rendering from '@utils/rendering';
-import type { ParamsAll } from '@customTypes/utilsRendering';
+import type { ParamsAll } from '@customTypes/utilsRendering'
 
 export default ({
   tableMaster,
-  //tableMasterUCamelCase,
+  tableMasterUCamelCase,
   tableMasterSingular,
   tableMasterSingularUCamelCase,
-  //tableStructure,
+  tableStructure,
   output
 }: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
   rendering(
     {
-      template: './src/templates/vue/routes/index',
-      outputPath: `src/modules/${tableMasterSingularUCamelCase}/routes`,
-      outputFile: 'index.ts'
+      template: './src/templates/laravel/controller',
+      outputPath: `Http/Controllers`,
+      outputFile: `${tableMasterSingularUCamelCase}Controller.php`
     }, {
       tableMaster,
+      tableMasterUCamelCase,
       tableMasterSingular,
       tableMasterSingularUCamelCase,
+      tableStructure
     },
     output
   )

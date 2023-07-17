@@ -2,7 +2,7 @@ import { reactive, onMounted } from "vue"
 import { onBeforeRouteUpdate } from "vue-router"
 import useTableGrid from "@/composables/useTableGrid"
 import useHttp from "@/composables/useHttp"
-import <%= tableMasterSingularUCamelCase; %>Service from "../services"
+import <%= tableMasterSingularUCamelCase; %>Service from "../../services/<%= tableMasterSingularUCamelCase; %>"
 
 type Params =  string | string[][] | Record<string, string> | URLSearchParams | undefined
 
@@ -51,7 +51,9 @@ export default () => {
       return <%= tableMasterSingularUCamelCase; %>Service.delete<%= tableMasterSingularUCamelCase; %>(rowId)
         .then((response) => {
           errors.value = {}
-          router.push( { path: '/<%= tableMaster; %>' } )        
+          get<%= tableMasterUCamelCase; %>(
+            new URLSearchParams(route.query as Params).toString()
+          )
         })
         .catch((err) => {                
           console.log( err.response.data )
@@ -62,14 +64,14 @@ export default () => {
 
   onBeforeRouteUpdate(async (to, from) => {      
     if (to.query !== from.query) {        
-      await get<%= tableMasterUCamelCase ; %>(
+      await get<%= tableMasterUCamelCase; %>(
         new URLSearchParams(to.query as Params).toString()
       )
     }
   })
 
   onMounted(() => {
-    get<%= tableMasterUCamelCase ; %>(
+    get<%= tableMasterUCamelCase; %>(
       new URLSearchParams(route.query as Params).toString()
     )
   })

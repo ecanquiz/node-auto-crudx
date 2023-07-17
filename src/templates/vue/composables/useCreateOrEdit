@@ -1,7 +1,7 @@
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp";
-import <%= tableMasterSingularUCamelCase; %>Service from "@/modules/<%= tableMasterSingularUCamelCase; %>/services";
+import <%= tableMasterSingularUCamelCase; %>Service from "../../services/<%= tableMasterSingularUCamelCase; %>"
 import type { <%= tableMasterSingularUCamelCase; %> } from "../types"
 
 export default (<%= tableMasterSingular; %>Id?: string) => {
@@ -39,7 +39,7 @@ export default (<%= tableMasterSingular; %>Id?: string) => {
           pending.value = false;
         })
     }
-    pending.value = true
+    // pending.value = true
     /*<%= tableMasterSingularUCamelCase; %>Service.helperTablesGet()
       .then((response) => {
         //roles.value = response.data.roles

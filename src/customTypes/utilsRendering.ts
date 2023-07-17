@@ -1,11 +1,12 @@
 export type Rendering = {
-  template: string;
-  outputPath: string;
-  outputFile: string;
+  template: string
+  outputPath: string
+  outputFile: string
 }
 
 export type ParamsMain = {
-  tableMaster: string;
+  pathModule?: string
+  tableMaster: string
   tableMasterSingular: string
   tableMasterUCamelCase: string
   tableMasterSingularUCamelCase: string
@@ -13,11 +14,15 @@ export type ParamsMain = {
 }
 
 export type ParamsDetail = {
-  tableDetailOfMaster: any[][] | string[];
+  tableDetailOfMaster: any[][] | string[]
 }
 
 export type Output = {
   output: string
 }
 
-export type ParamsAll = ParamsMain & ParamsDetail & Output;
+export type PathModule = {
+  pathModule: string
+}
+
+export type ParamsAll = ParamsMain & ParamsDetail & Output

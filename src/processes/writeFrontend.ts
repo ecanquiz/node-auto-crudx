@@ -4,6 +4,7 @@ import { buildFrontendRoutes } from '@config/buildRoutes'
 import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
+  pathModule,
   tableMaster,
   tableMasterUCamelCase,
   tableMasterSingular,
@@ -12,6 +13,7 @@ export default ({
   tableDetailOfMaster
 }: Omit<ParamsAll, 'output'>): void => {
   const params: ParamsAll= {
+    pathModule,
     tableMaster,
     tableMasterUCamelCase,
     tableMasterSingular,

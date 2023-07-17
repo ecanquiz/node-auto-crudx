@@ -4,6 +4,7 @@ import { buildBackendRoutes } from '@config/buildRoutes'
 import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
+  pathModule,
   tableMaster,
   tableMasterUCamelCase,
   tableMasterSingular,
@@ -11,6 +12,7 @@ export default ({
   tableStructure
 }: Omit<ParamsAll, 'output'>): void => {
   const params: Omit<ParamsAll, 'tableDetailOfMaster'>= {
+    pathModule,
     tableMaster,
     tableMasterUCamelCase,
     tableMasterSingular,

@@ -11,9 +11,9 @@ export default ({
 }: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
   rendering(
     {
-      template: './src/templates/laravel/serviceIndex',
-      outputPath: `Modules/${tableMasterSingularUCamelCase}/Http/Services/${tableMasterSingularUCamelCase}`,
-      outputFile: `Index${tableMasterSingularUCamelCase}Service.php`
+      template: './src/templates/vue/components/formCreateOrEditMaster',
+      outputPath: `components/${tableMasterSingularUCamelCase}`,
+      outputFile: 'FormCreateOrEdit.vue'
     }, {
       tableMaster,
       tableMasterUCamelCase,

@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\<%= tableMasterSingularUCamelCase; %>\Http\Services\<%= tableMasterSingularUCamelCase; %>;
+namespace Modules\<%= pathModule; %>\Http\Services\<%= tableMasterSingularUCamelCase; %>;
 
 use Illuminate\Http\{
     Request,
     JsonResponse
 };
-use Modules\<%= tableMasterSingularUCamelCase; %>\Entities\<%= tableMasterSingularUCamelCase; %>;
+use Modules\<%= pathModule; %>\Entities\<%= tableMasterSingularUCamelCase; %>;
 
 class Index<%= tableMasterSingularUCamelCase; %>Service
 {

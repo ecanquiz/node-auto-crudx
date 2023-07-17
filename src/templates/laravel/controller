@@ -1,21 +1,21 @@
 <?php
 
-namespace Modules\<%= tableMasterSingularUCamelCase; %>\Http\Controllers;
+namespace Modules\<%= pathModule; %>\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\{Request, JsonResponse};
 use Illuminate\Routing\Controller;
-use Modules\<%= tableMasterSingularUCamelCase; %>\Http\Resources\<%= tableMasterSingularUCamelCase; %>Resource;
-use Modules\<%= tableMasterSingularUCamelCase; %>\Http\Requests\<%= tableMasterSingularUCamelCase; %>\{
+use Modules\<%= pathModule; %>\Http\Resources\<%= tableMasterSingularUCamelCase; %>Resource;
+use Modules\<%= pathModule; %>\Http\Requests\<%= tableMasterSingularUCamelCase; %>\{
     Store<%= tableMasterSingularUCamelCase; %>Request,
     Update<%= tableMasterSingularUCamelCase; %>Request
 };
-use Modules\<%= tableMasterSingularUCamelCase; %>\Http\Services\<%= tableMasterSingularUCamelCase; %>\{
+use Modules\<%= pathModule; %>\Http\Services\<%= tableMasterSingularUCamelCase; %>\{
     Store<%= tableMasterSingularUCamelCase; %>Service,
     Index<%= tableMasterSingularUCamelCase; %>Service,
     Update<%= tableMasterSingularUCamelCase; %>Service
 };
-use Modules\<%= tableMasterSingularUCamelCase; %>\Entities\<%= tableMasterSingularUCamelCase; %>;
+use Modules\<%= pathModule; %>\Entities\<%= tableMasterSingularUCamelCase; %>;
 
 class <%= tableMasterSingularUCamelCase; %>Controller extends Controller
 {

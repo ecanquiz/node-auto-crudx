@@ -11,9 +11,9 @@ export default ({
 }: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
   rendering(
     {
-      template: './src/templates/vue/composables/useCreateOrEdit',
-      outputPath: `src/modules/${tableMasterSingularUCamelCase}/composables`,
-      outputFile: 'useCreateOrEdit.ts'
+      template: './src/templates/vue/views/index',
+      outputPath: `views/${tableMasterSingularUCamelCase}`,
+      outputFile: 'Index.vue'
     }, {
       tableMaster,
       tableMasterUCamelCase,

@@ -11,9 +11,9 @@ export default ({
 }: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
   rendering(
     {
-      template: './src/templates/vue/components/formCreateOrEditMaster',
-      outputPath: `src/modules/${tableMasterSingularUCamelCase}/components`,
-      outputFile: 'FormCreateOrEdit.vue'
+      template: './src/templates/laravel/requestStore',
+      outputPath: `Http/Requests/${tableMasterSingularUCamelCase}`,
+      outputFile: `Store${tableMasterSingularUCamelCase}Request.php`
     }, {
       tableMaster,
       tableMasterUCamelCase,

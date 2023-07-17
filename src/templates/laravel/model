@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\<%= tableMasterSingularUCamelCase; %>\Entities;
+namespace Modules\<%= pathModule; %>\Entities;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +10,7 @@ class <%= tableMasterSingularUCamelCase; %> extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $connection = 'pgsql_<%= tableMasterSingular; %>';
+    protected $connection = 'pgsql_<%= pathModule.toLowerCase(); %>';
 
     protected $fillable = [<%
     tableStructure.forEach(function(field) {
@@ -39,6 +39,6 @@ class <%= tableMasterSingularUCamelCase; %> extends Model
 
     protected static function newFactory()
     {
-        return \Modules\<%= tableMasterSingularUCamelCase; %>\Database\Factories\<%= tableMasterSingularUCamelCase; %>Factory::new();
+        return \Modules\<%= pathModule; %>\Database\Factories\<%= tableMasterSingularUCamelCase; %>Factory::new();
     }
 }

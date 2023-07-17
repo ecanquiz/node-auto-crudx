@@ -1,9 +1,9 @@
 <?php
-namespace Modules\<%= tableMasterSingularUCamelCase; %>\Http\Services\<%= tableMasterSingularUCamelCase; %>;
+namespace Modules\<%= pathModule; %>\Http\Services\<%= tableMasterSingularUCamelCase; %>;
 
 use Illuminate\Http\JsonResponse;
-use Modules\<%= tableMasterSingularUCamelCase; %>\Http\Requests\<%= tableMasterSingularUCamelCase; %>\Update<%= tableMasterSingularUCamelCase; %>Request;
-use Modules\<%= tableMasterSingularUCamelCase; %>\Entities\<%= tableMasterSingularUCamelCase; %>;
+use Modules\<%= pathModule; %>\Http\Requests\<%= tableMasterSingularUCamelCase; %>\Update<%= tableMasterSingularUCamelCase; %>Request;
+use Modules\<%= pathModule; %>\Entities\<%= tableMasterSingularUCamelCase; %>;
 
 class Update<%= tableMasterSingularUCamelCase; %>Service
 {

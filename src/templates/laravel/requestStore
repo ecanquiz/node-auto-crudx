@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\<%= tableMasterSingularUCamelCase; %>\Http\Requests\<%= tableMasterSingularUCamelCase; %>;
+namespace Modules\<%= pathModule; %>\Http\Requests\<%= tableMasterSingularUCamelCase; %>;
 
 use Illuminate\Foundation\Http\FormRequest;
 

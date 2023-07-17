@@ -1,13 +1,12 @@
-import controller from './controller'
-import model from './model'
-import serviceIndex from './serviceIndex'
-import serviceStore from './serviceStore'
-import serviceUpdate from './serviceUpdate'
-import resource from './resource'
-import requestStore from './requestStore'
-import requestUpdate from './requestUpdate'
-import route from './route'
-
+import controller from './core/controller'
+import model from './core/model'
+import serviceIndex from './core/serviceIndex'
+import serviceStore from './core/serviceStore'
+import serviceUpdate from './core/serviceUpdate'
+import resource from './core/resource'
+import requestStore from './core/requestStore'
+import requestUpdate from './core/requestUpdate'
+import route from './core/route'
 
 export {
     controller,

@@ -11,15 +11,14 @@ export default ({
 }: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
   rendering(
     {
-      template: './src/templates/vue/views/index',
-      outputPath: `src/modules/${tableMasterSingularUCamelCase}/views`,
-      outputFile: 'Index.vue'
+      template: './src/templates/vue/services/index',
+      outputPath: `services`,
+      outputFile: `${tableMasterSingularUCamelCase}.ts`
     }, {
       tableMaster,
       tableMasterUCamelCase,
       tableMasterSingular,
       tableMasterSingularUCamelCase,
-      tableStructure
     },
     output
   )

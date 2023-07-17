@@ -1,5 +1,5 @@
 import rendering from '@utils/rendering';
-import type { ParamsAll } from '@customTypes/utilsRendering';
+import type { ParamsAll } from '@customTypes/utilsRendering'
 
 export default ({
   tableMaster,
@@ -11,9 +11,9 @@ export default ({
 }: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
   rendering(
     {
-      template: './src/templates/vue/composables/useIndex',
-      outputPath: `src/modules/${tableMasterSingularUCamelCase}/composables`,
-      outputFile: 'useIndex.ts'
+      template: './src/templates/laravel/resource',
+      outputPath: `Http/Resources`,
+      outputFile: `${tableMasterSingularUCamelCase}Resource.php`
     }, {
       tableMaster,
       tableMasterUCamelCase,

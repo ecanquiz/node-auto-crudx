@@ -12,4 +12,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::put('/{<%= tableMasterSingular; %>}', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'update']);
         Route::delete('/{id}', [<%= tableMasterSingularUCamelCase; %>Controller::class,'destroy']);
     });
+    Route::get('/<%= tableMaster; %>-help', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'help']);
 });
+

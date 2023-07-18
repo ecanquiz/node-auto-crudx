@@ -7,8 +7,10 @@ export default ({
   tableMasterSingular,
   tableMasterSingularUCamelCase,
   tableStructure,
+  tableDetailOfMaster,
+  tableMasterForeignKeysAssoc,
   output
-}: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
+}: ParamsAll): void => {
   rendering(
     {
       template: './src/templates/laravel/controller',
@@ -19,7 +21,10 @@ export default ({
       tableMasterUCamelCase,
       tableMasterSingular,
       tableMasterSingularUCamelCase,
-      tableStructure
+      tableStructure,
+      tableDetailOfMaster,
+      tableMasterForeignKeysAssoc,
+      output
     },
     output
   )

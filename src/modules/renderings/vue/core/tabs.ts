@@ -9,6 +9,7 @@ export default ({
   tableMasterSingularUCamelCase,
   tableStructure,
   tableDetailOfMaster,
+  tableMasterForeignKeysAssoc,
   output
 }: ParamsAll): void => {
   rendering(
@@ -24,7 +25,8 @@ export default ({
       tableStructure,
       tableDetailOfMaster: tableDetailOfMaster.map(
         r => (r as unknown as TableDetailOfMaster).table_name 
-      )
+      ),
+      tableMasterForeignKeysAssoc
     },
     output
   )

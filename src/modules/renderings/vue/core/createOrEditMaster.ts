@@ -7,8 +7,10 @@ export default ({
   tableMasterSingular,
   tableMasterSingularUCamelCase,
   tableStructure,
+  tableDetailOfMaster,
+  tableMasterForeignKeysAssoc,
   output
-}: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
+}: ParamsAll): void => {
   rendering(
     {
       template: './src/templates/vue/views/createOrEditMaster',
@@ -19,7 +21,9 @@ export default ({
       tableMasterUCamelCase,
       tableMasterSingular,
       tableMasterSingularUCamelCase,
-      tableStructure
+      tableStructure,
+      tableDetailOfMaster,
+      tableMasterForeignKeysAssoc
     },
     output
   )

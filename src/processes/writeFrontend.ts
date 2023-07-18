@@ -4,22 +4,22 @@ import { buildFrontendRoutes } from '@config/buildRoutes'
 import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
-  pathModule,
   tableMaster,
   tableMasterUCamelCase,
   tableMasterSingular,
   tableMasterSingularUCamelCase,
   tableStructure,
-  tableDetailOfMaster
+  tableDetailOfMaster,
+  tableMasterForeignKeysAssoc
 }: Omit<ParamsAll, 'output'>): void => {
-  const params: ParamsAll= {
-    pathModule,
+  const params: ParamsAll = {
     tableMaster,
     tableMasterUCamelCase,
     tableMasterSingular,
     tableMasterSingularUCamelCase,
     tableStructure,
     tableDetailOfMaster,
+    tableMasterForeignKeysAssoc,
     output
   }
   vue.createOrEditMaster(params)

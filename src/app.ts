@@ -6,7 +6,7 @@ import writeBackend from './processes/writeBackend'
 import writeFrontend from './processes/writeFrontend'
 import { uCamelCase } from './utils/nomenclature';
 import { singular } from './utils/grammaticalNumber'
-import type { GetDataOfBDParams, fieldStructure } from '@customTypes/db'
+import type { GetDataOfBDParams, fieldStructure, TableMasterForeignKeysAssoc } from '@customTypes/db'
 
 const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[]) => {
   const {
@@ -28,7 +28,7 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
   // console.log("tableDetailForeignKeysAssoc:", tableDetailForeignKeysAssoc)
   // console.log("tableDetailOfMaster:", tableDetailOfMaster)
   // console.log("tableForeignKeysAssocMasterDetail:", tableForeignKeysAssocMasterDetail)
-  // console.log("tableMasterForeignKeysAssoc:", tableMasterForeignKeysAssoc)
+  //console.log("tableMasterForeignKeysAssoc:", tableMasterForeignKeysAssoc)
   // console.log("tablePrimaryKey:", tablePrimaryKey)
   // console.log("tableStructure:", tableStructure)
   // console.log("tableUniqueConstraint:", tableUniqueConstraint)
@@ -40,6 +40,17 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
   const tableStructureClean: string[][] = tableStructure.filter(    
     field => !(excludeFields.includes((field as unknown as fieldStructure).column_name))
   )
+  tableMasterForeignKeysAssoc.forEach(    
+    tbl => {
+      const foreignTableName = (tbl as unknown as TableMasterForeignKeysAssoc).foreign_table_name;
+      (tbl as unknown as TableMasterForeignKeysAssoc).columnNameUCamelCase = uCamelCase((foreignTableName));
+      (tbl as unknown as TableMasterForeignKeysAssoc).columnNameSingularUCamelCase = uCamelCase(singular((foreignTableName)));
+    }
+  )
+
+
+console.log(tableMasterForeignKeysAssoc)
+
   // console.log("tableMaster:", tableMaster)
   // console.log("tableMasterUCamelCase:", tableMasterUCamelCase)
   // console.log("tableMasterSingular:", tableMasterSingular)
@@ -51,7 +62,8 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
     tableMasterSingular,
     tableMasterSingularUCamelCase,
     tableStructure,
-    tableDetailOfMaster
+    tableDetailOfMaster,
+    tableMasterForeignKeysAssoc
   }
   writeBackend(params)
   params.tableStructure = tableStructureClean

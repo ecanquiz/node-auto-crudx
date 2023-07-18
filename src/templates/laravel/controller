@@ -59,4 +59,12 @@ class <%= tableMasterSingularUCamelCase; %>Controller extends Controller
         <%= tableMasterSingularUCamelCase; %>::destroy($request->id);
         return response()->json(204);
     }
+
+    /*
+     * Display a listing of the resource to help.
+     */
+    public function help(): JsonResponse
+    {
+        return response()->json(<%= tableMasterSingularUCamelCase; %>::all());
+    }
 }

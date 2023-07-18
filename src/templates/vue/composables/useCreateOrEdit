@@ -2,7 +2,13 @@ import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp";
 import <%= tableMasterSingularUCamelCase; %>Service from "../../services/<%= tableMasterSingularUCamelCase; %>"
-import type { <%= tableMasterSingularUCamelCase; %> } from "../types"
+<% tableMasterForeignKeysAssoc.forEach(function(tbl){
+%>import <%= tbl.columnNameSingularUCamelCase; %>Service from  "../../services/<%= tbl.columnNameSingularUCamelCase; %>"<%
+}); %>
+import type { <%= tableMasterSingularUCamelCase; %> } from "../types/<%= tableMasterSingularUCamelCase; %>"
+<% tableMasterForeignKeysAssoc.forEach(function(tbl){
+%>import type { <%= tbl.columnNameSingularUCamelCase; %> } from  "../../services/<%= tbl.columnNameSingularUCamelCase; %>"<%
+}); %>
 
 export default (<%= tableMasterSingular; %>Id?: string) => {
   const router = useRouter();
@@ -14,7 +20,10 @@ export default (<%= tableMasterSingular; %>Id?: string) => {
     <%= field.column_name; %>: "", %><% }); %>
   })
 
-  // const roles = ref<Role[]>([])
+  const roles = ref<Role[]>([])
+  <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+  %>const <%= tbl.foreign_table_name; %> = ref<<%= tbl.columnNameSingularUCamelCase; %>[]>()<%
+  }); %>
   
   const {  
     errors,
@@ -39,17 +48,18 @@ export default (<%= tableMasterSingular; %>Id?: string) => {
           pending.value = false;
         })
     }
-    // pending.value = true
-    /*<%= tableMasterSingularUCamelCase; %>Service.helperTablesGet()
+    pending.value = true
+    <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+    %><%= tbl.columnNameSingularUCamelCase; %>Service.getHelp<%= tbl.columnNameUCamelCase; %>()
       .then((response) => {
-        //roles.value = response.data.roles
-      })
-      .catch((err) => {
-        errors.value = getError(err)
-      })
-      .finally(() => {
-        pending.value = false
-      })*/
+        <%= tbl.foreign_table_name; %>.value = response.data
+       })
+       .catch((err) => {
+         errors.value = getError(err)
+       })
+       .finally(() => {
+         pending.value = false
+       })<% }); %>
   })
 
   const insert<%= tableMasterSingularUCamelCase; %> = async (<%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>) => {  
@@ -91,7 +101,9 @@ export default (<%= tableMasterSingular; %>Id?: string) => {
   return {
     <%= tableMasterSingular; %>,
     errors,
-    //roles,
+    <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+    %><%= tbl.foreign_table_name; %>,<%
+    }); %>
     pending,
     router,
 

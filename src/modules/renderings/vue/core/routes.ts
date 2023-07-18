@@ -3,12 +3,14 @@ import type { ParamsAll } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,
-  //tableMasterUCamelCase,
+  tableMasterUCamelCase,
   tableMasterSingular,
   tableMasterSingularUCamelCase,
-  //tableStructure,
+  tableStructure,
+  tableDetailOfMaster,
+  tableMasterForeignKeysAssoc,
   output
-}: Omit<ParamsAll, 'tableDetailOfMaster'>): void => {
+}: ParamsAll): void => {
   rendering(
     {
       template: './src/templates/vue/routes/index',
@@ -16,8 +18,12 @@ export default ({
       outputFile: `index${tableMasterSingularUCamelCase}.ts`
     }, {
       tableMaster,
+      tableMasterUCamelCase,
       tableMasterSingular,
       tableMasterSingularUCamelCase,
+      tableStructure,
+      tableDetailOfMaster,
+      tableMasterForeignKeysAssoc
     },
     output
   )

@@ -21,15 +21,15 @@ export const delete<%= tableMasterSingularUCamelCase; %> = (<%= tableMasterSingu
   return Http.delete(`/api/<%= tableMaster; %>/${<%= tableMasterSingular; %>Id}`);
 }
 
-/*export const helperTablesGet = () => {
-  return Http.get(`/api/<%= tableMaster; %>/helperTables`);
-}*/
+export const getHelp<%= tableMasterUCamelCase; %> = () => {
+  return Http.get(`/api/<%= tableMaster; %>-help`);
+}
 
 export default {
   get<%= tableMasterUCamelCase; %>,
   get<%= tableMasterSingularUCamelCase; %>,
   insert<%= tableMasterSingularUCamelCase; %>,
   update<%= tableMasterSingularUCamelCase; %>,
-  delete<%= tableMasterSingularUCamelCase; %>
-  //, helperTablesGet
+  delete<%= tableMasterSingularUCamelCase; %>,
+  getHelp<%= tableMasterUCamelCase; %>
 }

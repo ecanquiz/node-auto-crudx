@@ -8,7 +8,9 @@ const props = defineProps<{ id?: string }>()
 const {
   <%= tableMasterSingular; %>,
   errors,
-  roles,
+  <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+  %><%= tbl.foreign_table_name; %>,<%
+  }); %>
   pending,
   router,
 
@@ -42,7 +44,9 @@ const {
           :<%= tableMasterSingular; %>='<%= tableMasterSingular; %>'
           :pending='pending'
           :errors='errors'
-          :roles="roles"            
+          <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+          %>:<%= tbl.foreign_table_name; %>="<%= tbl.foreign_table_name; %>"<%
+          }); %>        
         />
       </div>
     </div>

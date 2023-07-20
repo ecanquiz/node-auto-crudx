@@ -43,6 +43,7 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
   tableMasterForeignKeysAssoc.forEach(    
     tbl => {
       const foreignTableName = (tbl as unknown as TableMasterForeignKeysAssoc).foreign_table_name;
+      (tbl as unknown as TableMasterForeignKeysAssoc).columnNameSingular = singular((foreignTableName));
       (tbl as unknown as TableMasterForeignKeysAssoc).columnNameUCamelCase = uCamelCase((foreignTableName));
       (tbl as unknown as TableMasterForeignKeysAssoc).columnNameSingularUCamelCase = uCamelCase(singular((foreignTableName)));
     }

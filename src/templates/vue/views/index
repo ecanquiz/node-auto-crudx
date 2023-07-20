@@ -44,11 +44,16 @@ const {
       <table class="table-data">
         <thead>
           <tr class="">
-            <% tableStructure.forEach(function(field){ %>
-              <th class="">
+            <% tableStructure.forEach(function(field){%>
+              <% if (field.column_name.substring(field.column_name.length-3, field.column_name.length) !== "_id" ) {
+              %><th class="">
                 <AppLink to="#" @click.prevent="setSort('<%= field.column_name; %>')"><%= field.column_name; %></AppLink>
-              </th>
-            <% }); %>                            
+              </th><%}
+            %><% }); %>
+            <% tableMasterForeignKeysAssoc.forEach(function(field){%>
+              <th class="">
+                <AppLink to="#" @click.prevent="setSort('<%= field.columnNameSingular; %>_id')"><%= field.columnNameSingular; %></AppLink>
+              </th><% }); %>                         
             <th class="">Acción</th>
           </tr>
         </thead>
@@ -61,13 +66,17 @@ const {
               >
                 {{ row.<%= tableStructure[0].column_name %> }}
               </AppLink>
-            </td>
-          <% tableStructure.forEach(
-          (field) => { if (field.column_name !== 'id' ) { %>
+            </td><%
+            tableStructure.forEach((field) => {
+              if (field.column_name !== 'id' && field.column_name.substring(field.column_name.length-3, field.column_name.length) !== "_id"
+            ) { %>
             <td class="">
               {{ row.<%= field.column_name; %> }}
-            </td>
-          <%}});%>              
+            </td><%}});
+            %><% tableMasterForeignKeysAssoc.forEach(function(field){%>
+            <td class="">
+              {{ row.<%= field.columnNameSingular; %>.name }}
+            </td><% }); %> 
             <td class="">
               <div class="flex items-center space-x-1">                
                 <AppBtn

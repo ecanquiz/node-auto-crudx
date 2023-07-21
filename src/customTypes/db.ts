@@ -3,19 +3,21 @@ export type GetDataOfBDParams = {
     tableMaster: string
 }
 
-export type GetDataOfBDReturn = Promise<{
-    namesList: any[][];
-    schemasAndTablesOfBD: any[][];
-    schemasOfBD: any[][];
-    tableDetailForeignKeysAssoc: any[][];
-    tableDetailOfMaster: any[][];
-    tableForeignKeysAssocMasterDetail: any[][];
-    tableMasterForeignKeysAssoc: any[][];
-    tablePrimaryKey: any[][];
-    tableStructure: any[][];
-    tableUniqueConstraint: any[][];
-    tablesOfBD: any[][];
-  }>
+export type DataOfBD = {
+  namesList: any[][];
+  schemasAndTablesOfBD: any[][];
+  schemasOfBD: any[][];
+  tableDetailForeignKeysAssoc: any[][];
+  tableDetailOfMaster: any[][];
+  tableForeignKeysAssocMasterDetail: any[][];
+  tableMasterForeignKeysAssoc: any[][];
+  tablePrimaryKey: any[][];
+  tableStructure: any[][];
+  tableUniqueConstraint: any[][];
+  tablesOfBD: any[][];
+}
+
+export type GetDataOfBDReturn = Promise<DataOfBD>
 
 export type fieldStructure = {
   column_name: string

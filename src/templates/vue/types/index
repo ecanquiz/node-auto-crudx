@@ -1,7 +1,7 @@
 export type <%= tableMasterSingularUCamelCase; %> = {
-<% tableStructure.forEach(function(field){ %>  <%= field.column_name; %>?:<% if (field.data_type==="bigint") { %> number;
+<% tableStructure.forEach(function(field){ %>  <%= field.column_name; %>?:<% if (field.data_type==="bigint") { %> string | number;
 <% } else if (field.data_type==="character varying" || field.data_type==="text") { %> string; 
-<% } else if (field.data_type==="boolean") {  %> boolean; 
+<% } else if (field.data_type==="boolean") {  %> boolean | ""; 
 <% } else if (field.data_type==="timestamp without time zone") {  %> date; 
 <% } else { %> any; 
 <% } %><% }); %>}

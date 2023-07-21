@@ -5,9 +5,9 @@ import <%= tableMasterSingularUCamelCase; %>Service from "../../services/<%= tab
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
 %>import <%= tbl.columnNameSingularUCamelCase; %>Service from  "../../services/<%= tbl.columnNameSingularUCamelCase; %>"<%
 }); %>
-import type { <%= tableMasterSingularUCamelCase; %> } from "../types/<%= tableMasterSingularUCamelCase; %>"
+import type { <%= tableMasterSingularUCamelCase; %> } from "../../types/<%= tableMasterSingularUCamelCase; %>"
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-%>import type { <%= tbl.columnNameSingularUCamelCase; %> } from  "../../services/<%= tbl.columnNameSingularUCamelCase; %>"<%
+%>import type { <%= tbl.columnNameSingularUCamelCase; %> } from  "../../types/<%= tbl.columnNameSingularUCamelCase; %>"<%
 }); %>
 
 export default (<%= tableMasterSingular; %>Id?: string) => {
@@ -20,7 +20,6 @@ export default (<%= tableMasterSingular; %>Id?: string) => {
     <%= field.column_name; %>: "", %><% }); %>
   })
 
-  const roles = ref<Role[]>([])
   <% tableMasterForeignKeysAssoc.forEach(function(tbl){
   %>const <%= tbl.foreign_table_name; %> = ref<<%= tbl.columnNameSingularUCamelCase; %>[]>()<%
   }); %>

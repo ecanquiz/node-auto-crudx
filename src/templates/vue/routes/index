@@ -5,17 +5,17 @@ export default [{
     path: "/<%= tableMaster; %>",
     name: "<%= tableMaster; %>",
     meta: { middleware: [auth, admin] },
-    component: () => import("@/modules/<%= tableMasterSingularUCamelCase; %>/views/<%= tableMasterSingularUCamelCase; %>/Index.vue").then(m => m.default)
+    component: () => import("@/modules/<%= pathModule; %>/views/<%= tableMasterSingularUCamelCase; %>/Index.vue").then(m => m.default)
 }, {
     path: "/<%= tableMaster; %>/create",
     name: "<%= tableMasterSingular; %>Create",
     meta: { middleware: [auth, admin] },
-    component: () => import("@/modules/<%= tableMasterSingularUCamelCase; %>/views/<%= tableMasterSingularUCamelCase; %>/CreateOrEdit.vue").then(m => m.default),
+    component: () => import("@/modules/<%= pathModule; %>/views/<%= tableMasterSingularUCamelCase; %>/CreateOrEdit.vue").then(m => m.default),
     props: true
 }, {
     path: "/<%= tableMaster; %>/edit/:id(\\d+)",
     name: "<%= tableMasterSingular; %>Edit",
     meta: { middleware: [auth, admin] },
-    component: () => import("@/modules/<%= tableMasterSingularUCamelCase; %>/views/<%= tableMasterSingularUCamelCase; %>/CreateOrEdit.vue").then(m => m.default),
+    component: () => import("@/modules/<%= pathModule; %>/views/<%= tableMasterSingularUCamelCase; %>/CreateOrEdit.vue").then(m => m.default),
     props: true
 }]

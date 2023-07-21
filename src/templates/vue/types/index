@@ -1,16 +1,27 @@
+<% tableMasterForeignKeysAssoc.forEach(function(tbl){
+  %>import type { <%= tbl.columnNameSingularUCamelCase; %> } from  "./<%= tbl.columnNameSingularUCamelCase; %>"<% 
+}); %>
+
 export type <%= tableMasterSingularUCamelCase; %> = {
 <% tableStructure.forEach(function(field){ %>  <%= field.column_name; %>?:<% if (field.data_type==="bigint") { %> string | number;
 <% } else if (field.data_type==="character varying" || field.data_type==="text") { %> string; 
 <% } else if (field.data_type==="boolean") {  %> boolean | ""; 
 <% } else if (field.data_type==="timestamp without time zone") {  %> date; 
 <% } else { %> any; 
-<% } %><% }); %>}
-
-export interface <%= tableMasterSingularUCamelCase; %>TG {
-  rows: Rows;
+<% } %><% });
+%>  <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+    %><%= tbl.columnNameSingular; %>?: <%= tbl.columnNameSingularUCamelCase; %>;<%
+  }); %>
 }
 
-export interface Rows {
+export type <%= tableMasterSingularUCamelCase; %>TG = {
+  rows: Rows;
+  sort: null | string;
+  direction: null | string;
+  search: null | string;
+}
+
+export type Rows = {
   current_page: number;
   data: <%= tableMasterSingularUCamelCase; %>Row[];
   first_page_url: string;
@@ -18,15 +29,15 @@ export interface Rows {
   last_page: number;
   last_page_url: string;
   links: Link[];
-  next_page_url: string;
+  next_page_url: null | string;
   path: string;
   per_page: number;
-  prev_page_url: null;
+  prev_page_url: null | string;
   to: number;
   total: number;
 }
 
-export interface <%= tableMasterSingularUCamelCase; %>Row {
+export type <%= tableMasterSingularUCamelCase; %>Row = {
 <% tableStructure.filter(
     f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
 ).forEach(function(field){ %>  <%= field.column_name; %>?:<% if (field.data_type==="bigint") { %> number;
@@ -36,7 +47,7 @@ export interface <%= tableMasterSingularUCamelCase; %>Row {
 <% } else { %> any; 
 <% } %><% }); %>}
 
-export interface Link {
+export type Link = {
   url: null | string;
   label: string;
   active: boolean;

@@ -2,73 +2,18 @@
 import 'module-alias/register';
 import crud from '@config/crud'
 import getDataOfBD from './processes/getDataOfBD'
+import getCustomData from './processes/getCustomData'
 import writeBackend from './processes/writeBackend'
 import writeFrontend from './processes/writeFrontend'
-import { uCamelCase } from './utils/nomenclature';
-import { singular } from './utils/grammaticalNumber'
-import type { GetDataOfBDParams, fieldStructure, TableMasterForeignKeysAssoc } from '@customTypes/db'
+import type { GetDataOfBDParams } from '@customTypes/db'
 
 const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[]) => {
-  const {
-    // namesList,
-    // schemasAndTablesOfBD,
-    // schemasOfBD,
-    // tableDetailForeignKeysAssoc,
-    tableDetailOfMaster,
-    // tableForeignKeysAssocMasterDetail,
-    tableMasterForeignKeysAssoc,
-    // tablePrimaryKey,
-    tableStructure,
-    // tableUniqueConstraint,
-    // tablesOfBD
-  } = await getDataOfBD(getDataOfBDParams)
-  // console.log("namesList:", namesList)
-  // console.log("schemasAndTablesOfBD:", schemasAndTablesOfBD)
-  // console.log("schemasOfBD:", schemasOfBD)
-  // console.log("tableDetailForeignKeysAssoc:", tableDetailForeignKeysAssoc)
-  // console.log("tableDetailOfMaster:", tableDetailOfMaster)
-  // console.log("tableForeignKeysAssocMasterDetail:", tableForeignKeysAssocMasterDetail)
-  //console.log("tableMasterForeignKeysAssoc:", tableMasterForeignKeysAssoc)
-  // console.log("tablePrimaryKey:", tablePrimaryKey)
-  // console.log("tableStructure:", tableStructure)
-  // console.log("tableUniqueConstraint:", tableUniqueConstraint)
-  // console.log("tablesOfBD:", tablesOfBD)
-  const tableMaster: string = getDataOfBDParams.tableMaster
-  const tableMasterUCamelCase: string = uCamelCase(getDataOfBDParams.tableMaster)
-  const tableMasterSingular: string = singular(getDataOfBDParams.tableMaster)
-  const tableMasterSingularUCamelCase: string = uCamelCase(tableMasterSingular)
-  const tableStructureClean: string[][] = tableStructure.filter(    
-    field => !(excludeFields.includes((field as unknown as fieldStructure).column_name))
-  )
-  tableMasterForeignKeysAssoc.forEach(    
-    tbl => {
-      const foreignTableName = (tbl as unknown as TableMasterForeignKeysAssoc).foreign_table_name;
-      (tbl as unknown as TableMasterForeignKeysAssoc).columnNameSingular = singular((foreignTableName));
-      (tbl as unknown as TableMasterForeignKeysAssoc).columnNameUCamelCase = uCamelCase((foreignTableName));
-      (tbl as unknown as TableMasterForeignKeysAssoc).columnNameSingularUCamelCase = uCamelCase(singular((foreignTableName)));
-    }
-  )
+  const dataOfBD = await getDataOfBD(getDataOfBDParams)  
+  const customData = getCustomData(getDataOfBDParams, dataOfBD, excludeFields )
 
-
-console.log(tableMasterForeignKeysAssoc)
-
-  // console.log("tableMaster:", tableMaster)
-  // console.log("tableMasterUCamelCase:", tableMasterUCamelCase)
-  // console.log("tableMasterSingular:", tableMasterSingular)
-  // console.log("tableMasterSingularUCamelCase:", tableMasterSingularUCamelCase)
-  // console.log("tableStructureClean:", tableStructureClean)
-  const params = {
-    tableMaster,
-    tableMasterUCamelCase,
-    tableMasterSingular,
-    tableMasterSingularUCamelCase,
-    tableStructure,
-    tableDetailOfMaster,
-    tableMasterForeignKeysAssoc
-  }
-  writeBackend(params)
-  params.tableStructure = tableStructureClean
-  writeFrontend(params)
+  writeBackend(customData)
+  customData.tableStructure = customData.tableStructureClean
+  writeFrontend(customData)
 }
 
 main({

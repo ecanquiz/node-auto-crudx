@@ -1,5 +1,11 @@
 
-import type { GetDataOfBDParams, DataOfBD, fieldStructure, TableMasterForeignKeysAssoc } from '@customTypes/db'
+import type {
+  GetDataOfBDParams,
+  DataOfBD,
+  fieldStructure,
+  TableMasterForeignKeysAssoc,
+  TableDetailOfMaster
+} from '@customTypes/db'
 import { uCamelCase } from '../utils/nomenclature';
 import { singular } from '../utils/grammaticalNumber'
 
@@ -18,9 +24,9 @@ export default (
   dataOfBD.tableMasterForeignKeysAssoc.forEach(    
     tbl => {
       const foreignTableName = (tbl as unknown as TableMasterForeignKeysAssoc).foreign_table_name;
-      (tbl as unknown as TableMasterForeignKeysAssoc).columnNameSingular = singular((foreignTableName));
-      (tbl as unknown as TableMasterForeignKeysAssoc).columnNameUCamelCase = uCamelCase((foreignTableName));
-      (tbl as unknown as TableMasterForeignKeysAssoc).columnNameSingularUCamelCase = uCamelCase(singular((foreignTableName)));
+      (tbl as unknown as TableMasterForeignKeysAssoc).foreignTableNameSingular = singular((foreignTableName));
+      (tbl as unknown as TableMasterForeignKeysAssoc).foreignTableNameUCamelCase = uCamelCase((foreignTableName));
+      (tbl as unknown as TableMasterForeignKeysAssoc).foreignTableNameSingularUCamelCase = uCamelCase(singular((foreignTableName)));
     }
   )
 
@@ -30,8 +36,13 @@ export default (
     tableMasterSingular,
     tableMasterSingularUCamelCase,
     tableStructure: dataOfBD.tableStructure,
-    tableDetailOfMaster: dataOfBD.tableDetailOfMaster,
+    tableDetailOfMaster: dataOfBD.tableDetailOfMaster.map(
+      r => (r as unknown as TableDetailOfMaster).table_name 
+    ),
     tableMasterForeignKeysAssoc: dataOfBD.tableMasterForeignKeysAssoc,
     tableStructureClean
   }
 }
+
+
+

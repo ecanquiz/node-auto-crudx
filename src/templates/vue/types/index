@@ -1,5 +1,5 @@
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-  %>import type { <%= tbl.columnNameSingularUCamelCase; %> } from  "./<%= tbl.columnNameSingularUCamelCase; %>"<% 
+  %>import type { <%= tbl.foreignTableNameSingularUCamelCase; %> } from  "./<%= tbl.foreignTableNameSingularUCamelCase; %>"<% 
 }); %>
 
 export type <%= tableMasterSingularUCamelCase; %> = {
@@ -10,7 +10,7 @@ export type <%= tableMasterSingularUCamelCase; %> = {
 <% } else { %> any; 
 <% } %><% });
 %>  <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-    %><%= tbl.columnNameSingular; %>?: <%= tbl.columnNameSingularUCamelCase; %>;<%
+    %><%= tbl.foreignTableNameSingular; %>?: <%= tbl.foreignTableNameSingularUCamelCase; %>;<%
   }); %>
 }
 

@@ -39,8 +39,8 @@ export type TableMasterForeignKeysAssoc = {
   foreign_column_name: string | 'id'
   constraint_name: string,
   table_schema: string | 'public'
-  columnNameSingular?: string
-  columnNameUCamelCase?: string
-  columnNameSingularUCamelCase?: string
+  foreignTableNameSingular?: string
+  foreignTableNameUCamelCase?: string
+  foreignTableNameSingularUCamelCase?: string
 }
 

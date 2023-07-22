@@ -5,22 +5,17 @@ import createOutputPath from './createOutputPath'
 import { pathUser, pathModule } from '@config/output'
 import type { ParamsAll, Rendering } from '@customTypes/utilsRendering'
 
-export default (
-    rendering: Rendering,
-    params: Partial<ParamsAll>,
-    output: string
-  ): void => {
-
+export default (rendering: Rendering, params: ParamsAll): void => {
   params.pathModule = pathModule
   let template = fs.readFileSync(rendering.template)
   let content = ejs.render(template.toString(), params);
 
-  if (!fs.existsSync(output)) {
-    fs.mkdirSync(output)
-    console.log("Output created successfully", output)
+  if (!fs.existsSync(params.output)) {
+    fs.mkdirSync(params.output)
+    console.log("Output created successfully", params.output)
   }
 
-  let path = createOutputPath(output, rendering.outputPath)
+  let path = createOutputPath(params.output, rendering.outputPath)
   let file = `${path}/${rendering.outputFile}`
   let fileShow = file.replace(pathUser as unknown as string,'')  
   

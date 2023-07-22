@@ -1,30 +1,13 @@
 import rendering from '@utils/rendering';
 import type { ParamsAll } from '@customTypes/utilsRendering'
 
-export default ({
-  tableMaster,
-  tableMasterUCamelCase,
-  tableMasterSingular,
-  tableMasterSingularUCamelCase,
-  tableStructure,
-  tableDetailOfMaster,
-  tableMasterForeignKeysAssoc,
-  output
-}: ParamsAll): void => {
+export default (params: ParamsAll): void => {
   rendering(
     {
       template: './src/templates/laravel/resource',
       outputPath: `Http/Resources`,
-      outputFile: `${tableMasterSingularUCamelCase}Resource.php`
-    }, {
-      tableMaster,
-      tableMasterUCamelCase,
-      tableMasterSingular,
-      tableMasterSingularUCamelCase,
-      tableStructure,
-      tableDetailOfMaster,
-      tableMasterForeignKeysAssoc
+      outputFile: `${params.tableMasterSingularUCamelCase}Resource.php`
     },
-    output
+    params
   )
 }

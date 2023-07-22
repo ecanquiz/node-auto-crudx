@@ -1,30 +1,13 @@
 import rendering from '@utils/rendering';
 import type { ParamsAll } from '@customTypes/utilsRendering'
 
-export default ({
-  tableMaster,
-  tableMasterUCamelCase,
-  tableMasterSingular,
-  tableMasterSingularUCamelCase,
-  tableStructure,
-  tableDetailOfMaster,
-  tableMasterForeignKeysAssoc,
-  output
-}: ParamsAll): void => {
+export default (params: ParamsAll): void => {
   rendering(
     {
       template: './src/templates/laravel/serviceUpdate',
-      outputPath: `Http/Services/${tableMasterSingularUCamelCase}`,
-      outputFile: `Update${tableMasterSingularUCamelCase}Service.php`
-    }, {
-      tableMaster,
-      tableMasterUCamelCase,
-      tableMasterSingular,
-      tableMasterSingularUCamelCase,
-      tableStructure,
-      tableDetailOfMaster,
-      tableMasterForeignKeysAssoc
+      outputPath: `Http/Services/${params.tableMasterSingularUCamelCase}`,
+      outputFile: `Update${params.tableMasterSingularUCamelCase}Service.php`
     },
-    output
+    params
   )
 }

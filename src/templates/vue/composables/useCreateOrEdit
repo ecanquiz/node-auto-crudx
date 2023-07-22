@@ -3,11 +3,11 @@ import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp";
 import <%= tableMasterSingularUCamelCase; %>Service from "../../services/<%= tableMasterSingularUCamelCase; %>"
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-%>import <%= tbl.columnNameSingularUCamelCase; %>Service from  "../../services/<%= tbl.columnNameSingularUCamelCase; %>"<%
+%>import <%= tbl.foreignTableNameSingularUCamelCase; %>Service from  "../../services/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
 }); %>
 import type { <%= tableMasterSingularUCamelCase; %> } from "../../types/<%= tableMasterSingularUCamelCase; %>"
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-%>import type { <%= tbl.columnNameSingularUCamelCase; %> } from  "../../types/<%= tbl.columnNameSingularUCamelCase; %>"<%
+%>import type { <%= tbl.foreignTableNameSingularUCamelCase; %> } from  "../../types/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
 }); %>
 
 export default (<%= tableMasterSingular; %>Id?: string) => {
@@ -21,7 +21,7 @@ export default (<%= tableMasterSingular; %>Id?: string) => {
   })
 
   <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-  %>const <%= tbl.foreign_table_name; %> = ref<<%= tbl.columnNameSingularUCamelCase; %>[]>()<%
+  %>const <%= tbl.foreign_table_name; %> = ref<<%= tbl.foreignTableNameSingularUCamelCase; %>[]>()<%
   }); %>
   
   const {  
@@ -49,7 +49,7 @@ export default (<%= tableMasterSingular; %>Id?: string) => {
     }
     pending.value = true
     <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-    %><%= tbl.columnNameSingularUCamelCase; %>Service.getHelp<%= tbl.columnNameUCamelCase; %>()
+    %><%= tbl.foreignTableNameSingularUCamelCase; %>Service.getHelp<%= tbl.foreignTableNameUCamelCase; %>()
       .then((response) => {
         <%= tbl.foreign_table_name; %>.value = response.data
        })

@@ -26,13 +26,13 @@ class <%= tableMasterSingularUCamelCase; %> extends Model
     protected $casts = [ /* 'field_name' => 'field_type' */ ];
     <% if (tableMasterForeignKeysAssoc.length) { %>
     protected $with = [<% tableMasterForeignKeysAssoc.forEach(function(tbl, index){
-    %>'<%= tbl.columnNameSingular; %>'<%= index < tableMasterForeignKeysAssoc.length-1 ? ',' : '' %><%
+    %>'<%= tbl.foreignTableNameSingular; %>'<%= index < tableMasterForeignKeysAssoc.length-1 ? ',' : '' %><%
     }); %>];
     <%}%>
     <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-    %>public function <%= tbl.columnNameSingular; %>()
+    %>public function <%= tbl.foreignTableNameSingular; %>()
     {
-        return $this->belongsTo(\Modules\<%= pathModule; %>\Entities\<%= tbl.columnNameSingularUCamelCase; %>::class);
+        return $this->belongsTo(\Modules\<%= pathModule; %>\Entities\<%= tbl.foreignTableNameSingularUCamelCase; %>::class);
     } 
     <%});
     %>

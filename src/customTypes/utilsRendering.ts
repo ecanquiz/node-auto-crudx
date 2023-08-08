@@ -14,8 +14,15 @@ export type ParamsMain = {
   tableMasterForeignKeysAssoc: string[][]
 }
 
+type tableDetailOfMasterCustomized = {
+  tableName: string
+  tableNameSingular: string
+  tableNameUCamelCase: string
+  tableNameSingularUCamelCase: string
+}
+
 export type ParamsDetail = {
-  tableDetailOfMaster: any[][] | string[]
+  tableDetailOfMaster: any[][] | tableDetailOfMasterCustomized[]
 }
 
 export type Output = {

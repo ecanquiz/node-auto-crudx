@@ -2,14 +2,16 @@
 import { defineAsyncComponent, shallowRef, ref } from 'vue'
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import { useRouter } from 'vue-router'
-<%
+
+const Tab<%= tableMasterSingularUCamelCase; %> = defineAsyncComponent(() => import('../../components/<%= tableMasterSingularUCamelCase ; %>/Tab<%= tableMasterSingularUCamelCase; %>.vue'))<%
 tableDetailOfMaster.forEach(function(table){ %>
 const Tab<%= table.tableNameSingularUCamelCase; %> = defineAsyncComponent(() => import('../../components/<%= tableMasterSingularUCamelCase ; %>/Tab<%= table.tableNameSingularUCamelCase; %>.vue'))<% })
 ;%>
 
 const props = defineProps<{ id?: string }>()
 
-const tabs = [<%
+const tabs = [
+  { component: Tab<%= tableMasterSingularUCamelCase; %> , title: "<%= tableMasterSingularUCamelCase; %>" },<%
 tableDetailOfMaster.forEach(function(table, index){ %>
   { component: Tab<%= table.tableNameSingularUCamelCase; %> , title: "<%= table.tableNameSingularUCamelCase; %>" }<%= index < tableDetailOfMaster.length-1 ? ',' : '' %><% })
 ;%>

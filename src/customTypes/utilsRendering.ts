@@ -14,7 +14,7 @@ export type ParamsMain = {
   tableMasterForeignKeysAssoc: string[][]
 }
 
-type tableDetailOfMasterCustomized = {
+export type tableDetailOfMasterCustomized = {
   tableName: string
   tableNameSingular: string
   tableNameUCamelCase: string
@@ -23,6 +23,7 @@ type tableDetailOfMasterCustomized = {
 
 export type ParamsDetail = {
   tableDetailOfMaster: any[][] | tableDetailOfMasterCustomized[]
+  tableDetailCurrent?: tableDetailOfMasterCustomized
 }
 
 export type Output = {
@@ -33,4 +34,4 @@ export type PathModule = {
   pathModule: string
 }
 
-export type ParamsAll = ParamsMain & ParamsDetail & Output
+export type ParamsAll = ParamsMain & ParamsDetail & Output 

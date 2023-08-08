@@ -29,7 +29,7 @@ export default (
       (tbl as unknown as TableMasterForeignKeysAssoc).foreignTableNameSingularUCamelCase = uCamelCase(singular((foreignTableName)));
     }
   )
-console.log(dataOfBD.tableDetailOfMaster)
+
   return {
     tableMaster,
     tableMasterUCamelCase,

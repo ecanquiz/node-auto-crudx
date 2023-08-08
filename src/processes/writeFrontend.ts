@@ -1,7 +1,7 @@
 import * as vue from '@modules/renderings/vue'
 import { pathFrontend as output } from '@config/output'
 import { buildFrontendRoutes } from '@config/buildRoutes'
-import type { ParamsAll } from '@customTypes/utilsRendering';
+import type { ParamsAll, tableDetailOfMasterCustomized } from '@customTypes/utilsRendering';
 
 export default ({
   tableMaster,
@@ -22,16 +22,24 @@ export default ({
     tableMasterForeignKeysAssoc,
     output
   }
-  vue.createOrEditMaster(params)
   vue.datagrid(params)
-  vue.formCreateOrEditMaster(params)
   vue.services(params)
   vue.types(params)
   vue.useCreateOrEditMaster(params)
   vue.useDatagrid(params)
   if (buildFrontendRoutes as unknown as boolean)
     vue.routes(params)
-  if (tableDetailOfMaster)
+  if (tableDetailOfMaster) {
     vue.tabs(params)
-  console.log(tableDetailOfMaster)
+    vue.tabMaster(params)
+    tableDetailOfMaster.forEach(function(table){
+      vue.tabDetail({
+        ...params,
+        tableDetailCurrent: (table as unknown as tableDetailOfMasterCustomized)
+      })
+    })
+  } else {
+    vue.createOrEditMaster(params)
+    vue.formCreateOrEditMaster(params)
+  }
 }

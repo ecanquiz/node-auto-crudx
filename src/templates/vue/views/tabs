@@ -1,42 +1,31 @@
 <script lang="ts" setup>
-import { defineAsyncComponent, shallowRef, ref, provide } from 'vue'
+import { defineAsyncComponent, shallowRef, ref } from 'vue'
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import { useRouter } from 'vue-router'
+<%
+tableDetailOfMaster.forEach(function(table){ %>
+const Tab<%= table.tableNameSingularUCamelCase; %> = defineAsyncComponent(() => import('../../components/<%= tableMasterSingularUCamelCase ; %>/Tab<%= table.tableNameSingularUCamelCase; %>.vue'))<% })
+;%>
 
-<% tableDetailOfMaster.forEach(function(table){ %>
-const <%= table; %> = defineAsyncComponent(() => import('../../components/tab-<%= table; %>.vue'))
-<% }); %>
-
-/*const TabProduct = defineAsyncComponent(() => import('../../components/Product/TabProduct.vue'))
-const TabPresentation = defineAsyncComponent(() => import('../../components/Product/TabPresentation.vue'))
-const TabImage = defineAsyncComponent(() => import('../../components/Product/TabImage.vue'))
-*/
 const props = defineProps<{ id?: string }>()
-const tabs = [
-  { component: TabProduct, title: "Producto" },
-  { component: TabPresentation, title: "Presentación" },
-  { component: TabImage, title: "Imagen" }
-]
-const currentTab = shallowRef(tabs[0])
-const router = useRouter();  
-const measureUnit = ref("")
-const updateMeasureUnit = (val) => {
-  measureUnit.value = val
-}
 
-provide('measureUnit', {
-  measureUnit,
-  updateMeasureUnit
-})
+const tabs = [<%
+tableDetailOfMaster.forEach(function(table, index){ %>
+  { component: Tab<%= table.tableNameSingularUCamelCase; %> , title: "<%= table.tableNameSingularUCamelCase; %>" }<%= index < tableDetailOfMaster.length-1 ? ',' : '' %><% })
+;%>
+]
+
+const currentTab = shallowRef(tabs[0])
+const router = useRouter();
 </script>
 
 <template>
 <div>
-  <AppPageHeader>Productos / {{ !props.id ? "Crear" : "Editar" }}</AppPageHeader>
+  <AppPageHeader><%= tableMasterUCamelCase ; %> / {{ !props.id ? "Crear" : "Editar" }}</AppPageHeader>
   <div  class="flex space-x-2">
     <button
       class="btn btn-primary mb-4"
-      @click="router.push({ path: '/products' })"
+      @click="router.push({ path: '/<%= tableMaster ;%>' })"
     >
       Ver todos
     </button>

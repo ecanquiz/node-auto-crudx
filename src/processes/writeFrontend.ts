@@ -31,6 +31,7 @@ export default ({
   vue.useDatagrid(params)
   if (buildFrontendRoutes as unknown as boolean)
     vue.routes(params)
-  //if (tableDetailOfMaster)
-  //  vue.tabs(params)
+  if (tableDetailOfMaster)
+    vue.tabs(params)
+  console.log(tableDetailOfMaster)
 }

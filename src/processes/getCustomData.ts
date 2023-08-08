@@ -29,7 +29,7 @@ export default (
       (tbl as unknown as TableMasterForeignKeysAssoc).foreignTableNameSingularUCamelCase = uCamelCase(singular((foreignTableName)));
     }
   )
-
+console.log(dataOfBD.tableDetailOfMaster)
   return {
     tableMaster,
     tableMasterUCamelCase,
@@ -37,7 +37,12 @@ export default (
     tableMasterSingularUCamelCase,
     tableStructure: dataOfBD.tableStructure,
     tableDetailOfMaster: dataOfBD.tableDetailOfMaster.map(
-      r => (r as unknown as TableDetailOfMaster).table_name 
+      r => ({
+        tableName: (r as unknown as TableDetailOfMaster).table_name,
+        tableNameSingular: singular((r as unknown as TableDetailOfMaster).table_name),
+        tableNameUCamelCase: uCamelCase((r as unknown as TableDetailOfMaster).table_name),
+        tableNameSingularUCamelCase: uCamelCase(singular((r as unknown as TableDetailOfMaster).table_name))
+      })
     ),
     tableMasterForeignKeysAssoc: dataOfBD.tableMasterForeignKeysAssoc,
     tableStructureClean

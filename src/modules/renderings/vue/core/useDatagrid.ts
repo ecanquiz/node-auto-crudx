@@ -1,13 +1,9 @@
-import rendering from '@utils/rendering';
-import type { ParamsAll } from '@customTypes/utilsRendering';
+import type { ParamsAll, Rendering } from '@customTypes/utilsRendering';
 
-export default (params: ParamsAll): void => {
-  rendering(
-    {
-      template: './src/templates/vue/composables/useIndex',
-      outputPath: `composables/${params.tableMasterSingularUCamelCase}`,
-      outputFile: 'useIndex.ts'
-    },
-    params
-  )
+export default (params: ParamsAll): Rendering => {
+  return {
+    template: './src/templates/vue/composables/useIndex',
+    outputPath: `composables/${params.tableMasterSingularUCamelCase}`,
+    outputFile: 'useIndex.ts'
+  }
 }

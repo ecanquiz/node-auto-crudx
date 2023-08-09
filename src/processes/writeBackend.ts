@@ -1,18 +1,19 @@
 import * as laravel from '@modules/renderings/laravel'
+import rendering from '@utils/rendering';
 import { pathBackend as output } from '@config/output'
 import { buildBackendRoutes } from '@config/buildRoutes'
-import type { ParamsAll } from '@customTypes/utilsRendering';
+import type { ParamsAll } from '@customTypes/utilsRendering'
 
 export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
   const params: ParamsAll = {...paramsOmitOutput, output}
-  laravel.controller(params)
-  laravel.model(params)
-  laravel.serviceIndex(params)
-  laravel.serviceStore(params)
-  laravel.serviceUpdate(params)
-  laravel.resource(params)
-  laravel.requestStore(params)
-  laravel.requestUpdate(params)
+  rendering(laravel.controller(params), params)
+  rendering(laravel.model(params), params)
+  rendering(laravel.serviceIndex(params), params)
+  rendering(laravel.serviceStore(params), params)
+  rendering(laravel.serviceUpdate(params), params)
+  rendering(laravel.resource(params), params)
+  rendering(laravel.requestStore(params), params)
+  rendering(laravel.requestUpdate(params), params)
   if (buildBackendRoutes as unknown as boolean)
-    laravel.route(params)
+    rendering(laravel.route(params), params)
 }

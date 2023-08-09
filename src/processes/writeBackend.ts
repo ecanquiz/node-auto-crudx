@@ -3,25 +3,8 @@ import { pathBackend as output } from '@config/output'
 import { buildBackendRoutes } from '@config/buildRoutes'
 import type { ParamsAll } from '@customTypes/utilsRendering';
 
-export default ({
-  tableMaster,
-  tableMasterUCamelCase,
-  tableMasterSingular,
-  tableMasterSingularUCamelCase,
-  tableStructure,
-  tableDetailOfMaster,
-  tableMasterForeignKeysAssoc
-}: Omit<ParamsAll, 'output'>): void => {
-  const params: ParamsAll= {
-    tableMaster,
-    tableMasterUCamelCase,
-    tableMasterSingular,
-    tableMasterSingularUCamelCase,
-    tableStructure,
-    tableDetailOfMaster,
-    tableMasterForeignKeysAssoc,
-    output
-  }
+export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
+  const params: ParamsAll = {...paramsOmitOutput, output}
   laravel.controller(params)
   laravel.model(params)
   laravel.serviceIndex(params)
@@ -33,4 +16,3 @@ export default ({
   if (buildBackendRoutes as unknown as boolean)
     laravel.route(params)
 }
-

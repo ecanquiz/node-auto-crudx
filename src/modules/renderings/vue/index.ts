@@ -9,6 +9,10 @@ import services from './core/services'
 import types from './core/types'
 import useDatagrid from './core/useDatagrid'
 import useCreateOrEditMaster from './core/useCreateOrEditMaster'
+import useTabMaster from './core/useTabMaster'
+import useTabDetail from './core/useTabDetail'
+import servicesDetail from './core/servicesDetail'
+import typesDetail from './core/typesDetail'
 
 export {
     createOrEditMaster,
@@ -21,5 +25,9 @@ export {
     services,
     types,
     useDatagrid,
-    useCreateOrEditMaster    
+    useCreateOrEditMaster,
+    useTabMaster,
+    useTabDetail,
+    servicesDetail,
+    typesDetail
 }

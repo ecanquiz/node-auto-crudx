@@ -4,9 +4,9 @@ import type { ParamsAll } from '@customTypes/utilsRendering';
 export default (params: ParamsAll): void => {
   rendering(
     {
-      template: './src/templates/vue/types/index',
+      template: './src/templates/vue/types/detail',
       outputPath: `types/${params.tableMasterSingularUCamelCase}`,
-      outputFile: `index.ts`
+      outputFile: `${params.tableDetailCurrent!.tableNameSingularUCamelCase}.ts`
     },
     params
   )

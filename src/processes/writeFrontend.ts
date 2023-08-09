@@ -3,32 +3,15 @@ import { pathFrontend as output } from '@config/output'
 import { buildFrontendRoutes } from '@config/buildRoutes'
 import type { ParamsAll, tableDetailOfMasterCustomized } from '@customTypes/utilsRendering';
 
-export default ({
-  tableMaster,
-  tableMasterUCamelCase,
-  tableMasterSingular,
-  tableMasterSingularUCamelCase,
-  tableStructure,
-  tableDetailOfMaster,
-  tableMasterForeignKeysAssoc
-}: Omit<ParamsAll, 'output'>): void => {
-  const params: ParamsAll = {
-    tableMaster,
-    tableMasterUCamelCase,
-    tableMasterSingular,
-    tableMasterSingularUCamelCase,
-    tableStructure,
-    tableDetailOfMaster,
-    tableMasterForeignKeysAssoc,
-    output
-  }
+export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
+  const params: ParamsAll = {...paramsOmitOutput, output}
   vue.datagrid(params)
   vue.services(params)
   vue.types(params)
   vue.useDatagrid(params)
   if (buildFrontendRoutes as unknown as boolean)
     vue.routes(params)
-  if (!tableDetailOfMaster) {
+  if (!params.tableDetailOfMaster) {
     vue.createOrEditMaster(params)
     vue.formCreateOrEditMaster(params)
     vue.useCreateOrEditMaster(params)
@@ -36,24 +19,15 @@ export default ({
     vue.tabs(params)
     vue.tabMaster(params)
     vue.useTabMaster(params) // TODO
-    tableDetailOfMaster.forEach(function(table){
-      vue.tabDetail({
+    params.tableDetailOfMaster.forEach(function(table){
+      const paramsWhitDetail = {
         ...params,
         tableDetailCurrent: (table as unknown as tableDetailOfMasterCustomized)
-      })
-      vue.useTabDetail({
-        ...params,
-        tableDetailCurrent: (table as unknown as tableDetailOfMasterCustomized)
-      })
-      vue.servicesDetail({
-        ...params,
-        tableDetailCurrent: (table as unknown as tableDetailOfMasterCustomized)
-      })
-      vue.typesDetail({
-        ...params,
-        tableDetailCurrent: (table as unknown as tableDetailOfMasterCustomized)
-      })
-    })
-    
+      }
+      vue.tabDetail(paramsWhitDetail)
+      vue.useTabDetail(paramsWhitDetail)
+      vue.servicesDetail(paramsWhitDetail)
+      vue.typesDetail(paramsWhitDetail)
+    })    
   }
 }

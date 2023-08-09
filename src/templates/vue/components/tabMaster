@@ -1,16 +1,16 @@
 <script setup lang="ts">
   import { computed } from "vue"
-  //import useTab<%= tableMasterSingularUCamelCase; %> from "../../composables/<%= tableMasterSingularUCamelCase; %>/use<%= tableMasterSingularUCamelCase; %>";
-  //import Form<%= tableMasterSingularUCamelCase; %> from './Form<%= tableMasterSingularUCamelCase; %>.vue';
+  import useTab<%= tableMasterSingularUCamelCase; %> from "../../composables/<%= tableMasterSingularUCamelCase; %>/use<%= tableMasterSingularUCamelCase; %>";
+  import Form<%= tableMasterSingularUCamelCase; %> from './Form<%= tableMasterSingularUCamelCase; %>.vue';
 
   const props = defineProps<{ id?: string }>()
 
-  /*const {  
+  const {  
     <%= tableMasterSingular; %>,
     errors,
     pending,      
     submit    
-  } = useTab<%= tableMasterSingularUCamelCase; %>(props.id)*/
+  } = useTab<%= tableMasterSingularUCamelCase; %>(props.id)
 
   const isTrue = computed(
     () => <%= tableMasterSingular; %> || !props.id
@@ -19,13 +19,13 @@
 
 <template>
     <div class="">
-      <!--Form<%= tableMasterSingularUCamelCase; %>
+      <Form<%= tableMasterSingularUCamelCase; %>
         v-if="isTrue"
         :<%= tableMasterSingular; %>="<%= tableMasterSingular; %>"
         :errors="errors"
         :pending="pending"
         @submit="submit"    
-      /-->
+      />
     </div>
   </template>
   

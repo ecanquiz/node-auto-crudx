@@ -1,13 +1,13 @@
 <script setup lang="ts">
   import {ref} from 'vue'
-  //import Form<%= tableDetailCurrent.tableNameSingularUCamelCase %> from './Form<%= tableDetailCurrent.tableNameSingularUCamelCase %>.vue'
-  //import Table<%= tableDetailCurrent.tableNameSingularUCamelCase %> from './Table<%= tableDetailCurrent.tableNameSingularUCamelCase %>.vue'
-  //import useTab<%= tableDetailCurrent.tableNameSingularUCamelCase %> from '../../composables/<%= tableMasterSingularUCamelCase; %>/useTab<%= tableDetailCurrent.tableNameSingularUCamelCase %>'
+  import Form<%= tableDetailCurrent.tableNameSingularUCamelCase %> from './Form<%= tableDetailCurrent.tableNameSingularUCamelCase %>.vue'
+  import Table<%= tableDetailCurrent.tableNameSingularUCamelCase %> from './Table<%= tableDetailCurrent.tableNameSingularUCamelCase %>.vue'
+  import useTab<%= tableDetailCurrent.tableNameSingularUCamelCase %> from '../../composables/<%= tableMasterSingularUCamelCase; %>/useTab<%= tableDetailCurrent.tableNameSingularUCamelCase %>'
   const componentKey = ref(0);
   
   const props = defineProps<{ id?: string }>()
   
-  /*const {
+  const {
     panelOpened,
     closeButtonOpened,
     closeClassOpened,  
@@ -18,7 +18,7 @@
     get<%= tableDetailCurrent.tableNameUCamelCase %>,
     remove<%= tableDetailCurrent.tableNameSingularUCamelCase %>,  
     submit<%= tableDetailCurrent.tableNameSingularUCamelCase %>
-  } = useTabPresentation(props.id)*/
+  } = useTabPresentation(props.id)
   </script>
   
   <template>
@@ -26,7 +26,7 @@
       <div class="form-group row">
         <div class="col-sm-12">
           <div align="center">     
-            <!--AppBtn
+            <AppBtn
               class="btn p-8"
               type="text"                 
               data-testid="click-btn"
@@ -47,7 +47,7 @@
               @edit<%= tableDetailCurrent.tableNameSingularUCamelCase %>="edit<%= tableDetailCurrent.tableNameSingularUCamelCase %>"
               @get<%= tableDetailCurrent.tableNameUCamelCase %>="get<%= tableDetailCurrent.tableNameUCamelCase %>"
               @remove<%= tableDetailCurrent.tableNameSingularUCamelCase %>="remove<%= tableDetailCurrent.tableNameSingularUCamelCase %>"            
-            /-->
+            />
           </div>
         </div>
       </div>

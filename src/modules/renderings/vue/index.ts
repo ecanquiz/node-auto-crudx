@@ -1,5 +1,6 @@
 import createOrEditMaster from './core/createOrEditMaster'
 import formCreateOrEditMaster from './core/formCreateOrEditMaster'
+import formMaster from './core/formMaster'
 import datagrid from './core/datagrid'
 import tabs from './core/tabs'
 import tabMaster from './core/tabMaster'
@@ -11,6 +12,7 @@ import useDatagrid from './core/useDatagrid'
 import useCreateOrEditMaster from './core/useCreateOrEditMaster'
 import useTabMaster from './core/useTabMaster'
 import useTabDetail from './core/useTabDetail'
+import useFormMaster from './core/useFormMaster'
 import servicesDetail from './core/servicesDetail'
 import typesDetail from './core/typesDetail'
 
@@ -18,6 +20,7 @@ export {
     createOrEditMaster,
     datagrid,
     formCreateOrEditMaster,
+    formMaster,
     tabs,
     tabMaster,
     tabDetail,
@@ -28,6 +31,7 @@ export {
     useCreateOrEditMaster,
     useTabMaster,
     useTabDetail,
+    useFormMaster,
     servicesDetail,
     typesDetail
 }

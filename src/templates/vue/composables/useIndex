@@ -2,7 +2,7 @@ import { reactive, onMounted } from "vue"
 import { onBeforeRouteUpdate } from "vue-router"
 import useTableGrid from "@/composables/useTableGrid"
 import useHttp from "@/composables/useHttp"
-import <%= tableMasterSingularUCamelCase; %>Service from "../../services/<%= tableMasterSingularUCamelCase; %>"
+import <%= tableMasterSingularUCamelCase; %>Service from "../../services/<%= tableMasterSingularUCamelCase; %>Service"
 
 type Params =  string | string[][] | Record<string, string> | URLSearchParams | undefined
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed } from "vue"
-  import useTab<%= tableMasterSingularUCamelCase; %> from "../../composables/<%= tableMasterSingularUCamelCase; %>/use<%= tableMasterSingularUCamelCase; %>";
+  import useTab<%= tableMasterSingularUCamelCase; %> from "../../composables/<%= tableMasterSingularUCamelCase; %>/useTab<%= tableMasterSingularUCamelCase; %>";
   import Form<%= tableMasterSingularUCamelCase; %> from './Form<%= tableMasterSingularUCamelCase; %>.vue';
 
   const props = defineProps<{ id?: string }>()

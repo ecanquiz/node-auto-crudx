@@ -1,25 +1,18 @@
-import { onMounted, reactive, inject } from 'vue'
+import { onMounted, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp";
-import ProductService from "@/modules/Product/services/ProductService";
-import type { Product } from "../../types/Product";
+import <%= tableMasterSingularUCamelCase; %>Service from "@/modules/<%= pathModule; %>/services/<%= tableMasterSingularUCamelCase; %>Service";
+import type { <%= tableMasterSingularUCamelCase; %> } from "../../types/<%= tableMasterSingularUCamelCase; %>";
 
-export default (productId?: string) => {
-
-  const { measureUnit, updateMeasureUnit } = inject<{
-    measureUnit: string,
-    updateMeasureUnit: (val: any) => void;
-  }>('measureUnit')
-
+export default (<%= tableMasterSingular; %>Id?: string) => {
   const router = useRouter();    
 
-  const product:Product = reactive({  
-    category_id: "",
-    mark_id: "",
-    measure_unit_type_id: "",
-    measure_unit_id: "",
-    name:""
-  }) 
+  const <%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %> = reactive({<%
+    tableStructure.filter(
+      f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
+    ).forEach(function(field){ %>
+    <%= field.column_name; %>: "", %><% }); %>
+  })
 
   const {  
     errors,
@@ -29,16 +22,13 @@ export default (productId?: string) => {
   } = useHttp()
   
   onMounted(() => {
-    if (productId) {
+    if (<%= tableMasterSingular; %>Id) {
       pending.value = true
-      ProductService.getProduct(productId)
-        .then((response) => {
-          product.category_id = response.data.category_id;
-          product.mark_id = response.data.mark_id;
-          product.measure_unit_type_id = response.data.measure_unit_type_id;
-          product.measure_unit_id = response.data.measure_unit_id;
-          product.name = response.data.name          
-          updateMeasureUnit(response.data.measure_unit)
+      <%= tableMasterSingularUCamelCase; %>Service.get<%= tableMasterSingularUCamelCase; %>(<%= tableMasterSingular; %>Id)
+        .then((response) => { <% tableStructure.filter(
+            f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
+          ).forEach(function(field){ %>
+          <%= tableMasterSingular; %>.<%= field.column_name; %> = response.data.data.<%= field.column_name; %> %><% }); %>
         })
         .catch((err) => {        
           errors.value = getError(err)
@@ -49,13 +39,12 @@ export default (productId?: string) => {
     }    
   })
 
-  const insertProduct = async (product: Product) => {
+  const insert<%= tableMasterSingularUCamelCase; %> = async (<%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>) => {
     pending.value = true
-    product.measure_unit = measureUnit
-    return ProductService.insertProduct(product)
+    return <%= tableMasterSingularUCamelCase; %>Service.insert<%= tableMasterSingularUCamelCase; %>(<%= tableMasterSingular; %>)
       .then((response) => {         
         alert( response.data.message )
-        router.push( { path: `/products/edit/${response.data.product_id}` } )
+        router.push( { path: `/<%= tableMaster; %>/edit/${response.data.<%= tableMasterSingular; %>_id}` } )
       })
       .catch((err) => {                
         console.log( err.response.data )
@@ -66,14 +55,13 @@ export default (productId?: string) => {
       })
   }
 
-  const updateProduct = async (product: Product, productId: string) => {
+  const update<%= tableMasterSingularUCamelCase; %> = async (<%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>, <%= tableMasterSingular; %>Id: string) => {
     pending.value= true
-    product._method = 'PUT'
-    product.measure_unit = 'measureUnit'    
-    return ProductService.updateProduct(productId, product)
+    <%= tableMasterSingular; %>._method = 'PUT'
+    return <%= tableMasterSingularUCamelCase; %>Service.update<%= tableMasterSingularUCamelCase; %>(<%= tableMasterSingular; %>Id, <%= tableMasterSingular; %>)
       .then((response) => {
         alert( response.data.message )
-        //router.push( { path: '/products' } )
+        //router.push( { path: '/<%= tableMaster; %>' } )
       })
       .catch((err) => {                
         console.log( err.response.data )
@@ -84,17 +72,15 @@ export default (productId?: string) => {
       })
   }
   
-  const submit = (product: Product) => {
-    !productId ? insertProduct (product)  : updateProduct(product, productId)
+  const submit = (<%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>) => {
+    !<%= tableMasterSingular; %>Id ? insert<%= tableMasterSingularUCamelCase; %>(<%= tableMasterSingular; %>) : update<%= tableMasterSingularUCamelCase; %>(<%= tableMasterSingular; %>, <%= tableMasterSingular; %>Id)
   }
 
   return {    
-    product,
+    <%= tableMasterSingular; %>,
     errors,
     pending,        
 
     submit    
   }
-
 }
-

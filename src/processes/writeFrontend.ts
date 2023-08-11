@@ -20,6 +20,8 @@ export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
     rendering(vue.tabs(params), params)
     rendering(vue.tabMaster(params), params)
     rendering(vue.useTabMaster(params), params) // TODO
+    rendering(vue.formMaster(params), params) // TODO
+    rendering(vue.useFormMaster(params), params) // TODO
     params.tableDetailOfMaster.forEach(function(table){
       const paramsWhitDetail = {
         ...params,

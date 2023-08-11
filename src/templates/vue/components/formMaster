@@ -1,28 +1,27 @@
 <script setup lang="ts">
-import { inject } from "vue"
-import useFormProduct from "../../composables/Product/useFormProduct";
-import type { Product } from "../../types/Product";
+import useForm<%= tableMasterSingularUCamelCase; %> from "../../composables/<%= tableMasterSingularUCamelCase; %>/useForm<%= tableMasterSingularUCamelCase; %>";
+import type { <%= tableMasterSingularUCamelCase; %> } from "../../types/<%= tableMasterSingularUCamelCase; %>";
 
 const props = defineProps<{
-  product: Product
+  <%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>
   errors?: String | Object
-  sending: Boolean  
+  pending: Boolean  
 }>()
 
 const emits = defineEmits<{
-  (e: 'submit', form: Product): void
+  (e: 'submit', form: <%= tableMasterSingularUCamelCase; %>): void
 }>()
 
 const {
   form,
-  categories,
-  marks,
-  measureUnitTypes,
-  measureUnits,
+  //categories,
+  //marks,
+  //measureUnitTypes,
+  //measureUnits,
   pending,  
 
   v$  
-} = useFormProduct(props.product)
+} = useForm<%= tableMasterSingularUCamelCase; %>(props.<%= tableMasterSingular; %>)
 
 const submit = async () => {  
   const result = await v$.value.$validate();
@@ -30,17 +29,57 @@ const submit = async () => {
     emits("submit", form);
   }
 };
- 
-const { updateMeasureUnit } = inject<{
-    updateMeasureUnit: (val: any) => void;
-}>('measureUnit')
-
 </script>
 
 <template>
   <AppFlashMessage :error="errors"/>
   <form @submit.prevent="submit">
-    <div class="p-5 grid lg:grid-cols-2 gap-4">    
+    <div class="grid lg:grid-cols-2 gap-4">
+      <% tableStructure.forEach(function(field) {
+      if  (!['id', 'created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
+        if (field.data_type === "character varying") {%>  <div class="block">     
+          <AppInput           
+            v-model="form.<%= field.column_name; %>"
+            label="<%= field.column_name; %>"
+            type="text"
+            :error="errors && errors.<%= field.column_name; %> ? errors.<%= field.column_name; %>[0] : ''"
+          />
+        </div>
+        <%} else if ((field.data_type === "text")) {%>  <div class="block">     
+          <AppTextarea
+            label="<%= field.column_name; %>"
+            v-model="form.<%= field.column_name; %>"
+            :error="errors && errors.<%= field.column_name; %> ? errors.<%= field.column_name; %>[0] : ''"
+          />
+        </div>
+        <%} else if ((field.data_type === "bigint")) {%>  <div class="block">     
+          <AppSelect
+            v-if="<%= tableMasterForeignKeysAssoc.find(element => element.column_name === field.column_name).foreign_table_name; %>"
+            :options="<%= tableMasterForeignKeysAssoc.find(element => element.column_name === field.column_name).foreign_table_name; %>"
+            v-model="form.<%= field.column_name; %>"
+            label="<%= field.column_name; %>"
+            :error="errors && errors.<%= field.column_name; %> ? errors.<%= field.column_name; %>[0] : ''"
+          />
+        </div>
+        <%} else if ((field.data_type === "boolean")) {%>  <div class="block">     
+          <AppCheckbox
+            v-model="form.<%= field.column_name; %>"
+            label="<%= field.column_name; %>"
+            :error="errors && errors.<%= field.column_name; %> ? errors.<%= field.column_name; %>[0] : ''"
+          />
+        </div>
+        <%}%>
+      <%}});%></div>
+    
+      <div class="mt-4 px-2 border-gray-100 flex justify-end space-x-2">
+        <AppBtn
+          type="submit"
+          :text="pending ? 'Guardando...' : 'Guardar'"
+          :isDisabled='pending'
+        />
+      </div>
+      
+    <!--div class="p-5 grid lg:grid-cols-2 gap-4">    
       <div class="block">      
         <AppSelect
           v-if="categories"        
@@ -112,6 +151,6 @@ const { updateMeasureUnit } = inject<{
         :text="pending ? 'Guardando...' : 'Guardar'"
         :isDisabled='pending'
       />
-    </div>
+    </div-->
   </form>
 </template>

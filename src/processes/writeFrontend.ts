@@ -27,10 +27,13 @@ export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
         ...params,
         tableDetailCurrent: (table as unknown as tableDetailOfMasterCustomized)
       }
+      rendering(vue.formDetail(paramsWhitDetail), paramsWhitDetail)
       rendering(vue.tabDetail(paramsWhitDetail), paramsWhitDetail)
       rendering(vue.useTabDetail(paramsWhitDetail), paramsWhitDetail)
+      rendering(vue.useFormDetail(paramsWhitDetail), paramsWhitDetail)
       rendering(vue.servicesDetail(paramsWhitDetail), paramsWhitDetail)
       rendering(vue.typesDetail(paramsWhitDetail), paramsWhitDetail)
+      rendering(vue.tableDetail(paramsWhitDetail), paramsWhitDetail)
     })    
   }
 }

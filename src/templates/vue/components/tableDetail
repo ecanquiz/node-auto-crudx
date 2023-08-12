@@ -1,52 +1,26 @@
 <script setup lang="ts">
 import { toRaw, ref } from "vue"
-import ModalImage from './ModalImage.vue'
-import PresentationService from "@/modules/Product/services/PresentationService"
-import IconCamera from "@/components/icons/IconCamera.vue"
+import PresentationService from "@/modules/<%= pathModule %>/services/<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Service"
 
-import type { Presentation } from "../../types/Presentation";
+import type { <%= tableDetailCurrent.tableNameSingularUCamelCase; %> } from "../../types/<%= tableDetailCurrent.tableNameSingularUCamelCase; %>";
 
-const props = defineProps<{ presentations: Presentation[] }>()
+const props = defineProps<{ <%= tableDetailCurrent.tableName; %>: <%= tableDetailCurrent.tableNameSingularUCamelCase; %>[] }>()
 
 const emits = defineEmits<{
-  (e: 'edit', presentationId: object): void
-  (e: 'remove', presentationId: string): void
-  (e: 'getPresentations' ): void
+  (e: 'edit', <%= tableDetailCurrent.tableNameSingular; %>Id: object): void
+  (e: 'remove', <%= tableDetailCurrent.tableNameSingular; %>Id: string): void
+  (e: 'get<%= tableDetailCurrent.tableNameUCamelCase; %>' ): void
 }>()
 
-const edit =  (presentation: object) => {
-  emits("edit", toRaw(presentation))
+const edit =  (<%= tableDetailCurrent.tableNameSingular; %>: object) => {
+  emits("edit", toRaw(<%= tableDetailCurrent.tableNameSingular; %>))
 };
 
-const remove =  (presentationId: string) => {
-  emits("remove", presentationId)
+const remove =  (<%= tableDetailCurrent.tableNameSingular; %>Id: string) => {
+  emits("remove", <%= tableDetailCurrent.tableNameSingular; %>Id)
 };
 
-const imageUpload = (id: string) => {
-  presentationId.value=id.toString()
-  isOpenModal.value = true
-}
-const isOpenModal = ref(false)
-const presentationId = ref("")
-
-const acceptModal= (f) => {  
-  //console.log(f)  
-  uploadFile(f)
-}
-
-const uploadFile = (file) => {
-  const formData = new FormData();
-  formData.append("file", file.files.image);
-
-  PresentationService.uploadFilePresentation(formData, presentationId.value)
-  .then((response) => {
-    alert(response.data.message)
-    emits("getPresentations")        
-  })
-  .catch((error) => console.log(error));
-}
-
-const imgPath = (presentation) => `${import.meta.env.VITE_APP_API_URL}/${presentation.photo_path}`
+const <%= tableDetailCurrent.tableNameSingular; %>Id = ref("")
 
 </script>
 
@@ -61,33 +35,19 @@ const imgPath = (presentation) => `${import.meta.env.VITE_APP_API_URL}/${present
           <th class="px-6 py-3">Precio</th>
           <th class="px-6 py-3 bg-gray-50 bg-base-200">StockMin</th>
           <th class="px-6 py-3">StockMax</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">Estatus</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">Imagen</th>               
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">Estatus</th>                         
           <th class="px-6 py-3">Acción(es)</th>
         </tr>
       </thead>
       <tbody>      
-        <tr v-for="presentation in props.presentations" :key="presentation.id">             
+        <!--tr v-for="presentation in props.presentations" :key="presentation.id">             
           <td class="px-6 py-3 bg-gray-50 bg-base-200">{{presentation.bar_cod}}</td>
           <td class="px-6 py-3">{{presentation.int_cod}}</td>
           <td class="px-6 py-3 bg-gray-50 bg-base-200" :id='presentation.packing'>{{presentation.packing_deployed}}</td>
           <td class="px-6 py-3 text-right">{{presentation.price}}</td>
           <td class="px-6 py-3 bg-gray-50 bg-base-200 text-right">{{presentation.stock_min}}</td>
           <td class="px-6 py-3 text-right">{{presentation.stock_max}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{presentation.status}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200">
-            <img
-              v-if="presentation.photo_path"
-              class="m-auto hover:cursor-pointer"
-              :src=imgPath(presentation)
-              @click="imageUpload(presentation.id)"
-            />
-            <IconCamera
-              v-else
-              class="w-7 h-7 m-auto fill-current hover:cursor-pointer"
-              @click="imageUpload(presentation.id)"
-            />
-          </td>  
+          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{presentation.status}}</td>  
           <td class="px-6 py-3">
             <div class="flex items-center space-x-1">
              <AppBtn
@@ -104,14 +64,8 @@ const imgPath = (presentation) => `${import.meta.env.VITE_APP_API_URL}/${present
               </AppBtn>
             </div>
           </td>
-        </tr>
+        </tr-->
       </tbody>
-    </table>
-    <ModalImage
-      v-if="isOpenModal"
-      :presentationId="presentationId"
-      @closeModal="isOpenModal = false"
-      @acceptModal="acceptModal"
-    />
+    </table>    
   </div>  
 </template>

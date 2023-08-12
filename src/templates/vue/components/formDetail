@@ -1,26 +1,23 @@
 <script setup lang="ts">
 import { toRaw } from "vue"
-import ModalPacking from './ModalPacking.vue'
-import useFormPresentation from "../../composables/Product/useFormPresentation";
+import useForm<%= tableDetailCurrent.tableNameSingularUCamelCase; %> from "../../composables/<%= tableMasterSingularUCamelCase; %>/useForm<%= tableDetailCurrent.tableNameSingularUCamelCase; %>";
 import type { RadioOption } from "@/types/RadioOption";
-import type { Presentation } from "../../types/Presentation";
+import type { <%= tableDetailCurrent.tableNameSingularUCamelCase; %> } from "../../types/<%= tableDetailCurrent.tableNameSingularUCamelCase; %>";
 
 const props = defineProps<{
-  presentation: Presentation
-  saleTypeOptions: RadioOption[]
-  statusOptions: RadioOption[]
+  <%= tableDetailCurrent.tableNameSingular; %>: <%= tableDetailCurrent.tableNameSingularUCamelCase; %>
+  //saleTypeOptions: RadioOption[]
+  //statusOptions: RadioOption[]
 }>()
 
 const {
   form,
-  isOpenModal,
 
-  acceptModal,
   v$
-} = useFormPresentation(props.presentation)
+} = useForm<%= tableDetailCurrent.tableNameSingularUCamelCase; %>(props.<%= tableDetailCurrent.tableNameSingular; %>)
 
 const emits = defineEmits<{
-  (e: 'submit', form: Presentation): void
+  (e: 'submit', form: <%= tableDetailCurrent.tableNameSingularUCamelCase; %>): void
 }>()
 
 const submit = async () => {
@@ -37,15 +34,15 @@ const submit = async () => {
       <div class="p-5 grid lg:grid-cols-2 gap-4">    
         <div class="block">  
           <label>Tipo de Venta</label><br/>
-          <AppRadioGroup
+          <!--AppRadioGroup
             v-model="form.sale_type"
             name="sale_type"
             :options="props.saleTypeOptions"
             :error="v$.sale_type.$error ? v$.sale_type.$errors[0].$message : null"            
-          />
+          /-->
         </div>      
         <div class="block">
-          <AppTextarea
+          <!--AppTextarea
             label="Empaque"
             v-model="form.packing_deployed"                
             @focus="isOpenModal = !isOpenModal"                
@@ -55,7 +52,7 @@ const submit = async () => {
           <AppInput
             v-model="form.packing_json"          
             type="hidden"          
-          />                        
+          /-->                        
         </div>      
         <div class="block">
           <AppInput
@@ -114,11 +111,6 @@ const submit = async () => {
           text="Agregar"
         />        
       </div> 
-    </form>
-    <ModalPacking
-      v-if="isOpenModal"      
-      @closeModal="isOpenModal = false"
-      @acceptModal="acceptModal"
-    />
+    </form>    
   </div>
 </template>

@@ -1,30 +1,25 @@
 import Http from "@/utils/Http";
-import type { Presentation } from "../types/Presentation";
+import type { <%= tableDetailCurrent.tableNameSingularUCamelCase %> } from "../types/<%= tableDetailCurrent.tableNameSingularUCamelCase %>";
 
-export const getPresentations = (productId: string) => {  
-  return Http.get(`/api/presentations/${productId}`);
+export const get<%= tableDetailCurrent.tableNameUCamelCase %> = (<%= tableDetailCurrent.tableNameSingular %>Id: string) => {  
+  return Http.get(`/api/presentations<%= tableDetailCurrent.tableName %>/${<%= tableMasterSingular; %>Id}`);
 }
 
-export const insertPresentation = (payload: Presentation) => {   
-  return Http.post(`/api/presentations`, payload);
+export const insert<%= tableDetailCurrent.tableNameSingularUCamelCase %> = (payload: <%= tableDetailCurrent.tableNameUCamelCase %>) => {   
+  return Http.post(`/api/<%= tableDetailCurrent.tableName %>`, payload);
 }
 
-export const updatePresentation = (payload: Presentation, presentationId: string) => {   
-  return Http.put(`/api/presentations/${presentationId}`, payload);
+export const update<%= tableDetailCurrent.tableNameSingularUCamelCase %> = (payload: <%= tableDetailCurrent.tableNameUCamelCase %>, <%= tableDetailCurrent.tableName %>Id: string) => {   
+  return Http.put(`/api/<%= tableDetailCurrent.tableName %>/${<%= tableDetailCurrent.tableNameSingular %>Id}`, payload);
 }
 
-export const deletePresentation = (presentationId: string) => { 
-  return Http.delete(`/api/presentations/${presentationId}`);
-}
-
-export const uploadFilePresentation = (payload: any, presentationId: string) => { 
-  return Http.post(`/api/presentation-fileupload/${presentationId}`, payload);
+export const delete<%= tableDetailCurrent.tableNameSingularUCamelCase %> = (<%= tableDetailCurrent.tableNameSingular %>Id: string) => { 
+  return Http.delete(`/api/<%= tableDetailCurrent.tableName %>/${<%= tableDetailCurrent.tableNameSingular %>Id}`);
 }
 
 export default {
-  getPresentations,
-  insertPresentation,
-  updatePresentation,
-  deletePresentation,
-  uploadFilePresentation
+  get<%= tableDetailCurrent.tableNameUCamelCase %>,
+  insert<%= tableDetailCurrent.tableNameSingularUCamelCase %>,
+  update<%= tableDetailCurrent.tableNameSingularUCamelCase %>,
+  delete<%= tableDetailCurrent.tableNameSingularUCamelCase %>
 }

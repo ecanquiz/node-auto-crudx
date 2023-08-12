@@ -18,7 +18,7 @@
     get<%= tableDetailCurrent.tableNameUCamelCase %>,
     remove<%= tableDetailCurrent.tableNameSingularUCamelCase %>,  
     submit<%= tableDetailCurrent.tableNameSingularUCamelCase %>
-  } = useTabPresentation(props.id)
+  } = useTab<%= tableDetailCurrent.tableNameSingularUCamelCase %>(props.id)
   </script>
   
   <template>

@@ -15,6 +15,7 @@ export type DataOfBD = {
   tableStructure: any[][];
   tableUniqueConstraint: any[][];
   tablesOfBD: any[][];
+  tablesStructureOfDetails: any[][]
 }
 
 export type GetDataOfBDReturn = Promise<DataOfBD>

@@ -46,6 +46,18 @@ export default async ({schema, tableMaster}: GetDataOfBDParams):  GetDataOfBDRet
     )).rows
   ))
 
+  const tablesStructureOfDetails = await  Promise.all(tableDetailOfMaster.map(
+    async r => [
+      (r as unknown as TableDetailOfMaster).table_name,
+      ... ( await db.getTableStructure(
+        {schema, tableMaster: (r as unknown as TableDetailOfMaster).table_name}
+      )).rows
+    ]
+    /*async r => ( await db.getTableStructure(
+      {schema, tableMaster: (r as unknown as TableDetailOfMaster).table_name}
+    )).rows*/
+  ))
+
   const tableMasterForeignKeysAssoc = (
     await db.getTableMasterForeignKeysAssoc({schema, tableMaster})
   ).rows
@@ -66,6 +78,7 @@ export default async ({schema, tableMaster}: GetDataOfBDParams):  GetDataOfBDRet
     await db.getTablesOfBD({schema}, true)
   ).rows
 
+  console.log(tablesStructureOfDetails)
   return {
     namesList,
     schemasAndTablesOfBD,

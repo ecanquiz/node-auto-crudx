@@ -1,5 +1,7 @@
 //import * as consoleLog from '../utils/consoleLog'
 import db from '@modules/db';
+import colors from 'colors'
+
 import type { GetDataOfBDParams, GetDataOfBDReturn, TableDetailOfMaster } from '@customTypes/db'
 
 const validateIfTableMasterExist = async ({schema, tableMaster}: GetDataOfBDParams):Promise<void> => {  
@@ -8,8 +10,9 @@ const validateIfTableMasterExist = async ({schema, tableMaster}: GetDataOfBDPara
   ).rows[0] as unknown as { table_name: string }
 
   if (!tableMasterExist) {
-    const error = "ERROR: THE MASTER TABLE NAME DOES NOT EXIST IN DB."
-    console.log(error)
+    console.log(
+      colors.bgRed(`ERROR: THE MASTER TABLE NAME (${tableMaster}) DOES NOT EXIST IN DB.`)
+    )
     process.exit();
     // throw new Error(error);
   }

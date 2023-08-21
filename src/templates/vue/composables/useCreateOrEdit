@@ -46,10 +46,11 @@ export default (<%= tableMasterSingular; %>Id?: string) => {
         .finally(() => {
           pending.value = false;
         })
-    }
-    pending.value = true
+    }    
     <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-    %><%= tbl.foreignTableNameSingularUCamelCase; %>Service.getHelp<%= tbl.foreignTableNameUCamelCase; %>()
+    %>
+    pending.value = true
+    <%= tbl.foreignTableNameSingularUCamelCase; %>Service.getHelp<%= tbl.foreignTableNameUCamelCase; %>()
       .then((response) => {
         <%= tbl.foreign_table_name; %>.value = response.data
        })

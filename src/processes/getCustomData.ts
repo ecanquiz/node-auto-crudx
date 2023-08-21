@@ -50,12 +50,12 @@ export default (
     tableMasterForeignKeysAssoc: dataOfBD.tableMasterForeignKeysAssoc,
     tableStructureClean
   }
-  console.log(x.tableDetailOfMaster[0])
+  /*console.log(x.tableDetailOfMaster[0])
   console.log(x.tableDetailOfMaster[0].tableStructureOfDetails)
   console.log(x.tableDetailOfMaster[1])
   console.log(x.tableDetailOfMaster[1].tableStructureOfDetails)
   console.log(x.tableDetailOfMaster[2])
-  console.log(x.tableDetailOfMaster[2].tableStructureOfDetails)
+  console.log(x.tableDetailOfMaster[2].tableStructureOfDetails)*/
 
   return x
 }

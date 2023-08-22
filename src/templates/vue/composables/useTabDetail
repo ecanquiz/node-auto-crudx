@@ -1,6 +1,6 @@
 import { computed, onMounted, reactive, ref } from 'vue'
 import useHttp from "@/composables/useHttp";
-import <%= tableDetailCurrent.tableNameSingularUCamelCase %>Service from "@/modules/<%= pathModule %>/services/<%= tableDetailCurrent.tableNameSingularUCamelCase %>Service";
+import <%= tableDetailCurrent.tableNameSingularUCamelCase %>Service from "@/modules/<%= pathModule %>/services/<%= tableDetailCurrent.tableNameSingularUCamelCase %>";
 import type { Ref } from "vue";
 import type { <%= tableDetailCurrent.tableNameSingularUCamelCase %> } from "../../types/<%= tableDetailCurrent.tableNameSingularUCamelCase %>";
 

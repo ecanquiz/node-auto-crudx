@@ -1,4 +1,7 @@
 
+import crud from '@config/crud'
+import { uCamelCase } from '../utils/nomenclature';
+import { singular } from '../utils/grammaticalNumber'
 import type {
   GetDataOfBDParams,
   DataOfBD,
@@ -6,8 +9,6 @@ import type {
   TableMasterForeignKeysAssoc,
   TableDetailOfMaster
 } from '@customTypes/db'
-import { uCamelCase } from '../utils/nomenclature';
-import { singular } from '../utils/grammaticalNumber'
 
 export default (
   getDataOfBDParams: GetDataOfBDParams,
@@ -30,13 +31,15 @@ export default (
     }
   )
   //console.log(dataOfBD.tablesStructureOfDetails)
+  
+
   const x = {
     tableMaster,
     tableMasterUCamelCase,
     tableMasterSingular,
     tableMasterSingularUCamelCase,
     tableStructure: dataOfBD.tableStructure,
-    tableDetailOfMaster: dataOfBD.tableDetailOfMaster.map(
+    tableDetailOfMaster: crud.tableMasterIsHelper ? [] : dataOfBD.tableDetailOfMaster.map(
       r => ({
         tableName: (r as unknown as TableDetailOfMaster).table_name,
         tableNameSingular: singular((r as unknown as TableDetailOfMaster).table_name),

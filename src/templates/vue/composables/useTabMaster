@@ -1,7 +1,7 @@
 import { onMounted, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp";
-import <%= tableMasterSingularUCamelCase; %>Service from "@/modules/<%= pathModule; %>/services/<%= tableMasterSingularUCamelCase; %>Service";
+import <%= tableMasterSingularUCamelCase; %>Service from "@/modules/<%= pathModule; %>/services/<%= tableMasterSingularUCamelCase; %>";
 import type { <%= tableMasterSingularUCamelCase; %> } from "../../types/<%= tableMasterSingularUCamelCase; %>";
 
 export default (<%= tableMasterSingular; %>Id?: string) => {

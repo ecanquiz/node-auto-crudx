@@ -32,6 +32,7 @@ const submit = async () => {
 </script>
 
 <template>
+  <div class="m-5">
   <AppFlashMessage :error="errors"/>
   <form @submit.prevent="submit">
     <div class="grid lg:grid-cols-2 gap-4">
@@ -71,7 +72,7 @@ const submit = async () => {
         <%}%>
       <%}});%></div>
     
-      <div class="mt-4 px-2 border-gray-100 flex justify-end space-x-2">
+      <div class="mt-4 px-2 border-gray-100 flex justify-right space-x-2">
         <AppBtn
           type="submit"
           :text="pending ? 'Guardando...' : 'Guardar'"
@@ -153,4 +154,5 @@ const submit = async () => {
       />
     </div-->
   </form>
+</div>
 </template>

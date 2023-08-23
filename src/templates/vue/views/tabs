@@ -13,7 +13,7 @@ const props = defineProps<{ id?: string }>()
 const tabs = [
   { component: Tab<%= tableMasterSingularUCamelCase; %> , title: "<%= tableMasterSingularUCamelCase; %>" },<%
 tableDetailOfMaster.forEach(function(table, index){ %>
-  { component: Tab<%= table.tableNameSingularUCamelCase; %> , title: "<%= table.tableNameSingularUCamelCase; %>" }<%= index < tableDetailOfMaster.length-1 ? ',' : '' %><% })
+  { component: Tab<%= table.tableNameSingularUCamelCase; %> , title: "<%= table.tableNameUCamelCase; %>" }<%= index < tableDetailOfMaster.length-1 ? ',' : '' %><% })
 ;%>
 ]
 

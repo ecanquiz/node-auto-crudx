@@ -14,17 +14,11 @@ export default (<%= tableMasterSingular; %>Id: string) => {
     { label: 'Activo', value: 1 }  
   ]*/
   
-  const <%= tableDetailCurrent.tableNameSingular %>: <%= tableDetailCurrent.tableNameSingularUCamelCase %> = reactive({
-    id: '',
-    sale_type: 0,
-    int_cod: "",
-    bar_cod: "",
-    packing_deployed: "",
-    packing_json: "",
-    stock_min: 0,
-    stock_max: 0,
-    price: "0.0",
-    status: 0
+  const <%= tableDetailCurrent.tableNameSingular; %>: <%= tableDetailCurrent.tableNameSingularUCamelCase; %> = reactive({<%
+  tableDetailCurrent.tableStructureOfDetails[0].filter(
+      f => !['created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
+    ).forEach(function(field){ %>
+    <%= field.column_name; %>: "", %><% }); %>
   })
   
   const <%= tableDetailCurrent.tableName %>: Ref<<%= tableDetailCurrent.tableNameSingularUCamelCase %>[]>  = ref([])
@@ -94,16 +88,11 @@ export default (<%= tableMasterSingular; %>Id: string) => {
   }
 
   const edit = (<%= tableDetailCurrent.tableNameSingular %>Edit: <%= tableDetailCurrent.tableNameSingularUCamelCase %>) => {
-    /*presentation.id = presentationEdit.id
-    presentation.sale_type = presentationEdit.sale_type ? 1 : 0
-    presentation.int_cod = presentationEdit.int_cod
-    presentation.bar_cod = presentationEdit.bar_cod
-    presentation.packing_deployed = presentationEdit.packing_deployed
-    presentation.packing_json = presentationEdit.packing
-    presentation.stock_min = presentationEdit.stock_min
-    presentation.stock_max = presentationEdit.stock_max
-    presentation.price = presentationEdit.price
-    presentation.status = presentationEdit.status ? 1 : 0*/
+    // presentation.status = presentationEdit.sale_type ? 1 : 0<%
+  tableDetailCurrent.tableStructureOfDetails[0].filter(
+      f => !['created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
+    ).forEach(function(field){ %>
+    <%= tableDetailCurrent.tableNameSingular; %>.<%= field.column_name; %> = <%= tableDetailCurrent.tableNameSingular %>Edit.<%= field.column_name; %>%><% }); %>
     panelOpened.value = true
   }
   

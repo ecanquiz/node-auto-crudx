@@ -25,9 +25,9 @@
     <div class="demo-tab">
       <div class="form-group row">
         <div class="col-sm-12">
-          <div align="center">     
+          <div class="grid justify-items-stretch">
             <AppBtn
-              class="btn p-8"
+              class="btn p-8 justify-self-center"
               type="text"                 
               data-testid="click-btn"
               :class="closeClassOpened"

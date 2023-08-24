@@ -29,11 +29,10 @@ export default (
       (tbl as unknown as TableMasterForeignKeysAssoc).foreignTableNameUCamelCase = uCamelCase((foreignTableName));
       (tbl as unknown as TableMasterForeignKeysAssoc).foreignTableNameSingularUCamelCase = uCamelCase(singular((foreignTableName)));
     }
-  )
-  //console.log(dataOfBD.tablesStructureOfDetails)
-  
+  )  
 
-  const x = {
+  return {
+    testFun: (n:any)=> n,
     tableMaster,
     tableMasterUCamelCase,
     tableMasterSingular,
@@ -53,14 +52,7 @@ export default (
     tableMasterForeignKeysAssoc: dataOfBD.tableMasterForeignKeysAssoc,
     tableStructureClean
   }
-  /*console.log(x.tableDetailOfMaster[0])
-  console.log(x.tableDetailOfMaster[0].tableStructureOfDetails)
-  console.log(x.tableDetailOfMaster[1])
-  console.log(x.tableDetailOfMaster[1].tableStructureOfDetails)
-  console.log(x.tableDetailOfMaster[2])
-  console.log(x.tableDetailOfMaster[2].tableStructureOfDetails)*/
 
-  return x
 }
 
 

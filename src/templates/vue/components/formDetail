@@ -30,8 +30,8 @@ const submit = async () => {
 
 <template>
   <div>
-    <form @submit.prevent="submit">
-      <div class="p-5 grid lg:grid-cols-2 gap-4">
+    <form @submit.prevent="submit"> 
+      <div class="p-5 grid lg:grid-cols-2 gap-4"><%= testFun('testFun') %>
 
           <% tableDetailCurrent.tableStructureOfDetails[0].forEach(function(field) {
             if  (!['id', 'created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 

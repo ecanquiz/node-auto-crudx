@@ -12,13 +12,10 @@ class <%= tableMasterSingularUCamelCase; %> extends Model
 
     protected $connection = 'pgsql_<%= pathModule.toLowerCase(); %>';
 
-    protected $fillable = [<%
-    tableStructure.forEach(function(field, index) {
-        if  (!['created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
-    %>
-        '<%= field.column_name; %>'<%= index < tableStructure.length-4 ? ',' : '' %><%
-        }});
-    %> 
+    protected $fillable = [<% tableStructure.forEach(function(field, index) {
+      if  (fun.val.includeAt(field.column_name)) {%>
+        '<%- field.column_name; %>'<%= fun.addCommaToArr(tableStructure, index, 4) -%>
+    <%}});%> 
     ];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];

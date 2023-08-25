@@ -32,7 +32,13 @@ export default (
   )  
 
   return {
-    testFun: (n:any)=> n,
+    fun: {
+      test1: (n:any)=> n,
+      addCommaToArr: (arr: any[], index: number, less = 0) => index < arr.length - less ? ', ' : '',
+      val: {
+        includeAt: (column_name: string): boolean => (!['created_at', 'updated_at', 'deleted_at'].includes(column_name)),
+      }
+    },
     tableMaster,
     tableMasterUCamelCase,
     tableMasterSingular,

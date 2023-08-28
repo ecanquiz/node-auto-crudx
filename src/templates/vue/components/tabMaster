@@ -1,31 +1,31 @@
 <script setup lang="ts">
-  import { computed } from "vue"
-  import useTab<%= tableMasterSingularUCamelCase; %> from "../../composables/<%= tableMasterSingularUCamelCase; %>/useTab<%= tableMasterSingularUCamelCase; %>";
-  import Form<%= tableMasterSingularUCamelCase; %> from './Form<%= tableMasterSingularUCamelCase; %>.vue';
+import { computed } from "vue"
+import useTab<%= tableMasterSingularUCamelCase; %> from "../../composables/<%= tableMasterSingularUCamelCase; %>/useTab<%= tableMasterSingularUCamelCase; %>";
+import Form<%= tableMasterSingularUCamelCase; %> from './Form<%= tableMasterSingularUCamelCase; %>.vue';
 
-  const props = defineProps<{ id?: string }>()
+const props = defineProps<{ id?: string }>()
 
-  const {  
-    <%= tableMasterSingular; %>,
-    errors,
-    pending,      
-    submit    
-  } = useTab<%= tableMasterSingularUCamelCase; %>(props.id)
+const {  
+  <%= tableMasterSingular; %>,
+  errors,
+  pending,      
+  submit    
+} = useTab<%= tableMasterSingularUCamelCase; %>(props.id)
 
-  const isTrue = computed(
-    () => <%= tableMasterSingular; %> || !props.id
-  ) 
+const isTrue = computed(
+  () => <%= tableMasterSingular; %><% tableMasterForeignKeysAssoc.forEach(function(tbl){ %> && <%= tableMasterSingular; %>.<%= tbl.column_name; %> <% }); %>|| !props.id
+) 
 </script>
 
 <template>
-    <div class="">
-      <Form<%= tableMasterSingularUCamelCase; %>
-        v-if="isTrue"
-        :<%= tableMasterSingular; %>="<%= tableMasterSingular; %>"
-        :errors="errors"
-        :pending="pending"
-        @submit="submit"    
-      />
-    </div>
-  </template>
+<div class="">
+  <Form<%= tableMasterSingularUCamelCase; %>
+    v-if="isTrue"
+    :<%= tableMasterSingular; %>="<%= tableMasterSingular; %>"
+    :errors="errors"
+    :pending="pending"
+    @submit="submit"    
+  />
+</div>
+</template>
   

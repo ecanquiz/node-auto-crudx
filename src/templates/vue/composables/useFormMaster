@@ -1,24 +1,21 @@
 import { onMounted, reactive, ref, computed } from 'vue'
 import useHttp from "@/composables/useHttp";
-// import { ascBubble } from "@/utils/helpers";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
-//import * as CategoryService from "@/modules/Product/services/CategoryService";
-//import * as MarkService from "@/modules/Product/services/MarkService";
-//import * as CommonService from "@/modules/Product/services/CommonService";
-import type {
-  <%= tableMasterSingularUCamelCase; %>,
-  //Category,
-  //Mark,
-  //MeasureUnit,
-  //MeasureUnitType
-} from "../../types/<%= tableMasterSingularUCamelCase; %>";
+import <%= tableMasterSingularUCamelCase; %>Service from "../../services/<%= tableMasterSingularUCamelCase; %>"
+<% tableMasterForeignKeysAssoc.forEach(function(tbl){
+%>import <%= tbl.foreignTableNameSingularUCamelCase; %>Service from  "../../services/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
+}); %>
+import type { <%= tableMasterSingularUCamelCase; %> } from "../../types/<%= tableMasterSingularUCamelCase; %>"
+<% tableMasterForeignKeysAssoc.forEach(function(tbl){
+%>import type { <%= tbl.foreignTableNameSingularUCamelCase; %> } from  "../../types/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
+}); %>
+// import { ascBubble } from "@/utils/helpers";
 
 export default (<%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>) => {
-  //const categories = ref<Category[]>()
-  //const marks = ref<Mark[]>()
-  //const measureUnitTypes = ref<MeasureUnitType[]>()
-  //const measureUnits = ref<MeasureUnit[]>()
+  <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+    %>const <%= tbl.foreign_table_name; %> =  ref<<%= tbl.foreignTableNameSingularUCamelCase; %>[]>()<%
+  }); %>
 
   const form = reactive({<%
     tableStructure.filter(
@@ -35,6 +32,39 @@ export default (<%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; 
   } = useHttp()
 
   onMounted(() => {
+
+
+
+
+
+
+
+
+
+    <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+      %>
+      pending.value = true
+      <%= tbl.foreignTableNameSingularUCamelCase; %>Service.getHelp<%= tbl.foreignTableNameUCamelCase; %>()
+        .then((response) => {
+          <%= tbl.foreign_table_name; %>.value = response.data
+         })
+         .catch((err) => {
+           errors.value = getError(err)
+         })
+         .finally(() => {
+           pending.value = false
+         })<% }); %>
+
+
+
+
+
+
+
+
+
+
+
     /*pending.value = true
     CategoryService.getCategoriesSelect()
       .then((response) => {
@@ -96,10 +126,9 @@ export default (<%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; 
   const v$ = useVuelidate(rules, form);
 
   return {
-//    categories,
-//    marks,
-//    measureUnitTypes,
-//    measureUnits,
+  <% tableMasterForeignKeysAssoc.forEach(function(tbl){ -%>
+  <%- tbl.foreign_table_name -%>,
+<%})-%>
     form,
     errors,
     pending,

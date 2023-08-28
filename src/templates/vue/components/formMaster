@@ -13,14 +13,14 @@ const emits = defineEmits<{
 }>()
 
 const {
+<% tableMasterForeignKeysAssoc.forEach(function(tbl){ -%>
+  <%- tbl.foreign_table_name -%>,
+<%})-%>
   form,
-  //categories,
-  //marks,
-  //measureUnitTypes,
-  //measureUnits,
-  pending,  
+  errors,
+  pending,
 
-  v$  
+  v$
 } = useForm<%= tableMasterSingularUCamelCase; %>(props.<%= tableMasterSingular; %>)
 
 const submit = async () => {  
@@ -37,20 +37,20 @@ const submit = async () => {
   <form @submit.prevent="submit">
     <div class="grid lg:grid-cols-2 gap-4">
       <% tableStructure.forEach(function(field) {
-      if  (!['id', 'created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
+      if  (!['id', 'created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) {
         if (field.data_type === "character varying") {%>  <div class="block">     
           <AppInput           
             v-model="form.<%= field.column_name; %>"
             label="<%= field.column_name; %>"
             type="text"
-            :error="errors && errors.<%= field.column_name; %> ? errors.<%= field.column_name; %>[0] : ''"
+            :error="v$.<%= field.column_name; %>.$error ? v$.<%= field.column_name; %>.$errors[0].$message : null"
           />
         </div>
         <%} else if ((field.data_type === "text")) {%>  <div class="block">     
           <AppTextarea
             label="<%= field.column_name; %>"
             v-model="form.<%= field.column_name; %>"
-            :error="errors && errors.<%= field.column_name; %> ? errors.<%= field.column_name; %>[0] : ''"
+            :error="v$.<%= field.column_name; %>.$error ? v$.<%= field.column_name; %>.$errors[0].$message : null"
           />
         </div>
         <%} else if ((field.data_type === "bigint")) {%>  <div class="block">     
@@ -59,14 +59,14 @@ const submit = async () => {
             :options="<%= tableMasterForeignKeysAssoc.find(element => element.column_name === field.column_name).foreign_table_name; %>"
             v-model="form.<%= field.column_name; %>"
             label="<%= field.column_name; %>"
-            :error="errors && errors.<%= field.column_name; %> ? errors.<%= field.column_name; %>[0] : ''"
+            :error="v$.<%= field.column_name; %>.$error ? v$.<%= field.column_name; %>.$errors[0].$message : null"
           />
         </div>
         <%} else if ((field.data_type === "boolean")) {%>  <div class="block">     
           <AppCheckbox
             v-model="form.<%= field.column_name; %>"
             label="<%= field.column_name; %>"
-            :error="errors && errors.<%= field.column_name; %> ? errors.<%= field.column_name; %>[0] : ''"
+            :error="v$.<%= field.column_name; %>.$error ? v$.<%= field.column_name; %>.$errors[0].$message : null"
           />
         </div>
         <%}%>

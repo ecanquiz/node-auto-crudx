@@ -31,17 +31,15 @@ class <%= tableMasterSingularUCamelCase; %> extends Model
     {
         return $this->belongsTo(\Modules\<%= pathModule; %>\Entities\<%= tbl.foreignTableNameSingularUCamelCase; %>::class);
     } 
-    <%});
-    %>
+    <%}); -%>
+    <% tableDetailOfMaster.forEach(function(table){ %>
+    public function <%= table.tableName; %>()
+    {        
+        return $this->hasMany(\Modules\<%= pathModule; %>\Entities\<%= table.tableNameSingularUCamelCase; %>::class);
+    }
+    <% }); %>
     protected static function newFactory()
     {
         return \Modules\<%= pathModule; %>\Database\Factories\<%= tableMasterSingularUCamelCase; %>Factory::new();
     }
-
-    /*
-        public function myChild()
-        {
-            return $this->hasMany(MyChild::class);
-        }
-    */
 }

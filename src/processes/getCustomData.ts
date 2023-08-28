@@ -30,7 +30,7 @@ export default (
       (tbl as unknown as TableMasterForeignKeysAssoc).foreignTableNameSingularUCamelCase = uCamelCase(singular((foreignTableName)));
     }
   )  
-console.log(dataOfBD.tableMasterForeignKeysAssoc)
+console.log(dataOfBD.tableDetailOfMaster)
   return {
     fun: {
       test1: (n:any)=> n,

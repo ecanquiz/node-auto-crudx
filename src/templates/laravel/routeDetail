@@ -1,0 +1,15 @@
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Modules\<%= pathModule; %>\Http\Controllers\<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller;
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::prefix('<%= tableDetailCurrent.tableName; %>')->group(function () {  
+        Route::get('/{<%= tableMasterSingular %>Id}', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class, 'getAllBy<%= tableMasterSingularUCamelCase %>']);
+        Route::get('/{<%= tableDetailCurrent.tableNameSingular; %>}', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class, 'show']);
+        Route::post('/', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class, 'store']);
+        Route::put('/{<%= tableDetailCurrent.tableNameSingular; %>}', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class, 'update']);
+        Route::delete('/{id}', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class,'destroy']);
+    });
+});

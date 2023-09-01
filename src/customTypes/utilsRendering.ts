@@ -19,6 +19,7 @@ export type tableDetailOfMasterCustomized = {
   tableNameSingular: string
   tableNameUCamelCase: string
   tableNameSingularUCamelCase: string
+  tableStructureOfDetails: any[] // PENDING BY CHECKOUT
 }
 
 export type ParamsDetail = {

@@ -1,5 +1,6 @@
 import controller from './core/controller'
 import model from './core/model'
+import modelDetail from './core/modelDetail'
 import serviceIndex from './core/serviceIndex'
 import serviceStore from './core/serviceStore'
 import serviceUpdate from './core/serviceUpdate'
@@ -11,6 +12,7 @@ import route from './core/route'
 export {
     controller,
     model,
+    modelDetail,
     serviceIndex,
     serviceStore,
     serviceUpdate,

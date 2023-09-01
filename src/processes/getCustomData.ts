@@ -1,6 +1,6 @@
 
 import crud from '@config/crud'
-import { uCamelCase } from '../utils/nomenclature';
+import { uCamelCase, camelCase } from '../utils/nomenclature';
 import { singular } from '../utils/grammaticalNumber'
 import type {
   GetDataOfBDParams,
@@ -31,8 +31,11 @@ export default (
     }
   )  
 
+  console.log(dataOfBD.tablesStructureOfDetails)
+
   return {
     fun: {
+      camelCase,
       test1: (n:any)=> n,
       addCommaToArr: (arr: any[], index: number, less = 0) => index < arr.length - less ? ', ' : '',
       val: {
@@ -46,7 +49,8 @@ export default (
     tableStructure: dataOfBD.tableStructure,
     tableDetailOfMaster: crud.tableMasterIsHelper ? [] : dataOfBD.tableDetailOfMaster.map(
       r => ({
-        tableName: (r as unknown as TableDetailOfMaster).table_name,
+        idForeignKey: (r as unknown as TableDetailOfMaster).id_foreign_key, // TODO
+        tableName: (r as unknown as TableDetailOfMaster).table_name, // TODO
         tableNameSingular: singular((r as unknown as TableDetailOfMaster).table_name),
         tableNameUCamelCase: uCamelCase((r as unknown as TableDetailOfMaster).table_name),
         tableNameSingularUCamelCase: uCamelCase(singular((r as unknown as TableDetailOfMaster).table_name)),

@@ -1,8 +1,8 @@
 import Http from "@/utils/Http";
 import type { <%= tableDetailCurrent.tableNameSingularUCamelCase %> } from "../types/<%= tableDetailCurrent.tableNameSingularUCamelCase %>";
 
-export const get<%= tableDetailCurrent.tableNameUCamelCase %> = (<%= tableDetailCurrent.tableNameSingular %>Id: string) => {  
-  return Http.get(`/api/presentations<%= tableDetailCurrent.tableName %>/${<%= tableMasterSingular; %>Id}`);
+export const get<%= tableDetailCurrent.tableNameUCamelCase %> = (<%= tableMasterSingular; %>Id: string) => {  
+  return Http.get(`/api/<%= tableDetailCurrent.tableName %>/${<%= tableMasterSingular; %>Id}`);
 }
 
 export const insert<%= tableDetailCurrent.tableNameSingularUCamelCase %> = (payload: <%= tableDetailCurrent.tableNameUCamelCase %>) => {   

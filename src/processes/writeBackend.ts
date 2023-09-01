@@ -14,7 +14,9 @@ export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
         ...params,
         tableDetailCurrent: (table as unknown as tableDetailOfMasterCustomized)
       }
+      rendering(laravel.controllerDetail(paramsWhitDetail), paramsWhitDetail)
       rendering(laravel.modelDetail(paramsWhitDetail), paramsWhitDetail)
+      rendering(laravel.routeDetail(paramsWhitDetail), paramsWhitDetail)
     })
   }
   rendering(laravel.controller(params), params)

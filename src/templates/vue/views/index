@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // @ts-nocheck
-import useIndex from "../../composables/<%= tableMasterSingularUCamelCase ; %>/useIndex";
+import useIndex from "../../composables/<%= fn.uCamelCase(fn.singular(tableMaster)) ; %>/useIndex";
 import AppPaginationB from "@/components/AppPaginationB.vue";
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import AppBtn from "@/components/AppBtn.vue"
@@ -18,7 +18,7 @@ const {
 
 <template>
 <div>
-  <AppPageHeader> <%= tableMasterUCamelCase; %> </AppPageHeader>
+  <AppPageHeader> <%= fn.uCamelCase(tableMaster); %> </AppPageHeader>
 
   <div class="flex space-x-2">
     <AppLink class="btn btn-primary" to="/<%= tableMaster; %>/create">
@@ -62,7 +62,7 @@ const {
              <td class="">
               <AppLink
                 class="text-indigo-600 hover:text-indigo-800 underline"
-                :to="{ name: '<%= tableMasterSingular; %>Edit', params: { id: row.id }}"               
+                :to="{ name: '<%= fn.singular(tableMaster); %>Edit', params: { id: row.id }}"
               >
                 {{ row.<%= tableStructure[0].column_name %> }}
               </AppLink>
@@ -95,7 +95,7 @@ const {
             </td>
           </tr>
           <tr v-if="data.rows.length === 0">
-            <td class="" colspan="4"><%= tableMasterUCamelCase; %> not found.</td>
+            <td class="" colspan="4"><%= fn.uCamelCase(tableMaster); %> not found.</td>
           </tr>
         </tbody>
       </table>

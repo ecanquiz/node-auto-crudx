@@ -13,8 +13,8 @@ class <%= tableDetailCurrent.tableNameSingularUCamelCase; %> extends Model
     protected $connection = 'pgsql_<%= pathModule.toLowerCase(); %>';
 
     protected $fillable = [<% tableDetailCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
-      if  (fun.val.includeAt(field.column_name)) {%>
-        '<%- field.column_name; %>'<%= fun.addCommaToArr(tableStructure, index, 0) -%>
+      if  (fn.vn.excludeFields(field.column_name)) {%>
+        '<%- field.column_name; %>'<%= fn.addCommaToArr(tableStructure, index, 0) -%>
     <%}});%> 
     ];
 
@@ -22,13 +22,13 @@ class <%= tableDetailCurrent.tableNameSingularUCamelCase; %> extends Model
 
     protected $casts = [ /* 'field_name' => 'field_type' */ ];
         
-    public function <%= tableMasterSingular; %>()
+    public function <%= fn.singular(tableMaster); %>()
     {
-        return $this->belongsTo(\Modules\<%= pathModule; %>\Entities\<%= tableMasterSingularUCamelCase; %>::class);
+        return $this->belongsTo(\Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tableMaster)); %>::class);
     }  
 
     protected static function newFactory()
     {
-        return \Modules\<%= pathModule; %>\Database\Factories\<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Factory::new();
+        return \Modules\<%= pathModule; %>\Database\Factories\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Factory::new();
     }
 }

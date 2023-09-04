@@ -23,7 +23,7 @@ class <%= tableDetailCurrent.tableNameSingularUCamelCase ;%>Controller extends C
      */
     public function getAllBy<%= tableMasterSingularUCamelCase ;%>(Request $request)//: Collection
     {
-        return <%= tableDetailCurrent.tableNameSingularUCamelCase ;%>::where('<%= tableDetailCurrent.idForeignKey %>', $request-><%= fun.camelCase(tableDetailCurrent.idForeignKey) %>)->get();
+        return <%= tableDetailCurrent.tableNameSingularUCamelCase ;%>::where('<%= tableDetailCurrent.idForeignKey %>', $request-><%= fn.camelCase(tableDetailCurrent.idForeignKey) %>)->get();
     }
 
     /**

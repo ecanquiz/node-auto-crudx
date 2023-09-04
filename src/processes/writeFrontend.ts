@@ -1,4 +1,4 @@
-import * as vue from '@modules/renderings/vue'
+import vue from '@modules/renderings/vue'
 import rendering from '@utils/rendering';
 //import crud from '@config/crud'
 import { pathFrontend as output } from '@config/output'

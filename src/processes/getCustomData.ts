@@ -2,6 +2,7 @@
 import crud from '@config/crud'
 import { uCamelCase, camelCase } from '../utils/nomenclature';
 import { singular } from '../utils/grammaticalNumber'
+import fn from '../utils/fn'
 import type {
   GetDataOfBDParams,
   DataOfBD,
@@ -14,7 +15,7 @@ export default (
   getDataOfBDParams: GetDataOfBDParams,
   dataOfBD: DataOfBD,
   excludeFields: string[]
-) => {  
+) => {
   const tableMaster: string = getDataOfBDParams.tableMaster
   const tableMasterUCamelCase: string = uCamelCase(getDataOfBDParams.tableMaster)
   const tableMasterSingular: string = singular(getDataOfBDParams.tableMaster)
@@ -31,17 +32,8 @@ export default (
     }
   )  
 
-  console.log(dataOfBD.tablesStructureOfDetails)
-
   return {
-    fun: {
-      camelCase,
-      test1: (n:any)=> n,
-      addCommaToArr: (arr: any[], index: number, less = 0) => index < arr.length - less ? ', ' : '',
-      val: {
-        includeAt: (column_name: string): boolean => (!['created_at', 'updated_at', 'deleted_at'].includes(column_name)),
-      }
-    },
+    fn,
     tableMaster,
     tableMasterUCamelCase,
     tableMasterSingular,

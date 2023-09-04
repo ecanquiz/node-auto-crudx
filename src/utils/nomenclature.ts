@@ -12,6 +12,3 @@ export const camelCase = (str: string): string => {
      
     return [first, ...withoutTheFirst].join("")    
 }
-
-
-

@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class <%= tableMasterSingularUCamelCase; %> extends Model
+class <%= fn.uCamelCase(fn.singular(tableMaster)); %> extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $connection = 'pgsql_<%= pathModule.toLowerCase(); %>';
 
     protected $fillable = [<% tableStructure.forEach(function(field, index) {
-      if  (fun.val.includeAt(field.column_name)) {%>
-        '<%- field.column_name; %>'<%= fun.addCommaToArr(tableStructure, index, 4) -%>
+      if  (fn.vn.excludeFields(field.column_name)) {%>
+        '<%- field.column_name; %>'<%= fn.addCommaToArr(tableStructure, index, 4) -%>
     <%}});%> 
     ];
 
@@ -40,6 +40,6 @@ class <%= tableMasterSingularUCamelCase; %> extends Model
     <% }); %>
     protected static function newFactory()
     {
-        return \Modules\<%= pathModule; %>\Database\Factories\<%= tableMasterSingularUCamelCase; %>Factory::new();
+        return \Modules\<%= pathModule; %>\Database\Factories\<%= fn.uCamelCase(fn.singular(tableMaster)); %>Factory::new();
     }
 }

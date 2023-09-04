@@ -1,4 +1,4 @@
-import * as laravel from '@modules/renderings/laravel'
+import laravel from '@modules/renderings/laravel'
 import rendering from '@utils/rendering';
 import { pathBackend as output } from '@config/output'
 import { buildBackendRoutes } from '@config/buildRoutes'
@@ -30,4 +30,3 @@ export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
   if (buildBackendRoutes as unknown as boolean)
     rendering(laravel.route(params), params)
 }
-

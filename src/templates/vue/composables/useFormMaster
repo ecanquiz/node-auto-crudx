@@ -12,7 +12,7 @@ import type { <%= fn.uCamelCase(fn.singular(tableMaster)); %> } from "../../type
 }); %>
 // import { ascBubble } from "@/utils/helpers";
 
-export default (<%= tableMasterSingular; %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>) => {
+export default (<%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>) => {
   <% tableMasterForeignKeysAssoc.forEach(function(tbl){
     %>const <%= tbl.foreign_table_name; %> =  ref<<%= tbl.foreignTableNameSingularUCamelCase; %>[]>()<%
   }); %>
@@ -21,7 +21,7 @@ export default (<%= tableMasterSingular; %>: <%= fn.uCamelCase(fn.singular(table
     tableStructure.filter(
       f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
     ).forEach(function(field){ %>
-    <%= field.column_name; %>: <%= tableMasterSingular; %>.<%= field.column_name; %>, %><% }); %>
+    <%= field.column_name; %>: <%= fn.singular(tableMaster); %>.<%= field.column_name; %>, %><% }); %>
   })
 
   const {

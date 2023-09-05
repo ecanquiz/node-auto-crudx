@@ -10,10 +10,10 @@ import type { <%= fn.uCamelCase(fn.singular(tableMaster)); %> } from "../../type
 %>import type { <%= tbl.foreignTableNameSingularUCamelCase; %> } from  "../../types/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
 }); %>
 
-export default (<%= tableMasterSingular; %>Id?: string) => {
+export default (<%= fn.singular(tableMaster); %>Id?: string) => {
   const router = useRouter();
   
-  const <%= tableMasterSingular; %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %> = reactive({<%
+  const <%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %> = reactive({<%
     tableStructure.filter(
       f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
     ).forEach(function(field){ %>
@@ -32,13 +32,13 @@ export default (<%= tableMasterSingular; %>Id?: string) => {
   } = useHttp()
   
   onMounted(async () => {
-    if (<%= tableMasterSingular; %>Id) {
+    if (<%= fn.singular(tableMaster); %>Id) {
       pending.value = true
-      <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service.get<%= fn.uCamelCase(fn.singular(tableMaster)); %>(<%= tableMasterSingular; %>Id)
+      <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service.get<%= fn.uCamelCase(fn.singular(tableMaster)); %>(<%= fn.singular(tableMaster); %>Id)
         .then((response) => { <% tableStructure.filter(
             f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
           ).forEach(function(field){ %>
-          <%= tableMasterSingular; %>.<%= field.column_name; %> = response.data.data.<%= field.column_name; %> %><% }); %>
+          <%= fn.singular(tableMaster); %>.<%= field.column_name; %> = response.data.data.<%= field.column_name; %> %><% }); %>
         })
         .catch((err) => {        
           errors.value = getError(err)
@@ -62,9 +62,9 @@ export default (<%= tableMasterSingular; %>Id?: string) => {
        })<% }); %>
   })
 
-  const insert<%= fn.uCamelCase(fn.singular(tableMaster)); %> = async (<%= tableMasterSingular; %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>) => {  
+  const insert<%= fn.uCamelCase(fn.singular(tableMaster)); %> = async (<%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>) => {  
     pending.value = true
-    return <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service.insert<%= fn.uCamelCase(fn.singular(tableMaster)); %>(<%= tableMasterSingular; %>)
+    return <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service.insert<%= fn.uCamelCase(fn.singular(tableMaster)); %>(<%= fn.singular(tableMaster); %>)
       .then((response) => {         
         alert( response.data.message )
         router.push( { path: '/<%= tableMaster; %>' } )
@@ -78,9 +78,9 @@ export default (<%= tableMasterSingular; %>Id?: string) => {
       })
   }
 
-  const update<%= fn.uCamelCase(fn.singular(tableMaster)); %> = async (<%= tableMasterSingular; %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>, <%= tableMasterSingular; %>Id: string) => {
+  const update<%= fn.uCamelCase(fn.singular(tableMaster)); %> = async (<%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>, <%= fn.singular(tableMaster); %>Id: string) => {
     pending.value= true
-    return <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service.update<%= fn.uCamelCase(fn.singular(tableMaster)); %>(<%= tableMasterSingular; %>Id, <%= tableMasterSingular; %>)
+    return <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service.update<%= fn.uCamelCase(fn.singular(tableMaster)); %>(<%= fn.singular(tableMaster); %>Id, <%= fn.singular(tableMaster); %>)
       .then((response) => {
         alert( response.data.message )
         router.push( { path: '/<%= tableMaster; %>' } )
@@ -94,4 +94,20 @@ export default (<%= tableMasterSingular; %>Id?: string) => {
       })
   }
   
-  const submit = (<%= tableMasterSingular; %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>, <%= tableMasterSingular
+  const submit = (<%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>, <%= fn.singular(tableMaster); %>Id?: string) => {  
+    !<%= fn.singular(tableMaster); %>Id ? insert<%= fn.uCamelCase(fn.singular(tableMaster)); %>(<%= fn.singular(tableMaster); %>)  : update<%= fn.uCamelCase(fn.singular(tableMaster)); %>(<%= fn.singular(tableMaster); %>, <%= fn.singular(tableMaster); %>Id)
+  }
+
+  return {
+    <%= fn.singular(tableMaster); %>,
+    errors,
+    <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+    %><%= tbl.foreign_table_name; %>,<%
+    }); %>
+    pending,
+    router,
+
+    submit    
+  }
+
+}

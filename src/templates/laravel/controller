@@ -38,17 +38,17 @@ class <%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller extends Controll
     /**
      * Display the specified resource.
     */
-    public function show(<%= fn.uCamelCase(fn.singular(tableMaster)); %> $<%= tableMasterSingular; %>): <%= fn.uCamelCase(fn.singular(tableMaster)); %>Resource | JsonResponse
+    public function show(<%= fn.uCamelCase(fn.singular(tableMaster)); %> $<%= fn.singular(tableMaster); %>): <%= fn.uCamelCase(fn.singular(tableMaster)); %>Resource | JsonResponse
     {
-        return new <%= fn.uCamelCase(fn.singular(tableMaster)); %>Resource($<%= tableMasterSingular; %>);
+        return new <%= fn.uCamelCase(fn.singular(tableMaster)); %>Resource($<%= fn.singular(tableMaster); %>);
     }
 
     /**
      * Update the specified resource in storage.
      */     
-    public function update(Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request $request, <%= fn.uCamelCase(fn.singular(tableMaster)); %> $<%= tableMasterSingular; %>): JsonResponse
+    public function update(Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request $request, <%= fn.uCamelCase(fn.singular(tableMaster)); %> $<%= fn.singular(tableMaster); %>): JsonResponse
     {
-        return Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service::execute($request, $<%= tableMasterSingular; %>);
+        return Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service::execute($request, $<%= fn.singular(tableMaster); %>);
     }
 
     /**

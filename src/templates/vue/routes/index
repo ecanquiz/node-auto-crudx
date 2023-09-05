@@ -8,13 +8,13 @@ export default [{
     component: () => import("@/modules/<%= pathModule; %>/views/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/Index.vue").then(m => m.default)
 }, {
     path: "/<%= tableMaster; %>/create",
-    name: "<%= tableMasterSingular; %>Create",
+    name: "<%= fn.singular(tableMaster); %>Create",
     meta: { middleware: [auth, admin] },
     component: () => import("@/modules/<%= pathModule; %>/views/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/CreateOrEdit.vue").then(m => m.default),
     props: true
 }, {
     path: "/<%= tableMaster; %>/edit/:id(\\d+)",
-    name: "<%= tableMasterSingular; %>Edit",
+    name: "<%= fn.singular(tableMaster); %>Edit",
     meta: { middleware: [auth, admin] },
     component: () => import("@/modules/<%= pathModule; %>/views/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/CreateOrEdit.vue").then(m => m.default),
     props: true

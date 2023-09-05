@@ -3,7 +3,7 @@ import useForm<%= fn.uCamelCase(fn.singular(tableMaster)); %> from "../../compos
 import type { <%= fn.uCamelCase(fn.singular(tableMaster)); %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableMaster)); %>";
 
 const props = defineProps<{
-  <%= tableMasterSingular; %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>
+  <%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>
   errors?: String | Object
   pending: Boolean  
 }>()
@@ -21,7 +21,7 @@ const {
   pending,
 
   v$
-} = useForm<%= fn.uCamelCase(fn.singular(tableMaster)); %>(props.<%= tableMasterSingular; %>)
+} = useForm<%= fn.uCamelCase(fn.singular(tableMaster)); %>(props.<%= fn.singular(tableMaster); %>)
 
 const submit = async () => {  
   const result = await v$.value.$validate();

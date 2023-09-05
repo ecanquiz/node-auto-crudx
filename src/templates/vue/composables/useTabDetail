@@ -4,7 +4,7 @@ import <%= tableDetailCurrent.tableNameSingularUCamelCase %>Service from "@/modu
 import type { Ref } from "vue";
 import type { <%= tableDetailCurrent.tableNameSingularUCamelCase %> } from "../../types/<%= tableDetailCurrent.tableNameSingularUCamelCase %>";
 
-export default (<%= tableMasterSingular; %>Id: string) => {
+export default (<%= fn.singular(tableMaster); %>Id: string) => {
   /*const saleTypeOptions = [
     { label: 'Mayor', value: 0 },
     { label: 'Detal', value: 1 }  
@@ -36,10 +36,10 @@ export default (<%= tableMasterSingular; %>Id: string) => {
   onMounted(() => get<%= tableDetailCurrent.tableNameUCamelCase %>())
   
   const get<%= tableDetailCurrent.tableNameUCamelCase %> = async () => {
-    if (!<%= tableMasterSingular; %>Id)
+    if (!<%= fn.singular(tableMaster); %>Id)
       return null 
     pending.value = true
-    <%= tableDetailCurrent.tableNameSingularUCamelCase %>Service.get<%= tableDetailCurrent.tableNameUCamelCase %>(<%= tableMasterSingular; %>Id)
+    <%= tableDetailCurrent.tableNameSingularUCamelCase %>Service.get<%= tableDetailCurrent.tableNameUCamelCase %>(<%= fn.singular(tableMaster); %>Id)
       .then(res => <%= tableDetailCurrent.tableName %>.value = res.data)
       .catch(err => errors.value = getError(err))
       .finally(() => pending.value = false) 

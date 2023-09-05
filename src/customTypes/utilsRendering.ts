@@ -7,8 +7,6 @@ export type Rendering = {
 export type ParamsMain = {
   pathModule?: string
   tableMaster: string
-  tableMasterSingular: string
-  // tableMasterUCamelCase: string
   tableStructure: string[][],
   tableMasterForeignKeysAssoc: string[][]
 }

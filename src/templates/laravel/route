@@ -7,9 +7,9 @@ use Modules\<%= pathModule; %>\Http\Controllers\<%= fn.uCamelCase(fn.singular(ta
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('<%= tableMaster; %>')->group(function () {
         Route::get('/', [<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller::class, 'index']);
-        Route::get('/{<%= tableMasterSingular; %>}', [<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller::class, 'show']);
+        Route::get('/{<%= fn.singular(tableMaster); %>}', [<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller::class, 'show']);
         Route::post('/', [<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller::class, 'store']);
-        Route::put('/{<%= tableMasterSingular; %>}', [<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller::class, 'update']);
+        Route::put('/{<%= fn.singular(tableMaster); %>}', [<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller::class, 'update']);
         Route::delete('/{id}', [<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller::class,'destroy']);
     });
     Route::get('/<%= tableMaster; %>-help', [<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller::class, 'help']);

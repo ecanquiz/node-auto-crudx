@@ -7,18 +7,18 @@ use Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tableMaste
 
 class Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service
 {
-    static public function execute(Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request $request, <%= fn.uCamelCase(fn.singular(tableMaster)); %> $<%= tableMasterSingular; %>): JsonResponse
+    static public function execute(Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request $request, <%= fn.uCamelCase(fn.singular(tableMaster)); %> $<%= fn.singular(tableMaster); %>): JsonResponse
     {          
-        // $<%= tableMasterSingular; %> = <%= fn.uCamelCase(fn.singular(tableMaster)); %>::find($request->id);
+        // $<%= fn.singular(tableMaster); %> = <%= fn.uCamelCase(fn.singular(tableMaster)); %>::find($request->id);
 
         <%
         tableStructure.forEach(function(field) {
             if  (!['id', 'created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
-        %>$<%= tableMasterSingular; %>-><%= field.column_name; %> = $request-><%= field.column_name; %>;
+        %>$<%= fn.singular(tableMaster); %>-><%= field.column_name; %> = $request-><%= field.column_name; %>;
         <%
             }});
         %>
-        $<%= tableMasterSingular; %>->save();
+        $<%= fn.singular(tableMaster); %>->save();
 
         return response()->json([
             "message"=> "Record updated successfully"

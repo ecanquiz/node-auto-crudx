@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import AppPageHeader from "@/components/AppPageHeader.vue";
-import FormCreateOrEdit from "../../components/<%= tableMasterSingularUCamelCase ; %>/FormCreateOrEdit.vue";
-import useCreateOrEdit from "../../composables/<%= tableMasterSingularUCamelCase ; %>/useCreateOrEdit";
+import FormCreateOrEdit from "../../components/<%= fn.uCamelCase(fn.singular(tableMaster)) ; %>/FormCreateOrEdit.vue";
+import useCreateOrEdit from "../../composables/<%= fn.uCamelCase(fn.singular(tableMaster)) ; %>/useCreateOrEdit";
     
 const props = defineProps<{ id?: string }>()
 
 const {
-  <%= tableMasterSingular; %>,
+  <%= fn.singular(tableMaster); %>,
   errors,
   <% tableMasterForeignKeysAssoc.forEach(function(tbl){
   %><%= tbl.foreign_table_name; %>,<%
@@ -24,7 +24,7 @@ const {
   <transition name="fade" mode="out-in">
     <AppPageHeader
       message="pending..."
-      v-if="pending && !<%= tableMasterSingular; %>"
+      v-if="pending && !<%= fn.singular(tableMaster); %>"
       key="pending"
     />
     <div v-else class="panel mt-6 p-4">           
@@ -41,7 +41,7 @@ const {
           class="p-5 border rounded shadow"
           @submit='submit'
           :id="props.id"
-          :<%= tableMasterSingular; %>='<%= tableMasterSingular; %>'
+          :<%= fn.singular(tableMaster); %>='<%= fn.singular(tableMaster); %>'
           :pending='pending'
           :errors='errors'
           <% tableMasterForeignKeysAssoc.forEach(function(tbl){

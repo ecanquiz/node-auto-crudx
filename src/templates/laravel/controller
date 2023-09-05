@@ -5,50 +5,50 @@ namespace Modules\<%= pathModule; %>\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\{Request, JsonResponse};
 use Illuminate\Routing\Controller;
-use Modules\<%= pathModule; %>\Http\Resources\<%= tableMasterSingularUCamelCase; %>Resource;
-use Modules\<%= pathModule; %>\Http\Requests\<%= tableMasterSingularUCamelCase; %>\{
-    Store<%= tableMasterSingularUCamelCase; %>Request,
-    Update<%= tableMasterSingularUCamelCase; %>Request
+use Modules\<%= pathModule; %>\Http\Resources\<%= fn.uCamelCase(fn.singular(tableMaster)); %>Resource;
+use Modules\<%= pathModule; %>\Http\Requests\<%= fn.uCamelCase(fn.singular(tableMaster)); %>\{
+    Store<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request,
+    Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request
 };
-use Modules\<%= pathModule; %>\Http\Services\<%= tableMasterSingularUCamelCase; %>\{
-    Store<%= tableMasterSingularUCamelCase; %>Service,
-    Index<%= tableMasterSingularUCamelCase; %>Service,
-    Update<%= tableMasterSingularUCamelCase; %>Service
+use Modules\<%= pathModule; %>\Http\Services\<%= fn.uCamelCase(fn.singular(tableMaster)); %>\{
+    Store<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service,
+    Index<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service,
+    Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service
 };
-use Modules\<%= pathModule; %>\Entities\<%= tableMasterSingularUCamelCase; %>;
+use Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tableMaster)); %>;
 
-class <%= tableMasterSingularUCamelCase; %>Controller extends Controller
+class <%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller extends Controller
 {
     /*
      * Display a listing of the resource.
      */
     public function index(Request $request): JsonResponse
     {
-        return Index<%= tableMasterSingularUCamelCase; %>Service::execute($request);
+        return Index<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service::execute($request);
     }
 
     /**
      * Store a newly created resource in storage.
      */ 
-    public function store(Store<%= tableMasterSingularUCamelCase; %>Request $request): JsonResponse
+    public function store(Store<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request $request): JsonResponse
     {
-        return Store<%= tableMasterSingularUCamelCase; %>Service::execute($request);
+        return Store<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service::execute($request);
     }
 
     /**
      * Display the specified resource.
     */
-    public function show(<%= tableMasterSingularUCamelCase; %> $<%= tableMasterSingular; %>): <%= tableMasterSingularUCamelCase; %>Resource | JsonResponse
+    public function show(<%= fn.uCamelCase(fn.singular(tableMaster)); %> $<%= tableMasterSingular; %>): <%= fn.uCamelCase(fn.singular(tableMaster)); %>Resource | JsonResponse
     {
-        return new <%= tableMasterSingularUCamelCase; %>Resource($<%= tableMasterSingular; %>);
+        return new <%= fn.uCamelCase(fn.singular(tableMaster)); %>Resource($<%= tableMasterSingular; %>);
     }
 
     /**
      * Update the specified resource in storage.
      */     
-    public function update(Update<%= tableMasterSingularUCamelCase; %>Request $request, <%= tableMasterSingularUCamelCase; %> $<%= tableMasterSingular; %>): JsonResponse
+    public function update(Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request $request, <%= fn.uCamelCase(fn.singular(tableMaster)); %> $<%= tableMasterSingular; %>): JsonResponse
     {
-        return Update<%= tableMasterSingularUCamelCase; %>Service::execute($request, $<%= tableMasterSingular; %>);
+        return Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service::execute($request, $<%= tableMasterSingular; %>);
     }
 
     /**
@@ -56,7 +56,7 @@ class <%= tableMasterSingularUCamelCase; %>Controller extends Controller
      */
     public function destroy(Request $request): JsonResponse
     {      
-        <%= tableMasterSingularUCamelCase; %>::destroy($request->id);
+        <%= fn.uCamelCase(fn.singular(tableMaster)); %>::destroy($request->id);
         return response()->json(204);
     }
 
@@ -65,6 +65,6 @@ class <%= tableMasterSingularUCamelCase; %>Controller extends Controller
      */
     public function help(): JsonResponse
     {
-        return response()->json(<%= tableMasterSingularUCamelCase; %>::all());
+        return response()->json(<%= fn.uCamelCase(fn.singular(tableMaster)); %>::all());
     }
 }

@@ -9,7 +9,7 @@ export type ParamsMain = {
   tableMaster: string
   tableMasterSingular: string
   tableMasterUCamelCase: string
-  tableMasterSingularUCamelCase: string
+  //tableMasterSingularUCamelCase: string
   tableStructure: string[][],
   tableMasterForeignKeysAssoc: string[][]
 }

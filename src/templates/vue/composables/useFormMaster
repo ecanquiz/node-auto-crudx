@@ -2,17 +2,17 @@ import { onMounted, reactive, ref, computed } from 'vue'
 import useHttp from "@/composables/useHttp";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
-import <%= tableMasterSingularUCamelCase; %>Service from "../../services/<%= tableMasterSingularUCamelCase; %>"
+import <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service from "../../services/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
 %>import <%= tbl.foreignTableNameSingularUCamelCase; %>Service from  "../../services/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
 }); %>
-import type { <%= tableMasterSingularUCamelCase; %> } from "../../types/<%= tableMasterSingularUCamelCase; %>"
+import type { <%= fn.uCamelCase(fn.singular(tableMaster)); %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
 %>import type { <%= tbl.foreignTableNameSingularUCamelCase; %> } from  "../../types/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
 }); %>
 // import { ascBubble } from "@/utils/helpers";
 
-export default (<%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>) => {
+export default (<%= tableMasterSingular; %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>) => {
   <% tableMasterForeignKeysAssoc.forEach(function(tbl){
     %>const <%= tbl.foreign_table_name; %> =  ref<<%= tbl.foreignTableNameSingularUCamelCase; %>[]>()<%
   }); %>

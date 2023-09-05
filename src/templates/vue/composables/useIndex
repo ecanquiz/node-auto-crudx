@@ -2,7 +2,7 @@ import { reactive, onMounted } from "vue"
 import { onBeforeRouteUpdate } from "vue-router"
 import useTableGrid from "@/composables/useTableGrid"
 import useHttp from "@/composables/useHttp"
-import <%= tableMasterSingularUCamelCase; %>Service from "../../services/<%= tableMasterSingularUCamelCase; %>"
+import <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service from "../../services/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
 
 type Params =  string | string[][] | Record<string, string> | URLSearchParams | undefined
 
@@ -30,7 +30,7 @@ export default () => {
   } = useTableGrid(data, "/<%= tableMaster; %>")
 
   const get<%= tableMasterUCamelCase ; %> = (routeQuery: string) => {
-    return <%= tableMasterSingularUCamelCase; %>Service.get<%= tableMasterUCamelCase ; %>(routeQuery)
+    return <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service.get<%= tableMasterUCamelCase ; %>(routeQuery)
       .then((response) => {
         errors.value = {}
         data.rows = response.data.rows.data
@@ -48,7 +48,7 @@ export default () => {
     if (rowId === undefined)
       return
     else if (confirm(`¿Estás seguro que desea eliminar el registro ${rowId}?`)) {    
-      return <%= tableMasterSingularUCamelCase; %>Service.delete<%= tableMasterSingularUCamelCase; %>(rowId)
+      return <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service.delete<%= fn.uCamelCase(fn.singular(tableMaster)); %>(rowId)
         .then((response) => {
           errors.value = {}
           get<%= tableMasterUCamelCase; %>(

@@ -3,15 +3,15 @@ import { defineAsyncComponent, shallowRef, ref } from 'vue'
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import { useRouter } from 'vue-router'
 
-const Tab<%= tableMasterSingularUCamelCase; %> = defineAsyncComponent(() => import('../../components/<%= tableMasterSingularUCamelCase ; %>/Tab<%= tableMasterSingularUCamelCase; %>.vue'))<%
+const Tab<%= fn.uCamelCase(fn.singular(tableMaster)); %> = defineAsyncComponent(() => import('../../components/<%= fn.uCamelCase(fn.singular(tableMaster)) ; %>/Tab<%= fn.uCamelCase(fn.singular(tableMaster)); %>.vue'))<%
 tableDetailOfMaster.forEach(function(table){ %>
-const Tab<%= table.tableNameSingularUCamelCase; %> = defineAsyncComponent(() => import('../../components/<%= tableMasterSingularUCamelCase ; %>/Tab<%= table.tableNameSingularUCamelCase; %>.vue'))<% })
+const Tab<%= table.tableNameSingularUCamelCase; %> = defineAsyncComponent(() => import('../../components/<%= fn.uCamelCase(fn.singular(tableMaster)) ; %>/Tab<%= table.tableNameSingularUCamelCase; %>.vue'))<% })
 ;%>
 
 const props = defineProps<{ id?: string }>()
 
 const tabs = [
-  { component: Tab<%= tableMasterSingularUCamelCase; %> , title: "<%= tableMasterSingularUCamelCase; %>" },<%
+  { component: Tab<%= fn.uCamelCase(fn.singular(tableMaster)); %> , title: "<%= fn.uCamelCase(fn.singular(tableMaster)); %>" },<%
 tableDetailOfMaster.forEach(function(table, index){ %>
   { component: Tab<%= table.tableNameSingularUCamelCase; %> , title: "<%= table.tableNameUCamelCase; %>" }<%= index < tableDetailOfMaster.length-1 ? ',' : '' %><% })
 ;%>

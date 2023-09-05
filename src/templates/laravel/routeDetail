@@ -6,7 +6,7 @@ use Modules\<%= pathModule; %>\Http\Controllers\<%= tableDetailCurrent.tableName
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('<%= tableDetailCurrent.tableName; %>')->group(function () {  
-        Route::get('/{<%= tableMasterSingular %>Id}', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class, 'getAllBy<%= tableMasterSingularUCamelCase %>']);
+        Route::get('/{<%= tableMasterSingular %>Id}', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class, 'getAllBy<%= fn.uCamelCase(fn.singular(tableMaster)) %>']);
         Route::get('/{<%= tableDetailCurrent.tableNameSingular; %>}', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class, 'show']);
         Route::post('/', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class, 'store']);
         Route::put('/{<%= tableDetailCurrent.tableNameSingular; %>}', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class, 'update']);

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import useForm<%= tableMasterSingularUCamelCase; %> from "../../composables/<%= tableMasterSingularUCamelCase; %>/useForm<%= tableMasterSingularUCamelCase; %>";
-import type { <%= tableMasterSingularUCamelCase; %> } from "../../types/<%= tableMasterSingularUCamelCase; %>";
+import useForm<%= fn.uCamelCase(fn.singular(tableMaster)); %> from "../../composables/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/useForm<%= fn.uCamelCase(fn.singular(tableMaster)); %>";
+import type { <%= fn.uCamelCase(fn.singular(tableMaster)); %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableMaster)); %>";
 
 const props = defineProps<{
-  <%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>
+  <%= tableMasterSingular; %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>
   errors?: String | Object
   pending: Boolean  
 }>()
 
 const emits = defineEmits<{
-  (e: 'submit', form: <%= tableMasterSingularUCamelCase; %>): void
+  (e: 'submit', form: <%= fn.uCamelCase(fn.singular(tableMaster)); %>): void
 }>()
 
 const {
@@ -21,7 +21,7 @@ const {
   pending,
 
   v$
-} = useForm<%= tableMasterSingularUCamelCase; %>(props.<%= tableMasterSingular; %>)
+} = useForm<%= fn.uCamelCase(fn.singular(tableMaster)); %>(props.<%= tableMasterSingular; %>)
 
 const submit = async () => {  
   const result = await v$.value.$validate();

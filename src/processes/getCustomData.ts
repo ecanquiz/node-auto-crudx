@@ -37,7 +37,7 @@ export default (
     tableMaster,
     tableMasterUCamelCase,
     tableMasterSingular,
-    tableMasterSingularUCamelCase,
+    //tableMasterSingularUCamelCase,
     tableStructure: dataOfBD.tableStructure,
     tableDetailOfMaster: crud.tableMasterIsHelper ? [] : dataOfBD.tableDetailOfMaster.map(
       r => ({

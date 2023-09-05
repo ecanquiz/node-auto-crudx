@@ -2,16 +2,16 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Modules\<%= pathModule; %>\Http\Controllers\<%= tableMasterSingularUCamelCase; %>Controller;
+use Modules\<%= pathModule; %>\Http\Controllers\<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('<%= tableMaster; %>')->group(function () {
-        Route::get('/', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'index']);
-        Route::get('/{<%= tableMasterSingular; %>}', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'show']);
-        Route::post('/', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'store']);
-        Route::put('/{<%= tableMasterSingular; %>}', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'update']);
-        Route::delete('/{id}', [<%= tableMasterSingularUCamelCase; %>Controller::class,'destroy']);
+        Route::get('/', [<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller::class, 'index']);
+        Route::get('/{<%= tableMasterSingular; %>}', [<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller::class, 'show']);
+        Route::post('/', [<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller::class, 'store']);
+        Route::put('/{<%= tableMasterSingular; %>}', [<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller::class, 'update']);
+        Route::delete('/{id}', [<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller::class,'destroy']);
     });
-    Route::get('/<%= tableMaster; %>-help', [<%= tableMasterSingularUCamelCase; %>Controller::class, 'help']);
+    Route::get('/<%= tableMaster; %>-help', [<%= fn.uCamelCase(fn.singular(tableMaster)); %>Controller::class, 'help']);
 });
 

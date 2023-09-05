@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { toRaw } from "vue"
-import useForm<%= tableDetailCurrent.tableNameSingularUCamelCase; %> from "../../composables/<%= tableMasterSingularUCamelCase; %>/useForm<%= tableDetailCurrent.tableNameSingularUCamelCase; %>";
+import useForm<%= tableDetailCurrent.tableNameSingularUCamelCase; %> from "../../composables/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/useForm<%= tableDetailCurrent.tableNameSingularUCamelCase; %>";
 import type { RadioOption } from "@/types/RadioOption";
 import type { <%= tableDetailCurrent.tableNameSingularUCamelCase; %> } from "../../types/<%= tableDetailCurrent.tableNameSingularUCamelCase; %>";
 

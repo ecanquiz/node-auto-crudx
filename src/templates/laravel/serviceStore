@@ -1,15 +1,15 @@
 <?php
-namespace Modules\<%= pathModule; %>\Http\Services\<%= tableMasterSingularUCamelCase; %>;
+namespace Modules\<%= pathModule; %>\Http\Services\<%= fn.uCamelCase(fn.singular(tableMaster)); %>;
 
 use Illuminate\Http\JsonResponse;
-use Modules\<%= pathModule; %>\Http\Requests\<%= tableMasterSingularUCamelCase; %>\Store<%= tableMasterSingularUCamelCase; %>Request;
-use Modules\<%= pathModule; %>\Entities\<%= tableMasterSingularUCamelCase; %>;
+use Modules\<%= pathModule; %>\Http\Requests\<%= fn.uCamelCase(fn.singular(tableMaster)); %>\Store<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request;
+use Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tableMaster)); %>;
 
-class Store<%= tableMasterSingularUCamelCase; %>Service
+class Store<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service
 {
-    static public function execute(Store<%= tableMasterSingularUCamelCase; %>Request $request): JsonResponse
+    static public function execute(Store<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request $request): JsonResponse
     {
-        $<%= tableMasterSingular; %> = new <%= tableMasterSingularUCamelCase; %>;
+        $<%= tableMasterSingular; %> = new <%= fn.uCamelCase(fn.singular(tableMaster)); %>;
 
         <%
         tableStructure.forEach(function(field) {

@@ -1,23 +1,23 @@
 import Http from "@/utils/Http";
-import type { <%= tableMasterSingularUCamelCase; %> } from "../types/<%= tableMasterSingularUCamelCase; %>";
+import type { <%= fn.uCamelCase(fn.singular(tableMaster)); %> } from "../types/<%= fn.uCamelCase(fn.singular(tableMaster)); %>";
 
 export const get<%= tableMasterUCamelCase; %> = (query: string) => {  
   return Http.get(`/api/<%= tableMaster; %>/?${query}`);
 }
  
-export const get<%= tableMasterSingularUCamelCase; %> = (<%= tableMasterSingular; %>Id: string) => { 
+export const get<%= fn.uCamelCase(fn.singular(tableMaster)); %> = (<%= tableMasterSingular; %>Id: string) => { 
   return Http.get(`/api/<%= tableMaster; %>/${<%= tableMasterSingular; %>Id}`);
 }
 
-export const insert<%= tableMasterSingularUCamelCase; %> = (payload: <%= tableMasterSingularUCamelCase; %>) => {   
+export const insert<%= fn.uCamelCase(fn.singular(tableMaster)); %> = (payload: <%= fn.uCamelCase(fn.singular(tableMaster)); %>) => {   
   return Http.post("/api/<%= tableMaster; %>", payload);
 }
   
-export const update<%= tableMasterSingularUCamelCase; %> = (<%= tableMasterSingular; %>Id: string, payload: <%= tableMasterSingularUCamelCase; %>) => {   
+export const update<%= fn.uCamelCase(fn.singular(tableMaster)); %> = (<%= tableMasterSingular; %>Id: string, payload: <%= fn.uCamelCase(fn.singular(tableMaster)); %>) => {   
   return Http.put(`/api/<%= tableMaster; %>/${<%= tableMasterSingular; %>Id}`, payload);
 }
   
-export const delete<%= tableMasterSingularUCamelCase; %> = (<%= tableMasterSingular; %>Id: string) => { 
+export const delete<%= fn.uCamelCase(fn.singular(tableMaster)); %> = (<%= tableMasterSingular; %>Id: string) => { 
   return Http.delete(`/api/<%= tableMaster; %>/${<%= tableMasterSingular; %>Id}`);
 }
 
@@ -27,9 +27,9 @@ export const getHelp<%= tableMasterUCamelCase; %> = () => {
 
 export default {
   get<%= tableMasterUCamelCase; %>,
-  get<%= tableMasterSingularUCamelCase; %>,
-  insert<%= tableMasterSingularUCamelCase; %>,
-  update<%= tableMasterSingularUCamelCase; %>,
-  delete<%= tableMasterSingularUCamelCase; %>,
+  get<%= fn.uCamelCase(fn.singular(tableMaster)); %>,
+  insert<%= fn.uCamelCase(fn.singular(tableMaster)); %>,
+  update<%= fn.uCamelCase(fn.singular(tableMaster)); %>,
+  delete<%= fn.uCamelCase(fn.singular(tableMaster)); %>,
   getHelp<%= tableMasterUCamelCase; %>
 }

@@ -21,7 +21,7 @@ class <%= tableDetailCurrent.tableNameSingularUCamelCase ;%>Controller extends C
     /**
      * Display a listing of the resource by parent.
      */
-    public function getAllBy<%= tableMasterSingularUCamelCase ;%>(Request $request)//: Collection
+    public function getAllBy<%= fn.uCamelCase(fn.singular(tableMaster)) ;%>(Request $request)//: Collection
     {
         return <%= tableDetailCurrent.tableNameSingularUCamelCase ;%>::where('<%= tableDetailCurrent.idForeignKey %>', $request-><%= fn.camelCase(tableDetailCurrent.idForeignKey) %>)->get();
     }

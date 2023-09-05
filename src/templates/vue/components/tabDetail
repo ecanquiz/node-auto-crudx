@@ -2,7 +2,7 @@
   import {ref} from 'vue'
   import Form<%= tableDetailCurrent.tableNameSingularUCamelCase %> from './Form<%= tableDetailCurrent.tableNameSingularUCamelCase %>.vue'
   import Table<%= tableDetailCurrent.tableNameSingularUCamelCase %> from './Table<%= tableDetailCurrent.tableNameSingularUCamelCase %>.vue'
-  import useTab<%= tableDetailCurrent.tableNameSingularUCamelCase %> from '../../composables/<%= tableMasterSingularUCamelCase; %>/useTab<%= tableDetailCurrent.tableNameSingularUCamelCase %>'
+  import useTab<%= tableDetailCurrent.tableNameSingularUCamelCase %> from '../../composables/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/useTab<%= tableDetailCurrent.tableNameSingularUCamelCase %>'
   const componentKey = ref(0);
   
   const props = defineProps<{ id?: string }>()

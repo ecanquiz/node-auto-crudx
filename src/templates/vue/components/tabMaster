@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue"
-import useTab<%= tableMasterSingularUCamelCase; %> from "../../composables/<%= tableMasterSingularUCamelCase; %>/useTab<%= tableMasterSingularUCamelCase; %>";
-import Form<%= tableMasterSingularUCamelCase; %> from './Form<%= tableMasterSingularUCamelCase; %>.vue';
+import useTab<%= fn.uCamelCase(fn.singular(tableMaster)); %> from "../../composables/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/useTab<%= fn.uCamelCase(fn.singular(tableMaster)); %>";
+import Form<%= fn.uCamelCase(fn.singular(tableMaster)); %> from './Form<%= fn.uCamelCase(fn.singular(tableMaster)); %>.vue';
 
 const props = defineProps<{ id?: string }>()
 
@@ -10,7 +10,7 @@ const {
   errors,
   pending,      
   submit    
-} = useTab<%= tableMasterSingularUCamelCase; %>(props.id)
+} = useTab<%= fn.uCamelCase(fn.singular(tableMaster)); %>(props.id)
 
 const isTrue = computed(
   () => <%= tableMasterSingular; %><% tableMasterForeignKeysAssoc.forEach(function(tbl){ %> && <%= tableMasterSingular; %>.<%= tbl.column_name; %> <% }); %>|| !props.id
@@ -19,7 +19,7 @@ const isTrue = computed(
 
 <template>
 <div class="">
-  <Form<%= tableMasterSingularUCamelCase; %>
+  <Form<%= fn.uCamelCase(fn.singular(tableMaster)); %>
     v-if="isTrue"
     :<%= tableMasterSingular; %>="<%= tableMasterSingular; %>"
     :errors="errors"

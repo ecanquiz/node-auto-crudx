@@ -17,9 +17,8 @@ export default (
   excludeFields: string[]
 ) => {
   const tableMaster: string = getDataOfBDParams.tableMaster
-  const tableMasterUCamelCase: string = uCamelCase(getDataOfBDParams.tableMaster)
+  //const tableMasterUCamelCase: string = uCamelCase(getDataOfBDParams.tableMaster)
   const tableMasterSingular: string = singular(getDataOfBDParams.tableMaster)
-  const tableMasterSingularUCamelCase: string = uCamelCase(tableMasterSingular)
   const tableStructureClean: string[][] = dataOfBD.tableStructure.filter(    
     field => !(excludeFields.includes((field as unknown as fieldStructure).column_name))
   )
@@ -35,9 +34,8 @@ export default (
   return {
     fn,
     tableMaster,
-    tableMasterUCamelCase,
+    //tableMasterUCamelCase,
     tableMasterSingular,
-    //tableMasterSingularUCamelCase,
     tableStructure: dataOfBD.tableStructure,
     tableDetailOfMaster: crud.tableMasterIsHelper ? [] : dataOfBD.tableDetailOfMaster.map(
       r => ({

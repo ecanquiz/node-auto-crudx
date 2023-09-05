@@ -29,8 +29,8 @@ export default () => {
     setSort, 
   } = useTableGrid(data, "/<%= tableMaster; %>")
 
-  const get<%= tableMasterUCamelCase ; %> = (routeQuery: string) => {
-    return <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service.get<%= tableMasterUCamelCase ; %>(routeQuery)
+  const get<%= fn.uCamelCase(tableMaster) ; %> = (routeQuery: string) => {
+    return <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service.get<%= fn.uCamelCase(tableMaster) ; %>(routeQuery)
       .then((response) => {
         errors.value = {}
         data.rows = response.data.rows.data
@@ -51,7 +51,7 @@ export default () => {
       return <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service.delete<%= fn.uCamelCase(fn.singular(tableMaster)); %>(rowId)
         .then((response) => {
           errors.value = {}
-          get<%= tableMasterUCamelCase; %>(
+          get<%= fn.uCamelCase(tableMaster); %>(
             new URLSearchParams(route.query as Params).toString()
           )
         })
@@ -64,14 +64,14 @@ export default () => {
 
   onBeforeRouteUpdate(async (to, from) => {      
     if (to.query !== from.query) {        
-      await get<%= tableMasterUCamelCase; %>(
+      await get<%= fn.uCamelCase(tableMaster); %>(
         new URLSearchParams(to.query as Params).toString()
       )
     }
   })
 
   onMounted(() => {
-    get<%= tableMasterUCamelCase; %>(
+    get<%= fn.uCamelCase(tableMaster); %>(
       new URLSearchParams(route.query as Params).toString()
     )
   })

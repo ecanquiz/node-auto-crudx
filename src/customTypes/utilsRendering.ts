@@ -8,8 +8,7 @@ export type ParamsMain = {
   pathModule?: string
   tableMaster: string
   tableMasterSingular: string
-  tableMasterUCamelCase: string
-  //tableMasterSingularUCamelCase: string
+  // tableMasterUCamelCase: string
   tableStructure: string[][],
   tableMasterForeignKeysAssoc: string[][]
 }

@@ -20,7 +20,7 @@ const {
     
 <template>
 <div>
-  <AppPageHeader><%= tableMasterUCamelCase; %> / {{ !props.id ? "Crear" : "Editar" }}</AppPageHeader>
+  <AppPageHeader><%= fn.uCamelCase(tableMaster); %> / {{ !props.id ? "Crear" : "Editar" }}</AppPageHeader>
   <transition name="fade" mode="out-in">
     <AppPageHeader
       message="pending..."

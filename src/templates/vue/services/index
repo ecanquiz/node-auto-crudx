@@ -1,7 +1,7 @@
 import Http from "@/utils/Http";
 import type { <%= fn.uCamelCase(fn.singular(tableMaster)); %> } from "../types/<%= fn.uCamelCase(fn.singular(tableMaster)); %>";
 
-export const get<%= tableMasterUCamelCase; %> = (query: string) => {  
+export const get<%= fn.uCamelCase(tableMaster); %> = (query: string) => {  
   return Http.get(`/api/<%= tableMaster; %>/?${query}`);
 }
  
@@ -21,15 +21,15 @@ export const delete<%= fn.uCamelCase(fn.singular(tableMaster)); %> = (<%= tableM
   return Http.delete(`/api/<%= tableMaster; %>/${<%= tableMasterSingular; %>Id}`);
 }
 
-export const getHelp<%= tableMasterUCamelCase; %> = () => {
+export const getHelp<%= fn.uCamelCase(tableMaster); %> = () => {
   return Http.get(`/api/<%= tableMaster; %>-help`);
 }
 
 export default {
-  get<%= tableMasterUCamelCase; %>,
+  get<%= fn.uCamelCase(tableMaster); %>,
   get<%= fn.uCamelCase(fn.singular(tableMaster)); %>,
   insert<%= fn.uCamelCase(fn.singular(tableMaster)); %>,
   update<%= fn.uCamelCase(fn.singular(tableMaster)); %>,
   delete<%= fn.uCamelCase(fn.singular(tableMaster)); %>,
-  getHelp<%= tableMasterUCamelCase; %>
+  getHelp<%= fn.uCamelCase(tableMaster); %>
 }

@@ -1,14 +1,14 @@
 <?php
 
-namespace Modules\<%= pathModule; %>\Http\Services\<%= tableMasterSingularUCamelCase; %>;
+namespace Modules\<%= pathModule; %>\Http\Services\<%= fn.uCamelCase(fn.singular(tableMaster)); %>;
 
 use Illuminate\Http\{
     Request,
     JsonResponse
 };
-use Modules\<%= pathModule; %>\Entities\<%= tableMasterSingularUCamelCase; %>;
+use Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tableMaster)); %>;
 
-class Index<%= tableMasterSingularUCamelCase; %>Service
+class Index<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service
 {
 
   /**
@@ -17,7 +17,7 @@ class Index<%= tableMasterSingularUCamelCase; %>Service
   static public function execute(Request $request): JsonResponse
   {
       /* Initialize query */
-        $query = <%= tableMasterSingularUCamelCase; %>::query();
+        $query = <%= fn.uCamelCase(fn.singular(tableMaster)); %>::query();
 
         /* search */
         $search = $request->input("search");

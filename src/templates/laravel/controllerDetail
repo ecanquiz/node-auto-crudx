@@ -6,40 +6,40 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
 use Illuminate\Database\Eloquent\Collection;
-use Modules\<%= pathModule; %>\Entities\<%= tableDetailCurrent.tableNameSingularUCamelCase ;%>;
-use Modules\<%= pathModule; %>\Http\Requests\<%= tableDetailCurrent.tableNameSingularUCamelCase ;%>\{
-    Store<%= tableDetailCurrent.tableNameSingularUCamelCase ;%>Request,
-    Update<%= tableDetailCurrent.tableNameSingularUCamelCase ;%>Request    
+use Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>;
+use Modules\<%= pathModule; %>\Http\Requests\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>\{
+    Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Request,
+    Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Request    
 };
-use Modules\<%= pathModule; %>\Http\Services\<%= tableDetailCurrent.tableNameSingularUCamelCase ;%>\{
-    Store<%= tableDetailCurrent.tableNameSingularUCamelCase ;%>Service,
-    Update<%= tableDetailCurrent.tableNameSingularUCamelCase ;%>Service
+use Modules\<%= pathModule; %>\Http\Services\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>\{
+    Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Service,
+    Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Service
 }; 
 
-class <%= tableDetailCurrent.tableNameSingularUCamelCase ;%>Controller extends Controller
+class <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Controller extends Controller
 {
     /**
      * Display a listing of the resource by parent.
      */
-    public function getAllBy<%= tableMasterSingularUCamelCase ;%>(Request $request)//: Collection
+    public function getAllBy<%= fn.uCamelCase(fn.singular(tableMaster)) ;%>(Request $request)//: Collection
     {
-        return <%= tableDetailCurrent.tableNameSingularUCamelCase ;%>::where('<%= tableDetailCurrent.idForeignKey %>', $request-><%= fn.camelCase(tableDetailCurrent.idForeignKey) %>)->get();
+        return <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>::where('<%= tableDetailCurrent.idForeignKey %>', $request-><%= fn.camelCase(tableDetailCurrent.idForeignKey) %>)->get();
     }
 
     /**
      * Store a newly created resource in storage.
      */    
-    public function store(Store<%= tableDetailCurrent.tableNameSingularUCamelCase ;%>Request $request): JsonResponse
+    public function store(Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Request $request): JsonResponse
     {    
-        return Store<%= tableDetailCurrent.tableNameSingularUCamelCase ;%>Service::execute($request);
+        return Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Service::execute($request);
     }
     
     /**
      * Update the specified resource in storage.
      */
-    public function update(Update<%= tableDetailCurrent.tableNameSingularUCamelCase ;%>Request $request, <%= tableDetailCurrent.tableNameSingularUCamelCase ;%> $<%= tableDetailCurrent.tableNameSingular ;%>): JsonResponse
+    public function update(Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Request $request, <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%> $<%= fn.singular(tableDetailCurrent.tableName) ;%>): JsonResponse
     {
-        return Update<%= tableDetailCurrent.tableNameSingularUCamelCase ;%>Service::execute($request, $<%= tableDetailCurrent.tableNameSingular ;%>);
+        return Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Service::execute($request, $<%= fn.singular(tableDetailCurrent.tableName) ;%>);
     }
 
     /**
@@ -47,9 +47,8 @@ class <%= tableDetailCurrent.tableNameSingularUCamelCase ;%>Controller extends C
      */
     public function destroy(Request $request): JsonResponse
     {
-        <%= tableDetailCurrent.tableNameSingularUCamelCase ;%>::destroy($request->id);
+        <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>::destroy($request->id);
 
         return response()->json(204);            
     }
 }
-

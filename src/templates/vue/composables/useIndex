@@ -2,7 +2,7 @@ import { reactive, onMounted } from "vue"
 import { onBeforeRouteUpdate } from "vue-router"
 import useTableGrid from "@/composables/useTableGrid"
 import useHttp from "@/composables/useHttp"
-import <%= tableMasterSingularUCamelCase; %>Service from "../../services/<%= tableMasterSingularUCamelCase; %>"
+import <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service from "../../services/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
 
 type Params =  string | string[][] | Record<string, string> | URLSearchParams | undefined
 
@@ -29,8 +29,8 @@ export default () => {
     setSort, 
   } = useTableGrid(data, "/<%= tableMaster; %>")
 
-  const get<%= tableMasterUCamelCase ; %> = (routeQuery: string) => {
-    return <%= tableMasterSingularUCamelCase; %>Service.get<%= tableMasterUCamelCase ; %>(routeQuery)
+  const get<%= fn.uCamelCase(tableMaster) ; %> = (routeQuery: string) => {
+    return <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service.get<%= fn.uCamelCase(tableMaster) ; %>(routeQuery)
       .then((response) => {
         errors.value = {}
         data.rows = response.data.rows.data
@@ -48,10 +48,10 @@ export default () => {
     if (rowId === undefined)
       return
     else if (confirm(`¿Estás seguro que desea eliminar el registro ${rowId}?`)) {    
-      return <%= tableMasterSingularUCamelCase; %>Service.delete<%= tableMasterSingularUCamelCase; %>(rowId)
+      return <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service.delete<%= fn.uCamelCase(fn.singular(tableMaster)); %>(rowId)
         .then((response) => {
           errors.value = {}
-          get<%= tableMasterUCamelCase; %>(
+          get<%= fn.uCamelCase(tableMaster); %>(
             new URLSearchParams(route.query as Params).toString()
           )
         })
@@ -64,14 +64,14 @@ export default () => {
 
   onBeforeRouteUpdate(async (to, from) => {      
     if (to.query !== from.query) {        
-      await get<%= tableMasterUCamelCase; %>(
+      await get<%= fn.uCamelCase(tableMaster); %>(
         new URLSearchParams(to.query as Params).toString()
       )
     }
   })
 
   onMounted(() => {
-    get<%= tableMasterUCamelCase; %>(
+    get<%= fn.uCamelCase(tableMaster); %>(
       new URLSearchParams(route.query as Params).toString()
     )
   })

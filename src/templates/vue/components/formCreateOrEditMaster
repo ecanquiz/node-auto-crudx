@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from "vue"
-import type { <%= tableMasterSingularUCamelCase; %> } from "../../types/<%= tableMasterSingularUCamelCase; %>"
+import type { <%= fn.uCamelCase(fn.singular(tableMaster)); %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
 %>import type { <%= tbl.foreignTableNameSingularUCamelCase; %> } from  "../../types/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
 }); %>
@@ -8,7 +8,7 @@ import type { <%= tableMasterSingularUCamelCase; %> } from "../../types/<%= tabl
 
 const props = defineProps<{
   id?: string
-  <%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>
+  <%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>
   <% tableMasterForeignKeysAssoc.forEach(function(tbl){
   %><%= tbl.foreign_table_name; %>?: <%= tbl.foreignTableNameSingularUCamelCase; %>[]<%
   })%> 
@@ -17,10 +17,10 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'submit', <%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>, <%= tableMasterSingular; %>Id?: string): void
+  (e: 'submit', <%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>, <%= fn.singular(tableMaster); %>Id?: string): void
 }>()
 
-const form: <%= tableMasterSingularUCamelCase; %> = reactive(props.<%= tableMasterSingular; %>)
+const form: <%= fn.uCamelCase(fn.singular(tableMaster)); %> = reactive(props.<%= fn.singular(tableMaster); %>)
 
 const submit = async () => {
   emit('submit', {

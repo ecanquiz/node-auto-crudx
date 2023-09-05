@@ -7,18 +7,15 @@ export type Rendering = {
 export type ParamsMain = {
   pathModule?: string
   tableMaster: string
-  tableMasterSingular: string
-  tableMasterUCamelCase: string
-  tableMasterSingularUCamelCase: string
   tableStructure: string[][],
   tableMasterForeignKeysAssoc: string[][]
 }
 
 export type tableDetailOfMasterCustomized = {
   tableName: string
-  tableNameSingular: string
-  tableNameUCamelCase: string
-  tableNameSingularUCamelCase: string
+  //tableNameSingular: string
+  //tableNameUCamelCase: string
+  //tableNameSingularUCamelCase: string
   tableStructureOfDetails: any[] // PENDING BY CHECKOUT
 }
 

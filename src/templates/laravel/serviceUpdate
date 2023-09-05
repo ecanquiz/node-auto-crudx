@@ -1,24 +1,24 @@
 <?php
-namespace Modules\<%= pathModule; %>\Http\Services\<%= tableMasterSingularUCamelCase; %>;
+namespace Modules\<%= pathModule; %>\Http\Services\<%= fn.uCamelCase(fn.singular(tableMaster)); %>;
 
 use Illuminate\Http\JsonResponse;
-use Modules\<%= pathModule; %>\Http\Requests\<%= tableMasterSingularUCamelCase; %>\Update<%= tableMasterSingularUCamelCase; %>Request;
-use Modules\<%= pathModule; %>\Entities\<%= tableMasterSingularUCamelCase; %>;
+use Modules\<%= pathModule; %>\Http\Requests\<%= fn.uCamelCase(fn.singular(tableMaster)); %>\Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request;
+use Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tableMaster)); %>;
 
-class Update<%= tableMasterSingularUCamelCase; %>Service
+class Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service
 {
-    static public function execute(Update<%= tableMasterSingularUCamelCase; %>Request $request, <%= tableMasterSingularUCamelCase; %> $<%= tableMasterSingular; %>): JsonResponse
+    static public function execute(Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request $request, <%= fn.uCamelCase(fn.singular(tableMaster)); %> $<%= fn.singular(tableMaster); %>): JsonResponse
     {          
-        // $<%= tableMasterSingular; %> = <%= tableMasterSingularUCamelCase; %>::find($request->id);
+        // $<%= fn.singular(tableMaster); %> = <%= fn.uCamelCase(fn.singular(tableMaster)); %>::find($request->id);
 
         <%
         tableStructure.forEach(function(field) {
             if  (!['id', 'created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
-        %>$<%= tableMasterSingular; %>-><%= field.column_name; %> = $request-><%= field.column_name; %>;
+        %>$<%= fn.singular(tableMaster); %>-><%= field.column_name; %> = $request-><%= field.column_name; %>;
         <%
             }});
         %>
-        $<%= tableMasterSingular; %>->save();
+        $<%= fn.singular(tableMaster); %>->save();
 
         return response()->json([
             "message"=> "Record updated successfully"

@@ -5,7 +5,7 @@ namespace Modules\<%= pathModule; %>\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class <%= tableMasterSingularUCamelCase; %>Resource extends JsonResource
+class <%= fn.uCamelCase(fn.singular(tableMaster)); %>Resource extends JsonResource
 {
     /**
      * Transform the resource into an array.

@@ -1,10 +1,10 @@
 import { computed, onMounted, reactive, ref } from 'vue'
 import useHttp from "@/composables/useHttp";
-import <%= tableDetailCurrent.tableNameSingularUCamelCase %>Service from "@/modules/<%= pathModule %>/services/<%= tableDetailCurrent.tableNameSingularUCamelCase %>";
+import <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service from "@/modules/<%= pathModule %>/services/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>";
 import type { Ref } from "vue";
-import type { <%= tableDetailCurrent.tableNameSingularUCamelCase %> } from "../../types/<%= tableDetailCurrent.tableNameSingularUCamelCase %>";
+import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>";
 
-export default (<%= tableMasterSingular; %>Id: string) => {
+export default (<%= fn.singular(tableMaster); %>Id: string) => {
   /*const saleTypeOptions = [
     { label: 'Mayor', value: 0 },
     { label: 'Detal', value: 1 }  
@@ -14,14 +14,14 @@ export default (<%= tableMasterSingular; %>Id: string) => {
     { label: 'Activo', value: 1 }  
   ]*/
   
-  const <%= tableDetailCurrent.tableNameSingular; %>: <%= tableDetailCurrent.tableNameSingularUCamelCase; %> = reactive({<%
+  const <%= fn.singular(tableDetailCurrent.tableName); %>: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> = reactive({<%
   tableDetailCurrent.tableStructureOfDetails[0].filter(
       f => !['created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
     ).forEach(function(field){ %>
     <%= field.column_name; %>: "", %><% }); %>
   })
   
-  const <%= tableDetailCurrent.tableName %>: Ref<<%= tableDetailCurrent.tableNameSingularUCamelCase %>[]>  = ref([])
+  const <%= tableDetailCurrent.tableName %>: Ref<<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>[]>  = ref([])
   const panelOpened = ref(false)
   const closeButtonOpened = computed(()=> panelOpened.value ? "Cerrar" : "Abrir")
   const closeClassOpened = computed(()=> panelOpened.value ? "btn-default" : "btn-primary")
@@ -33,22 +33,22 @@ export default (<%= tableMasterSingular; %>Id: string) => {
     getError
   } = useHttp()
 
-  onMounted(() => get<%= tableDetailCurrent.tableNameUCamelCase %>())
+  onMounted(() => get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>())
   
-  const get<%= tableDetailCurrent.tableNameUCamelCase %> = async () => {
-    if (!<%= tableMasterSingular; %>Id)
+  const get<%= fn.uCamelCase(tableDetailCurrent.tableName) %> = async () => {
+    if (!<%= fn.singular(tableMaster); %>Id)
       return null 
     pending.value = true
-    <%= tableDetailCurrent.tableNameSingularUCamelCase %>Service.get<%= tableDetailCurrent.tableNameUCamelCase %>(<%= tableMasterSingular; %>Id)
+    <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service.get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>(<%= fn.singular(tableMaster); %>Id)
       .then(res => <%= tableDetailCurrent.tableName %>.value = res.data)
       .catch(err => errors.value = getError(err))
       .finally(() => pending.value = false) 
   }
 
-  const insert<%= tableDetailCurrent.tableNameSingularUCamelCase %> = async (payload: <%= tableDetailCurrent.tableNameSingularUCamelCase %>) => {
+  const insert<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = async (payload: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>) => {
     pending.value = true
     payload.product_id = productId
-    return <%= tableDetailCurrent.tableNameSingularUCamelCase %>Service.insert<%= tableDetailCurrent.tableNameSingularUCamelCase %>(payload)
+    return <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service.insert<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(payload)
       .then((response) => {
         panelOpened.value = false
         get<%= tableDetailCurrent.tableName %>()    
@@ -64,14 +64,14 @@ export default (<%= tableMasterSingular; %>Id: string) => {
       })
   }
 
-  const update<%= tableDetailCurrent.tableNameSingularUCamelCase %> = async (payload: <%= tableDetailCurrent.tableNameSingularUCamelCase %>, <%= tableDetailCurrent.tableNameSingular %>Id: string) => {
+  const update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = async (payload: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>, <%= fn.singular(tableDetailCurrent.tableName) %>Id: string) => {
     pending.value = true
     payload.product_id = productId
     payload._method = 'PUT'        
-    return <%= tableDetailCurrent.tableNameSingularUCamelCase %>Service.update<%= tableDetailCurrent.tableNameSingularUCamelCase %>(payload, <%= tableDetailCurrent.tableNameSingular %>Id)
+    return <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service.update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(payload, <%= fn.singular(tableDetailCurrent.tableName) %>Id)
       .then((response) => {        
         panelOpened.value = false
-        get<%= tableDetailCurrent.tableNameUCamelCase %>()    
+        get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>()    
         alert( response.data.message )     
       })
       .catch((err) => {                
@@ -83,27 +83,27 @@ export default (<%= tableMasterSingular; %>Id: string) => {
       })
   }
   
-  const submit = (payload: <%= tableDetailCurrent.tableNameSingularUCamelCase %>) => {    
-    !<%= tableDetailCurrent.tableNameSingular %>.id ? insert<%= tableDetailCurrent.tableNameSingularUCamelCase %> (payload)  : update<%= tableDetailCurrent.tableNameSingularUCamelCase %>(payload, <%= tableDetailCurrent.tableNameSingular %>.id)
+  const submit = (payload: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>) => {    
+    !<%= fn.singular(tableDetailCurrent.tableName) %>.id ? insert<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> (payload)  : update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(payload, <%= fn.singular(tableDetailCurrent.tableName) %>.id)
   }
 
-  const edit = (<%= tableDetailCurrent.tableNameSingular %>Edit: <%= tableDetailCurrent.tableNameSingularUCamelCase %>) => {
+  const edit = (<%= fn.singular(tableDetailCurrent.tableName) %>Edit: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>) => {
     // presentation.status = presentationEdit.sale_type ? 1 : 0<%
   tableDetailCurrent.tableStructureOfDetails[0].filter(
       f => !['created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
     ).forEach(function(field){ %>
-    <%= tableDetailCurrent.tableNameSingular; %>.<%= field.column_name; %> = <%= tableDetailCurrent.tableNameSingular %>Edit.<%= field.column_name; %>%><% }); %>
+    <%= fn.singular(tableDetailCurrent.tableName); %>.<%= field.column_name; %> = <%= fn.singular(tableDetailCurrent.tableName) %>Edit.<%= field.column_name; %>%><% }); %>
     panelOpened.value = true
   }
   
-  const remove = async (<%= tableDetailCurrent.tableNameSingular %>Id: string) => {
-    if (<%= tableDetailCurrent.tableNameSingular %>Id === undefined)
+  const remove = async (<%= fn.singular(tableDetailCurrent.tableName) %>Id: string) => {
+    if (<%= fn.singular(tableDetailCurrent.tableName) %>Id === undefined)
       return
-    else if (confirm(`¿Estás seguro que desea eliminar el registro ${<%= tableDetailCurrent.tableNameSingular %>Id}?`)) {  
+    else if (confirm(`¿Estás seguro que desea eliminar el registro ${<%= fn.singular(tableDetailCurrent.tableName) %>Id}?`)) {  
       pending.value = true    
-      return <%= tableDetailCurrent.tableNameSingularUCamelCase %>Service.delete<%= tableDetailCurrent.tableNameSingularUCamelCase %>(<%= tableDetailCurrent.tableNameSingular %>Id)
+      return <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service.delete<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(<%= fn.singular(tableDetailCurrent.tableName) %>Id)
         .then((response) => {        
-          get<%= tableDetailCurrent.tableNameUCamelCase %>()
+          get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>()
         })
         .catch((err) => {                
           console.log( err.response.data )
@@ -120,12 +120,12 @@ export default (<%= tableMasterSingular; %>Id: string) => {
     closeButtonOpened,
     closeClassOpened,
     <%= tableDetailCurrent.tableName %>,
-    <%= tableDetailCurrent.tableNameSingular %>,
+    <%= fn.singular(tableDetailCurrent.tableName) %>,
     /*saleTypeOptions,
     statusOptions,*/
 
     edit,
-    get<%= tableDetailCurrent.tableNameUCamelCase %>,
+    get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>,
     remove, 
     submit
   }

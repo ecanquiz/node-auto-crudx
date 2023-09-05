@@ -2,7 +2,7 @@
   %>import type { <%= tbl.foreignTableNameSingularUCamelCase; %> } from  "./<%= tbl.foreignTableNameSingularUCamelCase; %>"<% 
 }); %>
 
-export type <%= tableMasterSingularUCamelCase; %> = {
+export type <%= fn.uCamelCase(fn.singular(tableMaster)); %> = {
 <% tableStructure.forEach(function(field){ %>  <%= field.column_name; %>?:<% if (field.data_type==="bigint") { %> string | number;
 <% } else if (field.data_type==="character varying" || field.data_type==="text") { %> string; 
 <% } else if (field.data_type==="boolean") {  %> boolean | ""; 
@@ -14,7 +14,7 @@ export type <%= tableMasterSingularUCamelCase; %> = {
   }); %>
 }
 
-export type <%= tableMasterSingularUCamelCase; %>TG = {
+export type <%= fn.uCamelCase(fn.singular(tableMaster)); %>TG = {
   rows: Rows;
   sort: null | string;
   direction: null | string;
@@ -23,7 +23,7 @@ export type <%= tableMasterSingularUCamelCase; %>TG = {
 
 export type Rows = {
   current_page: number;
-  data: <%= tableMasterSingularUCamelCase; %>Row[];
+  data: <%= fn.uCamelCase(fn.singular(tableMaster)); %>Row[];
   first_page_url: string;
   from: number;
   last_page: number;
@@ -37,7 +37,7 @@ export type Rows = {
   total: number;
 }
 
-export type <%= tableMasterSingularUCamelCase; %>Row = {
+export type <%= fn.uCamelCase(fn.singular(tableMaster)); %>Row = {
 <% tableStructure.filter(
     f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
 ).forEach(function(field){ %>  <%= field.column_name; %>?:<% if (field.data_type==="bigint") { %> number;

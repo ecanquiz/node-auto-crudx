@@ -2,14 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Modules\<%= pathModule; %>\Http\Controllers\<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller;
+use Modules\<%= pathModule; %>\Http\Controllers\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Controller;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('<%= tableDetailCurrent.tableName; %>')->group(function () {  
-        Route::get('/{<%= tableMasterSingular %>Id}', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class, 'getAllBy<%= tableMasterSingularUCamelCase %>']);
-        Route::get('/{<%= tableDetailCurrent.tableNameSingular; %>}', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class, 'show']);
-        Route::post('/', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class, 'store']);
-        Route::put('/{<%= tableDetailCurrent.tableNameSingular; %>}', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class, 'update']);
-        Route::delete('/{id}', [<%= tableDetailCurrent.tableNameSingularUCamelCase; %>Controller::class,'destroy']);
+        Route::get('/{<%= fn.singular(tableMaster) %>Id}', [<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Controller::class, 'getAllBy<%= fn.uCamelCase(fn.singular(tableMaster)) %>']);
+        Route::get('/{<%= fn.singular(tableDetailCurrent.tableName); %>}', [<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Controller::class, 'show']);
+        Route::post('/', [<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Controller::class, 'store']);
+        Route::put('/{<%= fn.singular(tableDetailCurrent.tableName); %>}', [<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Controller::class, 'update']);
+        Route::delete('/{id}', [<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Controller::class,'destroy']);
     });
 });

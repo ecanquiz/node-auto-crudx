@@ -2,26 +2,26 @@ import { onMounted, reactive, ref, computed } from 'vue'
 import useHttp from "@/composables/useHttp";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
-import <%= tableMasterSingularUCamelCase; %>Service from "../../services/<%= tableMasterSingularUCamelCase; %>"
+import <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service from "../../services/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-%>import <%= tbl.foreignTableNameSingularUCamelCase; %>Service from  "../../services/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
+%>import <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>Service from  "../../services/<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>"<%
 }); %>
-import type { <%= tableMasterSingularUCamelCase; %> } from "../../types/<%= tableMasterSingularUCamelCase; %>"
+import type { <%= fn.uCamelCase(fn.singular(tableMaster)); %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-%>import type { <%= tbl.foreignTableNameSingularUCamelCase; %> } from  "../../types/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
+%>import type { <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %> } from  "../../types/<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>"<%
 }); %>
 // import { ascBubble } from "@/utils/helpers";
 
-export default (<%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; %>) => {
+export default (<%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>) => {
   <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-    %>const <%= tbl.foreign_table_name; %> =  ref<<%= tbl.foreignTableNameSingularUCamelCase; %>[]>()<%
+    %>const <%= tbl.foreign_table_name; %> =  ref<<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>[]>()<%
   }); %>
 
   const form = reactive({<%
     tableStructure.filter(
       f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
     ).forEach(function(field){ %>
-    <%= field.column_name; %>: <%= tableMasterSingular; %>.<%= field.column_name; %>, %><% }); %>
+    <%= field.column_name; %>: <%= fn.singular(tableMaster); %>.<%= field.column_name; %>, %><% }); %>
   })
 
   const {
@@ -44,7 +44,7 @@ export default (<%= tableMasterSingular; %>: <%= tableMasterSingularUCamelCase; 
     <% tableMasterForeignKeysAssoc.forEach(function(tbl){
       %>
       pending.value = true
-      <%= tbl.foreignTableNameSingularUCamelCase; %>Service.getHelp<%= tbl.foreignTableNameUCamelCase; %>()
+      <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>Service.getHelp<%= fn.uCamelCase(tbl.foreign_table_name); %>()
         .then((response) => {
           <%= tbl.foreign_table_name; %>.value = response.data
          })

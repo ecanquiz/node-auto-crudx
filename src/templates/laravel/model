@@ -23,19 +23,19 @@ class <%= fn.uCamelCase(fn.singular(tableMaster)); %> extends Model
     protected $casts = [ /* 'field_name' => 'field_type' */ ];
     <% if (tableMasterForeignKeysAssoc.length) { %>
     protected $with = [<% tableMasterForeignKeysAssoc.forEach(function(tbl, index){
-    %>'<%= tbl.foreignTableNameSingular; %>'<%= index < tableMasterForeignKeysAssoc.length-1 ? ',' : '' %><%
+    %>'<%= fn.singular(tbl.foreign_table_name); %>'<%= index < tableMasterForeignKeysAssoc.length-1 ? ',' : '' %><%
     }); %>];
     <%}%>
     <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-    %>public function <%= tbl.foreignTableNameSingular; %>()
+    %>public function <%= fn.singular(tbl.foreign_table_name); %>()
     {
-        return $this->belongsTo(\Modules\<%= pathModule; %>\Entities\<%= tbl.foreignTableNameSingularUCamelCase; %>::class);
+        return $this->belongsTo(\Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>::class);
     } 
     <%}); -%>
     <% tableDetailOfMaster.forEach(function(table){ %>
     public function <%= table.tableName; %>()
     {        
-        return $this->hasMany(\Modules\<%= pathModule; %>\Entities\<%= table.tableNameSingularUCamelCase; %>::class);
+        return $this->hasMany(\Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(table.tableName)); %>::class);
     }
     <% }); %>
     protected static function newFactory()

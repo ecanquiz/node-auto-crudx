@@ -1,36 +1,31 @@
 <?php
-namespace Modules\<%= pathModule; %>\Http\Services\<%= tableMasterSingularUCamelCase; %>;
+namespace Modules\<%= pathModule; %>\Http\Services\<%= fn.uCamelCase(fn.singular(tableMaster)); %>;
 
 use Illuminate\Http\JsonResponse;
-use Modules\<%= pathModule; %>\Http\Requests\<%= tableMasterSingularUCamelCase; %>\Store<%= tableMasterSingularUCamelCase; %>Request;
-use Modules\<%= pathModule; %>\Entities\<%= tableMasterSingularUCamelCase; %>;
+use Modules\<%= pathModule; %>\Http\Requests\<%= fn.uCamelCase(fn.singular(tableMaster)); %>\Store<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request;
+use Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tableMaster)); %>;
 
-class Store<%= tableMasterSingularUCamelCase; %>Service
+class Store<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service
 {
-    static public function execute(Store<%= tableMasterSingularUCamelCase; %>Request $request): JsonResponse
+    static public function execute(Store<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request $request): JsonResponse
     {
-        $<%= tableMasterSingular; %> = new <%= tableMasterSingularUCamelCase; %>;
+        $<%= fn.singular(tableMaster); %> = new <%= fn.uCamelCase(fn.singular(tableMaster)); %>;
 
         <%
         tableStructure.forEach(function(field) {
             if  (!['id', 'created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
-        %>$<%= tableMasterSingular; %>-><%= field.column_name; %> = $request-><%= field.column_name; %>;
+        %>$<%= fn.singular(tableMaster); %>-><%= field.column_name; %> = $request-><%= field.column_name; %>;
         <%
             }});
         %>
-        $<%= tableMasterSingular; %>->save();
+        $<%= fn.singular(tableMaster); %>->save();
 
-        $<%= tableMasterSingular; %>->refresh();
+        $<%= fn.singular(tableMaster); %>->refresh();
 
         return response()->json([
             "message" => "New record created successfully", 
-            "id" => $<%= tableMasterSingular; %>->id
+            "id" => $<%= fn.singular(tableMaster); %>->id
         ], 201);
   }
 
 }
-
-
-
-
-

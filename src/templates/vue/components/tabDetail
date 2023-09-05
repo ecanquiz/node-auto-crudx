@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import {ref} from 'vue'
-  import Form<%= tableDetailCurrent.tableNameSingularUCamelCase %> from './Form<%= tableDetailCurrent.tableNameSingularUCamelCase %>.vue'
-  import Table<%= tableDetailCurrent.tableNameSingularUCamelCase %> from './Table<%= tableDetailCurrent.tableNameSingularUCamelCase %>.vue'
-  import useTab<%= tableDetailCurrent.tableNameSingularUCamelCase %> from '../../composables/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/useTab<%= tableDetailCurrent.tableNameSingularUCamelCase %>'
+  import Form<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> from './Form<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>.vue'
+  import Table<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> from './Table<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>.vue'
+  import useTab<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> from '../../composables/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/useTab<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>'
   const componentKey = ref(0);
   
   const props = defineProps<{ id?: string }>()
@@ -12,13 +12,13 @@
     closeButtonOpened,
     closeClassOpened,  
     <%= tableDetailCurrent.tableName %>,
-    <%= tableDetailCurrent.tableNameSingular %>,
+    <%= fn.singular(tableDetailCurrent.tableName) %>,
   
-    edit<%= tableDetailCurrent.tableNameSingularUCamelCase %>,
-    get<%= tableDetailCurrent.tableNameUCamelCase %>,
-    remove<%= tableDetailCurrent.tableNameSingularUCamelCase %>,  
-    submit<%= tableDetailCurrent.tableNameSingularUCamelCase %>
-  } = useTab<%= tableDetailCurrent.tableNameSingularUCamelCase %>(props.id)
+    edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,
+    get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>,
+    remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,  
+    submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>
+  } = useTab<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(props.id)
   </script>
   
   <template>
@@ -31,22 +31,22 @@
               type="text"                 
               data-testid="click-btn"
               :class="closeClassOpened"
-              :text="`${closeButtonOpened} panel to add <%= tableDetailCurrent.tableNameSingularUCamelCase %>`"
+              :text="`${closeButtonOpened} panel to add <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>`"
               @click="panelOpened=!panelOpened"
             />      
-            <Form<%= tableDetailCurrent.tableNameSingularUCamelCase %>
+            <Form<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>
               v-if="panelOpened"
               class="bg-base-200 py-4 mt-2 rounded"
-              :<%= tableDetailCurrent.tableNameSingular %>="<%= tableDetailCurrent.tableNameSingular %>"
-              @submit<%= tableDetailCurrent.tableNameSingularUCamelCase %>="submit<%= tableDetailCurrent.tableNameSingularUCamelCase %>"
+              :<%= fn.singular(tableDetailCurrent.tableName) %>="<%= fn.singular(tableDetailCurrent.tableName) %>"
+              @submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>="submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>"
             />
-            <Table<%= tableDetailCurrent.tableNameSingularUCamelCase %>
+            <Table<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>
               :key="componentKey"
               v-if="<%= tableDetailCurrent.tableName %>"
               :<%= tableDetailCurrent.tableName %>="<%= tableDetailCurrent.tableName %>"
-              @edit<%= tableDetailCurrent.tableNameSingularUCamelCase %>="edit<%= tableDetailCurrent.tableNameSingularUCamelCase %>"
-              @get<%= tableDetailCurrent.tableNameUCamelCase %>="get<%= tableDetailCurrent.tableNameUCamelCase %>"
-              @remove<%= tableDetailCurrent.tableNameSingularUCamelCase %>="remove<%= tableDetailCurrent.tableNameSingularUCamelCase %>"            
+              @edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>="edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>"
+              @get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>="get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>"
+              @remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>="remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>"            
             />
           </div>
         </div>

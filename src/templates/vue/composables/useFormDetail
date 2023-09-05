@@ -1,14 +1,14 @@
 import { computed, reactive, ref, watch } from 'vue'
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers, minValue } from "@vuelidate/validators";
-import type { <%= tableDetailCurrent.tableNameSingularUCamelCase %> } from "../../types/<%= tableDetailCurrent.tableNameSingularUCamelCase %>";
+import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>";
 
-export default (<%= tableDetailCurrent.tableNameSingular %>: <%= tableDetailCurrent.tableNameSingularUCamelCase %>) => {  
-  const form = reactive<<%= tableDetailCurrent.tableNameSingularUCamelCase %>>({<%
+export default (<%= fn.singular(tableDetailCurrent.tableName) %>: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>) => {  
+  const form = reactive<<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>>({<%
     tableDetailCurrent.tableStructureOfDetails[0].filter(
         f => !['created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
     ).forEach(function(field){ %>
-    <%= field.column_name; %>: <%= tableDetailCurrent.tableNameSingular %>.<%= field.column_name; %>, %><% }); %>
+    <%= field.column_name; %>: <%= fn.singular(tableDetailCurrent.tableName) %>.<%= field.column_name; %>, %><% }); %>
   })
 
   const isOpenModal = ref(false)
@@ -24,11 +24,11 @@ export default (<%= tableDetailCurrent.tableNameSingular %>: <%= tableDetailCurr
 
   const v$ = useVuelidate(rules, form);
     
-  watch(<%= tableDetailCurrent.tableNameSingular %>, (new<%= tableDetailCurrent.tableNameSingularUCamelCase %>) => {<%
+  watch(<%= fn.singular(tableDetailCurrent.tableName) %>, (new<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>) => {<%
     tableDetailCurrent.tableStructureOfDetails[0].filter(
       f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
     ).forEach(function(field){ %>
-    form.<%= field.column_name; %> = new<%= tableDetailCurrent.tableNameSingularUCamelCase %>.<%= field.column_name; %><% }); %>
+    form.<%= field.column_name; %> = new<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>.<%= field.column_name; %><% }); %>
   })
 
   return {

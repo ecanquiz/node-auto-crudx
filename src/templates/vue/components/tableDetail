@@ -1,25 +1,25 @@
 <script setup lang="ts">
 import { toRaw, ref } from "vue"
-import <%= tableDetailCurrent.tableNameSingularUCamelCase %>Service from "@/modules/<%= pathModule %>/services/<%= tableDetailCurrent.tableNameSingularUCamelCase; %>"
-import type { <%= tableDetailCurrent.tableNameSingularUCamelCase; %> } from "../../types/<%= tableDetailCurrent.tableNameSingularUCamelCase; %>";
+import <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service from "@/modules/<%= pathModule %>/services/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>"
+import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>";
 
-const props = defineProps<{ <%= tableDetailCurrent.tableName; %>: <%= tableDetailCurrent.tableNameSingularUCamelCase; %>[] }>()
+const props = defineProps<{ <%= tableDetailCurrent.tableName; %>: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>[] }>()
 
 const emits = defineEmits<{
-  (e: 'edit', <%= tableDetailCurrent.tableNameSingular; %>Id: object): void
-  (e: 'remove', <%= tableDetailCurrent.tableNameSingular; %>Id: string): void
-  (e: 'get<%= tableDetailCurrent.tableNameUCamelCase; %>' ): void
+  (e: 'edit', <%= fn.singular(tableDetailCurrent.tableName); %>Id: object): void
+  (e: 'remove', <%= fn.singular(tableDetailCurrent.tableName); %>Id: string): void
+  (e: 'get<%= fn.uCamelCase(tableDetailCurrent.tableName); %>' ): void
 }>()
 
-const edit =  (<%= tableDetailCurrent.tableNameSingular; %>: object) => {
-  emits("edit", toRaw(<%= tableDetailCurrent.tableNameSingular; %>))
+const edit =  (<%= fn.singular(tableDetailCurrent.tableName); %>: object) => {
+  emits("edit", toRaw(<%= fn.singular(tableDetailCurrent.tableName); %>))
 };
 
-const remove =  (<%= tableDetailCurrent.tableNameSingular; %>Id: string) => {
-  emits("remove", <%= tableDetailCurrent.tableNameSingular; %>Id)
+const remove =  (<%= fn.singular(tableDetailCurrent.tableName); %>Id: string) => {
+  emits("remove", <%= fn.singular(tableDetailCurrent.tableName); %>Id)
 };
 
-const <%= tableDetailCurrent.tableNameSingular; %>Id = ref("")
+const <%= fn.singular(tableDetailCurrent.tableName); %>Id = ref("")
 
 </script>
 
@@ -40,7 +40,7 @@ const <%= tableDetailCurrent.tableNameSingular; %>Id = ref("")
         </tr>
       </thead>
       <tbody>      
-        <tr v-for="<%= tableDetailCurrent.tableNameSingular; %> in props.<%= tableDetailCurrent.tableName; %>" :key="<%= tableDetailCurrent.tableNameSingular; %>.id">
+        <tr v-for="<%= fn.singular(tableDetailCurrent.tableName); %> in props.<%= tableDetailCurrent.tableName; %>" :key="<%= fn.singular(tableDetailCurrent.tableName); %>.id">
 
 
 
@@ -48,7 +48,7 @@ const <%= tableDetailCurrent.tableNameSingular; %>Id = ref("")
             f => ![tableDetailCurrent.idForeignKey, 'id','created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
           ).forEach((field, index) => { %>
             <td class="px-6 py-3 <% if (index%2===0) { %>bg-gray-50 bg-base-200<% } %>">
-              {{ <%= tableDetailCurrent.tableNameSingular; %>.<%= field.column_name; %> }}
+              {{ <%= fn.singular(tableDetailCurrent.tableName); %>.<%= field.column_name; %> }}
 
 
               
@@ -58,22 +58,22 @@ const <%= tableDetailCurrent.tableNameSingular; %>Id = ref("")
 
 
 
-          <!--td class="px-6 py-3 bg-gray-50 bg-base-200">{{<%= tableDetailCurrent.tableNameSingular; %>.bar_cod}}</td>
-          <td class="px-6 py-3">{{<%= tableDetailCurrent.tableNameSingular; %>.int_cod}}</td>
-          <td class="px-6 py-3 text-right">{{<%= tableDetailCurrent.tableNameSingular; %>.price}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200 text-right">{{<%= tableDetailCurrent.tableNameSingular; %>.stock_min}}</td>
-          <td class="px-6 py-3 text-right">{{<%= tableDetailCurrent.tableNameSingular; %>.stock_max}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{<%= tableDetailCurrent.tableNameSingular; %>.status}}</td-->  
+          <!--td class="px-6 py-3 bg-gray-50 bg-base-200">{{<%= fn.singular(tableDetailCurrent.tableName); %>.bar_cod}}</td>
+          <td class="px-6 py-3">{{<%= fn.singular(tableDetailCurrent.tableName); %>.int_cod}}</td>
+          <td class="px-6 py-3 text-right">{{<%= fn.singular(tableDetailCurrent.tableName); %>.price}}</td>
+          <td class="px-6 py-3 bg-gray-50 bg-base-200 text-right">{{<%= fn.singular(tableDetailCurrent.tableName); %>.stock_min}}</td>
+          <td class="px-6 py-3 text-right">{{<%= fn.singular(tableDetailCurrent.tableName); %>.stock_max}}</td>
+          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{<%= fn.singular(tableDetailCurrent.tableName); %>.status}}</td-->  
           <td class="px-6 py-3">
             <div class="flex items-center space-x-1">
              <AppBtn
                 class="btn btn-primary btn-xs"                    
-                @click="edit(<%= tableDetailCurrent.tableNameSingular; %>)"
+                @click="edit(<%= fn.singular(tableDetailCurrent.tableName); %>)"
               >
                 Editar
               </AppBtn>
               <AppBtn
-                @click="remove(<%= tableDetailCurrent.tableNameSingular; %>.id)"                    
+                @click="remove(<%= fn.singular(tableDetailCurrent.tableName); %>.id)"                    
                 class="btn btn-danger btn-xs"                    
               >
                 Eliminar

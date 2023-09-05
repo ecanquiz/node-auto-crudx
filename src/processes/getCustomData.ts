@@ -1,7 +1,6 @@
-
 import crud from '@config/crud'
-import { uCamelCase, camelCase } from '../utils/nomenclature';
-import { singular } from '../utils/grammaticalNumber'
+// import { uCamelCase, camelCase } from '../utils/nomenclature';
+// import { singular } from '../utils/grammaticalNumber'
 import fn from '../utils/fn'
 import type {
   GetDataOfBDParams,
@@ -23,9 +22,9 @@ export default (
   dataOfBD.tableMasterForeignKeysAssoc.forEach(    
     tbl => {
       const foreignTableName = (tbl as unknown as TableMasterForeignKeysAssoc).foreign_table_name;
-      (tbl as unknown as TableMasterForeignKeysAssoc).foreignTableNameSingular = singular((foreignTableName));
-      (tbl as unknown as TableMasterForeignKeysAssoc).foreignTableNameUCamelCase = uCamelCase((foreignTableName));
-      (tbl as unknown as TableMasterForeignKeysAssoc).foreignTableNameSingularUCamelCase = uCamelCase(singular((foreignTableName)));
+      //(tbl as unknown as TableMasterForeignKeysAssoc).foreignTableNameSingular = singular((foreignTableName));
+      //(tbl as unknown as TableMasterForeignKeysAssoc).foreignTableNameUCamelCase = uCamelCase((foreignTableName));
+      //(tbl as unknown as TableMasterForeignKeysAssoc).foreignTableNameSingularUCamelCase = uCamelCase(singular((foreignTableName)));
     }
   )  
 
@@ -37,9 +36,9 @@ export default (
       r => ({
         idForeignKey: (r as unknown as TableDetailOfMaster).id_foreign_key, // TODO
         tableName: (r as unknown as TableDetailOfMaster).table_name, // TODO
-        tableNameSingular: singular((r as unknown as TableDetailOfMaster).table_name),
-        tableNameUCamelCase: uCamelCase((r as unknown as TableDetailOfMaster).table_name),
-        tableNameSingularUCamelCase: uCamelCase(singular((r as unknown as TableDetailOfMaster).table_name)),
+        //tableNameSingular: singular((r as unknown as TableDetailOfMaster).table_name),
+        //tableNameUCamelCase: uCamelCase((r as unknown as TableDetailOfMaster).table_name),
+        //tableNameSingularUCamelCase: uCamelCase(singular((r as unknown as TableDetailOfMaster).table_name)),
         tableStructureOfDetails: dataOfBD.tablesStructureOfDetails.filter(
           (arr)=> arr[0].column_default===`nextval('${(r as unknown as TableDetailOfMaster).table_name}_id_seq'::regclass)`
         )
@@ -50,32 +49,3 @@ export default (
   }
 
 }
-
-
-
-/*
-const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
-
-const result = words.filter((word) => word.length > 6);
-
-console.log(result);
-// Expected output: Array ["exuberant", "destruction", "present"]
-
-//////////////////////////
-
-let gente = [
-    {nombre: "aaron", edad: 65},
-    {nombre: "beth", edad: 2},
-    {nombre: "cara", edad: 13},
-    {nombre: "daniel", edad: 3},
-    {nombre: "ella", edad: 25},
-    {nombre: "fin", edad: 1},
-    {nombre: "george", edad: 43},
-]
-
-let pequeños = gente.filter(persona => persona.edad <= 3)
-
-console.log(pequeños);
-
-
-*/

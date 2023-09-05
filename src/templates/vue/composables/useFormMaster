@@ -4,17 +4,17 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service from "../../services/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-%>import <%= tbl.foreignTableNameSingularUCamelCase; %>Service from  "../../services/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
+%>import <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>Service from  "../../services/<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>"<%
 }); %>
 import type { <%= fn.uCamelCase(fn.singular(tableMaster)); %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-%>import type { <%= tbl.foreignTableNameSingularUCamelCase; %> } from  "../../types/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
+%>import type { <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %> } from  "../../types/<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>"<%
 }); %>
 // import { ascBubble } from "@/utils/helpers";
 
 export default (<%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>) => {
   <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-    %>const <%= tbl.foreign_table_name; %> =  ref<<%= tbl.foreignTableNameSingularUCamelCase; %>[]>()<%
+    %>const <%= tbl.foreign_table_name; %> =  ref<<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>[]>()<%
   }); %>
 
   const form = reactive({<%
@@ -44,7 +44,7 @@ export default (<%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(
     <% tableMasterForeignKeysAssoc.forEach(function(tbl){
       %>
       pending.value = true
-      <%= tbl.foreignTableNameSingularUCamelCase; %>Service.getHelp<%= tbl.foreignTableNameUCamelCase; %>()
+      <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>Service.getHelp<%= fn.uCamelCase(tbl.foreign_table_name); %>()
         .then((response) => {
           <%= tbl.foreign_table_name; %>.value = response.data
          })

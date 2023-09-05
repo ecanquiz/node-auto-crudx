@@ -75,7 +75,7 @@ const {
             </td><%}});
             %><% tableMasterForeignKeysAssoc.forEach(function(field){%>
             <td class="">
-              {{ row.<%= field.foreignTableNameSingular; %>.name }}
+              {{ row.<%= fn.singular(field.foreign_table_name); %>.name }}
             </td><% }); %> 
             <td class="">
               <div class="flex items-center space-x-1">                

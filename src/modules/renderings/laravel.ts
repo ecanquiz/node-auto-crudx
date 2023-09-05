@@ -13,7 +13,7 @@ export default {
   controllerDetail: (params: ParamsAll): Rendering => ({
     template: './src/templates/laravel/controllerDetail',
     outputPath: `Http/Controllers`,
-    outputFile: `${params.tableDetailCurrent?.tableNameSingularUCamelCase}Controller.php`
+    outputFile: `${uCamelCase(singular(params.tableDetailCurrent!.tableName))}Controller.php`
   }),
 
   model: (params: ParamsAll): Rendering => ({
@@ -25,7 +25,7 @@ export default {
   modelDetail: (params: ParamsAll): Rendering => ({
     template: './src/templates/laravel/modelDetail',
     outputPath: `Entities`,
-    outputFile: `${params.tableDetailCurrent?.tableNameSingularUCamelCase}.php`
+    outputFile: `${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.php`
   }),
 
   requestStore: (params: ParamsAll): Rendering => ({
@@ -55,7 +55,7 @@ export default {
   routeDetail: (params: ParamsAll): Rendering => ({
     template: './src/templates/laravel/routeDetail',
     outputPath: `Routes`,
-    outputFile: `api${params.tableDetailCurrent?.tableNameSingularUCamelCase}.php`
+    outputFile: `api${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.php`
   }),
 
   serviceIndex: (params: ParamsAll): Rendering => ({

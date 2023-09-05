@@ -1,13 +1,13 @@
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import useHttp from "@/composables/useHttp";
+import useHttp from "@/composables/useHttp"; //foreign_table_name
 import <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service from "../../services/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-%>import <%= tbl.foreignTableNameSingularUCamelCase; %>Service from  "../../services/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
+%>import <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>Service from  "../../services/<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>"<%
 }); %>
 import type { <%= fn.uCamelCase(fn.singular(tableMaster)); %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-%>import type { <%= tbl.foreignTableNameSingularUCamelCase; %> } from  "../../types/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
+%>import type { <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %> } from  "../../types/<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>"<%
 }); %>
 
 export default (<%= fn.singular(tableMaster); %>Id?: string) => {
@@ -21,7 +21,7 @@ export default (<%= fn.singular(tableMaster); %>Id?: string) => {
   })
 
   <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-  %>const <%= tbl.foreign_table_name; %> = ref<<%= tbl.foreignTableNameSingularUCamelCase; %>[]>()<%
+  %>const <%= tbl.foreign_table_name; %> = ref<<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>[]>()<%
   }); %>
   
   const {  
@@ -50,7 +50,7 @@ export default (<%= fn.singular(tableMaster); %>Id?: string) => {
     <% tableMasterForeignKeysAssoc.forEach(function(tbl){
     %>
     pending.value = true
-    <%= tbl.foreignTableNameSingularUCamelCase; %>Service.getHelp<%= tbl.foreignTableNameUCamelCase; %>()
+    <%= tbl.foreignTableNameSingularUCamelCase; %>Service.getHelp<%= fn.uCamelCase(tbl.foreign_table_name); %>()
       .then((response) => {
         <%= tbl.foreign_table_name; %>.value = response.data
        })

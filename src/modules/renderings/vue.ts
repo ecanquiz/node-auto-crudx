@@ -25,7 +25,7 @@ export default {
   formDetail: (params: ParamsAll): Rendering => ({
     template: './src/templates/vue/components/formDetail',
     outputPath: `components/${uCamelCase(singular(params.tableMaster))}`,
-    outputFile: `Form${params.tableDetailCurrent?.tableNameSingularUCamelCase}.vue`  
+    outputFile: `Form${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.vue`  
   }),
 
   formMaster: (params: ParamsAll): Rendering => ({
@@ -49,19 +49,19 @@ export default {
   servicesDetail: (params: ParamsAll): Rendering => ({
     template: './src/templates/vue/services/detail',
     outputPath: `services`,
-    outputFile: `${params.tableDetailCurrent?.tableNameSingularUCamelCase}.ts`
+    outputFile: `${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.ts`
   }),
 
   tabDetail: (params: ParamsAll): Rendering => ({
     template: './src/templates/vue/components/tabDetail',
     outputPath: `components/${uCamelCase(singular(params.tableMaster))}`,
-    outputFile: `Tab${params.tableDetailCurrent!.tableNameSingularUCamelCase}.vue`
+    outputFile: `Tab${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.vue`
   }),
 
   tableDetail: (params: ParamsAll): Rendering => ({
     template: './src/templates/vue/components/tableDetail',
     outputPath: `components/${uCamelCase(singular(params.tableMaster))}`,
-    outputFile: `Table${params.tableDetailCurrent?.tableNameSingularUCamelCase}.vue`
+    outputFile: `Table${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.vue`
   }),
 
   tabMaster: (params: ParamsAll): Rendering => ({
@@ -85,7 +85,7 @@ export default {
   typesDetail: (params: ParamsAll): Rendering => ({
     template: './src/templates/vue/types/detail',
     outputPath: `types/${uCamelCase(singular(params.tableMaster))}`,
-    outputFile: `${params.tableDetailCurrent!.tableNameSingularUCamelCase}.ts`
+    outputFile: `${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.ts`
   }),
 
   useCreateOrEditMaster: (params: ParamsAll): Rendering => ({
@@ -103,7 +103,7 @@ export default {
   useFormDetail: (params: ParamsAll): Rendering => ({
     template: './src/templates/vue/composables/useFormDetail',
     outputPath: `composables/${uCamelCase(singular(params.tableMaster))}`,
-    outputFile: `useForm${params.tableDetailCurrent!.tableNameSingularUCamelCase}.ts`
+    outputFile: `useForm${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.ts`
   }),
 
   useFormMaster: (params: ParamsAll): Rendering => ({
@@ -121,7 +121,7 @@ export default {
   useTabDetail: (params: ParamsAll): Rendering => ({
     template: './src/templates/vue/composables/useTabDetail',
     outputPath: `composables/${uCamelCase(singular(params.tableMaster))}`,
-    outputFile: `useTab${params.tableDetailCurrent!.tableNameSingularUCamelCase}.ts`
+    outputFile: `useTab${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.ts`
   })
 
 }

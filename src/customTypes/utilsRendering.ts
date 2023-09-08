@@ -1,9 +1,3 @@
-export type Rendering = {
-  template: string
-  outputPath: string
-  outputFile: string
-}
-
 export type ParamsMain = {
   pathModule?: string
   tableMaster: string
@@ -32,4 +26,11 @@ export type PathModule = {
   pathModule: string
 }
 
-export type ParamsAll = ParamsMain & ParamsDetail & Output 
+export type ParamsAll = ParamsMain & ParamsDetail & Output
+
+export type Rendering = {
+  outputFile: string
+  outputPath: string
+  params: ParamsAll
+  template: string
+}

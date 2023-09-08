@@ -8,34 +8,34 @@ import type { ParamsAll, tableDetailOfMasterCustomized } from '@customTypes/util
 export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
   const params: ParamsAll = {...paramsOmitOutput, output}
   if (buildFrontendRoutes as unknown as boolean) {
-    rendering(vue.routes(params), params)
+    rendering(vue.routes(params))
   }
-  rendering(vue.datagrid(params), params)
-  rendering(vue.useDatagrid(params), params)
-  rendering(vue.services(params), params)
+  rendering(vue.datagrid(params))
+  rendering(vue.useDatagrid(params))
+  rendering(vue.services(params))
   if (params.tableDetailOfMaster.length===0){
-    rendering(vue.createOrEditMaster(params), params)
-    rendering(vue.formCreateOrEditMaster(params), params)
-    rendering(vue.useCreateOrEditMaster(params), params)    
-    rendering(vue.types(params), params)
+    rendering(vue.createOrEditMaster(params))
+    rendering(vue.formCreateOrEditMaster(params))
+    rendering(vue.useCreateOrEditMaster(params))    
+    rendering(vue.types(params))
   } else {
-    rendering(vue.tabs(params), params)
-    rendering(vue.tabMaster(params), params)
-    rendering(vue.useTabMaster(params), params) // TODO
-    rendering(vue.formMaster(params), params) // TODO
-    rendering(vue.useFormMaster(params), params) // TODO
+    rendering(vue.tabs(params))
+    rendering(vue.tabMaster(params))
+    rendering(vue.useTabMaster(params)) // TODO
+    rendering(vue.formMaster(params)) // TODO
+    rendering(vue.useFormMaster(params)) // TODO
     params.tableDetailOfMaster.forEach(function(table){
       const paramsWhitDetail = {
         ...params,
         tableDetailCurrent: (table as unknown as tableDetailOfMasterCustomized)
       }
-      rendering(vue.formDetail(paramsWhitDetail), paramsWhitDetail)
-      rendering(vue.tabDetail(paramsWhitDetail), paramsWhitDetail)
-      rendering(vue.useTabDetail(paramsWhitDetail), paramsWhitDetail)
-      rendering(vue.useFormDetail(paramsWhitDetail), paramsWhitDetail)
-      rendering(vue.servicesDetail(paramsWhitDetail), paramsWhitDetail)
-      rendering(vue.typesDetail(paramsWhitDetail), paramsWhitDetail)
-      rendering(vue.tableDetail(paramsWhitDetail), paramsWhitDetail)
+      rendering(vue.formDetail(paramsWhitDetail))
+      rendering(vue.tabDetail(paramsWhitDetail))
+      rendering(vue.useTabDetail(paramsWhitDetail))
+      rendering(vue.useFormDetail(paramsWhitDetail))
+      rendering(vue.servicesDetail(paramsWhitDetail))
+      rendering(vue.typesDetail(paramsWhitDetail))
+      rendering(vue.tableDetail(paramsWhitDetail))
     })
   }
 }

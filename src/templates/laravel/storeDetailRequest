@@ -1,0 +1,33 @@
+<?php
+
+namespace Modules\<%= pathModule; %>\Http\Requests\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
+class Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Request extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true; //auth()->user()->role->name === "admin";
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     */
+    public function rules(): Array
+    {
+        return  [<% tableDetailCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
+          if  ( fn.vn.noId(field.column_name) && fn.vn.excludeFields(field.column_name)) {%>
+            '<%- field.column_name; %>' => ["required"] <%= fn.addCommaToArr(tableStructure, index, 5) -%>
+          <%}});%> 
+        ];
+    }
+}
+
+

@@ -50,7 +50,7 @@ export default (<%= fn.singular(tableMaster); %>Id?: string) => {
     <% tableMasterForeignKeysAssoc.forEach(function(tbl){
     %>
     pending.value = true
-    <%= tbl.foreignTableNameSingularUCamelCase; %>Service.getHelp<%= fn.uCamelCase(tbl.foreign_table_name); %>()
+    <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>Service.getHelp<%= fn.uCamelCase(tbl.foreign_table_name); %>()
       .then((response) => {
         <%= tbl.foreign_table_name; %>.value = response.data
        })

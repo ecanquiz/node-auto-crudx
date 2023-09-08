@@ -2,17 +2,24 @@
 // import { ClientBase, Client, ClientConfig, QueryResult, QueryArrayConfig, QueryConfig } from 'pg'
 import { QueryArrayResult, QueryConfig } from 'pg'
 import client from '@config/db'
+import colors from 'colors'
 
 class DB {
     constructor() {
-        client.connect()
+        client.connect((err) => { // if (err)  throw new Error('Uh oh!');
+            if (err) {
+                console.log(colors.bgRed(`ERROR: ${err}.`))
+                process.exit();
+            }
+            console.log("Connected!");
+        });
     }
 
     async exeQry ( queryConfig: QueryConfig, isEnd = false)
     : Promise<QueryArrayResult<any[]>> {
         let resp = await client.query(queryConfig)
         if (isEnd)
-            await client.end()
+          await client.end()
         return resp
     }
   

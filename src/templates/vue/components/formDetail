@@ -17,20 +17,20 @@ const {
 } = useForm<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>(props.<%= fn.singular(tableDetailCurrent.tableName); %>)
 
 const emits = defineEmits<{
-  (e: 'submit', form: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>): void
+  (e: 'submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>', form: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>): void
 }>()
 
-const submit = async () => {
+const submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = async () => {
   const result = await v$.value.$validate();
   if (result) {
-    emits("submit", toRaw(form));
+    emits("submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>", toRaw(form));
   }
 }
 </script>
 
 <template>
   <div>
-    <form @submit.prevent="submit"> 
+    <form @submit.prevent="submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>"> 
       <div class="p-5 grid lg:grid-cols-2 gap-4"><%= fn.test1('fn.test1') %>
 
           <% tableDetailCurrent.tableStructureOfDetails[0].forEach(function(field) {

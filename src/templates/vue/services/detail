@@ -10,7 +10,7 @@ export const insert<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) 
 }
 
 export const update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = (payload: <%= fn.uCamelCase(tableDetailCurrent.tableName) %>, <%= fn.singular(tableDetailCurrent.tableName) %>Id: string) => {   
-  return Http.put(`/api/<%= tableDetailCurrent.tableName %>/${<%= tableDetailCurrent.tableNameSingular %>Id}`, payload);
+  return Http.put(`/api/<%= tableDetailCurrent.tableName %>/${<%= fn.singular(tableDetailCurrent.tableName) %>Id}`, payload);
 }
 
 export const delete<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = (<%= fn.singular(tableDetailCurrent.tableName) %>Id: string) => { 

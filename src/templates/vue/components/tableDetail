@@ -11,12 +11,12 @@ const emits = defineEmits<{
   (e: 'get<%= fn.uCamelCase(tableDetailCurrent.tableName); %>' ): void
 }>()
 
-const edit =  (<%= fn.singular(tableDetailCurrent.tableName); %>: object) => {
-  emits("edit", toRaw(<%= fn.singular(tableDetailCurrent.tableName); %>))
+const edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> =  (<%= fn.singular(tableDetailCurrent.tableName); %>: object) => {
+  emits("edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>", toRaw(<%= fn.singular(tableDetailCurrent.tableName); %>))
 };
 
-const remove =  (<%= fn.singular(tableDetailCurrent.tableName); %>Id: string) => {
-  emits("remove", <%= fn.singular(tableDetailCurrent.tableName); %>Id)
+const remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> =  (<%= fn.singular(tableDetailCurrent.tableName); %>Id: string) => {
+  emits("remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>", <%= fn.singular(tableDetailCurrent.tableName); %>Id)
 };
 
 const <%= fn.singular(tableDetailCurrent.tableName); %>Id = ref("")
@@ -68,12 +68,12 @@ const <%= fn.singular(tableDetailCurrent.tableName); %>Id = ref("")
             <div class="flex items-center space-x-1">
              <AppBtn
                 class="btn btn-primary btn-xs"                    
-                @click="edit(<%= fn.singular(tableDetailCurrent.tableName); %>)"
+                @click="edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(<%= fn.singular(tableDetailCurrent.tableName); %>)"
               >
                 Editar
               </AppBtn>
               <AppBtn
-                @click="remove(<%= fn.singular(tableDetailCurrent.tableName); %>.id)"                    
+                @click="remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(<%= fn.singular(tableDetailCurrent.tableName); %>.id)"                    
                 class="btn btn-danger btn-xs"                    
               >
                 Eliminar

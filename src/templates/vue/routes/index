@@ -10,12 +10,12 @@ export default [{
     path: "/<%= tableMaster; %>/create",
     name: "<%= fn.singular(tableMaster); %>Create",
     meta: { middleware: [auth, admin] },
-    component: () => import("@/modules/<%= pathModule; %>/views/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/CreateOrEdit.vue").then(m => m.default),
+    component: () => import("@/modules/<%= pathModule; %>/views/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/<%= tableDetailOfMaster.length===0?'CreateOrEdit':'Tabs' %>.vue").then(m => m.default),
     props: true
 }, {
     path: "/<%= tableMaster; %>/edit/:id(\\d+)",
     name: "<%= fn.singular(tableMaster); %>Edit",
     meta: { middleware: [auth, admin] },
-    component: () => import("@/modules/<%= pathModule; %>/views/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/CreateOrEdit.vue").then(m => m.default),
+    component: () => import("@/modules/<%= pathModule; %>/views/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/<%= tableDetailOfMaster.length===0?'CreateOrEdit':'Tabs' %>.vue").then(m => m.default),
     props: true
 }]

@@ -18,8 +18,9 @@ export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
       rendering(laravel.modelDetail(paramsWhitDetail))
       rendering(laravel.routeDetail(paramsWhitDetail))
       rendering(laravel.storeDetailRequest(paramsWhitDetail))
+      rendering(laravel.storeDetailService(paramsWhitDetail))
       rendering(laravel.updateDetailRequest(paramsWhitDetail))
-
+      rendering(laravel.updateDetailService(paramsWhitDetail))
     })
   }
   rendering(laravel.controller(params))

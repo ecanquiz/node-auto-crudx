@@ -1,0 +1,27 @@
+<?php
+namespace Modules\<%= pathModule; %>\Http\Services\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>;
+
+use Illuminate\Http\JsonResponse;
+use Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>;
+use Modules\<%= pathModule; %>\Http\Requests\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>\Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Request;
+
+class Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Service
+{
+  
+    static public function execute(Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Request $request): JsonResponse
+    {     
+        $<%= fn.singular(tableDetailCurrent.tableName); %> = new <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>();
+        <% tableDetailCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
+        if  ( fn.vn.noId(field.column_name) && fn.vn.excludeFields(field.column_name)) {%>
+        $<%- fn.singular(tableDetailCurrent.tableName); -%>-><%- field.column_name; %> = $request-><%- field.column_name; -%>;<%}});%>
+
+        $<%= fn.singular(tableDetailCurrent.tableName); %>->save();
+        $<%= fn.singular(tableDetailCurrent.tableName); %>->refresh();
+
+        return response()->json([
+            'message' => '<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> created',
+            'presentation_id' => $presentation->id
+        ], 201);
+    }
+
+}

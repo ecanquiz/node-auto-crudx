@@ -9,24 +9,20 @@ class Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Requ
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): Bool
     {
         return true; //auth()->user()->role->name === "admin";
     }
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
     public function rules(): Array
     {
         return  [<% tableDetailCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
             if  ( fn.vn.noId(field.column_name) && fn.vn.excludeFields(field.column_name)) {%>
-              '<%- field.column_name; %>' => ["required"] <%= fn.addCommaToArr(tableStructure, index, 5) -%>
+            '<%- field.column_name; %>' => ["required"]<%= fn.addCommaToArr(tableDetailCurrent.tableStructureOfDetails[0], index, 4) -%>
             <%}});%> 
         ];
     }

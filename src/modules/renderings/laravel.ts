@@ -95,10 +95,24 @@ export default {
     params
   }),
 
+  storeDetailService: (params: ParamsAll): Rendering => ({
+    template: './src/templates/laravel/storeDetailService',
+    outputPath: `Http/Services/${uCamelCase(singular(params.tableDetailCurrent!.tableName))}`,
+    outputFile: `Store${uCamelCase(singular(params.tableDetailCurrent!.tableName))}Service.php`,
+    params
+  }),
+
   updateDetailRequest: (params: ParamsAll): Rendering => ({
     template: './src/templates/laravel/updateDetailRequest',
     outputPath: `Http/Requests/${uCamelCase(singular(params.tableDetailCurrent!.tableName))}`,
     outputFile: `Update${uCamelCase(singular(params.tableDetailCurrent!.tableName))}Request.php`,
+    params
+  }),
+
+  updateDetailService: (params: ParamsAll): Rendering => ({
+    template: './src/templates/laravel/updateDetailService',
+    outputPath: `Http/Services/${uCamelCase(singular(params.tableDetailCurrent!.tableName))}`,
+    outputFile: `Update${uCamelCase(singular(params.tableDetailCurrent!.tableName))}Service.php`,
     params
   })
   

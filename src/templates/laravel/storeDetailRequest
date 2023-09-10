@@ -9,10 +9,8 @@ class Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Reque
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): Bool
     {
         return true; //auth()->user()->role->name === "admin";
     }
@@ -24,7 +22,7 @@ class Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Reque
     {
         return  [<% tableDetailCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
           if  ( fn.vn.noId(field.column_name) && fn.vn.excludeFields(field.column_name)) {%>
-            '<%- field.column_name; %>' => ["required"] <%= fn.addCommaToArr(tableStructure, index, 5) -%>
+            '<%- field.column_name; %>' => ["required"]<%= fn.addCommaToArr(tableDetailCurrent.tableStructureOfDetails[0], index, 4) -%>
           <%}});%> 
         ];
     }

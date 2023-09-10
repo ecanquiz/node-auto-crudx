@@ -6,8 +6,8 @@ import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> }
 const props = defineProps<{ <%= tableDetailCurrent.tableName; %>: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>[] }>()
 
 const emits = defineEmits<{
-  (e: 'edit', <%= fn.singular(tableDetailCurrent.tableName); %>Id: object): void
-  (e: 'remove', <%= fn.singular(tableDetailCurrent.tableName); %>Id: string): void
+  (e: 'edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>', <%= fn.singular(tableDetailCurrent.tableName); %>Id: object): void
+  (e: 'remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>', <%= fn.singular(tableDetailCurrent.tableName); %>Id: string): void
   (e: 'get<%= fn.uCamelCase(tableDetailCurrent.tableName); %>' ): void
 }>()
 

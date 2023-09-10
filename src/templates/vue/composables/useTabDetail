@@ -33,7 +33,12 @@ export default (<%= fn.singular(tableMaster); %>Id: string) => {
     getError
   } = useHttp()
 
-  onMounted(() => get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>())
+  onMounted(    
+    () => {
+      <%= fn.singular(tableDetailCurrent.tableName) %>.<%= fn.singular(tableMaster); %>_id = <%= fn.singular(tableMaster); %>Id
+      get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>()
+    }
+  )
   
   const get<%= fn.uCamelCase(tableDetailCurrent.tableName) %> = async () => {
     if (!<%= fn.singular(tableMaster); %>Id)
@@ -51,7 +56,7 @@ export default (<%= fn.singular(tableMaster); %>Id: string) => {
     return <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service.insert<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(payload)
       .then((response) => {
         panelOpened.value = false
-        get<%= tableDetailCurrent.tableName %>()    
+        get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>()    
         alert( response.data.message )
               
       })

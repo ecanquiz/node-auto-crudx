@@ -20,7 +20,7 @@ class Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Servi
 
         return response()->json([
             'message' => '<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> created',
-            'presentation_id' => $presentation->id
+            '<%= fn.singular(tableDetailCurrent.tableName); %>_id' => $<%= fn.singular(tableDetailCurrent.tableName); %>->id
         ], 201);
     }
 

@@ -18,15 +18,9 @@
     edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,
     get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>,
     remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,  
-    submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>
+    submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,
+    panelToogle<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>
   } = useTab<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(props.id)
-
-  const panelToogle = ()=> {
-    if (!panelOpened.value) {
-      create<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>()
-    }
-    panelOpened.value =! panelOpened.value    
-  }
   </script>
   
   <template>
@@ -40,7 +34,7 @@
               data-testid="click-btn"
               :class="closeClassOpened"
               :text="`${closeButtonOpened} panel to add <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>`"
-              @click="panelToogle"
+              @click="panelToogle<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>"
             />      
             <Form<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>
               v-if="panelOpened"

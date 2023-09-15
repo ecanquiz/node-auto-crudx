@@ -39,6 +39,13 @@ export default (<%= fn.singular(tableMaster); %>Id: string) => {
       get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>()
     }
   )
+
+  const panelToogle<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = ()=> {
+    if (!panelOpened.value) {
+      create<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>()
+    }
+    panelOpened.value =! panelOpened.value    
+  }
   
   const get<%= fn.uCamelCase(tableDetailCurrent.tableName) %> = async () => {
     if (!<%= fn.singular(tableMaster); %>Id)
@@ -142,6 +149,7 @@ export default (<%= fn.singular(tableMaster); %>Id: string) => {
     edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,
     get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>,
     remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>, 
-    submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>
+    submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,
+    panelToogle<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>
   }
 }

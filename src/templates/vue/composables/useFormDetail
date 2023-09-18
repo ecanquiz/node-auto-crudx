@@ -1,7 +1,7 @@
 import { computed, reactive, ref, watch } from 'vue'
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers, minValue } from "@vuelidate/validators";
-import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>";
+import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> } from "../../types/<%= pathModule %>/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>";
 
 export default (<%= fn.singular(tableDetailCurrent.tableName) %>: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>) => {  
   const form = reactive<<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>>({<%
@@ -22,7 +22,7 @@ export default (<%= fn.singular(tableDetailCurrent.tableName) %>: <%= fn.uCamelC
     };
   });
 
-  const v$ = useVuelidate(rules, form);
+  const v$ = useVuelidate(rules, form as any);
     
   watch(<%= fn.singular(tableDetailCurrent.tableName) %>, (new<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>) => {<%
     tableDetailCurrent.tableStructureOfDetails[0].filter(

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { toRaw, ref } from "vue"
-import <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service from "@/modules/<%= pathModule %>/services/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>"
-import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>";
+//import <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service from "@/modules/<%= pathModule %>/services/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>"
+import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> } from "../../types/<%= pathModule %>/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>";
 
 const props = defineProps<{ <%= tableDetailCurrent.tableName; %>: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>[] }>()
 

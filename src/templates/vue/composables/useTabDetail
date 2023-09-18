@@ -2,7 +2,7 @@ import { computed, onMounted, reactive, ref } from 'vue'
 import useHttp from "@/composables/useHttp";
 import <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service from "@/modules/<%= pathModule %>/services/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>";
 import type { Ref } from "vue";
-import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>";
+import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> } from "../../types/<%= pathModule %>/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>";
 
 export default (<%= fn.singular(tableMaster); %>Id: string) => {
   /*const saleTypeOptions = [

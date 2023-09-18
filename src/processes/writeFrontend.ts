@@ -13,11 +13,11 @@ export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
   rendering(vue.datagrid(params))
   rendering(vue.useDatagrid(params))
   rendering(vue.services(params))
+  rendering(vue.types(params))
   if (params.tableDetailOfMaster.length===0){
     rendering(vue.createOrEditMaster(params))
     rendering(vue.formCreateOrEditMaster(params))
-    rendering(vue.useCreateOrEditMaster(params))    
-    rendering(vue.types(params))
+    rendering(vue.useCreateOrEditMaster(params))   
   } else {
     rendering(vue.tabs(params))
     rendering(vue.tabMaster(params))

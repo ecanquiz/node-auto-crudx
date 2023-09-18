@@ -1,5 +1,5 @@
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-  %>import type { <%= tbl.foreignTableNameSingularUCamelCase; %> } from  "./<%= tbl.foreignTableNameSingularUCamelCase; %>"<% 
+  %>import type { <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %> } from  "../<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>"<% 
 }); %>
 
 export type <%= fn.uCamelCase(fn.singular(tableMaster)); %> = {
@@ -10,8 +10,9 @@ export type <%= fn.uCamelCase(fn.singular(tableMaster)); %> = {
 <% } else { %> any; 
 <% } %><% });
 %>  <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-    %><%= tbl.foreignTableNameSingular; %>?: <%= tbl.foreignTableNameSingularUCamelCase; %>;<%
+    %><%= fn.singular(tbl.foreign_table_name); %>?: <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>;<%
   }); %>
+  _method?: 'PUT';
 }
 
 export type <%= fn.uCamelCase(fn.singular(tableMaster)); %>TG = {

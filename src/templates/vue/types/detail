@@ -1,16 +1,11 @@
-export interface Presentation {
-    id?: string;
-    product_id?: string;
-    sale_type: number;
-    int_cod: string;
-    bar_cod: string;
-    packing?: string;
-    packing_deployed: string;
-    packing_json: string;
-    stock_min: number;
-    stock_max: number;
-    price: string;
-    status: number;
-    photo_path?: string;
-    _method?: 'PUT' 
-  }
+export type <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = {
+<% tableDetailCurrent.tableStructureOfDetails[0].filter(
+    f => !['created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
+).forEach(function(field){ %>  <%= field.column_name; %>?:<% if (field.data_type==="bigint" || field.data_type==="integer") { %> string;
+<% } else if (field.data_type==="character varying" || field.data_type==="text") { %> string;
+<% } else if (field.data_type==="boolean") {  %> boolean;
+<% } else if (field.data_type==="timestamp without time zone") {  %> date;
+<% } else { %> any;
+<% } });
+%>  _method?: 'PUT';
+}

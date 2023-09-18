@@ -2,7 +2,7 @@
 import { reactive } from "vue"
 import type { <%= fn.uCamelCase(fn.singular(tableMaster)); %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
 <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-%>import type { <%= tbl.foreignTableNameSingularUCamelCase; %> } from  "../../types/<%= tbl.foreignTableNameSingularUCamelCase; %>"<%
+%>import type { <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %> } from  "../../types/<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>"<%
 }); %>
 // import type Errors from "../types/Errors"
 
@@ -10,7 +10,7 @@ const props = defineProps<{
   id?: string
   <%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>
   <% tableMasterForeignKeysAssoc.forEach(function(tbl){
-  %><%= tbl.foreign_table_name; %>?: <%= tbl.foreignTableNameSingularUCamelCase; %>[]<%
+  %><%= tbl.foreign_table_name; %>?: <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>[]<%
   })%> 
   pending: boolean
   errors: any

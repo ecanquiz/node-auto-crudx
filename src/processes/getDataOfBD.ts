@@ -2,7 +2,7 @@
 import db from '@modules/db';
 import colors from 'colors'
 
-import type { GetDataOfBDParams, GetDataOfBDReturn, TableDetailOfMaster } from '@customTypes/db'
+import type { GetDataOfBDParams, GetDataOfBDReturn, TableDetailOfMaster, TableMasterForeignKeysAssoc } from '@customTypes/db'
 
 const validateIfTableMasterExist = async ({schema, tableMaster}: GetDataOfBDParams):Promise<void> => {  
   const tableMasterExist = (
@@ -61,6 +61,13 @@ export default async ({schema, tableMaster}: GetDataOfBDParams):  GetDataOfBDRet
     )).rows
   ))
 
+  const tableDetailForeignKeysHelp = await  Promise.all(tableDetailOfMaster.map(
+    async r => ( await db.getTableMasterForeignKeysAssoc(
+      {schema, tableMaster: (r as unknown as TableDetailOfMaster).table_name}
+    )).rows
+    //.filter(r => ((r as unknown as TableMasterForeignKeysAssoc).foreign_table_name) !== tableMaster)
+  ))
+
   const tableMasterForeignKeysAssoc = (
     await db.getTableMasterForeignKeysAssoc({schema, tableMaster})
   ).rows
@@ -93,6 +100,7 @@ export default async ({schema, tableMaster}: GetDataOfBDParams):  GetDataOfBDRet
     tableStructure,
     tableUniqueConstraint,
     tablesOfBD,
-    tablesStructureOfDetails
+    tablesStructureOfDetails,
+    tableDetailForeignKeysHelp
   }  
 }

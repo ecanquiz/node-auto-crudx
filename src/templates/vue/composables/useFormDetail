@@ -1,7 +1,11 @@
-import { computed, reactive, ref, watch } from 'vue'
+import { onMounted, computed, reactive, ref, watch } from 'vue'
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers, minValue } from "@vuelidate/validators";
-import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> } from "../../types/<%= pathModule %>/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>";
+import useHttp from "@/composables/useHttp";
+<% tableDetailCurrent.tableDetailForeignKeysHelp.forEach(function(field){
+%>import <%= fn.uCamelCase(fn.singular(field.foreign_table_name)) %>Service from "../../services/<%= fn.uCamelCase(fn.singular(field.foreign_table_name)) %>";
+<% });
+%>import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> } from "../../types/<%= pathModule %>/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>";
 
 export default (<%= fn.singular(tableDetailCurrent.tableName) %>: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>) => {  
   const form = reactive<<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>>({<%
@@ -11,8 +15,17 @@ export default (<%= fn.singular(tableDetailCurrent.tableName) %>: <%= fn.uCamelC
     <%= field.column_name; %>: <%= fn.singular(tableDetailCurrent.tableName) %>.<%= field.column_name; %>, %><% }); %>
   })
 
-  const isOpenModal = ref(false)
+  const {
+    errors,
+    pending,
 
+    getError
+  } = useHttp()
+
+  const isOpenModal = ref(false)
+  <% tableDetailCurrent.tableDetailForeignKeysHelp.forEach(function(field){
+  %>const <%= field.foreign_table_name %> = ref([])
+  <% }); %>
   const rules = computed(() => {
     return {<%
       tableDetailCurrent.tableStructureOfDetails[0].filter(
@@ -31,8 +44,27 @@ export default (<%= fn.singular(tableDetailCurrent.tableName) %>: <%= fn.uCamelC
     form.<%= field.column_name; %> = new<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>.<%= field.column_name; %><% }); %>
   })
 
+  onMounted(() => {
+    <% tableDetailCurrent.tableDetailForeignKeysHelp.forEach(function(tbl){
+      %>
+      pending.value = true
+      <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>Service.getHelp<%= fn.uCamelCase(tbl.foreign_table_name); %>()
+        .then((response) => {
+          <%= tbl.foreign_table_name; %>.value = response.data
+         })
+         .catch((err) => {
+           errors.value = getError(err)
+         })
+         .finally(() => {
+           pending.value = false
+         })<% }); %>
+    })
+
   return {
-    form,
+    <% tableDetailCurrent.tableDetailForeignKeysHelp.forEach(function(field){
+    %><%= field.foreign_table_name %>,
+    <% });
+    %>form,
     
     v$ 
   }

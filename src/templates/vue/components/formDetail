@@ -11,7 +11,10 @@ const props = defineProps<{
 }>()
 
 const {
-  form,
+  <% tableDetailCurrent.tableDetailForeignKeysHelp.forEach(function(field){
+  %><%= field.foreign_table_name %>,
+  <% });
+  %>form,
 
   v$
 } = useForm<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>(props.<%= fn.singular(tableDetailCurrent.tableName); %>)
@@ -51,15 +54,18 @@ const submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = as
                   :error="v$.<%= field.column_name; %>.$error ? v$.<%= field.column_name; %>.$errors[0].$message : null"
                 />
               </div>
+
               <%} else if ((field.data_type === "bigint")) {%>  <div class="block">     
                 <AppSelect
-                  v-if="<%= tableMasterForeignKeysAssoc.find(element => element.column_name === field.column_name).foreign_table_name; %>"
-                  :options="<%= tableMasterForeignKeysAssoc.find(element => element.column_name === field.column_name).foreign_table_name; %>"
+                  v-if="<%= tableDetailCurrent.tableDetailForeignKeysHelp.find(element => element.column_name === field.column_name)?.foreign_table_name; %>"
+                  :options="<%= tableDetailCurrent.tableDetailForeignKeysHelp.find(element => element.column_name === field.column_name)?.foreign_table_name; %>"
                   v-model="form.<%= field.column_name; %>"
                   label="<%= field.column_name; %>"
                   :error="v$.<%= field.column_name; %>.$error ? v$.<%= field.column_name; %>.$errors[0].$message : null"
                 />
               </div>
+
+              
               <%} else if ((field.data_type === "boolean")) {%>  <div class="block">     
                 <AppCheckbox
                   v-model="form.<%= field.column_name; %>"
@@ -85,21 +91,8 @@ const submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = as
             name="status"
             :options="props.statusOptions"
             :error="v$.status.$error ? v$.status.$errors[0].$message : null"           
-          /-->
+          /-->    
       
-        <!--div class="block">
-          <AppTextarea
-            label="Empaque"
-            v-model="form.packing_deployed"                
-            @focus="isOpenModal = !isOpenModal"                
-            readonly
-            :error="v$.packing_deployed.$error ? v$.packing_deployed.$errors[0].$message : null"
-          />
-          <AppInput
-            v-model="form.packing_json"          
-            type="hidden"          
-          />                        
-        </div-->       
       </div>
       <div class="block flex justify-center">
         <AppBtn

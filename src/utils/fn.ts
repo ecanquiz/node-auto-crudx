@@ -12,5 +12,6 @@ export default {
   vn: {
     noId: (column_name: string): boolean => column_name !=='id',
     excludeFields: (column_name: string): boolean => (!['created_at', 'updated_at', 'deleted_at'].includes(column_name)),
+    noIdAndExcludeFields: (column_name: string): boolean => column_name !=='id' && !['created_at', 'updated_at', 'deleted_at'].includes(column_name)
   }
 }

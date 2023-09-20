@@ -20,10 +20,23 @@ class Index<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service
         $query = <%= fn.uCamelCase(fn.singular(tableMaster)); %>::query();
 
         /* search */
-        $search = $request->input("search");
+        $search = strtolower($request->input("search"));
         if ($search) {
             $query->where(function ($query) use ($search) {
-                $query->where("name", "like", "%$search%");
+                $query
+                <%
+                let where='where';
+                tableStructure.forEach(function(field) {
+                    if  (fn.vn.noIdAndExcludeFields(field.column_name)
+                        && field.data_type !== 'boolean'
+                        && !tableMasterForeignKeysAssoc.map(r=>r.column_name).includes(field.column_name)
+                    ) { 
+                %>-><%= where; %>(\DB::raw('lower(<%= field.column_name; %>)') , "like", "%$search%")                
+                <%
+                    where='orWhere';
+                    }
+                });
+                %>;
             });
         }
 

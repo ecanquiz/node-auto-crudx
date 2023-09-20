@@ -51,12 +51,14 @@ export default (
     tableStructureClean
   }
 
-   //console.log(resp.tableDetailOfMaster[1].idForeignKey)
-   //console.log(resp.tableDetailOfMaster[0].tableStructureOfDetails)
-   //console.log(resp.tableDetailOfMaster)
-   //console.log(dataOfBD.tableDetailForeignKeysAssoc)
-   //console.log(dataOfBD.xyz)
-   //console.log(resp.tableDetailOfMaster[2])
+  //console.log(resp.tableDetailOfMaster[1].idForeignKey)
+  //console.log(resp.tableDetailOfMaster[0].tableStructureOfDetails)
+  //console.log(resp.tableDetailOfMaster)
+  //console.log(dataOfBD.tableDetailForeignKeysAssoc)
+  // console.log(dataOfBD.tableMasterForeignKeysAssoc)
+  //console.log(dataOfBD.xyz)
+  //console.log(resp.tableDetailOfMaster[2])
+  //console.log(resp.tableStructure)
 
   return resp;
 

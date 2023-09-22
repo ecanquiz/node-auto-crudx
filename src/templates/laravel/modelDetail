@@ -14,7 +14,7 @@ class <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> extends M
 
     protected $fillable = [<% tableDetailCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
       if  (fn.v.excludeFields(field.column_name)) {%>
-        '<%- field.column_name; %>'<%= fn.addCommaToArr(tableStructure, index, 0) -%>
+        '<%- field.column_name; %>'<%= fn.addCommaToArr(tableDetailCurrent.tableStructureOfDetails[0], index, 3) -%>
     <%}});%> 
     ];
 

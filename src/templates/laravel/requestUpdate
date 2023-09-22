@@ -23,7 +23,7 @@ class Update<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request extends FormR
             <%
             tableStructure.forEach(function(field, index) {
             if  (fn.v.noIdAndExcludeFields(field.column_name)) { 
-            %>"<%- field.column_name; -%>" => ["required"]<%- fn.addCommaToArr(tableStructure, index, 4); -%> 
+            %>"<%- field.column_name; -%>" => ["required"]<%- fn.addCommaToArr(tableStructure, index, 3); -%> 
             <%}});%>
         ];
     }

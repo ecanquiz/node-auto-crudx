@@ -11,8 +11,10 @@
   "license": "ISC",
   "devDependencies": {
     "@types/ejs": "^3.1.2",
+    "@types/mock-fs": "^4.13.1",
     "@types/module-alias": "^2.0.1",
     "@types/pg": "^8.6.6",
+    "mock-fs": "^5.2.0",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "tslint": "^6.1.3",

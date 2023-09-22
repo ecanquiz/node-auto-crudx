@@ -13,7 +13,7 @@ class <%= fn.uCamelCase(fn.singular(tableMaster)); %> extends Model
     protected $connection = 'pgsql_<%= pathModule.toLowerCase(); %>';
 
     protected $fillable = [<% tableStructure.forEach(function(field, index) {
-      if  (fn.vn.excludeFields(field.column_name)) {%>
+      if  (fn.v.excludeFields(field.column_name)) {%>
         '<%- field.column_name; %>'<%= fn.addCommaToArr(tableStructure, index, 4) -%>
     <%}});%> 
     ];

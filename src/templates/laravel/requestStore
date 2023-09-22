@@ -22,7 +22,7 @@ class Store<%= fn.uCamelCase(fn.singular(tableMaster)); %>Request extends FormRe
         return [
             <%
             tableStructure.forEach(function(field, index) {
-            if  (fn.vn.noId(field.column_name) && fn.vn.excludeFields(field.column_name)) { 
+            if  (fn.v.noIdAndExcludeFields(field.column_name)) { 
             %>"<%- field.column_name; -%>" => ["required"]<%- fn.addCommaToArr(tableStructure, index, 4); -%> 
             <%}});%>
         ];

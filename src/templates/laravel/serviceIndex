@@ -27,7 +27,7 @@ class Index<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service
                 <%
                 let where='where';
                 tableStructure.forEach(function(field) {
-                    if  (fn.vn.noIdAndExcludeFields(field.column_name)
+                    if  (fn.v.noIdAndExcludeFields(field.column_name)
                         && field.data_type !== 'boolean'
                         && !tableMasterForeignKeysAssoc.map(r=>r.column_name).includes(field.column_name)
                     ) { 

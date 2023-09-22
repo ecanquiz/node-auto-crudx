@@ -102,7 +102,7 @@ export default (<%= fn.singular(tableMaster); %>Id: string) => {
   const create<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = () => {
       <%= fn.singular(tableDetailCurrent.tableName); %>.<%= tableDetailCurrent.idForeignKey; %> = <%= fn.singular(tableMaster); %>Id<%
     tableDetailCurrent.tableStructureOfDetails[0].filter(
-        f => fn.vn.excludeFields(f.column_name) && f.column_name !== tableDetailCurrent.idForeignKey
+        f => fn.v.excludeFields(f.column_name) && f.column_name !== tableDetailCurrent.idForeignKey
       ).forEach(function(field){ %>
       <%= fn.singular(tableDetailCurrent.tableName); %>.<%= field.column_name; %> = ""<% }); %>
   }
@@ -111,7 +111,7 @@ export default (<%= fn.singular(tableMaster); %>Id: string) => {
     // presentation.status = presentationEdit.sale_type ? 1 : 0
     <%= fn.singular(tableDetailCurrent.tableName); %>.<%= tableDetailCurrent.idForeignKey; %> = <%= fn.singular(tableMaster); %>Id<%
   tableDetailCurrent.tableStructureOfDetails[0].filter(
-      f => fn.vn.excludeFields(f.column_name) && f.column_name !== tableDetailCurrent.idForeignKey
+      f => fn.v.excludeFields(f.column_name) && f.column_name !== tableDetailCurrent.idForeignKey
     ).forEach(function(field){ %>
     <%= fn.singular(tableDetailCurrent.tableName); %>.<%= field.column_name; %> = <%= fn.singular(tableDetailCurrent.tableName) %>Edit.<%= field.column_name; %>%><% }); %>
     panelOpened.value = true

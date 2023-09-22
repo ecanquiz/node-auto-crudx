@@ -11,7 +11,7 @@ class Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Serv
     static public function execute(Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Request $request, <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> $<%= fn.singular(tableDetailCurrent.tableName); %>): JsonResponse
     {     
         <% tableDetailCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
-        if  ( fn.vn.noId(field.column_name) && fn.vn.excludeFields(field.column_name)) {%>
+        if  ( fn.v.noIdAndExcludeFields(field.column_name)) {%>
         $<%- fn.singular(tableDetailCurrent.tableName); -%>-><%- field.column_name; %> = $request-><%- field.column_name; -%>;<%}});%>
 
         $<%= fn.singular(tableDetailCurrent.tableName); %>->save();        

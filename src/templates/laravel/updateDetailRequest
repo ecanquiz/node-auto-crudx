@@ -21,7 +21,7 @@ class Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Requ
     public function rules(): Array
     {
         return  [<% tableDetailCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
-            if  ( fn.vn.noId(field.column_name) && fn.vn.excludeFields(field.column_name)) {%>
+            if  ( fn.v.noIdAndExcludeFields(field.column_name)) {%>
             '<%- field.column_name; %>' => ["required"]<%= fn.addCommaToArr(tableDetailCurrent.tableStructureOfDetails[0], index, 4) -%>
             <%}});%> 
         ];

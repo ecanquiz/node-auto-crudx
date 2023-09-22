@@ -12,7 +12,7 @@ class Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Servi
     {     
         $<%= fn.singular(tableDetailCurrent.tableName); %> = new <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>();
         <% tableDetailCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
-        if  ( fn.vn.noId(field.column_name) && fn.vn.excludeFields(field.column_name)) {%>
+        if  ( fn.v.noIdAndExcludeFields(field.column_name)) {%>
         $<%- fn.singular(tableDetailCurrent.tableName); -%>-><%- field.column_name; %> = $request-><%- field.column_name; -%>;<%}});%>
 
         $<%= fn.singular(tableDetailCurrent.tableName); %>->save();

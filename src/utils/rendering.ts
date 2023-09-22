@@ -2,7 +2,9 @@ import fs from 'fs'
 import ejs from 'ejs'
 import colors from 'colors'
 import createOutputPath from './createOutputPath'
-import { pathUser, pathModule } from '@config/output'
+//import { pathUser, pathModule } from '@config/output' // TODO conflict by testing...
+import { pathUser, pathModule } from '../config/output'
+
 import type { Rendering } from '@customTypes/utilsRendering'
 
 export default ({ outputFile, outputPath, params, template }: Rendering): void => {

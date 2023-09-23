@@ -5,31 +5,31 @@ import fs from 'fs'
 
 vi.mock('../../config/output', () => {
   return {
-    pathUser: 'some-path/some-dir/other-dir',
-    pathModule: 'SomeModule',
+    pathUser: 'userName',
+    pathModule: 'someModule',
   }
 })
 
 describe('Rendering', () => {
-  test('Rendering ...', () => {
-    
+  test('Render template', () => {    
     mock({
-      'path/to/template.txt': 'this-is-a-string [ <%= people.join(", "); %> ] this-is-another-string',
+      'userName/myApp': mock.directory({}),
+      'path/to/template.txt': 'this-is-a-string [ <%= people.join(", "); %> ] this-is-another-string'
     });
 
     rendering ({
       outputFile: 'outputFile.txt',
-      outputPath: '',
-      params: {
-        output: 'outputPath',
-        //@ts-ignore
-        people: ['geddy', 'neil', 'alex']
+      outputPath: 'outputPath',
+      params: { //@ts-ignore
+        people: ['geddy', 'neil', 'alex'],
+        output: 'userName/myApp/someModule'
       },
       template: 'path/to/template.txt'
     })
-
-    let tmplt = fs.readFileSync('outputPath/outputFile.txt')
-    //console.log(tmplt)
-
+    
+    fs.readFile('userName/myApp/someModule/outputPath/outputFile.txt', (err, data) => {
+      if (err) throw err;
+      expect(data.toString()).toBe("this-is-a-string [ geddy, neil, alex ] this-is-another-string")
+    });
   })
 })

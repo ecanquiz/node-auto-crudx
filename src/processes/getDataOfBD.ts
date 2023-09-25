@@ -2,7 +2,12 @@
 import db from '@modules/db';
 import colors from 'colors'
 
-import type { GetDataOfBDParams, GetDataOfBDReturn, TableDetailOfMaster, TableMasterForeignKeysAssoc } from '@customTypes/db'
+import type {
+  GetDataOfBDParams,
+  GetDataOfBDReturn,
+  TableDetailOfMaster,
+  //TableMasterForeignKeysAssoc
+} from '@customTypes/db'
 
 const validateIfTableMasterExist = async ({schema, tableMaster}: GetDataOfBDParams):Promise<void> => {  
   const tableMasterExist = (

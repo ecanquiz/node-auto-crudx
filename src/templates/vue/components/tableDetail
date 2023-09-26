@@ -1,25 +1,25 @@
 <script setup lang="ts">
 import { toRaw, ref } from "vue"
-//import <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service from "@/modules/<%= pathModule %>/services/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>"
-import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> } from "../../types/<%= pathModule %>/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>";
+//import <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>Service from "@/modules/<%= pathModule %>/services/<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>"
+import type { <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %> } from "../../types/<%= pathModule %>/<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>";
 
-const props = defineProps<{ <%= tableDetailCurrent.tableName; %>: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>[] }>()
+const props = defineProps<{ <%= tableDetailsCurrent.tableName; %>: <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>[] }>()
 
 const emits = defineEmits<{
-  (e: 'edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>', <%= fn.singular(tableDetailCurrent.tableName); %>Id: object): void
-  (e: 'remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>', <%= fn.singular(tableDetailCurrent.tableName); %>Id: string): void
-  (e: 'get<%= fn.uCamelCase(tableDetailCurrent.tableName); %>' ): void
+  (e: 'edit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>', <%= fn.singular(tableDetailsCurrent.tableName); %>Id: object): void
+  (e: 'remove<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>', <%= fn.singular(tableDetailsCurrent.tableName); %>Id: string): void
+  (e: 'get<%= fn.uCamelCase(tableDetailsCurrent.tableName); %>' ): void
 }>()
 
-const edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> =  (<%= fn.singular(tableDetailCurrent.tableName); %>: object) => {
-  emits("edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>", toRaw(<%= fn.singular(tableDetailCurrent.tableName); %>))
+const edit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> =  (<%= fn.singular(tableDetailsCurrent.tableName); %>: object) => {
+  emits("edit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>", toRaw(<%= fn.singular(tableDetailsCurrent.tableName); %>))
 };
 
-const remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> =  (<%= fn.singular(tableDetailCurrent.tableName); %>Id: string) => {
-  emits("remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>", <%= fn.singular(tableDetailCurrent.tableName); %>Id)
+const remove<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> =  (<%= fn.singular(tableDetailsCurrent.tableName); %>Id: string) => {
+  emits("remove<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>", <%= fn.singular(tableDetailsCurrent.tableName); %>Id)
 };
 
-const <%= fn.singular(tableDetailCurrent.tableName); %>Id = ref("")
+const <%= fn.singular(tableDetailsCurrent.tableName); %>Id = ref("")
 
 </script>
 
@@ -29,26 +29,26 @@ const <%= fn.singular(tableDetailCurrent.tableName); %>Id = ref("")
       <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
         <tr>
           <%
-          tableDetailCurrent.tableStructureOfDetails[0].filter(
-            f => ![tableDetailCurrent.idForeignKey, 'id','created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
+          tableDetailsCurrent.tableStructure.filter(
+            f => ![tableDetailsCurrent.idForeignKey, 'id','created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
           ).forEach(function(field, index){ %>
           <th class="px-6 py-3 <% if (index%2===0) { %>bg-gray-50 bg-base-200<% } %>"><%= field.column_name; %></th>%><% 
           }); %>
-          <th class="px-6 py-3 <% if (tableDetailCurrent.tableStructureOfDetails[0].filter(
-            f => ![tableDetailCurrent.idForeignKey, 'id','created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
+          <th class="px-6 py-3 <% if (tableDetailsCurrent.tableStructure.filter(
+            f => ![tableDetailsCurrent.idForeignKey, 'id','created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
           ).length%2===0) { %>bg-gray-50 bg-base-200<% } %>">Acción(es)</th>
         </tr>
       </thead>
       <tbody>      
-        <tr v-for="<%= fn.singular(tableDetailCurrent.tableName); %> in props.<%= tableDetailCurrent.tableName; %>" :key="<%= fn.singular(tableDetailCurrent.tableName); %>.id">
+        <tr v-for="<%= fn.singular(tableDetailsCurrent.tableName); %> in props.<%= tableDetailsCurrent.tableName; %>" :key="<%= fn.singular(tableDetailsCurrent.tableName); %>.id">
 
 
 
-          <% tableDetailCurrent.tableStructureOfDetails[0].filter(
-            f => ![tableDetailCurrent.idForeignKey, 'id','created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
+          <% tableDetailsCurrent.tableStructure.filter(
+            f => ![tableDetailsCurrent.idForeignKey, 'id','created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
           ).forEach((field, index) => { %>
             <td class="px-6 py-3 <% if (index%2===0) { %>bg-gray-50 bg-base-200<% } %>">
-              {{ <%= fn.singular(tableDetailCurrent.tableName); %>.<%= field.column_name; %> }}
+              {{ <%= fn.singular(tableDetailsCurrent.tableName); %>.<%= field.column_name; %> }}
 
 
               
@@ -58,22 +58,22 @@ const <%= fn.singular(tableDetailCurrent.tableName); %>Id = ref("")
 
 
 
-          <!--td class="px-6 py-3 bg-gray-50 bg-base-200">{{<%= fn.singular(tableDetailCurrent.tableName); %>.bar_cod}}</td>
-          <td class="px-6 py-3">{{<%= fn.singular(tableDetailCurrent.tableName); %>.int_cod}}</td>
-          <td class="px-6 py-3 text-right">{{<%= fn.singular(tableDetailCurrent.tableName); %>.price}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200 text-right">{{<%= fn.singular(tableDetailCurrent.tableName); %>.stock_min}}</td>
-          <td class="px-6 py-3 text-right">{{<%= fn.singular(tableDetailCurrent.tableName); %>.stock_max}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{<%= fn.singular(tableDetailCurrent.tableName); %>.status}}</td-->  
+          <!--td class="px-6 py-3 bg-gray-50 bg-base-200">{{<%= fn.singular(tableDetailsCurrent.tableName); %>.bar_cod}}</td>
+          <td class="px-6 py-3">{{<%= fn.singular(tableDetailsCurrent.tableName); %>.int_cod}}</td>
+          <td class="px-6 py-3 text-right">{{<%= fn.singular(tableDetailsCurrent.tableName); %>.price}}</td>
+          <td class="px-6 py-3 bg-gray-50 bg-base-200 text-right">{{<%= fn.singular(tableDetailsCurrent.tableName); %>.stock_min}}</td>
+          <td class="px-6 py-3 text-right">{{<%= fn.singular(tableDetailsCurrent.tableName); %>.stock_max}}</td>
+          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{<%= fn.singular(tableDetailsCurrent.tableName); %>.status}}</td-->  
           <td class="px-6 py-3">
             <div class="flex items-center space-x-1">
              <AppBtn
                 class="btn btn-primary btn-xs"                    
-                @click="edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(<%= fn.singular(tableDetailCurrent.tableName); %>)"
+                @click="edit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>(<%= fn.singular(tableDetailsCurrent.tableName); %>)"
               >
                 Editar
               </AppBtn>
               <AppBtn
-                @click="remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(<%= fn.singular(tableDetailCurrent.tableName); %>.id)"                    
+                @click="remove<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>(<%= fn.singular(tableDetailsCurrent.tableName); %>.id)"                    
                 class="btn btn-danger btn-xs"                    
               >
                 Eliminar

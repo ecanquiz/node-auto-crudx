@@ -2,17 +2,17 @@ import { onMounted, computed, reactive, ref, watch } from 'vue'
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers, minValue } from "@vuelidate/validators";
 import useHttp from "@/composables/useHttp";
-<% tableDetailCurrent.tableDetailForeignKeysHelp.forEach(function(field){
+<% tableDetailsCurrent.tableForeignKeysAssoc.forEach(function(field){
 %>import <%= fn.uCamelCase(fn.singular(field.foreign_table_name)) %>Service from "../../services/<%= fn.uCamelCase(fn.singular(field.foreign_table_name)) %>";
 <% });
-%>import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> } from "../../types/<%= pathModule %>/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>";
+%>import type { <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> } from "../../types/<%= pathModule %>/<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>";
 
-export default (<%= fn.singular(tableDetailCurrent.tableName) %>: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>) => {  
-  const form = reactive<<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>>({<%
-    tableDetailCurrent.tableStructureOfDetails[0].filter(
+export default (<%= fn.singular(tableDetailsCurrent.tableName) %>: <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>) => {  
+  const form = reactive<<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>>({<%
+    tableDetailsCurrent.tableStructure.filter(
         f => !['created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
     ).forEach(function(field){ %>
-    <%= field.column_name; %>: <%= fn.singular(tableDetailCurrent.tableName) %>.<%= field.column_name; %>, %><% }); %>
+    <%= field.column_name; %>: <%= fn.singular(tableDetailsCurrent.tableName) %>.<%= field.column_name; %>, %><% }); %>
   })
 
   const {
@@ -23,12 +23,12 @@ export default (<%= fn.singular(tableDetailCurrent.tableName) %>: <%= fn.uCamelC
   } = useHttp()
 
   const isOpenModal = ref(false)
-  <% tableDetailCurrent.tableDetailForeignKeysHelp.forEach(function(field){
+  <% tableDetailsCurrent.tableForeignKeysAssoc.forEach(function(field){
   %>const <%= field.foreign_table_name %> = ref([])
   <% }); %>
   const rules = computed(() => {
     return {<%
-      tableDetailCurrent.tableStructureOfDetails[0].filter(
+      tableDetailsCurrent.tableStructure.filter(
           f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
       ).forEach(function(field){ %>
       <%= field.column_name; %>: { required: helpers.withMessage("Campo requerido", required) },<% }); %>
@@ -37,15 +37,15 @@ export default (<%= fn.singular(tableDetailCurrent.tableName) %>: <%= fn.uCamelC
 
   const v$ = useVuelidate(rules, form as any);
     
-  watch(<%= fn.singular(tableDetailCurrent.tableName) %>, (new<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>) => {<%
-    tableDetailCurrent.tableStructureOfDetails[0].filter(
+  watch(<%= fn.singular(tableDetailsCurrent.tableName) %>, (new<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>) => {<%
+    tableDetailsCurrent.tableStructure.filter(
       f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
     ).forEach(function(field){ %>
-    form.<%= field.column_name; %> = new<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>.<%= field.column_name; %><% }); %>
+    form.<%= field.column_name; %> = new<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>.<%= field.column_name; %><% }); %>
   })
 
   onMounted(() => {
-    <% tableDetailCurrent.tableDetailForeignKeysHelp.forEach(function(tbl){
+    <% tableDetailsCurrent.tableForeignKeysAssoc.forEach(function(tbl){
       %>
       pending.value = true
       <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>Service.getHelp<%= fn.uCamelCase(tbl.foreign_table_name); %>()
@@ -61,7 +61,7 @@ export default (<%= fn.singular(tableDetailCurrent.tableName) %>: <%= fn.uCamelC
     })
 
   return {
-    <% tableDetailCurrent.tableDetailForeignKeysHelp.forEach(function(field){
+    <% tableDetailsCurrent.tableForeignKeysAssoc.forEach(function(field){
     %><%= field.foreign_table_name %>,
     <% });
     %>form,

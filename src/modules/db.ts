@@ -109,7 +109,7 @@ class DB {
         }, isEnd)
     }
 
-    async getTableDetailOfMaster(
+    async getTableDetailsOfMaster(
         values: { schema: string, tableMaster: string },
         isEnd = false,
     ): Promise<QueryArrayResult<any[]>>{
@@ -145,7 +145,7 @@ class DB {
         }, isEnd)
     }
 
-    async getTableMasterForeignKeysAssoc(
+    async getTableForeignKeysAssoc(
         values: { schema: string, tableMaster: string },
         isEnd = false,
     ): Promise<QueryArrayResult<any[]>>{

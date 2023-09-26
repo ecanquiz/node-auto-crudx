@@ -2,20 +2,17 @@ export type ParamsMain = {
   pathModule?: string
   tableMaster: string
   tableStructure: string[][],
-  tableMasterForeignKeysAssoc: string[][]
+  tableForeignKeysAssoc: string[][]
 }
 
-export type tableDetailOfMasterCustomized = {
+export type tableDetailsOfMasterCustomized = {
   tableName: string
-  //tableNameSingular: string
-  //tableNameUCamelCase: string
-  //tableNameSingularUCamelCase: string
-  tableStructureOfDetails: any[] // PENDING BY CHECKOUT
+  tableStructure: any[] // PENDING BY CHECKOUT
 }
 
 export type ParamsDetail = {
-  tableDetailOfMaster: any[][] | tableDetailOfMasterCustomized[]
-  tableDetailCurrent?: tableDetailOfMasterCustomized
+  tableDetailsOfMaster: any[][] | tableDetailsOfMasterCustomized[]
+  tableDetailsCurrent?: tableDetailsOfMasterCustomized
 }
 
 export type Output = {

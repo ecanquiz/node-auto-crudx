@@ -13,7 +13,7 @@ const {
 } = useTab<%= fn.uCamelCase(fn.singular(tableMaster)); %>(props.id)
 
 const isTrue = computed(
-  () => <%= fn.singular(tableMaster); %><% tableMasterForeignKeysAssoc.forEach(function(tbl){ %> && <%= fn.singular(tableMaster); %>.<%= tbl.column_name; %> <% }); %>|| !props.id
+  () => <%= fn.singular(tableMaster); %><% tableForeignKeysAssoc.forEach(function(tbl){ %> && <%= fn.singular(tableMaster); %>.<%= tbl.column_name; %> <% }); %>|| !props.id
 ) 
 </script>
 

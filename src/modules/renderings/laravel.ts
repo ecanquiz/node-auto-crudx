@@ -3,117 +3,115 @@ import { uCamelCase } from '@utils/nomenclature'
 import type { ParamsAll, Rendering } from '@customTypes/utilsRendering'
 
 export default {
+  detailController: (params: ParamsAll): Rendering => ({
+    template: './src/templates/laravel/controllerDetail',
+    outputPath: `Http/Controllers`,
+    outputFile: `${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}Controller.php`,
+    params
+  }),
 
-  controller: (params: ParamsAll): Rendering => ({
+  detailModel: (params: ParamsAll): Rendering => ({
+    template: './src/templates/laravel/modelDetail',
+    outputPath: `Entities`,
+    outputFile: `${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}.php`,
+    params
+  }),
+
+  detailRoute: (params: ParamsAll): Rendering => ({
+    template: './src/templates/laravel/routeDetail',
+    outputPath: `Routes`,
+    outputFile: `api${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}.php`,
+    params
+  }),
+
+  detailStoreRequest: (params: ParamsAll): Rendering => ({
+    template: './src/templates/laravel/storeDetailRequest',
+    outputPath: `Http/Requests/${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}`,
+    outputFile: `Store${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}Request.php`,
+    params
+  }),
+
+  detailStoreService: (params: ParamsAll): Rendering => ({
+    template: './src/templates/laravel/storeDetailService',
+    outputPath: `Http/Services/${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}`,
+    outputFile: `Store${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}Service.php`,
+    params
+  }),
+
+  detailUpdateRequest: (params: ParamsAll): Rendering => ({
+    template: './src/templates/laravel/updateDetailRequest',
+    outputPath: `Http/Requests/${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}`,
+    outputFile: `Update${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}Request.php`,
+    params
+  }),
+
+  detailUpdateService: (params: ParamsAll): Rendering => ({
+    template: './src/templates/laravel/updateDetailService',
+    outputPath: `Http/Services/${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}`,
+    outputFile: `Update${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}Service.php`,
+    params
+  }),
+
+  masterController: (params: ParamsAll): Rendering => ({
     template: './src/templates/laravel/controller',
     outputPath: `Http/Controllers`,
     outputFile: `${uCamelCase(singular(params.tableMaster))}Controller.php`,
     params
   }),
 
-  controllerDetail: (params: ParamsAll): Rendering => ({
-    template: './src/templates/laravel/controllerDetail',
-    outputPath: `Http/Controllers`,
-    outputFile: `${uCamelCase(singular(params.tableDetailCurrent!.tableName))}Controller.php`,
-    params
-  }),
-
-  model: (params: ParamsAll): Rendering => ({
+  masterModel: (params: ParamsAll): Rendering => ({
     template: './src/templates/laravel/model',
     outputPath: `Entities`,
     outputFile: `${uCamelCase(singular(params.tableMaster))}.php`,
     params
   }),
 
-  modelDetail: (params: ParamsAll): Rendering => ({
-    template: './src/templates/laravel/modelDetail',
-    outputPath: `Entities`,
-    outputFile: `${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.php`,
-    params
-  }),
-
-  requestStore: (params: ParamsAll): Rendering => ({
+  masterRequestStore: (params: ParamsAll): Rendering => ({
     template: './src/templates/laravel/requestStore',
     outputPath: `Http/Requests/${uCamelCase(singular(params.tableMaster))}`,
     outputFile: `Store${uCamelCase(singular(params.tableMaster))}Request.php`,
     params
   }),
 
-  requestUpdate: (params: ParamsAll): Rendering => ({
+  masterRequestUpdate: (params: ParamsAll): Rendering => ({
     template: './src/templates/laravel/requestUpdate',
     outputPath: `Http/Requests/${uCamelCase(singular(params.tableMaster))}`,
     outputFile: `Update${uCamelCase(singular(params.tableMaster))}Request.php`,
     params
   }),
 
-  resource: (params: ParamsAll): Rendering => ({
+  masterResource: (params: ParamsAll): Rendering => ({
     template: './src/templates/laravel/resource',
     outputPath: `Http/Resources`,
     outputFile: `${uCamelCase(singular(params.tableMaster))}Resource.php`,
     params
   }),
 
-  route: (params: ParamsAll): Rendering => ({
+  masterRoute: (params: ParamsAll): Rendering => ({
     template: './src/templates/laravel/route',
     outputPath: `Routes`,
     outputFile: `api${uCamelCase(singular(params.tableMaster))}.php`,
     params
   }),
 
-  routeDetail: (params: ParamsAll): Rendering => ({
-    template: './src/templates/laravel/routeDetail',
-    outputPath: `Routes`,
-    outputFile: `api${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.php`,
-    params
-  }),
-
-  serviceIndex: (params: ParamsAll): Rendering => ({
+  masterServiceIndex: (params: ParamsAll): Rendering => ({
     template: './src/templates/laravel/serviceIndex',
     outputPath: `Http/Services/${uCamelCase(singular(params.tableMaster))}`,
     outputFile: `Index${uCamelCase(singular(params.tableMaster))}Service.php`,
     params
   }),
 
-  serviceStore: (params: ParamsAll): Rendering => ({
+  masterServiceStore: (params: ParamsAll): Rendering => ({
     template: './src/templates/laravel/serviceStore',
     outputPath: `Http/Services/${uCamelCase(singular(params.tableMaster))}`,
     outputFile: `Store${uCamelCase(singular(params.tableMaster))}Service.php`,
     params
   }),
 
-  serviceUpdate: (params: ParamsAll): Rendering => ({
+  masterServiceUpdate: (params: ParamsAll): Rendering => ({
     template: './src/templates/laravel/serviceUpdate',
     outputPath: `Http/Services/${uCamelCase(singular(params.tableMaster))}`,
     outputFile: `Update${uCamelCase(singular(params.tableMaster))}Service.php`,
     params
-  }),
-
-  storeDetailRequest: (params: ParamsAll): Rendering => ({
-    template: './src/templates/laravel/storeDetailRequest',
-    outputPath: `Http/Requests/${uCamelCase(singular(params.tableDetailCurrent!.tableName))}`,
-    outputFile: `Store${uCamelCase(singular(params.tableDetailCurrent!.tableName))}Request.php`,
-    params
-  }),
-
-  storeDetailService: (params: ParamsAll): Rendering => ({
-    template: './src/templates/laravel/storeDetailService',
-    outputPath: `Http/Services/${uCamelCase(singular(params.tableDetailCurrent!.tableName))}`,
-    outputFile: `Store${uCamelCase(singular(params.tableDetailCurrent!.tableName))}Service.php`,
-    params
-  }),
-
-  updateDetailRequest: (params: ParamsAll): Rendering => ({
-    template: './src/templates/laravel/updateDetailRequest',
-    outputPath: `Http/Requests/${uCamelCase(singular(params.tableDetailCurrent!.tableName))}`,
-    outputFile: `Update${uCamelCase(singular(params.tableDetailCurrent!.tableName))}Request.php`,
-    params
-  }),
-
-  updateDetailService: (params: ParamsAll): Rendering => ({
-    template: './src/templates/laravel/updateDetailService',
-    outputPath: `Http/Services/${uCamelCase(singular(params.tableDetailCurrent!.tableName))}`,
-    outputFile: `Update${uCamelCase(singular(params.tableDetailCurrent!.tableName))}Service.php`,
-    params
-  })
-  
+  })  
 }

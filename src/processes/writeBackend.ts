@@ -1,36 +1,34 @@
 import laravel from '@modules/renderings/laravel'
 import rendering from '@utils/rendering';
 import { pathBackend as output } from '@config/output'
-import { buildBackendRoutes } from '@config/buildRoutes'
-import type { ParamsAll, tableDetailOfMasterCustomized } from '@customTypes/utilsRendering'
+import type { ParamsAll, tableDetailsOfMasterCustomized } from '@customTypes/utilsRendering'
 
 export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
   const params: ParamsAll = {...paramsOmitOutput, output}
-  if (params.tableDetailOfMaster.length===0) {
-    console.log('params.tableDetailOfMaster', params.tableDetailOfMaster)
+  if (params.tableDetailsOfMaster.length===0) {
+    console.log('params.tableDetailsOfMaster', params.tableDetailsOfMaster)
   } else {
-    params.tableDetailOfMaster.forEach(function(table){
+    params.tableDetailsOfMaster.forEach(function(table){
       const paramsWhitDetail = {
         ...params,
-        tableDetailCurrent: (table as unknown as tableDetailOfMasterCustomized)
+        tableDetailsCurrent: (table as unknown as tableDetailsOfMasterCustomized)
       }
-      rendering(laravel.controllerDetail(paramsWhitDetail))
-      rendering(laravel.modelDetail(paramsWhitDetail))
-      rendering(laravel.routeDetail(paramsWhitDetail))
-      rendering(laravel.storeDetailRequest(paramsWhitDetail))
-      rendering(laravel.storeDetailService(paramsWhitDetail))
-      rendering(laravel.updateDetailRequest(paramsWhitDetail))
-      rendering(laravel.updateDetailService(paramsWhitDetail))
+      rendering(laravel.detailController(paramsWhitDetail))
+      rendering(laravel.detailModel(paramsWhitDetail))
+      rendering(laravel.detailRoute(paramsWhitDetail))
+      rendering(laravel.detailStoreRequest(paramsWhitDetail))
+      rendering(laravel.detailStoreService(paramsWhitDetail))
+      rendering(laravel.detailUpdateRequest(paramsWhitDetail))
+      rendering(laravel.detailUpdateService(paramsWhitDetail))
     })
   }
-  rendering(laravel.controller(params))
-  rendering(laravel.model(params))
-  rendering(laravel.serviceIndex(params))
-  rendering(laravel.serviceStore(params))
-  rendering(laravel.serviceUpdate(params))
-  rendering(laravel.resource(params))
-  rendering(laravel.requestStore(params))
-  rendering(laravel.requestUpdate(params))
-  if (buildBackendRoutes as unknown as boolean)
-    rendering(laravel.route(params))
+  rendering(laravel.masterController(params))
+  rendering(laravel.masterModel(params))
+  rendering(laravel.masterServiceIndex(params))
+  rendering(laravel.masterServiceStore(params))
+  rendering(laravel.masterServiceUpdate(params))
+  rendering(laravel.masterResource(params))
+  rendering(laravel.masterRequestStore(params))
+  rendering(laravel.masterRequestUpdate(params))
+  rendering(laravel.masterRoute(params))
 }

@@ -3,17 +3,17 @@ import useHttp from "@/composables/useHttp";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service from "../../services/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
-<% tableMasterForeignKeysAssoc.forEach(function(tbl){
+<% tableForeignKeysAssoc.forEach(function(tbl){
 %>import <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>Service from  "../../services/<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>"<%
 }); %>
 import type { <%= fn.uCamelCase(fn.singular(tableMaster)); %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
-<% tableMasterForeignKeysAssoc.forEach(function(tbl){
+<% tableForeignKeysAssoc.forEach(function(tbl){
 %>import type { <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %> } from  "../../types/<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>"<%
 }); %>
 // import { ascBubble } from "@/utils/helpers";
 
 export default (<%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(tableMaster)); %>) => {
-  <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+  <% tableForeignKeysAssoc.forEach(function(tbl){
     %>const <%= tbl.foreign_table_name; %> =  ref<<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>[]>()<%
   }); %>
 
@@ -41,7 +41,7 @@ export default (<%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(
 
 
 
-    <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+    <% tableForeignKeysAssoc.forEach(function(tbl){
       %>
       pending.value = true
       <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>Service.getHelp<%= fn.uCamelCase(tbl.foreign_table_name); %>()
@@ -126,7 +126,7 @@ export default (<%= fn.singular(tableMaster); %>: <%= fn.uCamelCase(fn.singular(
   const v$ = useVuelidate(rules, form);
 
   return {
-  <% tableMasterForeignKeysAssoc.forEach(function(tbl){ -%>
+  <% tableForeignKeysAssoc.forEach(function(tbl){ -%>
   <%- tbl.foreign_table_name -%>,
 <%})-%>
     form,

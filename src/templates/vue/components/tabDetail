@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import {ref} from 'vue'
-  import Form<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> from './Form<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>.vue'
-  import Table<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> from './Table<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>.vue'
-  import useTab<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> from '../../composables/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/useTab<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>'
+  import Form<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> from './Form<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>.vue'
+  import Table<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> from './Table<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>.vue'
+  import useTab<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> from '../../composables/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/useTab<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>'
   const componentKey = ref(0);
   
   const props = defineProps<{ id?: string }>()
@@ -11,16 +11,16 @@
     panelOpened,
     closeButtonOpened,
     closeClassOpened,  
-    <%= tableDetailCurrent.tableName %>,
-    <%= fn.singular(tableDetailCurrent.tableName) %>,
+    <%= tableDetailsCurrent.tableName %>,
+    <%= fn.singular(tableDetailsCurrent.tableName) %>,
   
-    create<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,
-    edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,
-    get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>,
-    remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,  
-    submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,
-    panelToogle<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>
-  } = useTab<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(props.id)
+    create<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>,
+    edit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>,
+    get<%= fn.uCamelCase(tableDetailsCurrent.tableName) %>,
+    remove<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>,  
+    submit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>,
+    panelToogle<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>
+  } = useTab<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>(props.id)
   </script>
   
   <template>
@@ -33,22 +33,22 @@
               type="text"                 
               data-testid="click-btn"
               :class="closeClassOpened"
-              :text="`${closeButtonOpened} panel to add <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>`"
-              @click="panelToogle<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>"
+              :text="`${closeButtonOpened} panel to add <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>`"
+              @click="panelToogle<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>"
             />      
-            <Form<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>
+            <Form<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>
               v-if="panelOpened"
               class="bg-base-200 py-4 mt-2 rounded"
-              :<%= fn.singular(tableDetailCurrent.tableName) %>="<%= fn.singular(tableDetailCurrent.tableName) %>"
-              @submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>="submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>"
+              :<%= fn.singular(tableDetailsCurrent.tableName) %>="<%= fn.singular(tableDetailsCurrent.tableName) %>"
+              @submit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>="submit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>"
             />
-            <Table<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>
+            <Table<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>
               :key="componentKey"
-              v-if="<%= tableDetailCurrent.tableName %>"
-              :<%= tableDetailCurrent.tableName %>="<%= tableDetailCurrent.tableName %>"
-              @edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>="edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>"
-              @get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>="get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>"
-              @remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>="remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>"            
+              v-if="<%= tableDetailsCurrent.tableName %>"
+              :<%= tableDetailsCurrent.tableName %>="<%= tableDetailsCurrent.tableName %>"
+              @edit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>="edit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>"
+              @get<%= fn.uCamelCase(tableDetailsCurrent.tableName) %>="get<%= fn.uCamelCase(tableDetailsCurrent.tableName) %>"
+              @remove<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>="remove<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>"            
             />
           </div>
         </div>

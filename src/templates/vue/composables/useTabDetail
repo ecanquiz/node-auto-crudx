@@ -1,8 +1,8 @@
 import { computed, onMounted, reactive, ref } from 'vue'
 import useHttp from "@/composables/useHttp";
-import <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service from "@/modules/<%= pathModule %>/services/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>";
+import <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>Service from "@/modules/<%= pathModule %>/services/<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>";
 import type { Ref } from "vue";
-import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> } from "../../types/<%= pathModule %>/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>";
+import type { <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> } from "../../types/<%= pathModule %>/<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>";
 
 export default (<%= fn.singular(tableMaster); %>Id: string) => {
   /*const saleTypeOptions = [
@@ -14,14 +14,14 @@ export default (<%= fn.singular(tableMaster); %>Id: string) => {
     { label: 'Activo', value: 1 }  
   ]*/
   
-  const <%= fn.singular(tableDetailCurrent.tableName); %>: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> = reactive({<%
-  tableDetailCurrent.tableStructureOfDetails[0].filter(
+  const <%= fn.singular(tableDetailsCurrent.tableName); %>: <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %> = reactive({<%
+  tableDetailsCurrent.tableStructure.filter(
       f => !['created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
     ).forEach(function(field){ %>
     <%= field.column_name; %>: "", %><% }); %>
   })
   
-  const <%= tableDetailCurrent.tableName %>: Ref<<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>[]>  = ref([])
+  const <%= tableDetailsCurrent.tableName %>: Ref<<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>[]>  = ref([])
   const panelOpened = ref(false)
   const closeButtonOpened = computed(()=> panelOpened.value ? "Cerrar" : "Abrir")
   const closeClassOpened = computed(()=> panelOpened.value ? "btn-default" : "btn-primary")
@@ -35,35 +35,35 @@ export default (<%= fn.singular(tableMaster); %>Id: string) => {
 
   onMounted(    
     () => {
-      <%= fn.singular(tableDetailCurrent.tableName) %>.<%= fn.singular(tableMaster); %>_id = <%= fn.singular(tableMaster); %>Id
-      get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>()
+      <%= fn.singular(tableDetailsCurrent.tableName) %>.<%= fn.singular(tableMaster); %>_id = <%= fn.singular(tableMaster); %>Id
+      get<%= fn.uCamelCase(tableDetailsCurrent.tableName) %>()
     }
   )
 
-  const panelToogle<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = ()=> {
+  const panelToogle<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = ()=> {
     if (!panelOpened.value) {
-      create<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>()
+      create<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>()
     }
     panelOpened.value =! panelOpened.value    
   }
   
-  const get<%= fn.uCamelCase(tableDetailCurrent.tableName) %> = async () => {
+  const get<%= fn.uCamelCase(tableDetailsCurrent.tableName) %> = async () => {
     if (!<%= fn.singular(tableMaster); %>Id)
       return null 
     pending.value = true
-    <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service.get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>(<%= fn.singular(tableMaster); %>Id)
-      .then(res => <%= tableDetailCurrent.tableName %>.value = res.data)
+    <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>Service.get<%= fn.uCamelCase(tableDetailsCurrent.tableName) %>(<%= fn.singular(tableMaster); %>Id)
+      .then(res => <%= tableDetailsCurrent.tableName %>.value = res.data)
       .catch(err => errors.value = getError(err))
       .finally(() => pending.value = false) 
   }
 
-  const insert<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = async (payload: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>) => {
+  const insert<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = async (payload: <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>) => {
     pending.value = true
     payload.<%= fn.singular(tableMaster); %>_id = <%= fn.singular(tableMaster); %>Id
-    return <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service.insert<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(payload)
+    return <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>Service.insert<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>(payload)
       .then((response) => {
         panelOpened.value = false
-        get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>()    
+        get<%= fn.uCamelCase(tableDetailsCurrent.tableName) %>()    
         alert( response.data.message )
               
       })
@@ -76,14 +76,14 @@ export default (<%= fn.singular(tableMaster); %>Id: string) => {
       })
   }
 
-  const update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = async (payload: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>, <%= fn.singular(tableDetailCurrent.tableName) %>Id: string) => {
+  const update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = async (payload: <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>, <%= fn.singular(tableDetailsCurrent.tableName) %>Id: string) => {
     pending.value = true
     payload.<%= fn.singular(tableMaster); %>_id = <%= fn.singular(tableMaster); %>Id
     payload._method = 'PUT'        
-    return <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service.update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(payload, <%= fn.singular(tableDetailCurrent.tableName) %>Id)
+    return <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>Service.update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>(payload, <%= fn.singular(tableDetailsCurrent.tableName) %>Id)
       .then((response) => {        
         panelOpened.value = false
-        get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>()    
+        get<%= fn.uCamelCase(tableDetailsCurrent.tableName) %>()    
         alert( response.data.message )     
       })
       .catch((err) => {                
@@ -95,36 +95,36 @@ export default (<%= fn.singular(tableMaster); %>Id: string) => {
       })
   }
   
-  const submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = (payload: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>) => {    
-    !<%= fn.singular(tableDetailCurrent.tableName) %>.id ? insert<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> (payload)  : update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(payload, <%= fn.singular(tableDetailCurrent.tableName) %>.id)
+  const submit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = (payload: <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>) => {    
+    !<%= fn.singular(tableDetailsCurrent.tableName) %>.id ? insert<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> (payload)  : update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>(payload, <%= fn.singular(tableDetailsCurrent.tableName) %>.id)
   }
 
-  const create<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = () => {
-      <%= fn.singular(tableDetailCurrent.tableName); %>.<%= tableDetailCurrent.idForeignKey; %> = <%= fn.singular(tableMaster); %>Id<%
-    tableDetailCurrent.tableStructureOfDetails[0].filter(
-        f => fn.v.excludeFields(f.column_name) && f.column_name !== tableDetailCurrent.idForeignKey
+  const create<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = () => {
+      <%= fn.singular(tableDetailsCurrent.tableName); %>.<%= tableDetailsCurrent.idForeignKey; %> = <%= fn.singular(tableMaster); %>Id<%
+    tableDetailsCurrent.tableStructure.filter(
+        f => fn.v.excludeFields(f.column_name) && f.column_name !== tableDetailsCurrent.idForeignKey
       ).forEach(function(field){ %>
-      <%= fn.singular(tableDetailCurrent.tableName); %>.<%= field.column_name; %> = ""<% }); %>
+      <%= fn.singular(tableDetailsCurrent.tableName); %>.<%= field.column_name; %> = ""<% }); %>
   }
 
-  const edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = (<%= fn.singular(tableDetailCurrent.tableName) %>Edit: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>) => {
+  const edit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = (<%= fn.singular(tableDetailsCurrent.tableName) %>Edit: <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>) => {
     // presentation.status = presentationEdit.sale_type ? 1 : 0
-    <%= fn.singular(tableDetailCurrent.tableName); %>.<%= tableDetailCurrent.idForeignKey; %> = <%= fn.singular(tableMaster); %>Id<%
-  tableDetailCurrent.tableStructureOfDetails[0].filter(
-      f => fn.v.excludeFields(f.column_name) && f.column_name !== tableDetailCurrent.idForeignKey
+    <%= fn.singular(tableDetailsCurrent.tableName); %>.<%= tableDetailsCurrent.idForeignKey; %> = <%= fn.singular(tableMaster); %>Id<%
+  tableDetailsCurrent.tableStructure.filter(
+      f => fn.v.excludeFields(f.column_name) && f.column_name !== tableDetailsCurrent.idForeignKey
     ).forEach(function(field){ %>
-    <%= fn.singular(tableDetailCurrent.tableName); %>.<%= field.column_name; %> = <%= fn.singular(tableDetailCurrent.tableName) %>Edit.<%= field.column_name; %>%><% }); %>
+    <%= fn.singular(tableDetailsCurrent.tableName); %>.<%= field.column_name; %> = <%= fn.singular(tableDetailsCurrent.tableName) %>Edit.<%= field.column_name; %>%><% }); %>
     panelOpened.value = true
   }
   
-  const remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = async (<%= fn.singular(tableDetailCurrent.tableName) %>Id: string) => {
-    if (<%= fn.singular(tableDetailCurrent.tableName) %>Id === undefined)
+  const remove<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = async (<%= fn.singular(tableDetailsCurrent.tableName) %>Id: string) => {
+    if (<%= fn.singular(tableDetailsCurrent.tableName) %>Id === undefined)
       return
-    else if (confirm(`¿Estás seguro que desea eliminar el registro ${<%= fn.singular(tableDetailCurrent.tableName) %>Id}?`)) {  
+    else if (confirm(`¿Estás seguro que desea eliminar el registro ${<%= fn.singular(tableDetailsCurrent.tableName) %>Id}?`)) {  
       pending.value = true    
-      return <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>Service.delete<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>(<%= fn.singular(tableDetailCurrent.tableName) %>Id)
+      return <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>Service.delete<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>(<%= fn.singular(tableDetailsCurrent.tableName) %>Id)
         .then((response) => {        
-          get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>()
+          get<%= fn.uCamelCase(tableDetailsCurrent.tableName) %>()
         })
         .catch((err) => {                
           console.log( err.response.data )
@@ -140,16 +140,16 @@ export default (<%= fn.singular(tableMaster); %>Id: string) => {
     panelOpened,
     closeButtonOpened,
     closeClassOpened,
-    <%= tableDetailCurrent.tableName %>,
-    <%= fn.singular(tableDetailCurrent.tableName) %>,
+    <%= tableDetailsCurrent.tableName %>,
+    <%= fn.singular(tableDetailsCurrent.tableName) %>,
     /*saleTypeOptions,
     statusOptions,*/
 
-    create<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,
-    edit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,
-    get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>,
-    remove<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>, 
-    submit<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,
-    panelToogle<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>
+    create<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>,
+    edit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>,
+    get<%= fn.uCamelCase(tableDetailsCurrent.tableName) %>,
+    remove<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>, 
+    submit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>,
+    panelToogle<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>
   }
 }

@@ -12,15 +12,24 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
   const dataOfBD = await getDataOfBD(getDataOfBDParams)  
   const customData = getCustomData(getDataOfBDParams, dataOfBD, excludeFields )
 
-  consoleLog.propertyLists()
-  console.log(customData.tableMasterForeignKeysAssoc)
-
-  writeBackend(customData)
-  customData.tableStructure = customData.tableStructureClean
-  writeFrontend(customData)
+  if (true) {
+    writeBackend(customData)
+    customData.tableStructure = customData.tableStructureClean
+    writeFrontend(customData)
+  } else {
+    consoleLog.propertyLists({ dataOfBD: false, customData: true})
+    console.log(customData.tableDetailsOfMaster)
+    //'customData.tableMaster'
+    //'customData.tableStructure'
+    //'customData.tableDetailsOfMaster'
+    //'customData.tableMasterForeignKeysAssoc'
+    //'customData.tableStructureClean'
+  }
 }
 
 main({
   schema: crud.schema || 'public', 
   tableMaster: crud.tableMaster || 'users',
 }, crud.excludeFields ?? [])
+
+

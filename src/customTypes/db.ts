@@ -8,9 +8,9 @@ export type DataOfBD = {
   schemasAndTablesOfBD: any[][];
   schemasOfBD: any[][];
   tableDetailForeignKeysAssoc: any[][];
-  tableDetailOfMaster: any[][];
+  tableDetailsOfMaster: any[][];
   tableForeignKeysAssocMasterDetail: any[][];
-  tableMasterForeignKeysAssoc: any[][];
+  tableForeignKeysAssoc: any[][];
   tablePrimaryKey: any[][];
   tableStructure: any[][];
   tableUniqueConstraint: any[][];
@@ -29,7 +29,7 @@ export type fieldStructure = {
   column_default: string
 }
 
-export type TableDetailOfMaster = {
+export type TableDetailsOfMaster = {
   table_name: string
   id_foreign_key: string
   id_master: string

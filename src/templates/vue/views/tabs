@@ -4,7 +4,7 @@ import AppPageHeader from "@/components/AppPageHeader.vue"
 import { useRouter } from 'vue-router'
 
 const Tab<%= fn.uCamelCase(fn.singular(tableMaster)); %> = defineAsyncComponent(() => import('../../components/<%= fn.uCamelCase(fn.singular(tableMaster)) ; %>/Tab<%= fn.uCamelCase(fn.singular(tableMaster)); %>.vue'))<%
-tableDetailOfMaster.forEach(function(table){ %>
+tableDetailsOfMaster.forEach(function(table){ %>
 const Tab<%= fn.uCamelCase(fn.singular(table.tableName)); %> = defineAsyncComponent(() => import('../../components/<%= fn.uCamelCase(fn.singular(tableMaster)) ; %>/Tab<%= fn.uCamelCase(fn.singular(table.tableName)); %>.vue'))<% })
 ;%>
 
@@ -12,8 +12,8 @@ const props = defineProps<{ id?: string }>()
 
 const tabs = [
   { component: Tab<%= fn.uCamelCase(fn.singular(tableMaster)); %> , title: "<%= fn.uCamelCase(fn.singular(tableMaster)); %>" },<%
-tableDetailOfMaster.forEach(function(table, index){ %>
-  { component: Tab<%= fn.uCamelCase(fn.singular(table.tableName)); %> , title: "<%= fn.uCamelCase(table.tableName); %>" }<%= index < tableDetailOfMaster.length-1 ? ',' : '' %><% })
+tableDetailsOfMaster.forEach(function(table, index){ %>
+  { component: Tab<%= fn.uCamelCase(fn.singular(table.tableName)); %> , title: "<%= fn.uCamelCase(table.tableName); %>" }<%= index < tableDetailsOfMaster.length-1 ? ',' : '' %><% })
 ;%>
 ]
 

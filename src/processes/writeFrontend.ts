@@ -1,11 +1,11 @@
 import vue from '@modules/renderings/vue'
 import rendering from '@utils/rendering';
 import { pathFrontend as output } from '@config/output'
-import type { ParamsAll, tableDetailOfMasterCustomized } from '@customTypes/utilsRendering';
+import type { ParamsAll, tableDetailsOfMasterCustomized } from '@customTypes/utilsRendering';
 
 export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
   const params: ParamsAll = {...paramsOmitOutput, output}
-  if (params.tableDetailOfMaster.length===0){
+  if (params.tableDetailsOfMaster.length===0){
     rendering(vue.masterCreateOrEdit(params))
     rendering(vue.masterFormCreateOrEdit(params))
     rendering(vue.masterUseCreateOrEdit(params))   
@@ -15,10 +15,10 @@ export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
     rendering(vue.masterUseTab(params)) // TODO
     rendering(vue.masterForm(params)) // TODO
     rendering(vue.masterUseForm(params)) // TODO
-    params.tableDetailOfMaster.forEach(function(table){
+    params.tableDetailsOfMaster.forEach(function(table){
       const paramsWhitDetail = {
         ...params,
-        tableDetailCurrent: (table as unknown as tableDetailOfMasterCustomized)
+        tableDetailsCurrent: (table as unknown as tableDetailsOfMasterCustomized)
       }
       rendering(vue.detailForm(paramsWhitDetail))
       rendering(vue.detailTab(paramsWhitDetail))

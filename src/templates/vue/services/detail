@@ -1,25 +1,25 @@
 import Http from "@/utils/Http";
-import type { <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> } from "../types/<%= pathModule %>/<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>";
+import type { <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> } from "../types/<%= pathModule %>/<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>";
 
-export const get<%= fn.uCamelCase(tableDetailCurrent.tableName) %> = (<%= fn.singular(tableMaster); %>Id: string) => {  
-  return Http.get(`/api/<%= tableDetailCurrent.tableName %>/${<%= fn.singular(tableMaster); %>Id}`);
+export const get<%= fn.uCamelCase(tableDetailsCurrent.tableName) %> = (<%= fn.singular(tableMaster); %>Id: string) => {  
+  return Http.get(`/api/<%= tableDetailsCurrent.tableName %>/${<%= fn.singular(tableMaster); %>Id}`);
 }
 
-export const insert<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = (payload: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>) => {   
-  return Http.post(`/api/<%= tableDetailCurrent.tableName %>`, payload);
+export const insert<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = (payload: <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>) => {   
+  return Http.post(`/api/<%= tableDetailsCurrent.tableName %>`, payload);
 }
 
-export const update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = (payload: <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>, <%= fn.singular(tableDetailCurrent.tableName) %>Id: string) => {   
-  return Http.put(`/api/<%= tableDetailCurrent.tableName %>/${<%= fn.singular(tableDetailCurrent.tableName) %>Id}`, payload);
+export const update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = (payload: <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>, <%= fn.singular(tableDetailsCurrent.tableName) %>Id: string) => {   
+  return Http.put(`/api/<%= tableDetailsCurrent.tableName %>/${<%= fn.singular(tableDetailsCurrent.tableName) %>Id}`, payload);
 }
 
-export const delete<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = (<%= fn.singular(tableDetailCurrent.tableName) %>Id: string) => { 
-  return Http.delete(`/api/<%= tableDetailCurrent.tableName %>/${<%= fn.singular(tableDetailCurrent.tableName) %>Id}`);
+export const delete<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = (<%= fn.singular(tableDetailsCurrent.tableName) %>Id: string) => { 
+  return Http.delete(`/api/<%= tableDetailsCurrent.tableName %>/${<%= fn.singular(tableDetailsCurrent.tableName) %>Id}`);
 }
 
 export default {
-  get<%= fn.uCamelCase(tableDetailCurrent.tableName) %>,
-  insert<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,
-  update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>,
-  delete<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %>
+  get<%= fn.uCamelCase(tableDetailsCurrent.tableName) %>,
+  insert<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>,
+  update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>,
+  delete<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>
 }

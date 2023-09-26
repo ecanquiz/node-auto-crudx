@@ -109,7 +109,7 @@ class DB {
         }, isEnd)
     }
 
-    async getTableDetailOfMaster(
+    async getTableDetailsOfMaster(
         values: { schema: string, tableMaster: string },
         isEnd = false,
     ): Promise<QueryArrayResult<any[]>>{

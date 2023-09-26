@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\<%= pathModule; %>\Http\Requests\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>;
+namespace Modules\<%= pathModule; %>\Http\Requests\<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Request extends FormRequest
+class Store<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>Request extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,9 +20,9 @@ class Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Reque
      */
     public function rules(): Array
     {
-        return  [<% tableDetailCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
+        return  [<% tableDetailsCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
           if  ( fn.v.noIdAndExcludeFields(field.column_name)) {%>
-            '<%- field.column_name; %>' => ["required"]<%= fn.addCommaToArr(tableDetailCurrent.tableStructureOfDetails[0], index, 3) -%>
+            '<%- field.column_name; %>' => ["required"]<%= fn.addCommaToArr(tableDetailsCurrent.tableStructureOfDetails[0], index, 3) -%>
           <%}});%> 
         ];
     }

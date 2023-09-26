@@ -1,17 +1,17 @@
 import laravel from '@modules/renderings/laravel'
 import rendering from '@utils/rendering';
 import { pathBackend as output } from '@config/output'
-import type { ParamsAll, tableDetailOfMasterCustomized } from '@customTypes/utilsRendering'
+import type { ParamsAll, tableDetailsOfMasterCustomized } from '@customTypes/utilsRendering'
 
 export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
   const params: ParamsAll = {...paramsOmitOutput, output}
-  if (params.tableDetailOfMaster.length===0) {
-    console.log('params.tableDetailOfMaster', params.tableDetailOfMaster)
+  if (params.tableDetailsOfMaster.length===0) {
+    console.log('params.tableDetailsOfMaster', params.tableDetailsOfMaster)
   } else {
-    params.tableDetailOfMaster.forEach(function(table){
+    params.tableDetailsOfMaster.forEach(function(table){
       const paramsWhitDetail = {
         ...params,
-        tableDetailCurrent: (table as unknown as tableDetailOfMasterCustomized)
+        tableDetailsCurrent: (table as unknown as tableDetailsOfMasterCustomized)
       }
       rendering(laravel.detailController(paramsWhitDetail))
       rendering(laravel.detailModel(paramsWhitDetail))

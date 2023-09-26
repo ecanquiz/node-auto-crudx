@@ -5,7 +5,7 @@ import colors from 'colors'
 import type {
   GetDataOfBDParams,
   GetDataOfBDReturn,
-  TableDetailOfMaster,
+  TableDetailsOfMaster,
 } from '@customTypes/db'
 
 const validateIfTableMasterExist = async ({schema, tableMaster}: GetDataOfBDParams):Promise<void> => {  
@@ -37,37 +37,37 @@ export default async ({schema, tableMaster}: GetDataOfBDParams):  GetDataOfBDRet
     await db.getSchemasOfBD()
   ).rows
 
-  const tableDetailOfMaster = (
-    await db.getTableDetailOfMaster({schema, tableMaster})
+  const tableDetailsOfMaster = (
+    await db.getTableDetailsOfMaster({schema, tableMaster})
   ).rows
 
-  const tableDetailForeignKeysAssoc = await  Promise.all(tableDetailOfMaster.map(
+  const tableDetailForeignKeysAssoc = await  Promise.all(tableDetailsOfMaster.map(
     async r => ( await db.getTableDetailForeignKeysAssoc(
-      {schema, tableMaster, tableDetail: (r as unknown as TableDetailOfMaster).table_name}
+      {schema, tableMaster, tableDetail: (r as unknown as TableDetailsOfMaster).table_name}
     )).rows
   ))
 
-  const tableForeignKeysAssocMasterDetail = await  Promise.all(tableDetailOfMaster.map(
+  const tableForeignKeysAssocMasterDetail = await  Promise.all(tableDetailsOfMaster.map(
     async r => ( await db.getTableForeignKeysAssocMasterDetail(
-      {schema, tableMaster, tableDetail: (r as unknown as TableDetailOfMaster).table_name}
+      {schema, tableMaster, tableDetail: (r as unknown as TableDetailsOfMaster).table_name}
     )).rows
   ))
 
-  const tablesStructureOfDetails = await  Promise.all(tableDetailOfMaster.map(
+  const tablesStructureOfDetails = await  Promise.all(tableDetailsOfMaster.map(
     /*async r => [
-      (r as unknown as TableDetailOfMaster).table_name,
+      (r as unknown as TableDetailsOfMaster).table_name,
       ... ( await db.getTableStructure(
-        {schema, tableMaster: (r as unknown as TableDetailOfMaster).table_name}
+        {schema, tableMaster: (r as unknown as TableDetailsOfMaster).table_name}
       )).rows
     ]*/
     async r => ( await db.getTableStructure(
-      {schema, tableMaster: (r as unknown as TableDetailOfMaster).table_name}
+      {schema, tableMaster: (r as unknown as TableDetailsOfMaster).table_name}
     )).rows
   ))
 
-  const tableDetailForeignKeysHelp = await  Promise.all(tableDetailOfMaster.map(
+  const tableDetailForeignKeysHelp = await  Promise.all(tableDetailsOfMaster.map(
     async r => ( await db.getTableForeignKeysAssoc(
-      {schema, tableMaster: (r as unknown as TableDetailOfMaster).table_name}
+      {schema, tableMaster: (r as unknown as TableDetailsOfMaster).table_name}
     )).rows
     //.filter(r => ((r as unknown as TableForeignKeysAssoc).foreign_table_name) !== tableMaster)
   ))
@@ -97,7 +97,7 @@ export default async ({schema, tableMaster}: GetDataOfBDParams):  GetDataOfBDRet
     schemasAndTablesOfBD,
     schemasOfBD,
     tableDetailForeignKeysAssoc,
-    tableDetailOfMaster,
+    tableDetailsOfMaster,
     tableForeignKeysAssocMasterDetail,
     tableForeignKeysAssoc,
     tablePrimaryKey,

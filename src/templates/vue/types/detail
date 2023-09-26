@@ -1,5 +1,5 @@
-export type <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) %> = {
-<% tableDetailCurrent.tableStructureOfDetails[0].filter(
+export type <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = {
+<% tableDetailsCurrent.tableStructureOfDetails[0].filter(
     f => !['created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
 ).forEach(function(field){ %>  <%= field.column_name; %>?:<% if (field.data_type==="bigint" || field.data_type==="integer") { %> string;
 <% } else if (field.data_type==="character varying" || field.data_type==="text") { %> string;

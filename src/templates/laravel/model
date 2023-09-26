@@ -32,7 +32,7 @@ class <%= fn.uCamelCase(fn.singular(tableMaster)); %> extends Model
         return $this->belongsTo(\Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>::class);
     } 
     <%}); -%>
-    <% tableDetailOfMaster.forEach(function(table){ %>
+    <% tableDetailsOfMaster.forEach(function(table){ %>
     public function <%= table.tableName; %>()
     {        
         return $this->hasMany(\Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(table.tableName)); %>::class);

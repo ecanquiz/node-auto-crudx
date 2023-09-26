@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> extends Model
+class <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %> extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $connection = 'pgsql_<%= pathModule.toLowerCase(); %>';
 
-    protected $fillable = [<% tableDetailCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
+    protected $fillable = [<% tableDetailsCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
       if  (fn.v.excludeFields(field.column_name)) {%>
-        '<%- field.column_name; %>'<%= fn.addCommaToArr(tableDetailCurrent.tableStructureOfDetails[0], index, 3) -%>
+        '<%- field.column_name; %>'<%= fn.addCommaToArr(tableDetailsCurrent.tableStructureOfDetails[0], index, 3) -%>
     <%}});%> 
     ];
 
@@ -29,6 +29,6 @@ class <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> extends M
 
     protected static function newFactory()
     {
-        return \Modules\<%= pathModule; %>\Database\Factories\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Factory::new();
+        return \Modules\<%= pathModule; %>\Database\Factories\<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>Factory::new();
     }
 }

@@ -6,40 +6,40 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
 use Illuminate\Database\Eloquent\Collection;
-use Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>;
-use Modules\<%= pathModule; %>\Http\Requests\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>\{
-    Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Request,
-    Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Request    
+use Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) ;%>;
+use Modules\<%= pathModule; %>\Http\Requests\<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) ;%>\{
+    Store<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) ;%>Request,
+    Update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) ;%>Request    
 };
-use Modules\<%= pathModule; %>\Http\Services\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>\{
-    Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Service,
-    Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Service
+use Modules\<%= pathModule; %>\Http\Services\<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) ;%>\{
+    Store<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) ;%>Service,
+    Update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) ;%>Service
 }; 
 
-class <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Controller extends Controller
+class <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) ;%>Controller extends Controller
 {
     /**
      * Display a listing of the resource by parent.
      */
     public function getAllBy<%= fn.uCamelCase(fn.singular(tableMaster)) ;%>(Request $request)//: Collection
     {
-        return <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>::where('<%= tableDetailCurrent.idForeignKey %>', $request-><%= fn.camelCase(tableDetailCurrent.idForeignKey) %>)->get();
+        return <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) ;%>::where('<%= tableDetailsCurrent.idForeignKey %>', $request-><%= fn.camelCase(tableDetailsCurrent.idForeignKey) %>)->get();
     }
 
     /**
      * Store a newly created resource in storage.
      */    
-    public function store(Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Request $request): JsonResponse
+    public function store(Store<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) ;%>Request $request): JsonResponse
     {    
-        return Store<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Service::execute($request);
+        return Store<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) ;%>Service::execute($request);
     }
     
     /**
      * Update the specified resource in storage.
      */
-    public function update(Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Request $request, <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%> $<%= fn.singular(tableDetailCurrent.tableName) ;%>): JsonResponse
+    public function update(Update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>Request $request, <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) ;%> $<%= fn.singular(tableDetailsCurrent.tableName) ;%>): JsonResponse
     {
-        return Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Service::execute($request, $<%= fn.singular(tableDetailCurrent.tableName) ;%>);
+        return Update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) ;%>Service::execute($request, $<%= fn.singular(tableDetailsCurrent.tableName) ;%>);
     }
 
     /**
@@ -47,7 +47,7 @@ class <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>Controller
      */
     public function destroy(Request $request): JsonResponse
     {
-        <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)) ;%>::destroy($request->id);
+        <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) ;%>::destroy($request->id);
 
         return response()->json(204);            
     }

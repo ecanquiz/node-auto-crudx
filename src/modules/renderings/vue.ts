@@ -6,49 +6,49 @@ export default {
   detailForm: (params: ParamsAll): Rendering => ({
     template: './src/templates/vue/components/formDetail',
     outputPath: `components/${uCamelCase(singular(params.tableMaster))}`,
-    outputFile: `Form${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.vue`,
+    outputFile: `Form${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}.vue`,
     params
   }),
 
   detailServices: (params: ParamsAll): Rendering => ({
     template: './src/templates/vue/services/detail',
     outputPath: `services`,
-    outputFile: `${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.ts`,
+    outputFile: `${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}.ts`,
     params
   }),
 
   detailTab: (params: ParamsAll): Rendering => ({
     template: './src/templates/vue/components/tabDetail',
     outputPath: `components/${uCamelCase(singular(params.tableMaster))}`,
-    outputFile: `Tab${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.vue`,
+    outputFile: `Tab${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}.vue`,
     params
   }),
 
   detailTable: (params: ParamsAll): Rendering => ({
     template: './src/templates/vue/components/tableDetail',
     outputPath: `components/${uCamelCase(singular(params.tableMaster))}`,
-    outputFile: `Table${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.vue`,
+    outputFile: `Table${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}.vue`,
     params
   }),
 
   detailTypes: (params: ParamsAll): Rendering => ({
     template: './src/templates/vue/types/detail',
     outputPath: `types/${uCamelCase(singular(params.tableMaster))}`,
-    outputFile: `${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.ts`,
+    outputFile: `${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}.ts`,
     params
   }),
 
   detailUseForm: (params: ParamsAll): Rendering => ({
     template: './src/templates/vue/composables/useFormDetail',
     outputPath: `composables/${uCamelCase(singular(params.tableMaster))}`,
-    outputFile: `useForm${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.ts`,
+    outputFile: `useForm${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}.ts`,
     params
   }),
 
   detailUseTab: (params: ParamsAll): Rendering => ({
     template: './src/templates/vue/composables/useTabDetail',
     outputPath: `composables/${uCamelCase(singular(params.tableMaster))}`,
-    outputFile: `useTab${uCamelCase(singular(params.tableDetailCurrent!.tableName))}.ts`,
+    outputFile: `useTab${uCamelCase(singular(params.tableDetailsCurrent!.tableName))}.ts`,
     params
   }),
 

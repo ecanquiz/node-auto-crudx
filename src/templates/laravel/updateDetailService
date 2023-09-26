@@ -1,23 +1,23 @@
 <?php
-namespace Modules\<%= pathModule; %>\Http\Services\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>;
+namespace Modules\<%= pathModule; %>\Http\Services\<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>;
 
 use Illuminate\Http\JsonResponse;
-use Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>;
-use Modules\<%= pathModule; %>\Http\Requests\<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>\Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Request;
+use Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>;
+use Modules\<%= pathModule; %>\Http\Requests\<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>\Update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>Request;
 
-class Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Service
+class Update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>Service
 {
   
-    static public function execute(Update<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %>Request $request, <%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> $<%= fn.singular(tableDetailCurrent.tableName); %>): JsonResponse
+    static public function execute(Update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>Request $request, <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %> $<%= fn.singular(tableDetailsCurrent.tableName); %>): JsonResponse
     {     
-        <% tableDetailCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
+        <% tableDetailsCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
         if  ( fn.v.noIdAndExcludeFields(field.column_name)) {%>
-        $<%- fn.singular(tableDetailCurrent.tableName); -%>-><%- field.column_name; %> = $request-><%- field.column_name; -%>;<%}});%>
+        $<%- fn.singular(tableDetailsCurrent.tableName); -%>-><%- field.column_name; %> = $request-><%- field.column_name; -%>;<%}});%>
 
-        $<%= fn.singular(tableDetailCurrent.tableName); %>->save();        
+        $<%= fn.singular(tableDetailsCurrent.tableName); %>->save();        
 
         return response()->json([
-            'message' => '<%= fn.uCamelCase(fn.singular(tableDetailCurrent.tableName)); %> updated'            
+            'message' => '<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %> updated'            
         ], 200);
     }
 

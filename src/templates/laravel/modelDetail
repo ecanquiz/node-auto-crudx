@@ -12,9 +12,9 @@ class <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %> extends 
 
     protected $connection = 'pgsql_<%= pathModule.toLowerCase(); %>';
 
-    protected $fillable = [<% tableDetailsCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
+    protected $fillable = [<% tableDetailsCurrent.tableStructure[0].forEach(function(field, index) {
       if  (fn.v.excludeFields(field.column_name)) {%>
-        '<%- field.column_name; %>'<%= fn.addCommaToArr(tableDetailsCurrent.tableStructureOfDetails[0], index, 3) -%>
+        '<%- field.column_name; %>'<%= fn.addCommaToArr(tableDetailsCurrent.tableStructure[0], index, 3) -%>
     <%}});%> 
     ];
 

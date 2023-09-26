@@ -18,10 +18,10 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
     writeFrontend(customData)
   } else {
     consoleLog.propertyLists({ dataOfBD: false, customData: true})
-    console.log(customData.tableForeignKeysAssoc)
+    //console.log(customData.tableDetailsOfMaster)
     //'customData.tableMaster'
     //'customData.tableStructure'
-    //'customData.tableDetailOfMaster'
+    //'customData.tableDetailsOfMaster'
     //'customData.tableMasterForeignKeysAssoc'
     //'customData.tableStructureClean'
   }

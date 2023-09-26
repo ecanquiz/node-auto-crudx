@@ -20,9 +20,9 @@ class Store<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>Requ
      */
     public function rules(): Array
     {
-        return  [<% tableDetailsCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
+        return  [<% tableDetailsCurrent.tableStructure[0].forEach(function(field, index) {
           if  ( fn.v.noIdAndExcludeFields(field.column_name)) {%>
-            '<%- field.column_name; %>' => ["required"]<%= fn.addCommaToArr(tableDetailsCurrent.tableStructureOfDetails[0], index, 3) -%>
+            '<%- field.column_name; %>' => ["required"]<%= fn.addCommaToArr(tableDetailsCurrent.tableStructure[0], index, 3) -%>
           <%}});%> 
         ];
     }

@@ -11,7 +11,7 @@ class Store<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>Serv
     static public function execute(Store<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>Request $request): JsonResponse
     {     
         $<%= fn.singular(tableDetailsCurrent.tableName); %> = new <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>();
-        <% tableDetailsCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
+        <% tableDetailsCurrent.tableStructure[0].forEach(function(field, index) {
         if  ( fn.v.noIdAndExcludeFields(field.column_name)) {%>
         $<%- fn.singular(tableDetailsCurrent.tableName); -%>-><%- field.column_name; %> = $request-><%- field.column_name; -%>;<%}});%>
 

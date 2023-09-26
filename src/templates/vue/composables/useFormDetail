@@ -9,7 +9,7 @@ import useHttp from "@/composables/useHttp";
 
 export default (<%= fn.singular(tableDetailsCurrent.tableName) %>: <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>) => {  
   const form = reactive<<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>>({<%
-    tableDetailsCurrent.tableStructureOfDetails[0].filter(
+    tableDetailsCurrent.tableStructure[0].filter(
         f => !['created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
     ).forEach(function(field){ %>
     <%= field.column_name; %>: <%= fn.singular(tableDetailsCurrent.tableName) %>.<%= field.column_name; %>, %><% }); %>
@@ -28,7 +28,7 @@ export default (<%= fn.singular(tableDetailsCurrent.tableName) %>: <%= fn.uCamel
   <% }); %>
   const rules = computed(() => {
     return {<%
-      tableDetailsCurrent.tableStructureOfDetails[0].filter(
+      tableDetailsCurrent.tableStructure[0].filter(
           f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
       ).forEach(function(field){ %>
       <%= field.column_name; %>: { required: helpers.withMessage("Campo requerido", required) },<% }); %>
@@ -38,7 +38,7 @@ export default (<%= fn.singular(tableDetailsCurrent.tableName) %>: <%= fn.uCamel
   const v$ = useVuelidate(rules, form as any);
     
   watch(<%= fn.singular(tableDetailsCurrent.tableName) %>, (new<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>) => {<%
-    tableDetailsCurrent.tableStructureOfDetails[0].filter(
+    tableDetailsCurrent.tableStructure[0].filter(
       f => !['id', 'created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
     ).forEach(function(field){ %>
     form.<%= field.column_name; %> = new<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>.<%= field.column_name; %><% }); %>

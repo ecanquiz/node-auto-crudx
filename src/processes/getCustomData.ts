@@ -26,7 +26,7 @@ export default (
       r => ({
         idForeignKey: (r as unknown as TableDetailsOfMaster).id_foreign_key, // TODO
         tableName: (r as unknown as TableDetailsOfMaster).table_name, // TODO
-        tableStructureOfDetails: dataOfBD.tablesStructureOfDetails.filter(
+        tableStructure: dataOfBD.tablesStructureOfDetails.filter(
           (arr0)=> arr0[0].column_default === `nextval('${(r as unknown as TableDetailsOfMaster).table_name}_id_seq'::regclass)`
         ),
         tableDetailForeignKeysHelp: dataOfBD.tableDetailForeignKeysHelp

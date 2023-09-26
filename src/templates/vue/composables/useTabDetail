@@ -15,7 +15,7 @@ export default (<%= fn.singular(tableMaster); %>Id: string) => {
   ]*/
   
   const <%= fn.singular(tableDetailsCurrent.tableName); %>: <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %> = reactive({<%
-  tableDetailsCurrent.tableStructureOfDetails[0].filter(
+  tableDetailsCurrent.tableStructure[0].filter(
       f => !['created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
     ).forEach(function(field){ %>
     <%= field.column_name; %>: "", %><% }); %>
@@ -101,7 +101,7 @@ export default (<%= fn.singular(tableMaster); %>Id: string) => {
 
   const create<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = () => {
       <%= fn.singular(tableDetailsCurrent.tableName); %>.<%= tableDetailsCurrent.idForeignKey; %> = <%= fn.singular(tableMaster); %>Id<%
-    tableDetailsCurrent.tableStructureOfDetails[0].filter(
+    tableDetailsCurrent.tableStructure[0].filter(
         f => fn.v.excludeFields(f.column_name) && f.column_name !== tableDetailsCurrent.idForeignKey
       ).forEach(function(field){ %>
       <%= fn.singular(tableDetailsCurrent.tableName); %>.<%= field.column_name; %> = ""<% }); %>
@@ -110,7 +110,7 @@ export default (<%= fn.singular(tableMaster); %>Id: string) => {
   const edit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = (<%= fn.singular(tableDetailsCurrent.tableName) %>Edit: <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>) => {
     // presentation.status = presentationEdit.sale_type ? 1 : 0
     <%= fn.singular(tableDetailsCurrent.tableName); %>.<%= tableDetailsCurrent.idForeignKey; %> = <%= fn.singular(tableMaster); %>Id<%
-  tableDetailsCurrent.tableStructureOfDetails[0].filter(
+  tableDetailsCurrent.tableStructure[0].filter(
       f => fn.v.excludeFields(f.column_name) && f.column_name !== tableDetailsCurrent.idForeignKey
     ).forEach(function(field){ %>
     <%= fn.singular(tableDetailsCurrent.tableName); %>.<%= field.column_name; %> = <%= fn.singular(tableDetailsCurrent.tableName) %>Edit.<%= field.column_name; %>%><% }); %>

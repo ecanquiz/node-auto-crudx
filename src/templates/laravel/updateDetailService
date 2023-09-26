@@ -10,7 +10,7 @@ class Update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>Ser
   
     static public function execute(Update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>Request $request, <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %> $<%= fn.singular(tableDetailsCurrent.tableName); %>): JsonResponse
     {     
-        <% tableDetailsCurrent.tableStructureOfDetails[0].forEach(function(field, index) {
+        <% tableDetailsCurrent.tableStructure[0].forEach(function(field, index) {
         if  ( fn.v.noIdAndExcludeFields(field.column_name)) {%>
         $<%- fn.singular(tableDetailsCurrent.tableName); -%>-><%- field.column_name; %> = $request-><%- field.column_name; -%>;<%}});%>
 

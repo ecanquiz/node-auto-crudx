@@ -7,10 +7,7 @@ export type ParamsMain = {
 
 export type tableDetailsOfMasterCustomized = {
   tableName: string
-  //tableNameSingular: string
-  //tableNameUCamelCase: string
-  //tableNameSingularUCamelCase: string
-  tableStructureOfDetails: any[] // PENDING BY CHECKOUT
+  tableStructure: any[] // PENDING BY CHECKOUT
 }
 
 export type ParamsDetail = {

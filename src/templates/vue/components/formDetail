@@ -36,7 +36,7 @@ const submit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = a
     <form @submit.prevent="submit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %>"> 
       <div class="p-5 grid lg:grid-cols-2 gap-4">
 
-          <% tableDetailsCurrent.tableStructureOfDetails[0].forEach(function(field) {
+          <% tableDetailsCurrent.tableStructure[0].forEach(function(field) {
             if  (!['id', 'created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) { 
               if (field.data_type === "character varying") {%>  <div class="block">     
                 <AppInput           

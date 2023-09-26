@@ -2,14 +2,11 @@ import vue from '@modules/renderings/vue'
 import rendering from '@utils/rendering';
 //import crud from '@config/crud'
 import { pathFrontend as output } from '@config/output'
-import { buildFrontendRoutes } from '@config/buildRoutes'
 import type { ParamsAll, tableDetailOfMasterCustomized } from '@customTypes/utilsRendering';
 
 export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
   const params: ParamsAll = {...paramsOmitOutput, output}
-  if (buildFrontendRoutes as unknown as boolean) {
-    rendering(vue.routes(params))
-  }
+  rendering(vue.routes(params))
   rendering(vue.datagrid(params))
   rendering(vue.useDatagrid(params))
   rendering(vue.services(params))

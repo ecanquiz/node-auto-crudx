@@ -1,7 +1,6 @@
 import laravel from '@modules/renderings/laravel'
 import rendering from '@utils/rendering';
 import { pathBackend as output } from '@config/output'
-import { buildBackendRoutes } from '@config/buildRoutes'
 import type { ParamsAll, tableDetailOfMasterCustomized } from '@customTypes/utilsRendering'
 
 export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
@@ -31,6 +30,5 @@ export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
   rendering(laravel.resource(params))
   rendering(laravel.requestStore(params))
   rendering(laravel.requestUpdate(params))
-  if (buildBackendRoutes as unknown as boolean)
-    rendering(laravel.route(params))
+  rendering(laravel.route(params))
 }

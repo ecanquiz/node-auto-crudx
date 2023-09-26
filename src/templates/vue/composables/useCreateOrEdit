@@ -2,11 +2,11 @@ import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp"; //foreign_table_name
 import <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service from "../../services/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
-<% tableMasterForeignKeysAssoc.forEach(function(tbl){
+<% tableForeignKeysAssoc.forEach(function(tbl){
 %>import <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>Service from  "../../services/<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>"<%
 }); %>
 import type { <%= fn.uCamelCase(fn.singular(tableMaster)); %> } from "../../types/<%= fn.uCamelCase(fn.singular(tableMaster)); %>"
-<% tableMasterForeignKeysAssoc.forEach(function(tbl){
+<% tableForeignKeysAssoc.forEach(function(tbl){
 %>import type { <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %> } from  "../../types/<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>"<%
 }); %>
 
@@ -20,7 +20,7 @@ export default (<%= fn.singular(tableMaster); %>Id?: string) => {
     <%= field.column_name; %>: "", %><% }); %>
   })
 
-  <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+  <% tableForeignKeysAssoc.forEach(function(tbl){
   %>const <%= tbl.foreign_table_name; %> = ref<<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>[]>()<%
   }); %>
   
@@ -47,7 +47,7 @@ export default (<%= fn.singular(tableMaster); %>Id?: string) => {
           pending.value = false;
         })
     }    
-    <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+    <% tableForeignKeysAssoc.forEach(function(tbl){
     %>
     pending.value = true
     <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>Service.getHelp<%= fn.uCamelCase(tbl.foreign_table_name); %>()
@@ -101,7 +101,7 @@ export default (<%= fn.singular(tableMaster); %>Id?: string) => {
   return {
     <%= fn.singular(tableMaster); %>,
     errors,
-    <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+    <% tableForeignKeysAssoc.forEach(function(tbl){
     %><%= tbl.foreign_table_name; %>,<%
     }); %>
     pending,

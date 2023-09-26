@@ -29,7 +29,7 @@ class Index<%= fn.uCamelCase(fn.singular(tableMaster)); %>Service
                 tableStructure.forEach(function(field) {
                     if  (fn.v.noIdAndExcludeFields(field.column_name)
                         && field.data_type !== 'boolean'
-                        && !tableMasterForeignKeysAssoc.map(r=>r.column_name).includes(field.column_name)
+                        && !tableForeignKeysAssoc.map(r=>r.column_name).includes(field.column_name)
                     ) { 
                 %>-><%= where; %>(\DB::raw('lower(<%= field.column_name; %>)') , "like", "%$search%")                
                 <%

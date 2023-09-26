@@ -145,7 +145,7 @@ class DB {
         }, isEnd)
     }
 
-    async getTableMasterForeignKeysAssoc(
+    async getTableForeignKeysAssoc(
         values: { schema: string, tableMaster: string },
         isEnd = false,
     ): Promise<QueryArrayResult<any[]>>{

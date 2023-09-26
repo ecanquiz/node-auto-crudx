@@ -18,7 +18,12 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
     writeFrontend(customData)
   } else {
     consoleLog.propertyLists({ dataOfBD: false, customData: true})
-    console.log(customData.tableStructureClean)
+    console.log(customData.tableForeignKeysAssoc)
+    //'customData.tableMaster'
+    //'customData.tableStructure'
+    //'customData.tableDetailOfMaster'
+    //'customData.tableMasterForeignKeysAssoc'
+    //'customData.tableStructureClean'
   }
 }
 
@@ -26,3 +31,5 @@ main({
   schema: crud.schema || 'public', 
   tableMaster: crud.tableMaster || 'users',
 }, crud.excludeFields ?? [])
+
+

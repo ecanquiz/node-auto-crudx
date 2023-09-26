@@ -1,4 +1,4 @@
-<% tableMasterForeignKeysAssoc.forEach(function(tbl){
+<% tableForeignKeysAssoc.forEach(function(tbl){
   %>import type { <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %> } from  "../<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>"<% 
 }); %>
 
@@ -9,7 +9,7 @@ export type <%= fn.uCamelCase(fn.singular(tableMaster)); %> = {
 <% } else if (field.data_type==="timestamp without time zone") {  %> date; 
 <% } else { %> any; 
 <% } %><% });
-%>  <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+%>  <% tableForeignKeysAssoc.forEach(function(tbl){
     %><%= fn.singular(tbl.foreign_table_name); %>?: <%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>;<%
   }); %>
   _method?: 'PUT';

@@ -6,7 +6,6 @@ import type {
   GetDataOfBDParams,
   GetDataOfBDReturn,
   TableDetailOfMaster,
-  //TableMasterForeignKeysAssoc
 } from '@customTypes/db'
 
 const validateIfTableMasterExist = async ({schema, tableMaster}: GetDataOfBDParams):Promise<void> => {  
@@ -67,14 +66,14 @@ export default async ({schema, tableMaster}: GetDataOfBDParams):  GetDataOfBDRet
   ))
 
   const tableDetailForeignKeysHelp = await  Promise.all(tableDetailOfMaster.map(
-    async r => ( await db.getTableMasterForeignKeysAssoc(
+    async r => ( await db.getTableForeignKeysAssoc(
       {schema, tableMaster: (r as unknown as TableDetailOfMaster).table_name}
     )).rows
-    //.filter(r => ((r as unknown as TableMasterForeignKeysAssoc).foreign_table_name) !== tableMaster)
+    //.filter(r => ((r as unknown as TableForeignKeysAssoc).foreign_table_name) !== tableMaster)
   ))
 
-  const tableMasterForeignKeysAssoc = (
-    await db.getTableMasterForeignKeysAssoc({schema, tableMaster})
+  const tableForeignKeysAssoc = (
+    await db.getTableForeignKeysAssoc({schema, tableMaster})
   ).rows
 
   const tablePrimaryKey = (
@@ -100,7 +99,7 @@ export default async ({schema, tableMaster}: GetDataOfBDParams):  GetDataOfBDRet
     tableDetailForeignKeysAssoc,
     tableDetailOfMaster,
     tableForeignKeysAssocMasterDetail,
-    tableMasterForeignKeysAssoc,
+    tableForeignKeysAssoc,
     tablePrimaryKey,
     tableStructure,
     tableUniqueConstraint,

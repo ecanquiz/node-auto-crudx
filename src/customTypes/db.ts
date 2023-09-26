@@ -10,7 +10,7 @@ export type DataOfBD = {
   tableDetailForeignKeysAssoc: any[][];
   tableDetailOfMaster: any[][];
   tableForeignKeysAssocMasterDetail: any[][];
-  tableMasterForeignKeysAssoc: any[][];
+  tableForeignKeysAssoc: any[][];
   tablePrimaryKey: any[][];
   tableStructure: any[][];
   tableUniqueConstraint: any[][];

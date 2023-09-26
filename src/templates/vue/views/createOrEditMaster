@@ -8,7 +8,7 @@ const props = defineProps<{ id?: string }>()
 const {
   <%= fn.singular(tableMaster); %>,
   errors,
-  <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+  <% tableForeignKeysAssoc.forEach(function(tbl){
   %><%= tbl.foreign_table_name; %>,<%
   }); %>
   pending,
@@ -44,7 +44,7 @@ const {
           :<%= fn.singular(tableMaster); %>='<%= fn.singular(tableMaster); %>'
           :pending='pending'
           :errors='errors'
-          <% tableMasterForeignKeysAssoc.forEach(function(tbl){
+          <% tableForeignKeysAssoc.forEach(function(tbl){
           %>:<%= tbl.foreign_table_name; %>="<%= tbl.foreign_table_name; %>"<%
           }); %>        
         />

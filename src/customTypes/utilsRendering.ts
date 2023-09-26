@@ -2,7 +2,7 @@ export type ParamsMain = {
   pathModule?: string
   tableMaster: string
   tableStructure: string[][],
-  tableMasterForeignKeysAssoc: string[][]
+  tableForeignKeysAssoc: string[][]
 }
 
 export type tableDetailOfMasterCustomized = {

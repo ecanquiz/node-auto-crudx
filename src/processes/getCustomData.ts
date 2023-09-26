@@ -38,7 +38,7 @@ export default (
           )[0]
       })
     ),
-    tableMasterForeignKeysAssoc: dataOfBD.tableMasterForeignKeysAssoc,
+    tableForeignKeysAssoc: dataOfBD.tableForeignKeysAssoc,
     tableStructureClean
   };
 }

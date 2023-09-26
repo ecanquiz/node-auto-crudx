@@ -50,7 +50,7 @@ const {
                 <AppLink to="#" @click.prevent="setSort('<%= field.column_name; %>')"><%= field.column_name; %></AppLink>
               </th><%}
             %><% }); %>
-            <% tableMasterForeignKeysAssoc.forEach(function(field){%>
+            <% tableForeignKeysAssoc.forEach(function(field){%>
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('<%= field.foreignTableNameSingular; %>_id')"><%= field.foreignTableNameSingular; %></AppLink>
               </th><% }); %>                         
@@ -73,7 +73,7 @@ const {
             <td class="">
               {{ row.<%= field.column_name; %> }}
             </td><%}});
-            %><% tableMasterForeignKeysAssoc.forEach(function(field){%>
+            %><% tableForeignKeysAssoc.forEach(function(field){%>
             <td class="">
               {{ row.<%= fn.singular(field.foreign_table_name); %>.name }}
             </td><% }); %> 

@@ -48,13 +48,32 @@ const <%= fn.singular(tableDetailsCurrent.tableName); %>Id = ref("")
             f => ![tableDetailsCurrent.idForeignKey, 'id','created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
           ).forEach((field, index) => { %>
             <td class="px-6 py-3 <% if (index%2===0) { %>bg-gray-50 bg-base-200<% } %>">
+
+              <% if (!tableDetailsCurrent.tableForeignKeysAssoc.map(obj => obj.column_name).includes(field.column_name)) { %>
+
               {{ <%= fn.singular(tableDetailsCurrent.tableName); %>.<%= field.column_name; %> }}
 
 
-              
+              <%} else { %>
+
+                {{ <%= fn.singular(tableDetailsCurrent.tableName); %>.<%= 
+                  
+                  fn.singular(tableDetailsCurrent.tableForeignKeysAssoc.find(
+                    obj => obj.column_name === field.column_name
+                  ).foreign_table_name)            
+                  
+                  
+                  %>.name }}
+                
+
+              <%} %>
+
+
+
 
             </td>
            <% }); %>
+
 
 
 

@@ -21,13 +21,24 @@ class <%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %> extends 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $casts = [ /* 'field_name' => 'field_type' */ ];
-        
+    <% if (tableDetailsCurrent.tableForeignKeysAssoc.length) { %>
+    protected $with = [<% tableDetailsCurrent.tableForeignKeysAssoc.forEach(function(tbl, index){
+    %>'<%= fn.singular(tbl.foreign_table_name); %>'<%= index < tableDetailsCurrent.tableForeignKeysAssoc.length-1 ? ',' : '' %><%
+    }); %>];
+    <%}%>
     public function <%= fn.singular(tableMaster); %>()
     {
         return $this->belongsTo(\Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tableMaster)); %>::class);
-    }  
+    }
 
-    protected static function newFactory()
+    <% tableDetailsCurrent.tableForeignKeysAssoc.forEach(function(tbl){
+    %>public function <%= fn.singular(tbl.foreign_table_name); %>()
+    {
+        return $this->belongsTo(\Modules\<%= pathModule; %>\Entities\<%= fn.uCamelCase(fn.singular(tbl.foreign_table_name)); %>::class);
+    }
+
+    <%});
+    %>protected static function newFactory()
     {
         return \Modules\<%= pathModule; %>\Database\Factories\<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>Factory::new();
     }

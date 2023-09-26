@@ -28,7 +28,7 @@ export default (
         tableName: (r as unknown as TableDetailsOfMaster).table_name, // TODO
         tableStructure: dataOfBD.tablesStructureOfDetails.filter(
           (arr0)=> arr0[0].column_default === `nextval('${(r as unknown as TableDetailsOfMaster).table_name}_id_seq'::regclass)`
-        ),
+        )[0],
         tableDetailForeignKeysHelp: dataOfBD.tableDetailForeignKeysHelp
           .filter(
             arr1 => (arr1[0].constraint_name).split('_')[0] === (r as unknown as TableDetailsOfMaster).table_name

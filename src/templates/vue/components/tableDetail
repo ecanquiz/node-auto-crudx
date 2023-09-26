@@ -29,12 +29,12 @@ const <%= fn.singular(tableDetailsCurrent.tableName); %>Id = ref("")
       <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
         <tr>
           <%
-          tableDetailsCurrent.tableStructure[0].filter(
+          tableDetailsCurrent.tableStructure.filter(
             f => ![tableDetailsCurrent.idForeignKey, 'id','created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
           ).forEach(function(field, index){ %>
           <th class="px-6 py-3 <% if (index%2===0) { %>bg-gray-50 bg-base-200<% } %>"><%= field.column_name; %></th>%><% 
           }); %>
-          <th class="px-6 py-3 <% if (tableDetailsCurrent.tableStructure[0].filter(
+          <th class="px-6 py-3 <% if (tableDetailsCurrent.tableStructure.filter(
             f => ![tableDetailsCurrent.idForeignKey, 'id','created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
           ).length%2===0) { %>bg-gray-50 bg-base-200<% } %>">Acción(es)</th>
         </tr>
@@ -44,7 +44,7 @@ const <%= fn.singular(tableDetailsCurrent.tableName); %>Id = ref("")
 
 
 
-          <% tableDetailsCurrent.tableStructure[0].filter(
+          <% tableDetailsCurrent.tableStructure.filter(
             f => ![tableDetailsCurrent.idForeignKey, 'id','created_at', 'updated_at', 'deleted_at'].includes(f.column_name)
           ).forEach((field, index) => { %>
             <td class="px-6 py-3 <% if (index%2===0) { %>bg-gray-50 bg-base-200<% } %>">

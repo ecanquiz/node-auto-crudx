@@ -20,9 +20,9 @@ class Update<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)); %>Req
      */
     public function rules(): Array
     {
-        return  [<% tableDetailsCurrent.tableStructure[0].forEach(function(field, index) {
+        return  [<% tableDetailsCurrent.tableStructure.forEach(function(field, index) {
             if  ( fn.v.noIdAndExcludeFields(field.column_name)) {%>
-            '<%- field.column_name; %>' => ["required"]<%= fn.addCommaToArr(tableDetailsCurrent.tableStructure[0], index, 3) -%>
+            '<%- field.column_name; %>' => ["required"]<%= fn.addCommaToArr(tableDetailsCurrent.tableStructure, index, 3) -%>
             <%}});%> 
         ];
     }

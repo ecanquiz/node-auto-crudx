@@ -1,12 +1,12 @@
 //import * as consoleLog from '../utils/consoleLog'
-import db from '@modules/db';
+import db from '@coreModules/db';
 import colors from 'colors'
 
 import type {
   GetDataOfBDParams,
   GetDataOfBDReturn,
   TableDetailsOfMaster,
-} from '@customTypes/db'
+} from '@coreTypes/db'
 
 const validateIfTableMasterExist = async ({schema, tableMaster}: GetDataOfBDParams):Promise<void> => {  
   const tableMasterExist = (

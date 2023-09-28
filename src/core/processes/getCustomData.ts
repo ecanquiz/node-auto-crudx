@@ -1,12 +1,11 @@
-import crud from '@config/crud'
-
-import fn from '../utils/fn'
+import crud from '../../core/config/crud' // TODO
+import fn from '../../core/utils/fn' // TODO
 import type {
   GetDataOfBDParams,
   DataOfBD,
   fieldStructure,
   TableDetailsOfMaster
-} from '@customTypes/db'
+} from '@coreTypes/db'
 
 export default (
   getDataOfBDParams: GetDataOfBDParams,

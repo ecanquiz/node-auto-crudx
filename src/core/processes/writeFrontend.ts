@@ -1,7 +1,7 @@
-import vue from '@modules/renderings/vue'
-import rendering from '@utils/rendering';
-import { pathFrontend as output } from '@config/output'
-import type { ParamsAll, tableDetailsOfMasterCustomized } from '@customTypes/utilsRendering';
+import vue from '@stackRenderings/vue';
+import rendering from '@coreUtils/rendering';
+import { pathFrontend as output } from '@coreConfig/output'
+import type { ParamsAll, tableDetailsOfMasterCustomized } from '@coreTypes/utilsRendering';
 
 export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
   const params: ParamsAll = {...paramsOmitOutput, output}

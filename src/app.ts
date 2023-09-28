@@ -1,12 +1,11 @@
-// import demo from './modules/renderings/demo'
 import 'module-alias/register';
-import crud from '@config/crud'
-import getDataOfBD from './processes/getDataOfBD'
-import getCustomData from './processes/getCustomData'
-import consoleLog from '@utils/consoleLog';
-import writeBackend from './processes/writeBackend'
-import writeFrontend from './processes/writeFrontend'
-import type { GetDataOfBDParams } from '@customTypes/db'
+import crud from '@coreConfig/crud'
+import consoleLog from '@coreUtils/consoleLog'
+import getDataOfBD from './core/processes/getDataOfBD'
+import getCustomData from './core/processes/getCustomData'
+import writeBackend from './stack/processes/laravel'
+import writeFrontend from './stack/processes/vue'
+import type { GetDataOfBDParams } from '@coreTypes/db'
 
 const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[]) => {
   const dataOfBD = await getDataOfBD(getDataOfBDParams)  
@@ -18,12 +17,7 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
     writeFrontend(customData)
   } else {
     consoleLog.propertyLists({ dataOfBD: false, customData: true})
-    console.log(customData.tableDetailsOfMaster[1].tableForeignKeysAssoc)
-    //'customData.tableMaster'
-    //'customData.tableStructure'
-    //'customData.tableDetailsOfMaster'
-    //'customData.tableForeignKeysAssoc'
-    //'customData.tableStructureClean'
+    // console.log(customData.tableDetailsOfMaster[1].tableForeignKeysAssoc)
   }
 }
 
@@ -31,5 +25,3 @@ main({
   schema: crud.schema || 'public', 
   tableMaster: crud.tableMaster || 'users',
 }, crud.excludeFields ?? [])
-
-

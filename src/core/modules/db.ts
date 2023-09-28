@@ -1,7 +1,7 @@
 // https://github.com/salsita/node-pg-migrate/blob/master/src/db.ts
 // import { ClientBase, Client, ClientConfig, QueryResult, QueryArrayConfig, QueryConfig } from 'pg'
 import { QueryArrayResult, QueryConfig } from 'pg'
-import client from '@config/db'
+import client from '@coreConfig/db'
 import colors from 'colors'
 
 class DB {

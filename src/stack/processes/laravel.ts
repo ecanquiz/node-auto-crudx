@@ -1,7 +1,7 @@
-import laravel from '@modules/renderings/laravel'
-import rendering from '@utils/rendering';
-import { pathBackend as output } from '@config/output'
-import type { ParamsAll, tableDetailsOfMasterCustomized } from '@customTypes/utilsRendering'
+import laravel from '@stackRenderings/laravel';
+import rendering from '@coreUtils/rendering';
+import { pathBackend as output } from '@coreConfig/output'
+import type { ParamsAll, tableDetailsOfMasterCustomized } from '@coreTypes/rendering'
 
 export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
   const params: ParamsAll = {...paramsOmitOutput, output}

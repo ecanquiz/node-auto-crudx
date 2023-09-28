@@ -1,6 +1,6 @@
 import { singular } from '@coreUtils/grammaticalNumber'
 import { uCamelCase } from '@coreUtils/nomenclature'
-import type { ParamsAll, Rendering } from '@coreTypes/utilsRendering'
+import type { ParamsAll, Rendering } from '@coreTypes/rendering'
 
 export default {
   detailController: (params: ParamsAll): Rendering => ({

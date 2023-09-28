@@ -1,6 +1,5 @@
-//import * as consoleLog from '../utils/consoleLog'
-import db from '@coreModules/db';
 import colors from 'colors'
+import db from '@coreModules/db';
 
 import type {
   GetDataOfBDParams,

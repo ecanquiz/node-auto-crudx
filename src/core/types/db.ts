@@ -35,14 +35,10 @@ export type TableDetailsOfMaster = {
   id_master: string
 }
 
-/*export type TableMasterForeignKeysAssoc = {
+export type TableMasterForeignKeysAssoc = {
   column_name: string
   foreign_table_name: string
   foreign_column_name: string | 'id'
   constraint_name: string,
   table_schema: string | 'public'
-  foreignTableNameSingular?: string
-  foreignTableNameUCamelCase?: string
-  foreignTableNameSingularUCamelCase?: string
-}*/
-
+}

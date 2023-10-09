@@ -44,7 +44,7 @@ export default (<%= fn.singular(tableMaster); %>Id?: string) => {
     return <%= fn.uCamelCase(fn.singular(tableMaster)); %>Service.insert<%= fn.uCamelCase(fn.singular(tableMaster)); %>(<%= fn.singular(tableMaster); %>)
       .then((response) => {         
         alert( response.data.message )
-        router.push( { path: `/<%= tableMaster; %>/edit/${response.data.<%= fn.singular(tableMaster); %>_id}` } )
+        router.push( { path: `/<%= tableMaster; %>/edit/${response.data.id}` } )
       })
       .catch((err) => {                
         console.log( err.response.data )

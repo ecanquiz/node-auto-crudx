@@ -41,7 +41,7 @@ const submit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = a
               if (field.data_type === "character varying") {%>  <div class="block">     
                 <AppInput           
                   v-model="form.<%= field.column_name; %>"
-                  label="<%= field.column_name; %>"
+                  label="<%= fn.uCamelCase(field.column_name); %>"
                   type="text"
                   :error="v$.<%= field.column_name; %>.$error ? v$.<%= field.column_name; %>.$errors[0].$message : null"
 
@@ -49,7 +49,7 @@ const submit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = a
               </div>
               <%} else if ((field.data_type === "text")) {%>  <div class="block">     
                 <AppTextarea
-                  label="<%= field.column_name; %>"
+                  label="<%= fn.uCamelCase(field.column_name); %>"
                   v-model="form.<%= field.column_name; %>"
                   :error="v$.<%= field.column_name; %>.$error ? v$.<%= field.column_name; %>.$errors[0].$message : null"
                 />
@@ -60,7 +60,7 @@ const submit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = a
                   v-if="<%= tableDetailsCurrent.tableForeignKeysAssoc.find(element => element.column_name === field.column_name)?.foreign_table_name; %>"
                   :options="<%= tableDetailsCurrent.tableForeignKeysAssoc.find(element => element.column_name === field.column_name)?.foreign_table_name; %>"
                   v-model="form.<%= field.column_name; %>"
-                  label="<%= field.column_name; %>"
+                  label="<%= fn.uCamelCase(fn.singular(fn.foreignTableName(field.column_name, tableDetailsCurrent.tableForeignKeysAssoc))); %>"
                   :error="v$.<%= field.column_name; %>.$error ? v$.<%= field.column_name; %>.$errors[0].$message : null"
                 />
               </div>
@@ -69,21 +69,12 @@ const submit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = a
               <%} else if ((field.data_type === "boolean")) {%>  <div class="block">     
                 <AppCheckbox
                   v-model="form.<%= field.column_name; %>"
-                  label="<%= field.column_name; %>"
+                  label="<%= fn.uCamelCase(field.column_name); %>"
                   :error="v$.<%= field.column_name; %>.$error ? v$.<%= field.column_name; %>.$errors[0].$message : null"
                 />
               </div>
               <%}%>
             <%}});%>
-
-
-
-
-
-
-
-
-
 
           <!--label>Tipo de Venta</label><br/>
           <AppRadioGroup
@@ -99,7 +90,7 @@ const submit<%= fn.uCamelCase(fn.singular(tableDetailsCurrent.tableName)) %> = a
           type="submit"                 
           data-testid="submit-btn"
           class="btn btn-primary"
-          text="Agregar"
+          text="Guardar"
         />        
       </div> 
     </form>    

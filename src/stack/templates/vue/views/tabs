@@ -3,19 +3,20 @@ import { defineAsyncComponent, shallowRef, ref } from 'vue'
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import { useRouter } from 'vue-router'
 
-const Tab<%= fn.uCamelCase(fn.singular(tableMaster)); %> = defineAsyncComponent(() => import('../../components/<%= fn.uCamelCase(fn.singular(tableMaster)) ; %>/Tab<%= fn.uCamelCase(fn.singular(tableMaster)); %>.vue'))<%
-tableDetailsOfMaster.forEach(function(table){ %>
-const Tab<%= fn.uCamelCase(fn.singular(table.tableName)); %> = defineAsyncComponent(() => import('../../components/<%= fn.uCamelCase(fn.singular(tableMaster)) ; %>/Tab<%= fn.uCamelCase(fn.singular(table.tableName)); %>.vue'))<% })
-;%>
-
+const Tab<%= fn.uCamelCase(fn.singular(tableMaster)); %> = defineAsyncComponent(() => import('../../components/<%= fn.uCamelCase(fn.singular(tableMaster)) ; %>/Tab<%= fn.uCamelCase(fn.singular(tableMaster)); %>.vue'))
+const tabs = [{ component: Tab<%= fn.uCamelCase(fn.singular(tableMaster)); %> , title: "<%= fn.uCamelCase(fn.singular(tableMaster)); %>" }]
 const props = defineProps<{ id?: string }>()
 
-const tabs = [
-  { component: Tab<%= fn.uCamelCase(fn.singular(tableMaster)); %> , title: "<%= fn.uCamelCase(fn.singular(tableMaster)); %>" },<%
-tableDetailsOfMaster.forEach(function(table, index){ %>
-  { component: Tab<%= fn.uCamelCase(fn.singular(table.tableName)); %> , title: "<%= fn.uCamelCase(table.tableName); %>" }<%= index < tableDetailsOfMaster.length-1 ? ',' : '' %><% })
-;%>
-]
+if (props.id){<%
+  tableDetailsOfMaster.forEach(function(table){ %>
+  const Tab<%= fn.uCamelCase(fn.singular(table.tableName)); %> = defineAsyncComponent(() => import('../../components/<%= fn.uCamelCase(fn.singular(tableMaster)) ; %>/Tab<%= fn.uCamelCase(fn.singular(table.tableName)); %>.vue'))<% })
+  ;%>
+  tabs.push(<%
+  tableDetailsOfMaster.forEach(function(table, index){ %>
+    { component: Tab<%= fn.uCamelCase(fn.singular(table.tableName)); %> , title: "<%= fn.uCamelCase(table.tableName); %>" }<%= index < tableDetailsOfMaster.length-1 ? ',' : '' %><% })
+  ;%>
+  )
+}
 
 const currentTab = shallowRef(tabs[0])
 const router = useRouter();

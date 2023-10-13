@@ -6,7 +6,7 @@ export const isNotExistCreateIt = (output: string, pathTemp?: string)=> {
   const path = `${output}/${pathTemp}`
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path)
-    console.log("Path created successfully", path)
+    console.log("Path created successfully", `.${path}`)
   }
 }
 

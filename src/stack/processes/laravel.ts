@@ -1,6 +1,6 @@
 import laravel from '@stackRenderings/laravel';
 import rendering from '@coreUtils/rendering';
-import { pathBackend as output } from '@coreConfig/output'
+import { pathBackend as output } from '@config/output'
 import type { ParamsAll, tableDetailsOfMasterCustomized } from '@coreTypes/rendering'
 
 export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {

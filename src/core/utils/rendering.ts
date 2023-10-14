@@ -3,7 +3,7 @@ import ejs from 'ejs'
 import colors from 'colors'
 import createOutputPath from './createOutputPath'
 //import { pathUser, pathModule } from '@config/output' // TODO conflict by testing...
-import { pathUser, moduleName } from '../config/output'
+import { pathUser, moduleName } from '@config/output'
 import type { Rendering } from '@coreTypes/rendering'
 
 export default ({ outputFile, outputPath, params, template }: Rendering): void => {

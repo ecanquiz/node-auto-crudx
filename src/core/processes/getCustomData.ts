@@ -1,5 +1,5 @@
-import crud from '../../core/config/crud' // TODO
-import fn from '../../core/utils/fn' // TODO
+import crud from '@config/crud'
+import fn from '@coreUtils/fn'
 import type {
   GetDataOfBDParams,
   DataOfBD,

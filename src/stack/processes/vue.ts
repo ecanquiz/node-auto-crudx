@@ -1,6 +1,6 @@
 import vue from '@stackRenderings/vue';
 import rendering from '@coreUtils/rendering';
-import { pathFrontend as output } from '@coreConfig/output'
+import { pathFrontend as output } from '@config/output'
 import type { ParamsAll, tableDetailsOfMasterCustomized } from '@coreTypes/rendering';
 
 export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {

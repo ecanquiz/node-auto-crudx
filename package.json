@@ -30,7 +30,7 @@
     "pg-hstore": "^2.3.4"
   },
   "_moduleAliases": {
-    "@coreConfig": "dist/core/config",
+    "@config": "dist/config",
     "@coreModules": "dist/core/modules",
     "@coreTypes": "dist/core/types",
     "@coreUtils": "dist/core/utils",

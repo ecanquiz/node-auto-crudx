@@ -1,5 +1,5 @@
 import 'module-alias/register';
-import crud from '@coreConfig/crud'
+import crud from '@config/crud'
 import consoleLog from '@coreUtils/consoleLog'
 import getDataOfBD from './core/processes/getDataOfBD'
 import getCustomData from './core/processes/getCustomData'

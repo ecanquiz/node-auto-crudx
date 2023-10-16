@@ -1,6 +1,5 @@
-import { singular } from '@coreUtils/grammaticalNumber'
-import { uCamelCase } from '@coreUtils/nomenclature'
-import type { ParamsAll, Rendering } from '@coreTypes/rendering'
+import { singular, uCamelCase } from '@core/index'
+import type { ParamsAll, Rendering } from '@core/index'
 
 export default {
   detailForm: (params: ParamsAll): Rendering => ({

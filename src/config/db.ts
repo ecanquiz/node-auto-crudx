@@ -3,7 +3,7 @@ import { Client } from 'pg'
 
 dotenv.config();
 
-const client = new Client({    
+const dbClient = new Client({    
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT),
     database: process.env.DB_DATABASE,
@@ -11,4 +11,4 @@ const client = new Client({
     password: process.env.DB_PASSWORD    
 });
 
-export default client;
+export default dbClient;

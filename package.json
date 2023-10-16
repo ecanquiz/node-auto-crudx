@@ -36,7 +36,6 @@
     "@coreProcesses": "dist/core/processes",
     "@coreTypes": "dist/core/types",
     "@coreUtils": "dist/core/utils",
-    "@stackProcesses": "dist/stack/processes",
-    "@stackRenderings": "dist/stack/renderings"
+    "@stack": "dist/stack"
   }
 }

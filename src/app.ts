@@ -1,7 +1,8 @@
 import 'module-alias/register';
 import { crud } from './config'
 import { consoleLog, getCustomData, getDataOfBD } from './core'
-import { backendProcess, frontendProcess } from './stack'
+import backendProcess from '@stack/backend/process'
+import frontendProcess from '@stack/frontend/process'
 import type { GetDataOfBDParams } from './core'
 
 const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[]) => {

@@ -1,11 +1,11 @@
-import crud from '@config/crud'
-import fn from '@coreUtils/fn'
+import { crud } from '@config/index'
+import { fn } from '@core/index'
 import type {
   GetDataOfBDParams,
   DataOfBD,
   fieldStructure,
   TableDetailsOfMaster
-} from '@coreTypes/db'
+} from '@core/index'
 
 export default (
   getDataOfBDParams: GetDataOfBDParams,

@@ -31,6 +31,7 @@
   },
   "_moduleAliases": {
     "@config": "dist/config",
+    "@core": "dist/core",
     "@coreModules": "dist/core/modules",
     "@coreProcesses": "dist/core/processes",
     "@coreTypes": "dist/core/types",

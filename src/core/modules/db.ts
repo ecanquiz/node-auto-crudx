@@ -1,12 +1,12 @@
 // https://github.com/salsita/node-pg-migrate/blob/master/src/db.ts
 // import { ClientBase, Client, ClientConfig, QueryResult, QueryArrayConfig, QueryConfig } from 'pg'
 import { QueryArrayResult, QueryConfig } from 'pg'
-import client from '@config/db'
+import { dbClient } from '@config/index'
 import colors from 'colors'
 
 class DB {
     constructor() {
-        client.connect((err) => { // if (err)  throw new Error('Uh oh!');
+        dbClient.connect((err) => { // if (err)  throw new Error('Uh oh!');
             if (err) {
                 console.log(colors.bgRed(`ERROR: ${err}.`))
                 process.exit();
@@ -17,9 +17,9 @@ class DB {
 
     async exeQry ( queryConfig: QueryConfig, isEnd = false)
     : Promise<QueryArrayResult<any[]>> {
-        let resp = await client.query(queryConfig)
+        let resp = await dbClient.query(queryConfig)
         if (isEnd)
-          await client.end()
+          await dbClient.end()
         return resp
     }
   

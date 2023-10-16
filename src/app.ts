@@ -1,20 +1,17 @@
 import 'module-alias/register';
-import crud from '@config/crud'
-import consoleLog from '@coreUtils/consoleLog'
-import getDataOfBD from '@coreProcesses/getDataOfBD'
-import getCustomData from '@coreProcesses/getCustomData'
-import writeBackend from '@stackProcesses/laravel'
-import writeFrontend from '@stackProcesses/vue'
-import type { GetDataOfBDParams } from '@coreTypes/db'
+import { crud } from './config'
+import { consoleLog, getCustomData, getDataOfBD } from './core'
+import { backendProcess, frontendProcess } from './stack'
+import type { GetDataOfBDParams } from './core'
 
 const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[]) => {
   const dataOfBD = await getDataOfBD(getDataOfBDParams)  
   const customData = getCustomData(getDataOfBDParams, dataOfBD, excludeFields )
 
   if (true) {
-    writeBackend(customData)
+    backendProcess(customData)
     customData.tableStructure = customData.tableStructureClean
-    writeFrontend(customData)
+    frontendProcess(customData)
   } else {
     consoleLog.propertyLists({ dataOfBD: false, customData: true})
     // console.log(customData.tableDetailsOfMaster[1].tableForeignKeysAssoc)

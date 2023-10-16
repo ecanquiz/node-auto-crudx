@@ -1,10 +1,10 @@
 import 'module-alias/register';
 import crud from '@config/crud'
 import consoleLog from '@coreUtils/consoleLog'
-import getDataOfBD from './core/processes/getDataOfBD'
-import getCustomData from './core/processes/getCustomData'
-import writeBackend from './stack/processes/laravel'
-import writeFrontend from './stack/processes/vue'
+import getDataOfBD from '@coreProcesses/getDataOfBD'
+import getCustomData from '@coreProcesses/getCustomData'
+import writeBackend from '@stackProcesses/laravel'
+import writeFrontend from '@stackProcesses/vue'
 import type { GetDataOfBDParams } from '@coreTypes/db'
 
 const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[]) => {

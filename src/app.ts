@@ -9,7 +9,7 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
   const dataOfBD = await getDataOfBD(getDataOfBDParams)  
   const customData = getCustomData(getDataOfBDParams, dataOfBD, excludeFields )
 
-  if (true) {
+  if (crud.generate) {
     backendProcess(customData)
     customData.tableStructure = customData.tableStructureClean
     frontendProcess(customData)

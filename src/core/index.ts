@@ -1,3 +1,4 @@
+import main           from '@coreProcesses/main'
 import consoleLog     from '@coreUtils/consoleLog'
 import rendering      from '@coreUtils/rendering';
 import fn             from '@coreUtils/fn'
@@ -22,6 +23,7 @@ import type {
 } from '@coreTypes/rendering'
 
 export {
+    main,
     consoleLog,
     db,
     fn,

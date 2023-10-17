@@ -5,7 +5,11 @@ import backendProcess from '@stack/backend/process'
 import frontendProcess from '@stack/frontend/process'
 import type { GetDataOfBDParams } from './core'
 
-const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[]) => {
+const main = async (
+  getDataOfBDParams: GetDataOfBDParams,
+  excludeFields: string[],
+  consoleLogCustom:(dataJSON: any) => void
+  ) => {
   const dataOfBD = await getDataOfBD(getDataOfBDParams)  
   const customData = getCustomData(getDataOfBDParams, dataOfBD, excludeFields )
 
@@ -15,11 +19,14 @@ const main = async (getDataOfBDParams: GetDataOfBDParams, excludeFields: string[
     frontendProcess(customData)
   } else {
     consoleLog.propertyLists({ dataOfBD: false, customData: true})
-    // console.log(customData.tableDetailsOfMaster[1].tableForeignKeysAssoc)
+    consoleLogCustom(customData)
   }
 }
 
 main({
-  schema: crud.schema || 'public', 
-  tableMaster: crud.tableMaster || 'users',
-}, crud.excludeFields ?? [])
+    schema: crud.schema || 'public', 
+    tableMaster: crud.tableMaster || 'users',
+  },
+  crud.excludeFields ?? [],
+  (dataJSON) => console.log(dataJSON)
+)

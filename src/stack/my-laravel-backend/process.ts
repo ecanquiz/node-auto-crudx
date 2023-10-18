@@ -1,9 +1,14 @@
+import { crud } from '@config/index'
 import { pathBackend as output } from '@config/index'
 import { rendering } from '@core/index'
-import backend from '@stack/backend/renderings';
+//import backend from '@stack/backend/renderings';
 import type { ParamsAll, tableDetailsOfMasterCustomized } from '@core/index'
 
-export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
+
+export default async (paramsOmitOutput: Omit<ParamsAll, 'output'>): Promise<void> => {
+
+  const backend = (await import(`@stack/${crud.stackBackend}/renderings`)).default
+
   const params: ParamsAll = {...paramsOmitOutput, output}
   if (params.tableDetailsOfMaster.length===0) {
     console.log('params.tableDetailsOfMaster', params.tableDetailsOfMaster)

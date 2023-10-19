@@ -1,9 +1,10 @@
+import { crud } from '@config/index'
 import { pathFrontend as output } from '@config/output'
 import { rendering } from '@core/index'
-import frontend from '@stack/frontend/renderings';
 import type { ParamsAll, tableDetailsOfMasterCustomized } from '@coreTypes/rendering';
 
-export default (paramsOmitOutput: Omit<ParamsAll, 'output'>): void => {
+export default async (paramsOmitOutput: Omit<ParamsAll, 'output'>): Promise<void> => {
+  const frontend = (await import(`@stack/${crud.stackFrontend}/renderings`)).default
   const params: ParamsAll = {...paramsOmitOutput, output}
   if (params.tableDetailsOfMaster.length===0){
     rendering(frontend.masterCreateOrEdit(params))

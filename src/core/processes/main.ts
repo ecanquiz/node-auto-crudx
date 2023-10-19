@@ -12,7 +12,6 @@ export default async (
     if (crud.generate) {
         const backendProcess = (await import(`@stack/${crud.stackBackend}/process`)).default
         const frontendProcess = (await import(`@stack/${crud.stackFrontend}/process`)).default
-
         backendProcess(customData)
         customData.tableStructure = customData.tableStructureClean
         frontendProcess(customData)

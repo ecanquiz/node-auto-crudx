@@ -1,5 +1,5 @@
 import crud from './crud'
-import dbClient from './db'
+import dbConfig from './db'
 //import * as output from './output'
 import {
     moduleName,
@@ -11,7 +11,7 @@ import {
 
 export {
     crud,
-    dbClient,
+    dbConfig,
     //output
     moduleName,
     pathBackend,

@@ -2,12 +2,14 @@ import config from '@config/index'
 import { rendering } from '@core/index'
 import type { ParamsAll, tableDetailsOfMasterCustomized } from '@core/index'
 
-const crud = config.crud
-const output = config.pathBackend
-
 export default async (paramsOmitOutput: Omit<ParamsAll, 'output'>): Promise<void> => {
-  const backend = (await import(`@stack/${crud.stackBackend}/renderings`)).default
-  const params: ParamsAll = {...paramsOmitOutput, output}
+  const backend = (await import(`@stack/${config.crud.stackBackend}/renderings`)).default
+  const params: ParamsAll = {
+    ...paramsOmitOutput,
+    output: config.pathBackend,
+    moduleName: config.moduleName,
+    pathUser: config.pathUser
+  }
   if (params.tableDetailsOfMaster.length===0) {
     console.log('params.tableDetailsOfMaster', params.tableDetailsOfMaster)
   } else {

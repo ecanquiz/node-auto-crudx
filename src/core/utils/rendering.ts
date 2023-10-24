@@ -2,12 +2,10 @@ import fs from 'fs'
 import ejs from 'ejs'
 import colors from 'colors'
 import createOutputPath from './createOutputPath'
-// import { pathUser, moduleName } from '@config/output' // TODO conflict by testing...
-import { pathUser, moduleName } from '../../config/output'
 import type { Rendering } from '@coreTypes/rendering'
 
 export default ({ outputFile, outputPath, params, template }: Rendering): void => {
-  params.pathModule = moduleName
+  params.pathModule = params.moduleName
   let tmplt = fs.readFileSync(template)
   let content = ejs.render(tmplt.toString(), params);
 
@@ -18,7 +16,7 @@ export default ({ outputFile, outputPath, params, template }: Rendering): void =
 
   let path = createOutputPath(params.output, outputPath)
   let file = `${path}/${outputFile}`
-  let fileShow = file.replace(pathUser as unknown as string,'')  
+  let fileShow = file.replace(params.pathUser as unknown as string,'')  
   
   fs.writeFile(file, content, err => {
     (err)

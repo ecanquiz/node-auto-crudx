@@ -1,4 +1,6 @@
 export type ParamsMain = {
+  moduleName?: string
+  pathUser?: string
   pathModule?: string
   tableMaster: string
   tableStructure: string[][],
@@ -21,6 +23,10 @@ export type Output = {
 
 export type PathModule = {
   pathModule: string
+}
+
+export type ModuleName = {
+  moduleName: string
 }
 
 export type ParamsAll = ParamsMain & ParamsDetail & Output

@@ -1,13 +1,15 @@
 import config from '@config/index'
-import { pathFrontend as output } from '@config/output'
 import { rendering } from '@core/index'
 import type { ParamsAll, tableDetailsOfMasterCustomized } from '@coreTypes/rendering';
 
-const crud = config.crud
-
 export default async (paramsOmitOutput: Omit<ParamsAll, 'output'>): Promise<void> => {
-  const frontend = (await import(`@stack/${crud.stackFrontend}/renderings`)).default
-  const params: ParamsAll = {...paramsOmitOutput, output}
+  const frontend = (await import(`@stack/${config.crud.stackFrontend}/renderings`)).default
+  const params: ParamsAll = {
+    ...paramsOmitOutput,
+    output: config.pathFrontend,
+    moduleName: config.moduleName,
+    pathUser: config.pathUser
+  }
   if (params.tableDetailsOfMaster.length===0){
     rendering(frontend.masterCreateOrEdit(params))
     rendering(frontend.masterFormCreateOrEdit(params))

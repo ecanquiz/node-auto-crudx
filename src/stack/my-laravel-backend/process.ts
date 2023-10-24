@@ -1,7 +1,9 @@
-import { crud } from '@config/index'
-import { pathBackend as output } from '@config/index'
+import config from '@config/index'
 import { rendering } from '@core/index'
 import type { ParamsAll, tableDetailsOfMasterCustomized } from '@core/index'
+
+const crud = config.crud
+const output = config.pathBackend
 
 export default async (paramsOmitOutput: Omit<ParamsAll, 'output'>): Promise<void> => {
   const backend = (await import(`@stack/${crud.stackBackend}/renderings`)).default

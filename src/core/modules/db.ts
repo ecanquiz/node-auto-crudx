@@ -1,13 +1,13 @@
 // https://github.com/salsita/node-pg-migrate/blob/master/src/db.ts
 // import { ClientBase, Client, ClientConfig, QueryResult, QueryArrayConfig, QueryConfig } from 'pg'
 import { Client, QueryArrayResult, QueryConfig } from 'pg'
-import { dbConfig } from '@config/index'
+import type { DBConfig } from '@core/types/config'
 import colors from 'colors'
 
 class DB {
     private dbClient;
 
-    constructor() {
+    constructor(dbConfig: DBConfig) {
         this.dbClient = new Client(dbConfig);
         this.dbClient.connect((err) => { // if (err)  throw new Error('Uh oh!');
             if (err) {
@@ -238,4 +238,4 @@ class DB {
 
 }
 
-export default new DB;
+export default DB;

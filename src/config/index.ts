@@ -9,7 +9,7 @@ import {
     pathUser
 } from './output'
 
-export {
+export default {
     crud,
     dbConfig,
     //output

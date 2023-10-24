@@ -1,6 +1,8 @@
-import { crud } from '@config/index'
+import config from '@config/index'
 import { singular, uCamelCase } from '@core/index'
 import type { ParamsAll, Rendering } from '@core/index'
+
+const crud = config.crud
 
 export default {
   detailController: (params: ParamsAll): Rendering => ({

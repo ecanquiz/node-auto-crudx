@@ -1,6 +1,7 @@
 import 'module-alias/register';
 import config from '@config/index'
-import { main } from 'autocrux-utils'
+import { main } from 'autocrudx-tools'
+
 main(
   config,
   {

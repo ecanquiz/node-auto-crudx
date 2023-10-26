@@ -1,6 +1,6 @@
 import config from '@config/index'
-import { singular, uCamelCase } from 'autocrux-utils'
-import type { ParamsAll, Rendering } from 'autocrux-utils'
+import { singular, uCamelCase } from 'autocrudx-tools'
+import type { ParamsAll, Rendering } from 'autocrudx-tools'
 
 export default {
   detailForm: (params: ParamsAll): Rendering => ({

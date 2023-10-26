@@ -1,6 +1,6 @@
 import config from '@config/index'
-import { rendering } from 'autocrux-utils'
-import type { ParamsAll, tableDetailsOfMasterCustomized } from 'autocrux-utils'
+import { rendering } from 'autocrudx-tools'
+import type { ParamsAll, tableDetailsOfMasterCustomized } from 'autocrudx-tools';
 
 export default async (paramsOmitOutput: Omit<ParamsAll, 'output'>): Promise<void> => {
   const backend = (await import(`@stack/${config.crud.stackBackend}/renderings`)).default

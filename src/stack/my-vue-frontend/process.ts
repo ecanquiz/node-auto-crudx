@@ -1,6 +1,6 @@
 import config from '@config/index'
-import { rendering } from '@core/index'
-import type { ParamsAll, tableDetailsOfMasterCustomized } from '@coreTypes/rendering';
+import { rendering } from 'autocrudx-tools'
+import type { ParamsAll, tableDetailsOfMasterCustomized } from 'autocrudx-tools';
 
 export default async (paramsOmitOutput: Omit<ParamsAll, 'output'>): Promise<void> => {
   const frontend = (await import(`@stack/${config.crud.stackFrontend}/renderings`)).default

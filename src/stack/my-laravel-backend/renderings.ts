@@ -1,6 +1,6 @@
 import config from '@config/index'
-import { singular, uCamelCase } from '@core/index'
-import type { ParamsAll, Rendering } from '@core/index'
+import { singular, uCamelCase } from 'autocrudx-tools'
+import type { ParamsAll, Rendering } from 'autocrudx-tools'
 
 export default {
   detailController: (params: ParamsAll): Rendering => ({

@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class <%= fn.uCamelCase(fn.singular(tableMaster)); %> extends Model
+{
+    use HasFactory, SoftDeletes;
+    
+    protected $fillable = [<%
+        tableStructure.forEach(function(field, index) {
+        if  (fn.v.noIdAndExcludeFields(field.column_name)) { %>
+        '<%= field.column_name; %>'<%= fn.addCommaToArr(tableStructure, index, 0) -%><%
+        }}); %>
+    ];
+}

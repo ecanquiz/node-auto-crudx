@@ -5,30 +5,30 @@ import axios from 'axios'
 export default defineComponent({
   data() {
     return {
-      tasks: []
+      <%= tableMaster; %>: []
     }
   },
   mounted() {
-    this.getTasks();
+    this.get<%= fn.uCamelCase(tableMaster); %>();
   },
   methods: {
-    getTasks() {
+    get<%= fn.uCamelCase(tableMaster); %>() {
       axios
-        .get('http://localhost:8000/api/tasks')
-        .then(response => this.tasks = response.data )
+        .get('http://localhost:8000/api/<%= tableMaster; %>')
+        .then(response => this.<%= tableMaster; %> = response.data )
         .catch(
           error => console.log({
             errorCode: error.code, errorMessage: error.message
           })
         );
     },
-    removeTask(id) {
+    remove<%= fn.uCamelCase(fn.singular(tableMaster)); %>(id) {
       axios
-        .delete(`http://localhost:8000/api/tasks/${id}`)
+        .delete(`http://localhost:8000/api/<%= tableMaster; %>/${id}`)
         .then(response => {
           console.log({ statusCode: response.status })
           if (response.status===204)
-            this.getTasks();
+            this.get<%= fn.uCamelCase(tableMaster); %>();
           })
         .catch(
           error => console.log({
@@ -50,38 +50,32 @@ export default defineComponent({
     </router-link>
     <table class="min-w-full text-left text-sm font-light">
       <thead class="border-b font-medium dark:border-neutral-500">
-        <tr>
-          <th class="p-2">ID</th>
-          <th class="p-2">Title</th>
-          <th class="p-2">Description</th>
-          <th class="p-2">Done</th>
-          <th class="p-2">Created At</th>
-          <th class="p-2">Updated At</th>
+        <tr><%
+          tableStructure.forEach(function(field){%>
+          <th class=""><%= field.column_name; %></th><%
+          }); %>
           <th class="p-2">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr
-          v-for="task in tasks"
-          :key="task.id"
+          v-for="<%= fn.singular(tableMaster); %> in <%= tableMaster; %>"
+          :key="<%= fn.singular(tableMaster); %>.id"
           class="border-b dark:border-neutral-500"
-        >
-          <td class="p-2">{{ task.id }}</td>
-          <td class="p-2">{{ task.title }}</td>
-          <td class="p-2">{{ task.description }}</td>
-          <td class="p-2">{{ task.done }}</td>
-          <td class="p-2">{{ task.created_at }}</td>
-          <td class="p-2">{{ task.updated_at }}</td>          
+        ><%
+        tableStructure.forEach((field) => { %>
+          <td class="">{{ <%= fn.singular(tableMaster); %>.<%= field.column_name; %> }}</td><%});
+        %>        
           <td class="p-2">
             <button
               class="btn btn-success m-1 text-sm"
-              @click="$router.push({name: 'edit', params: {id: task.id}})"
+              @click="$router.push({name: 'edit', params: {id: <%= fn.singular(tableMaster); %>.id}})"
             >
               Edit
             </button>
             <button
               class="btn btn-danger m-1 text-sm"
-              @click="removeTask(task.id)"
+              @click="remove<%= fn.uCamelCase(fn.singular(tableMaster)); %>(<%= fn.singular(tableMaster); %>.id)"
             >
               Delete
             </button>
@@ -89,6 +83,6 @@ export default defineComponent({
         </tr>
       </tbody>
     </table>
-    <h4 v-if="tasks.length === 0">Empty list.</h4>
+    <h4 v-if="<%= tableMaster; %>.length === 0">Empty list.</h4>
   </div>
 </template>

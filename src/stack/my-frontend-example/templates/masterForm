@@ -1,14 +1,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import type { Task } from '@/types'
 
 export default defineComponent({
   props: {
-    task: Object    
+    <%= fn.singular(tableMaster); %>: Object    
   },
   data() {
     return {
-      form: this.$props.task as Task
+      form: this.$props.<%= fn.singular(tableMaster); %>
     }
   },
   emits: ['submit'],
@@ -22,21 +21,21 @@ export default defineComponent({
 
 <template>
   <form @submit.prevent="submit">
-    <div class="m-2">
-      <label>Title</label>
-      <input type="text" v-model="form.title">
+    <% tableStructure.forEach(function(field) {
+      if  (!['id', 'created_at', 'updated_at', 'deleted_at'].includes(field.column_name)) {
+      if (field.data_type === "character varying") {%><div class="m-2">
+      <label><%= fn.uCamelCase(field.column_name); %></label>
+      <input type="text" v-model="form.<%= field.column_name; %>">
+    </div>        
+    <%} else if ((field.data_type === "text")) {%><div class="m-4">          
+      <label><%= fn.uCamelCase(field.column_name); %></label>
+      <textarea v-model="form.<%= field.column_name; %>"></textarea>
     </div>
-
-   <div class="m-4">
-      <label>Description</label>
-      <textarea v-model="form.description"></textarea>
+    <%} else if ((field.data_type === "boolean")) {%><div class="m-4">
+      <label><%= fn.uCamelCase(field.column_name); %></label>
+      <input type="checkbox" v-model="form.<%= field.column_name; %>"/>
     </div>
-
-    <div class="m-4">
-      <label>Done</label>
-      <input type="checkbox" v-model="form.done"/>
-    </div>
-
+    <%}%><%}});%>
     <button type="submit" class="btn btn-primary m-2">
       Save
     </button>

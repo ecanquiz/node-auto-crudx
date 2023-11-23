@@ -1,35 +1,35 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import axios from 'axios'
-import FormTask from '../../components/Task/FormTask.vue'
+import Form<%= fn.uCamelCase(fn.singular(tableMaster)); %> from '../../components/<%= fn.uCamelCase(fn.singular(tableMaster)); %>/Form<%= fn.uCamelCase(fn.singular(tableMaster)); %>.vue'
 
 export default defineComponent({
   props: {
     id: String
   },
   components: {
-    FormTask
+    Form<%= fn.uCamelCase(fn.singular(tableMaster)); %>
   },
   data() {
     return {
-      task: {}
+      <%= fn.singular(tableMaster); %>: {}
     }
   },
   mounted() {
     if (this.$props.id)
-      this.getTask();
+      this.get<%= fn.uCamelCase(fn.singular(tableMaster)); %>();
   },
   computed: {
     isRenderable() {
-        return (this.$props.id && Object.keys(this.task).length > 0)
+        return (this.$props.id && Object.keys(this.<%= fn.singular(tableMaster); %>).length > 0)
           || this.$props.id===undefined
     }
   },  
   methods: {
-    getTask() {
+    get<%= fn.uCamelCase(fn.singular(tableMaster)); %>() {
       axios
-        .get(`http://localhost:8000/api/tasks/${this.$props.id}`)
-        .then(response => this.task = response.data )
+        .get(`http://localhost:8000/api/<%= tableMaster; %>/${this.$props.id}`)
+        .then(response => this.<%= fn.singular(tableMaster); %> = response.data )
         .catch(
           error => console.log({
             errorCode: error.code, errorMessage: error.message
@@ -39,7 +39,7 @@ export default defineComponent({
     submit(payload) {
       if (this.$props.id===undefined) {
         axios
-          .post("http://localhost:8000/api/tasks", payload)
+          .post("http://localhost:8000/api/<%= tableMaster; %>", payload)
           .then(response => (
             this.$router.push({name: 'index'})            
           ))
@@ -47,7 +47,7 @@ export default defineComponent({
           //.finally(() => this.pending = false)
       } else {
         axios
-          .put(`http://localhost:8000/api/tasks/${this.$props.id}`, payload)
+          .put(`http://localhost:8000/api/<%= tableMaster; %>/${this.$props.id}`, payload)
           .then(response => (
             this.$router.push({name: 'index'})            
           ))
@@ -64,6 +64,6 @@ export default defineComponent({
     <h1 class="text-2xl" align="center">
       {{$props.id ? 'Editing' : 'Creating'}} Tast
     </h1>
-    <FormTask v-if="isRenderable" :task="task" @submit='submit' />
+    <Form<%= fn.uCamelCase(fn.singular(tableMaster)); %> v-if="isRenderable" :<%= fn.singular(tableMaster); %>="<%= fn.singular(tableMaster); %>" @submit='submit' />
   </div>
 </template>

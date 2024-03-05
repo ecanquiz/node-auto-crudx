@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  web:
+    image: node:18.8.0
+    ports:
+      - "5173:80"
+    volumes:
+      - ".:/app"
+    environment:
+      NODE_ENV: development
+    working_dir: /app
+    container_name: autocrudx_node
+    command: sh -c "cd /app; npm install; npm i -g typescript; npm install -g nodemon; tsc --watch"
